@@ -90,6 +90,13 @@
       "source": "./plugins/utility",
       "category": "development",
       "keywords": ["utility", "os", "setup", "config", "snapshot", "windows", "macos", "linux", "naming-convention", "backup", "export"]
+    },
+    {
+      "name": "insight",
+      "description": "Plugin รวม Skills สำหรับวิเคราะห์ web analytics ครอบคลุม Google Analytics 4 (insight-ga4) และ Microsoft Clarity (insight-clarity) ผ่าน official MCP servers ของแต่ละแพลตฟอร์ม สรุปผลเป็น web dashboard (Artifact) พร้อมจัดการโควต้า Clarity API อัตโนมัติ",
+      "source": "./plugins/insight",
+      "category": "productivity",
+      "keywords": ["insight", "analytics", "web-analytics", "google-analytics", "ga4", "microsoft-clarity", "clarity", "dashboard", "mcp", "traffic", "conversion", "ux", "rage-click", "session-recording"]
     }
   ]
 }
