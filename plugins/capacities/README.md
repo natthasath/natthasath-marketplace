@@ -9,6 +9,7 @@ Plugin for **Capacities PKM** — designs Spaces, Object Types, Tags, Collection
 | `mood-tag` | วิเคราะห์อารมณ์จาก Daily Notes และแนะนำ Mood Tag ตาม Yale Mood Meter Framework |
 | `movies-tag` | วิเคราะห์ genre/theme ของหนัง และแนะนำ Genre Tags สำหรับ Capacities |
 | `spotify-tag` | จับคู่เพลงกับหมวด/Playlist ตามประเทศและ mood/แนวเพลง ค้นหาข้อมูลเพลงจากเว็บอัตโนมัติถ้าให้มาแค่ชื่อเพลง เสนอชื่อ Playlist ใหม่โทน Gen Z ถ้าไม่มีหมวดตรง |
+| `github-tag` | ดึง GitHub topics ของ repo มาเป็น tag หลัก เสริมด้วย tag ภาษา/เทคโนโลยีที่เจอใน README สำหรับเก็บ repo ลง Capacities |
 | `glossary` | อธิบายความหมายตัวย่อหรือศัพท์เทคนิค (Abbreviations / Acronyms) แบบ 1 paragraph |
 | `knowledge` | สร้าง Knowledge Note พร้อม frontmatter และ sections ที่เป็นระบบ |
 | `highlight` | แปลงข้อความธรรมดาให้อ่านง่ายขึ้นด้วย bold, italic, code, highlight, underline |
