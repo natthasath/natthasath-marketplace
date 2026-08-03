@@ -45,7 +45,7 @@ README คือหน้าแรกที่คนเจอเมื่อเ�
 
 {intro paragraph — 1-3 sentences in English: what this project is and what problem it solves}
 
-![version](...) ![rating](...) ![uptime](...)
+![build](...) ![version](...) ![license](...)
 
 ### {emoji} {Section}
 {เนื้อหา — code block / table / bullet}
@@ -57,7 +57,7 @@ README คือหน้าแรกที่คนเจอเมื่อเ�
 หลักการจัดโครงสร้าง:
 1. **Title** — `# 🎉 {ชื่อโปรเจกต์}` เสมอ
 2. **Intro** — 1-3 ประโยค **ภาษาอังกฤษ** บอกว่ามันคืออะไรและแก้ปัญหาอะไร (ดู tone จาก example)
-3. **Badges** — วาง shields.io ใต้ intro (version / rating / uptime หรือปรับตามจริง)
+3. **Badges** — วาง shields.io ใต้ intro ตามลำดับ 6 กลุ่มใน `references/emoji.md` (Project Health → Release → Compatibility → Distribution → License → Community/Activity) ใส่เฉพาะกลุ่มที่มีข้อมูลจริงของโปรเจกต์นั้นรองรับ ข้ามกลุ่มที่ไม่เกี่ยวไปเลย — ตัวอย่างในโครงด้านบนเป็นแค่ 3 กลุ่มตัวอย่าง ไม่ใช่ชุดตายตัว
 4. **Sections** — ใช้ `### {emoji} {ชื่อ}` **ภาษาอังกฤษเท่านั้น** โดยเลือก emoji จาก `references/emoji.md` ตามความหมายของ section เสมอ ไม่สุ่ม
 5. **เรียง section** ตามลำดับใน `references/structure.md` — ตัด section ที่ไม่มีเนื้อหาจริงทิ้ง ไม่ต้องใส่ placeholder ว่าง
 
