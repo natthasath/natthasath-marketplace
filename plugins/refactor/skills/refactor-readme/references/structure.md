@@ -37,8 +37,8 @@ emoji ในตารางนี้ต้องตรงกับ `references/e
 | 22 | Changelog | ⚡ | เมื่อมี | มีประวัติการอัปเดตที่ต้องการโชว์ |
 | 23 | Notifications / Webhooks / Alerts | 🔔 | เมื่อมี | มีฟีเจอร์แจ้งเตือนแบบ event-driven เช่น webhook, push notification |
 | 24 | Security / Security Policy | 🛡️ | เมื่อมี | มี vulnerability reporting policy หรือ security best practices |
-| 25 | License | 📜 | เมื่อมี | เขียนเป็นประโยคเดียวลิงก์ไปไฟล์ LICENSE ในรูปแบบ `This project is licensed under the [{License Type}](LICENSE)` เช่น `This project is licensed under the [MIT License](LICENSE)` — ปรับ `{License Type}` ตาม license จริงของโปรเจกต์ (MIT License, Apache License 2.0, GNU GPLv3 ฯลฯ) และปรับชื่อไฟล์ที่ลิงก์ไปให้ตรงกับที่มีจริงใน repo (`LICENSE`, `LICENSE.md`, `LICENSE.txt`) |
-| 26 | Contact / Author | ✉️ | เมื่อมี | ช่องทางติดต่อหรือชื่อผู้พัฒนา |
+| 25 | License | 📜 | เมื่อมี | เขียนเป็นประโยคเดียวลิงก์ไปไฟล์ LICENSE ในรูปแบบตายตัว: `This project is licensed under the [{License Type}](LICENSE).` เช่น `This project is licensed under the [MIT License](LICENSE).` — โครงประโยคห้ามเปลี่ยน สลับได้แค่ `{License Type}` ตาม license จริงของโปรเจกต์ (MIT License, Apache License 2.0, GNU GPLv3 ฯลฯ) และชื่อไฟล์ที่ลิงก์ไปให้ตรงกับที่มีจริงใน repo (`LICENSE`, `LICENSE.md`, `LICENSE.txt`) |
+| 26 | Contact / Author | ✉️ | เมื่อมี | เขียนเป็น 2 บรรทัดในรูปแบบตายตัว: `**{Name}** — {Title}, {Organization}` (เว้น 2 ช่องว่างท้ายบรรทัดนี้เพื่อขึ้นบรรทัดใหม่แบบ markdown hard break) ตามด้วยบรรทัดอีเมลเปล่าๆ เช่น `**Natthasath Saksupanara** — Computer Technical Officer, NIDA` แล้วบรรทัดถัดไปคือ `natthasath.sak@gmail.com` — โครงห้ามเปลี่ยน สลับได้แค่ `{Name}`, `{Title}`, `{Organization}` และอีเมลตามข้อมูลจริงของเจ้าของ repo นั้น (ดูจาก README เดิม, git config, หรือ CODEOWNERS) ถ้าไม่มีข้อมูลจริงให้ถามผู้ใช้แทนการเดา |
 | 27 | Donate / Support / Sponsor | 🍺 | เมื่อมี | มีช่องทางรับ donate เช่น Ko-fi, Buy Me a Coffee, GitHub Sponsors |
 
 ## Progressive Disclosure — เมื่อ section ยาวเกินไป
