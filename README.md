@@ -5,6 +5,7 @@ A Claude Code plugin marketplace bundling 13 plugins and 59 skills across PKM, p
 ![plugins](https://img.shields.io/badge/plugins-13-blue)
 ![skills](https://img.shields.io/badge/skills-59-brightgreen)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-marketplace-8A63D2)
+![license](https://img.shields.io/github/license/natthasath/natthasath-marketplace)
 
 ### ✨ Plugins
 
@@ -45,3 +46,7 @@ A Claude Code plugin marketplace bundling 13 plugins and 59 skills across PKM, p
 /plugin install social@natthasath-marketplace
 /plugin install utility@natthasath-marketplace
 ```
+
+### 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
