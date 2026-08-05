@@ -72,6 +72,10 @@ render ขยะให้
 | `toilet` | ฟอนต์ + สี + กรอบ |
 | `cowsay` | ตัวละคร + สี |
 | `box` | กรอบ + สี + การจัดวาง (`--align`) |
+
+**ทุกคำถามต้องมีตัวเลือก "ไม่เอา" เสมอ** — `--color none` และ `--border none` ใช้ได้จริง
+ถ้าเสนอแต่ตัวเลือกที่ใส่ของ ผู้ใช้ที่อยากได้ตัวอักษรเปล่าๆ จะไม่มีทางบอกได้ กลายเป็นว่า
+"ให้เลือก" แต่เลือกได้แค่ที่เราอยากให้เป็น
 | `lolcat` | สี |
 | `jp2a` | ความกว้าง + ramp + สี (มี `image` = ดึงสีจริงจากรูป) |
 | `chafa` | ความกว้างอย่างเดียว |
@@ -110,7 +114,7 @@ bash "<base-directory-ของ-skill-นี้>/scripts/ascii-art.sh" --mode <m
 | `--image PATH` | image modes | path ไฟล์รูป |
 | `--font NAME` | figlet, toilet | ดู `--list-fonts` (571 ตัว) |
 | `--color NAME` | ทุกโหมดยกเว้น chafa | `none` `rainbow` `pride` `metal` `fire` `ocean` `matrix` `gold` `red` `green` `yellow` `blue` `magenta` `cyan` `white` และ `image` (เฉพาะ jp2a — ใช้สีจริงจากรูป) |
-| `--border NAME` | toilet, box | `single` `double` `rounded` `bold` `ascii` `dots` `stars` `hash` |
+| `--border NAME` | toilet, box | `none` `single` `double` `rounded` `bold` `ascii` `dots` `stars` `hash` |
 | `--character NAME` | cowsay | `cow` `tux` `dragon` `stegosaurus` `sheep` `ghost` `bunny` `turtle` |
 | `--ramp NAME` | jp2a | `classic` `detailed` `blocks` `simple` `binary` |
 | `--width N` | ทุกโหมด | 10–400 (ค่าเริ่มต้น 80) |

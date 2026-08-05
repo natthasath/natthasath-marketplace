@@ -109,6 +109,7 @@ COLORS = {
 }
 
 BORDERS = {
+    "none": "ไม่ใส่กรอบ",
     "single": "─│┌┐└┘ เส้นเดี่ยว",
     "double": "═║╔╗╚╝ เส้นคู่",
     "rounded": "มุมโค้ง ╭╮╰╯",
@@ -416,6 +417,8 @@ def render_figlet(text: str, font: str, width: int):
 
 
 def wrap_border(lines, style: str, align: str = "left", pad: int = 1):
+    if style == "none":
+        return lines
     chars = {
         "single": "─│┌┐└┘",
         "double": "═║╔╗╚╝",
@@ -771,8 +774,12 @@ def build_parser():
     p.add_argument("--text", help="ข้อความ (ภาษาอังกฤษเท่านั้น)")
     p.add_argument("--image", help="path ของไฟล์รูป")
     p.add_argument("--font", default="standard", help="ชื่อฟอนต์ figlet")
-    p.add_argument("--color", default="none", help="ชื่อชุดสี (ดู --list)")
-    p.add_argument("--border", default="single", help="สไตล์กรอบ")
+    # Defaults stay None so "ไม่ได้ระบุ" is distinguishable from "ระบุว่า none".
+    # toilet and lolcat exist for their colour, so leaving --color out should
+    # still come out coloured — but an explicit --color none has to win, or the
+    # choice the skill offers in its second question would be a lie.
+    p.add_argument("--color", default=None, help="ชื่อชุดสี (ดู --list)")
+    p.add_argument("--border", default=None, help="สไตล์กรอบ ('none' = ไม่ใส่กรอบ)")
     p.add_argument("--character", default="cow", help="ตัวละครสำหรับ cowsay")
     p.add_argument("--ramp", default="classic", help="ชุดอักขระไล่ความสว่างของ jp2a")
     p.add_argument("--align", default="left", choices=["left", "center", "right"])
@@ -837,29 +844,32 @@ def main(argv=None):
     if args.width < 10 or args.width > 400:
         die("--width ต้องอยู่ระหว่าง 10 ถึง 400")
 
-    color = args.color.lower()
+    # toilet and lolcat are the colour modes, so they start coloured when the
+    # caller stays silent. Anything explicit — including "none" — is obeyed.
+    if args.color is None:
+        color = "rainbow" if mode in ("toilet", "lolcat") else "none"
+    else:
+        color = args.color.lower()
+    border = (args.border or "single").lower()
     pre_colored = False
 
     if mode == "figlet":
         lines = render_figlet(args.text, args.font, args.width)
     elif mode == "toilet":
-        lines = render_figlet(args.text, args.font, args.width - 4)
+        pad = 0 if border == "none" else 4
+        lines = render_figlet(args.text, args.font, args.width - pad)
         # Border first, then color: wrap_border measures len() and ANSI escapes
         # would inflate those counts into a crooked frame.
-        lines = wrap_border(lines, args.border, args.align)
-        if color == "none":
-            color = "rainbow"  # toilet's whole point is the color filter
+        lines = wrap_border(lines, border, args.align)
     elif mode == "lolcat":
         lines = args.text.split("\n")
-        if color == "none":
-            color = "rainbow"
     elif mode == "cowsay":
         lines = render_cowsay(args.text, args.character, args.width)
     elif mode == "box":
         body = []
         for para in args.text.split("\n"):
             body.extend(textwrap.wrap(para, max(args.width - 4, 10)) or [""])
-        lines = wrap_border(body, args.border, args.align)
+        lines = wrap_border(body, border, args.align)
     elif mode == "jp2a":
         lines, pre_colored = render_jp2a(
             args.image, args.width, args.ramp, args.invert, color
