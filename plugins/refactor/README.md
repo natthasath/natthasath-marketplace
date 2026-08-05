@@ -11,6 +11,17 @@ Plugin for improving code and documentation quality — Docker, Shell Script, an
 | `refactor-shell` | Create and refactor Shell scripts with error handling, logging, and standard structure |
 | `refactor-readme` | Refactor `README.md` to a minimal open-source standard — English headers, emoji convention, and a leaner dedicated pattern for monorepo sub-folder/component READMEs |
 
+### 🏆 Usage
+
+ทุก skill รับได้ทั้งไฟล์ที่มีอยู่แล้ว (refactor) และคำอธิบายสิ่งที่ต้องการ (สร้างใหม่)
+
+```
+/refactor-compose <path ของ docker-compose.yml>
+/refactor-dockerfile <path ของ Dockerfile หรือ stack ที่ต้องการ>
+/refactor-shell <path ของ .sh หรืองานที่ต้องการให้ script ทำ>
+/refactor-readme <path ของ README.md>
+```
+
 ### 💎 README Section Emoji Convention
 
 | Emoji | Section | Emoji | Section |

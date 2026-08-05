@@ -1,6 +1,6 @@
 {
   "name": "masterplan",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Plugin รวม Skills สำหรับวางแผนโปรเจกต์ ครอบคลุม Project Masterplan, System Requirement, Database Design และ Architecture",
   "author": {
     "name": "natthasath"

@@ -1,6 +1,6 @@
 {
   "name": "capacities",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Plugin รวม Skills สำหรับ Capacities PKM ครอบคลุม Tags, Collections, Workflow, Knowledge Notes และ Text Formatting",
   "author": {
     "name": "natthasath"

@@ -14,6 +14,18 @@ Plugin for **Capacities PKM** — designs Spaces, Object Types, Tags, Collection
 | `knowledge` | สร้าง Knowledge Note พร้อม frontmatter และ sections ที่เป็นระบบ |
 | `highlight` | แปลงข้อความธรรมดาให้อ่านง่ายขึ้นด้วย bold, italic, code, highlight, underline |
 
+### 🏆 Usage
+
+```
+/mood-tag <ข้อความ Daily Note>
+/movies-tag <ชื่อหนังหรือคำอธิบายเนื้อเรื่อง>
+/spotify-tag <ชื่อเพลง เนื้อเพลง หรือบรรยากาศที่ต้องการ>
+/github-tag <URL ของ GitHub repo หรือ path ในเครื่อง>
+/glossary <ตัวย่อหรือศัพท์เทคนิค>
+/knowledge <คำศัพท์หรือหัวข้อที่ต้องการบันทึก>
+/highlight <ข้อความที่ต้องการจัดรูปแบบ>
+```
+
 ### 💎 Yale Mood Meter Zones
 
 | โซน | Valence | Arousal | ตัวอย่าง |

@@ -12,6 +12,18 @@ Plugin for **software project planning and analysis** — covers everything from
 | `architect` | เลือกและกำหนด IT Architecture ที่จะใช้ ครอบคลุม Infrastructure, Application และ Integration Strategy |
 | `database` | ออกแบบ Database Schema สำหรับ PostgreSQL และ Laravel พร้อม Migration-ready guidance |
 
+### 🏆 Usage
+
+ทั้ง 5 skill เรียงตามลำดับที่ใช้จริงในโปรเจกต์หนึ่งตัว — เริ่มจากไอเดีย จบที่ schema ที่ migrate ได้
+
+```
+/kickoff <ไอเดียแอปหรือระบบที่อยากทำ>
+/gather <ขอบเขตระบบที่ต้องเก็บ requirement>
+/analyze <business needs ที่ต้องแปลงเป็น requirement>
+/architect <ระบบที่ต้องเลือก architecture และ tech stack>
+/database <ระบบที่ต้องออกแบบ schema>
+```
+
 ### 💎 /kickoff vs /init
 
 | ด้าน | `/kickoff` | `/init` (Claude Code built-in) |

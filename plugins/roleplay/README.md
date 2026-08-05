@@ -10,3 +10,13 @@ Plugin for **role-play simulation** — practice interview skills, investigation
 | `roleplay-investigator` | จำลองเจ้าหน้าที่สืบสวนที่ใช้ Reid Technique และ PEACE Model |
 | `roleplay-president` | จำลองผู้ช่วยประธานาธิบดีสำหรับวิเคราะห์นโยบายและวางแผนยุทธศาสตร์ |
 | `roleplay-english` | ฝึกสนทนาภาษาอังกฤษผ่าน scenario จริง: Interview, Meeting, Customer, Small Talk, Email, Negotiation |
+
+### 🏆 Usage
+
+```
+/roleplay-interview <ตำแหน่งงานหรือ profile ผู้สมัคร>
+/roleplay-investigator <คดีหรือสถานการณ์ที่ต้องซักถาม>
+/roleplay-president <นโยบายหรือประเด็นที่ต้องวิเคราะห์>
+/roleplay-english <scenario ที่อยากฝึก>
+```
+

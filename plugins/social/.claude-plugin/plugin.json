@@ -1,6 +1,6 @@
 {
   "name": "social",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Plugin รวม Skills สำหรับสร้างโพสต์โซเชียลมีเดีย ครอบคลุม Facebook และ LinkedIn",
   "author": {
     "name": "natthasath"
