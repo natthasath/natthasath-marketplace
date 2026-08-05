@@ -1,9 +1,9 @@
 {
   "name": "productive",
-  "version": "1.5.0",
-  "description": "Plugin รวม Skills เพิ่มประสิทธิภาพการทำงาน ครอบคลุม Isolate (Tech Explainer), Meetings Summary, PDF Downloader, Workplace Communication, IT Work Scorecard, Indicator Designer, Flashcard, Activity Report (5W) และ Save Cost (Token-Efficient CLI Tools Installer)",
+  "version": "1.6.0",
+  "description": "Plugin รวม Skills เพิ่มประสิทธิภาพการทำงาน ครอบคลุม Isolate (Tech Explainer), Meetings Summary, PDF Downloader, Workplace Communication, IT Work Scorecard, Indicator Designer, Flashcard, Activity Report (5W), Save Cost (Token-Efficient CLI Tools Installer) และ ASCII Art (Text/Image to ASCII Converter)",
   "author": {
     "name": "natthasath"
   },
-  "keywords": ["productive", "summary", "meetings", "mom", "minutes", "isolate", "tldr", "perspective", "technology", "explainer", "compare", "pdf", "workplace", "communication", "professional", "scorecard", "it", "difficulty", "assessment", "indicator", "kpi", "action-plan", "measure", "smart", "success-criteria", "flashcard", "vocabulary", "lexi", "word", "learn", "language", "quiz", "activity-report", "annual-plan", "progress", "5w", "execution", "save-cost", "cli-tools", "token", "context", "cost", "install", "setup"]
+  "keywords": ["productive", "summary", "meetings", "mom", "minutes", "isolate", "tldr", "perspective", "technology", "explainer", "compare", "pdf", "workplace", "communication", "professional", "scorecard", "it", "difficulty", "assessment", "indicator", "kpi", "action-plan", "measure", "smart", "success-criteria", "flashcard", "vocabulary", "lexi", "word", "learn", "language", "quiz", "activity-report", "annual-plan", "progress", "5w", "execution", "save-cost", "cli-tools", "token", "context", "cost", "install", "setup", "ascii-art", "ascii", "figlet", "toilet", "jp2a", "chafa", "cowsay", "lolcat", "braille", "banner", "font", "terminal-art", "text-to-ascii", "image-to-ascii"]
 }
