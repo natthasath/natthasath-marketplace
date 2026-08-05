@@ -641,10 +641,6 @@ def build_parser():
         default=-1,
         help="เกณฑ์ 0-255 สำหรับ braille (ไม่ใส่ = ใช้ dithering)",
     )
-    p.add_argument(
-        "--out",
-        help="บันทึกผลลัพธ์ลงไฟล์ด้วย (.txt สำหรับ ASCII ล้วน, .ans สำหรับแบบมีสี)",
-    )
     p.add_argument("--list", action="store_true", help="พิมพ์ catalog เป็น JSON")
     p.add_argument("--list-fonts", nargs="?", const="", help="พิมพ์ฟอนต์ทั้งหมด (กรองด้วยคำค้นได้)")
     return p
@@ -728,16 +724,9 @@ def main(argv=None):
     if not pre_colored:
         lines = colorize(lines, color)
 
-    art = "\n".join(lines) + "\n"
-    sys.stdout.write(art)
-
-    if args.out:
-        try:
-            with open(args.out, "w", encoding="utf-8", newline="\n") as fh:
-                fh.write(art)
-        except OSError as exc:
-            die("บันทึกไฟล์ไม่สำเร็จ: {}".format(exc))
-        print("saved: {}".format(os.path.abspath(args.out)), file=sys.stderr)
+    # Terminal only, by design: the point of this skill is seeing the art the
+    # moment it runs. Writing a file would just hand back a path to go open.
+    sys.stdout.write("\n".join(lines) + "\n")
     return 0
 
 
