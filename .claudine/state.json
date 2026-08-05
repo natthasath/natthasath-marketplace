@@ -1,12 +1,12 @@
 {
   "conversations": [
     {
-      "id": "de8bb6e2-db43-4d4a-b415-26b8fa98ba5b",
+      "id": "fb647b3f-dc16-4ed7-be0d-254aaf74f799",
       "title": "Untitled Conversation",
-      "description": "Let me read the reference files first to match the correct tone and structure.",
-      "category": "task",
+      "description": "ทำได้ครับ และผมตรวจสภาพเครื่องมาแล้ว — มีประเด็นสำคัญที่ต้องตัดสินใจก่อนลงมือ",
+      "category": "feature",
       "status": "in-progress",
-      "lastMessage": "แก้ ebook แล้ว commit + push",
+      "lastMessage": "[...]  อยู่ใน git แล้ว (skill-mood-tags 25 ไฟล์) แต่ `.claudine/state.json` diff ใหญ่ผิดปกติ ขอดูว่ามีอะไรอยู่ข้างในก่อน",
       "agents": [
         {
           "id": "claude-main",
@@ -21,18 +21,524 @@
       "hasQuestion": false,
       "isRateLimited": false,
       "lastActivity": {
+        "toolName": "Bash",
+        "summary": "cd E:/code/prod/claude-marketplace && bun -e \"\nconst d = JSON.parse(await Bun...",
+        "outputHint": "4 lines of output",
+        "status": "completed"
+      },
+      "createdAt": "2026-08-05T07:01:31.625Z",
+      "updatedAt": "2026-08-05T07:44:02.942Z",
+      "filePath": "c:\\Users\\natthasath.sak\\.claude\\projects\\E--code-prod-claude-marketplace\\fb647b3f-dc16-4ed7-be0d-254aaf74f799.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "shortId": "T-108",
+      "previousStatus": "in-review"
+    },
+    {
+      "id": "3aac1acd-ad93-497a-9ed2-354db67233ab",
+      "title": "Untitled Conversation",
+      "description": "Good, no changes needed there since skill count/description stays the same. Now let me check the plugin's own README for badge-related content that might need updating.",
+      "category": "feature",
+      "status": "in-review",
+      "lastMessage": "[...] e/state.json` ที่เป็นการแก้ไขเดิม (ไม่เกี่ยวกับงานนี้) กับโฟลเดอร์ `workspaces/` ที่ยัง untracked ไม่ได้ถูกแตะต้อง",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "git push",
+        "outputHint": "To https://github.com/natthasath/natthasath-marketplace.git\n   128604d..121067b  main -> main",
+        "status": "completed"
+      },
+      "createdAt": "2026-08-03T08:35:33.564Z",
+      "updatedAt": "2026-08-03T08:51:54.677Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\3aac1acd-ad93-497a-9ed2-354db67233ab.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "previousStatus": "in-review",
+      "shortId": "T-96",
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%2213%2C7.5%2021.5%2C24.5%204.5%2C24.5%22%20fill%3D%22hsl(251%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2216%22%20cy%3D%2219%22%20r%3D%228%22%20fill%3D%22hsl(251%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2211.5%22%20y%3D%2214.5%22%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22hsl(251%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2222%2C18%2029%2C32%2015%2C32%22%20fill%3D%22hsl(251%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2225%22%20cy%3D%2228%22%20r%3D%226.5%22%20fill%3D%22hsl(251%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
+    },
+    {
+      "id": "3711d3dc-b27a-48d8-a69d-508745539d3f",
+      "title": "Untitled Conversation",
+      "description": "Now I'll scaffold the skill. Let me create the directory structure and the fetch script first.",
+      "category": "feature",
+      "status": "in-review",
+      "lastMessage": "Pushed — commit `128604d` is on `origin/main`.",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "git -C \"E:\\code\\prod\\claude-marketplace\" push",
+        "outputHint": "To https://github.com/natthasath/natthasath-marketplace.git\n   30e272e..128604d  main -> main",
+        "status": "completed"
+      },
+      "createdAt": "2026-07-26T02:47:48.872Z",
+      "updatedAt": "2026-08-03T08:15:43.362Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\3711d3dc-b27a-48d8-a69d-508745539d3f.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2247%22%20cy%3D%2240%22%20r%3D%225.5%22%20fill%3D%22hsl(297%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2236%22%20y%3D%2229%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(297%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2233%2C17.5%2041.5%2C34.5%2024.5%2C34.5%22%20fill%3D%22hsl(297%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-72"
+    },
+    {
+      "id": "2e8f6f96-01bc-410f-b622-434cc306d84f",
+      "title": "Untitled Conversation",
+      "description": "Found the root `README.md` and a `LICENSE` file was just added. Let me read the reference files and current README before refactoring.",
+      "category": "task",
+      "status": "in-review",
+      "lastMessage": "[...]  `workspaces/plugin-capacities/skill-github-tag/` เพราะไม่เกี่ยวกับงานนี้ — ยังอยู่ใน working directory เหมือนเดิม",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "git push origin main",
+        "outputHint": "To https://github.com/natthasath/natthasath-marketplace.git\n   f84d4b2..b703397  main -> main",
+        "status": "completed"
+      },
+      "createdAt": "2026-08-03T07:06:08.241Z",
+      "updatedAt": "2026-08-03T07:09:45.938Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\2e8f6f96-01bc-410f-b622-434cc306d84f.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "previousStatus": "in-review",
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2247%22%20cy%3D%2240%22%20r%3D%225.5%22%20fill%3D%22hsl(165%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2236%22%20y%3D%2229%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(165%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2233%2C17.5%2041.5%2C34.5%2024.5%2C34.5%22%20fill%3D%22hsl(165%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-75"
+    },
+    {
+      "id": "f40cdc40-f645-42c5-8226-54b01a31d87e",
+      "title": "Untitled Conversation",
+      "description": "What would you like to clarify about the third question (how the skill should handle missing tools on the user's machine)?",
+      "category": "feature",
+      "status": "needs-input",
+      "lastMessage": "[...] ให้ผมช่วยพาต่อ MCP ตัวใดตัวหนึ่ง (หรือทั้งสอง) เลยไหมครับ หรือจะพักเรื่องนี้ไว้ก่อนแล้วโฟกัสปรับเนื้อหา skill ต่อ?",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": true,
+      "isRateLimited": false,
+      "lastActivity": {
         "toolName": "Edit",
-        "summary": "E:\\code\\prod\\claude-marketplace\\plugins\\productive\\skills\\ebook\\SKILL.md",
-        "outputHint": "The file E:\\code\\prod\\claude-marketplace\\plugins\\productive\\skills\\ebook\\SKILL.md has been updated s...",
+        "summary": "C:\\Users\\NATTHA~1.SAK\\AppData\\Local\\Temp\\claude\\E--code-prod-claude-marketplace\\f40cdc40-f645-42c5-8226-54b01a31d87e\\scratchpad\\ga4-mock-dashboard.html",
+        "outputHint": "The file C:\\Users\\NATTHA~1.SAK\\AppData\\Local\\Temp\\claude\\E--code-prod-claude-marketplace\\f40cdc40-f6...",
+        "status": "completed"
+      },
+      "createdAt": "2026-07-24T05:31:26.249Z",
+      "updatedAt": "2026-07-24T08:52:25.571Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\f40cdc40-f645-42c5-8226-54b01a31d87e.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Crect%20x%3D%2229%22%20y%3D%2211%22%20width%3D%2214%22%20height%3D%2214%22%20fill%3D%22hsl(70%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2218%2C38%2024%2C50%2012%2C50%22%20fill%3D%22hsl(70%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2244%22%20cy%3D%2226%22%20r%3D%225%22%20fill%3D%22hsl(70%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2222%22%20y%3D%2248%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(70%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-71"
+    },
+    {
+      "id": "7f56fe72-7683-4ee6-9413-14e201f6d708",
+      "title": "Untitled Conversation",
+      "description": "The actual marketplace identifier is `natthasath-marketplace` (defined in `.claude-plugin/marketplace.json:3`), and the `@natthasath-marketplace` suffixes in the install commands (README.md:33-44) ...",
+      "category": "bug",
+      "status": "in-review",
+      "lastMessage": "[...] วกแก้ config ฝั่งเว็บ ทางเลือกที่เหลือคือให้คุณคลิกผ่าน captcha เองตามที่เสนอไปก่อนหน้า แล้วผมกด submit ต่อให้ครับ",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Read",
+        "summary": "C:\\Users\\natthasath.sak\\.dev-browser\\tmp\\cyber-attack-recaptcha.png",
+        "status": "completed"
+      },
+      "referencedImage": "C:\\Users\\natthasath.sak\\.dev-browser\\tmp\\idt-nida.png",
+      "createdAt": "2026-07-23T02:20:33.527Z",
+      "updatedAt": "2026-07-24T02:48:35.736Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\7f56fe72-7683-4ee6-9413-14e201f6d708.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "previousStatus": "in-review",
+      "icon": "data:image/png;base64,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",
+      "shortId": "T-58"
+    },
+    {
+      "id": "bf461c74-6832-4b78-98f1-1a9fce963013",
+      "title": "ช่วยวิเคราะห์ไฟล์ emoji.md ใน skill `refactor-readme` ว่า emoji fingerprint ค...",
+      "description": "🔔 Bell เหมาะกับ section ที่ยังไม่มีใน mapping ปัจจุบัน คือ **Notifications / Webhooks / Alerts** — ส่วนที่อธิบายฟีเจอร์แจ้งเตือนแบบ real-time (เช่น webhook events, push notification, alert config)",
+      "category": "improvement",
+      "status": "in-review",
+      "lastMessage": "Pushed — `818ca84..85b8fa5` on `origin/main`.",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "git commit -m \"$(cat <<'EOF'\ndocs: translate plugin README descriptions to En...",
+        "outputHint": "4 lines of output",
+        "status": "completed"
+      },
+      "createdAt": "2026-07-22T07:45:36.112Z",
+      "updatedAt": "2026-07-22T09:25:14.730Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\bf461c74-6832-4b78-98f1-1a9fce963013.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%23f59e0b%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2230%22%20cy%3D%2250%22%20r%3D%224%22%20fill%3D%22hsl(252%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2246%22%20y%3D%2222%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(252%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2226%2C42%2030%2C50%2022%2C50%22%20fill%3D%22hsl(252%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-57"
+    },
+    {
+      "id": "5c01db14-8107-4f49-a16c-98a3fe0b0d69",
+      "title": "Untitled Conversation",
+      "description": "วิเคราะห์ `emoji.md` แล้ว พบประเด็นที่ควรปรับปรุงดังนี้ (ยังไม่ได้แก้ไขไฟล์ ตามที่ขอ):",
+      "category": "improvement",
+      "status": "in-review",
+      "lastMessage": "[...] บ section \"Security\" แบบกว้างๆ เพราะเป็นสัญลักษณ์สากลที่สุดและไม่จำกัดแค่เรื่อง biometric/fingerprint\nตัวไหนถูกใจ?",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": true,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "WebSearch",
+        "summary": "\"🫆 emoji fingerprint unicode name shortcode\"",
+        "outputHint": "10 lines of output",
+        "status": "completed"
+      },
+      "createdAt": "2026-07-22T04:08:51.339Z",
+      "updatedAt": "2026-07-22T07:43:03.054Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\5c01db14-8107-4f49-a16c-98a3fe0b0d69.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "previousStatus": "in-review",
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%23f59e0b%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2243%22%20cy%3D%2232%22%20r%3D%225.5%22%20fill%3D%22hsl(141%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2228%22%20y%3D%2217%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(141%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2221%2C1.5%2029.5%2C18.5%2012.5%2C18.5%22%20fill%3D%22hsl(141%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-56"
+    },
+    {
+      "id": "7728f60f-fe3a-470c-8dfa-f205aabfb6d1",
+      "title": "config",
+      "description": "What would you like to configure? For example:",
+      "category": "bug",
+      "status": "needs-input",
+      "lastMessage": "- **MCP servers** — enable/disable MCP servers\nTell me what you want to set up and I'll update the right settings file.",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "createdAt": "2026-07-22T04:01:47.592Z",
+      "updatedAt": "2026-07-22T04:02:14.871Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\7728f60f-fe3a-470c-8dfa-f205aabfb6d1.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "previousStatus": "todo",
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%23ef4444%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Crect%20x%3D%2246%22%20y%3D%2242%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(4%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2246%2C36%2052%2C48%2040%2C48%22%20fill%3D%22hsl(4%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2242%22%20cy%3D%2238%22%20r%3D%228%22%20fill%3D%22hsl(4%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2234%22%20y%3D%2230%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(4%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-55"
+    },
+    {
+      "id": "c04ad3a8-0313-4132-9c85-44457706ac05",
+      "title": "Untitled Conversation",
+      "description": "ก่อนอื่นขอสำรวจโครงสร้างของ plugin `capacities` ที่มีอยู่แล้วก่อนครับ",
+      "category": "feature",
+      "status": "in-progress",
+      "lastMessage": "- **คำขอ** — rules เดิม + progressive disclosure guidance\n- **ไฟล์แนบ** — input description เหมือนเดิม",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "git -C \"E:/code/prod/claude-marketplace\" add plugins/refactor/skills/refactor...",
+        "outputHint": "4 lines of output",
+        "status": "completed"
+      },
+      "createdAt": "2026-07-20T04:04:55.567Z",
+      "updatedAt": "2026-07-22T04:01:07.361Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\c04ad3a8-0313-4132-9c85-44457706ac05.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "previousStatus": "in-review",
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2244%22%20cy%3D%2234%22%20r%3D%227%22%20fill%3D%22hsl(126%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2230%22%20y%3D%2220%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(126%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2224%2C7%2031%2C21%2017%2C21%22%20fill%3D%22hsl(126%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-54"
+    },
+    {
+      "id": "50f0cee0-aa9b-4e37-a9ae-85fbc0bb972b",
+      "title": "Untitled Conversation",
+      "description": "อ่าน os-profile.md เพื่อดูข้อมูลระบบก่อน",
+      "category": "improvement",
+      "status": "in-review",
+      "lastMessage": "[...] v1 (legacy)** — yarn 1.22.22 ไม่มี update แล้ว ถ้าไม่มี project ที่ใช้ yarn อยู่ สามารถ uninstall ได้ ใช้ pnpm แทน",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Write",
+        "summary": "E:\\snapshots\\nodejs\\2026-07-18\\restore-guide.md",
+        "outputHint": "File created successfully at: E:\\snapshots\\nodejs\\2026-07-18\\restore-guide.md (file state is current...",
+        "status": "completed"
+      },
+      "createdAt": "2026-07-18T07:39:05.272Z",
+      "updatedAt": "2026-07-20T03:33:59.639Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\50f0cee0-aa9b-4e37-a9ae-85fbc0bb972b.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%23f59e0b%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Crect%20x%3D%2213%22%20y%3D%2223%22%20width%3D%2214%22%20height%3D%2214%22%20fill%3D%22hsl(334%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2230%2C34%2036%2C46%2024%2C46%22%20fill%3D%22hsl(334%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2240%22%20cy%3D%2250%22%20r%3D%225%22%20fill%3D%22hsl(334%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2246%22%20y%3D%2212%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(334%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-53"
+    },
+    {
+      "id": "6497fab5-8b85-4407-bba0-e3d5646cba2e",
+      "title": "Untitled Conversation",
+      "description": "You've hit your session limit · resets 2:30pm (Asia/Bangkok)",
+      "category": "task",
+      "status": "in-review",
+      "lastMessage": "You've hit your session limit · resets 2:30pm (Asia/Bangkok)",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "createdAt": "2026-07-18T04:57:34.804Z",
+      "updatedAt": "2026-07-18T06:19:25.322Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\6497fab5-8b85-4407-bba0-e3d5646cba2e.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%2229%2C39.5%2037.5%2C56.5%2020.5%2C56.5%22%20fill%3D%22hsl(95%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2248%22%20cy%3D%2223%22%20r%3D%228%22%20fill%3D%22hsl(95%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2215.5%22%20y%3D%2234.5%22%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22hsl(95%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2242%2C10%2049%2C24%2035%2C24%22%20fill%3D%22hsl(95%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2217%22%20cy%3D%2236%22%20r%3D%226.5%22%20fill%3D%22hsl(95%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-52"
+    },
+    {
+      "id": "41a50611-040c-4219-a701-431d7d987b6e",
+      "title": "Untitled Conversation",
+      "description": "ฉันขอเสนอชื่อให้เลือก 4 ตัวเลือก โดยจะอยู่ใน plugin `windows` รูปแบบ `windows:<name>`:",
+      "category": "feature",
+      "status": "in-review",
+      "lastMessage": "[...] า ไฟล์เดียวที่ modified คือ `.claudine/state.json` ซึ่งเป็น internal state ของ Claude Code ไม่ใช่ code ของ project",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "git status",
+        "outputHint": "7 lines of output",
+        "status": "completed"
+      },
+      "createdAt": "2026-07-18T02:35:54.585Z",
+      "updatedAt": "2026-07-18T03:20:58.608Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\41a50611-040c-4219-a701-431d7d987b6e.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%2225%2C31.5%2033.5%2C48.5%2016.5%2C48.5%22%20fill%3D%22hsl(47%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2240%22%20cy%3D%2211%22%20r%3D%228%22%20fill%3D%22hsl(47%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%223.5%22%20y%3D%2218.5%22%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22hsl(47%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2226%2C34%2033%2C48%2019%2C48%22%20fill%3D%22hsl(47%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2241%22%20cy%3D%2212%22%20r%3D%226.5%22%20fill%3D%22hsl(47%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-51"
+    },
+    {
+      "id": "a0b5652a-cb23-4274-9b1e-6efa4fd16c49",
+      "title": "Untitled Conversation",
+      "description": "อ่าน skill `blind` ปัจจุบันก่อนเลย",
+      "category": "feature",
+      "status": "in-review",
+      "lastMessage": "[...] -stage` → `overflow-y: auto` — scroll ได้แค่ใน quiz panel ถ้าเนื้อหายาว\n- ลด padding/gap ที่ไม่จำเป็นให้กระชับขึ้น",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "cd \"E:/code/prod/claude-marketplace\" && git add plugins/productive/.claude-pl...",
+        "outputHint": "4 lines of output",
+        "status": "completed"
+      },
+      "createdAt": "2026-07-16T00:56:57.205Z",
+      "updatedAt": "2026-07-16T06:17:13.498Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\a0b5652a-cb23-4274-9b1e-6efa4fd16c49.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Crect%20x%3D%2233.5%22%20y%3D%2218.5%22%20width%3D%2211%22%20height%3D%2211%22%20fill%3D%22hsl(97%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2224%2C47%2030%2C59%2018%2C59%22%20fill%3D%22hsl(97%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2253%22%20cy%3D%2238%22%20r%3D%226.5%22%20fill%3D%22hsl(97%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2231%22%20y%3D%2216%22%20width%3D%2214%22%20height%3D%2214%22%20fill%3D%22hsl(97%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-49"
+    },
+    {
+      "id": "37753451-a4ff-4ff2-bb15-6328b053dda5",
+      "title": "ล่าสุดฉัน push ขึ้น git ยัง",
+      "description": "ตรวจสอบสถานะ git ให้เลย",
+      "category": "task",
+      "status": "in-progress",
+      "lastMessage": "[...] t preservation** — `.go.th` ยังเป็น `.go.th`, เบอร์ 02 ยังเป็น 02\n- แนบ **Mapping table** ท้ายผลลัพธ์ให้ตรวจสอบได้",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "git add plugins/document/skills/blind/ plugins/document/.claude-plugin/plugin...",
+        "outputHint": "5 lines of output",
+        "status": "completed"
+      },
+      "createdAt": "2026-07-15T04:08:17.383Z",
+      "updatedAt": "2026-07-16T00:56:27.781Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\37753451-a4ff-4ff2-bb15-6328b053dda5.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "previousStatus": "in-review",
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Crect%20x%3D%225.5%22%20y%3D%226.5%22%20width%3D%2211%22%20height%3D%2211%22%20fill%3D%22hsl(169%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2212%2C7%2018%2C19%206%2C19%22%20fill%3D%22hsl(169%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2213%22%20cy%3D%2214%22%20r%3D%226.5%22%20fill%3D%22hsl(169%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%227%22%20y%3D%228%22%20width%3D%2214%22%20height%3D%2214%22%20fill%3D%22hsl(169%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-48"
+    },
+    {
+      "id": "de8bb6e2-db43-4d4a-b415-26b8fa98ba5b",
+      "title": "Untitled Conversation",
+      "description": "Let me read the reference files first to match the correct tone and structure.",
+      "category": "task",
+      "status": "in-review",
+      "lastMessage": "[...] commit `64ea263` ขึ้น origin/main แล้ว ไฟล์ที่เปลี่ยนคือ `plugins/productive/skills/ebook/SKILL.md` เพียงไฟล์เดียว",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "cd \"E:\\code\\prod\\claude-marketplace\" && git push origin main",
+        "outputHint": "To https://github.com/natthasath/claude-marketplace.git\n   b293b58..64ea263  main -> main",
         "status": "completed"
       },
       "createdAt": "2026-07-13T01:38:05.518Z",
-      "updatedAt": "2026-07-14T03:54:20.599Z",
-      "filePath": "c:\\Users\\natthasath.sak\\.claude\\projects\\E--code-prod-claude-marketplace\\de8bb6e2-db43-4d4a-b415-26b8fa98ba5b.jsonl",
+      "updatedAt": "2026-07-15T03:14:32.281Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\de8bb6e2-db43-4d4a-b415-26b8fa98ba5b.jsonl",
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
-      "shortId": "T-47",
-      "previousStatus": "in-review"
+      "previousStatus": "in-review",
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%2220%2C23%2027%2C37%2013%2C37%22%20fill%3D%22hsl(266%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2230%22%20cy%3D%2240%22%20r%3D%228%22%20fill%3D%22hsl(266%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2231%22%20y%3D%2241%22%20width%3D%2218%22%20height%3D%2218%22%20fill%3D%22hsl(266%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2250%2C12%2054%2C20%2046%2C20%22%20fill%3D%22hsl(266%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2216%22%20cy%3D%2226%22%20r%3D%225%22%20fill%3D%22hsl(266%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-47"
     },
     {
       "id": "9c30f3ed-ca8f-458b-8e5c-5388bb1af9f3",
@@ -65,8 +571,8 @@
       "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\9c30f3ed-ca8f-458b-8e5c-5388bb1af9f3.jsonl",
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
-      "shortId": "T-46",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Crect%20x%3D%2228.5%22%20y%3D%2211.5%22%20width%3D%2217%22%20height%3D%2217%22%20fill%3D%22hsl(331%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2220%2C41%2026%2C53%2014%2C53%22%20fill%3D%22hsl(331%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2247%22%20cy%3D%2230%22%20r%3D%229.5%22%20fill%3D%22hsl(331%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2223%22%20y%3D%226%22%20width%3D%2214%22%20height%3D%2214%22%20fill%3D%22hsl(331%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Crect%20x%3D%2228.5%22%20y%3D%2211.5%22%20width%3D%2217%22%20height%3D%2217%22%20fill%3D%22hsl(331%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2220%2C41%2026%2C53%2014%2C53%22%20fill%3D%22hsl(331%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2247%22%20cy%3D%2230%22%20r%3D%229.5%22%20fill%3D%22hsl(331%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2223%22%20y%3D%226%22%20width%3D%2214%22%20height%3D%2214%22%20fill%3D%22hsl(331%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-46"
     },
     {
       "id": "845348cc-ab29-4a3b-b326-0e61377724b8",
@@ -100,8 +606,8 @@
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
       "previousStatus": "needs-input",
-      "shortId": "T-45",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%2231%2C46.5%2036.5%2C57.5%2025.5%2C57.5%22%20fill%3D%22hsl(281%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2252%22%20cy%3D%2229%22%20r%3D%228%22%20fill%3D%22hsl(281%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2224.5%22%20y%3D%2245.5%22%20width%3D%229%22%20height%3D%229%22%20fill%3D%22hsl(281%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2250%2C20%2057%2C34%2043%2C34%22%20fill%3D%22hsl(281%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2227%22%20cy%3D%2248%22%20r%3D%229.5%22%20fill%3D%22hsl(281%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%2231%2C46.5%2036.5%2C57.5%2025.5%2C57.5%22%20fill%3D%22hsl(281%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2252%22%20cy%3D%2229%22%20r%3D%228%22%20fill%3D%22hsl(281%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2224.5%22%20y%3D%2245.5%22%20width%3D%229%22%20height%3D%229%22%20fill%3D%22hsl(281%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2250%2C20%2057%2C34%2043%2C34%22%20fill%3D%22hsl(281%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2227%22%20cy%3D%2248%22%20r%3D%229.5%22%20fill%3D%22hsl(281%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-45"
     },
     {
       "id": "be8b7010-7759-4f06-9f88-2831769ec450",
@@ -128,8 +634,8 @@
       "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\be8b7010-7759-4f06-9f88-2831769ec450.jsonl",
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
-      "shortId": "T-44",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2235%22%20cy%3D%2216%22%20r%3D%225.5%22%20fill%3D%22hsl(345%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2212%22%20y%3D%2237%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(345%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2241%2C13.5%2049.5%2C30.5%2032.5%2C30.5%22%20fill%3D%22hsl(345%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2235%22%20cy%3D%2216%22%20r%3D%225.5%22%20fill%3D%22hsl(345%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2212%22%20y%3D%2237%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(345%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2241%2C13.5%2049.5%2C30.5%2032.5%2C30.5%22%20fill%3D%22hsl(345%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-44"
     },
     {
       "id": "44e4b7a6-c698-432f-a650-0f6effaa7ea3",
@@ -156,8 +662,8 @@
       "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\44e4b7a6-c698-432f-a650-0f6effaa7ea3.jsonl",
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
-      "shortId": "T-43",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2223%22%20cy%3D%2236%22%20r%3D%225.5%22%20fill%3D%22hsl(321%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2232%22%20y%3D%2245%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(321%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2249%2C9.5%2057.5%2C26.5%2040.5%2C26.5%22%20fill%3D%22hsl(321%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2223%22%20cy%3D%2236%22%20r%3D%225.5%22%20fill%3D%22hsl(321%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2232%22%20y%3D%2245%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(321%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2249%2C9.5%2057.5%2C26.5%2040.5%2C26.5%22%20fill%3D%22hsl(321%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-43"
     },
     {
       "id": "1b6edade-5b16-43eb-a347-e32dfaff4d56",
@@ -190,8 +696,8 @@
       "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\1b6edade-5b16-43eb-a347-e32dfaff4d56.jsonl",
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
-      "shortId": "T-42",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2213%22%20cy%3D%2216%22%20r%3D%228.5%22%20fill%3D%22hsl(111%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2212%22%20y%3D%2215%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(111%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2219%2C16.5%2024.5%2C27.5%2013.5%2C27.5%22%20fill%3D%22hsl(111%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2213%22%20cy%3D%2216%22%20r%3D%228.5%22%20fill%3D%22hsl(111%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2212%22%20y%3D%2215%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(111%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2219%2C16.5%2024.5%2C27.5%2013.5%2C27.5%22%20fill%3D%22hsl(111%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-42"
     },
     {
       "id": "edb300f2-7d07-4b8c-9f2f-344b4c2a10d5",
@@ -224,8 +730,8 @@
       "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\edb300f2-7d07-4b8c-9f2f-344b4c2a10d5.jsonl",
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
-      "shortId": "T-41",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%2221%2C23.5%2029.5%2C40.5%2012.5%2C40.5%22%20fill%3D%22hsl(251%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2232%22%20cy%3D%2243%22%20r%3D%228%22%20fill%3D%22hsl(251%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2235.5%22%20y%3D%222.5%22%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22hsl(251%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2210%2C14%2017%2C28%203%2C28%22%20fill%3D%22hsl(251%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2221%22%20cy%3D%2232%22%20r%3D%226.5%22%20fill%3D%22hsl(251%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%2221%2C23.5%2029.5%2C40.5%2012.5%2C40.5%22%20fill%3D%22hsl(251%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2232%22%20cy%3D%2243%22%20r%3D%228%22%20fill%3D%22hsl(251%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2235.5%22%20y%3D%222.5%22%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22hsl(251%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2210%2C14%2017%2C28%203%2C28%22%20fill%3D%22hsl(251%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2221%22%20cy%3D%2232%22%20r%3D%226.5%22%20fill%3D%22hsl(251%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-41"
     },
     {
       "id": "e6d00024-4047-476f-a241-3d5acb15fc28",
@@ -259,8 +765,8 @@
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
       "previousStatus": "todo",
-      "shortId": "T-40",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%2226%2C38%2030%2C46%2022%2C46%22%20fill%3D%22hsl(152%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2242%22%20cy%3D%2214%22%20r%3D%228%22%20fill%3D%22hsl(152%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%228%22%20y%3D%2224%22%20width%3D%2212%22%20height%3D%2212%22%20fill%3D%22hsl(152%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2230%2C42%2034%2C50%2026%2C50%22%20fill%3D%22hsl(152%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2246%22%20cy%3D%2218%22%20r%3D%228%22%20fill%3D%22hsl(152%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%2226%2C38%2030%2C46%2022%2C46%22%20fill%3D%22hsl(152%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2242%22%20cy%3D%2214%22%20r%3D%228%22%20fill%3D%22hsl(152%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%228%22%20y%3D%2224%22%20width%3D%2212%22%20height%3D%2212%22%20fill%3D%22hsl(152%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2230%2C42%2034%2C50%2026%2C50%22%20fill%3D%22hsl(152%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2246%22%20cy%3D%2218%22%20r%3D%228%22%20fill%3D%22hsl(152%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-40"
     },
     {
       "id": "db2c833c-6858-4136-adc6-ffb282f00578",
@@ -294,8 +800,8 @@
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
       "previousStatus": "in-review",
-      "shortId": "T-37",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2243%22%20cy%3D%2232%22%20r%3D%225.5%22%20fill%3D%22hsl(153%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2228%22%20y%3D%2217%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(153%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2221%2C1.5%2029.5%2C18.5%2012.5%2C18.5%22%20fill%3D%22hsl(153%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2243%22%20cy%3D%2232%22%20r%3D%225.5%22%20fill%3D%22hsl(153%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2228%22%20y%3D%2217%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(153%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2221%2C1.5%2029.5%2C18.5%2012.5%2C18.5%22%20fill%3D%22hsl(153%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-37"
     },
     {
       "id": "dee13efc-a386-4307-b171-e2e90cb8ef8a",
@@ -329,8 +835,8 @@
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
       "previousStatus": "todo",
-      "shortId": "T-39",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2241%22%20cy%3D%2228%22%20r%3D%228.5%22%20fill%3D%22hsl(315%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2224%22%20y%3D%2211%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(315%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2215%2C40.5%2020.5%2C51.5%209.5%2C51.5%22%20fill%3D%22hsl(315%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2241%22%20cy%3D%2228%22%20r%3D%228.5%22%20fill%3D%22hsl(315%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2224%22%20y%3D%2211%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(315%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2215%2C40.5%2020.5%2C51.5%209.5%2C51.5%22%20fill%3D%22hsl(315%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-39"
     },
     {
       "id": "a36f0e18-c60c-446e-a928-064865a007c5",
@@ -364,78 +870,9 @@
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
       "previousStatus": "todo",
-      "shortId": "T-38",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2228%22%20cy%3D%2246%22%20r%3D%227%22%20fill%3D%22hsl(42%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2242%22%20y%3D%2216%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(42%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2220%2C31%2027%2C45%2013%2C45%22%20fill%3D%22hsl(42%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
-    },
-    {
-      "id": "0ad933ef-1d73-4011-b708-a343e1e5b3d7",
-      "title": "ช่วย update ไฟล์ README.md ให้มันเป็นปัจจุบันหน่อย",
-      "description": "กำลังอ่าน README.md และโครงสร้างโปรเจกต์เพื่อเข้าใจสถานะปัจจุบัน",
-      "category": "task",
-      "status": "in-review",
-      "lastMessage": "แก้และ push เรียบร้อย — คำสั่งเปลี่ยนเป็น `claude marketplace add natthasath/natthasath-marketplace` แล้ว",
-      "agents": [
-        {
-          "id": "claude-main",
-          "name": "Claude",
-          "avatar": "",
-          "isActive": false
-        }
-      ],
-      "gitBranch": "main",
-      "hasError": false,
-      "isInterrupted": false,
-      "hasQuestion": false,
-      "isRateLimited": false,
-      "lastActivity": {
-        "toolName": "Bash",
-        "summary": "git -C \"E:/code/prod/claude-marketplace\" add README.md && git -C \"E:/code/pro...",
-        "outputHint": "4 lines of output",
-        "status": "completed"
-      },
-      "createdAt": "2026-07-03T03:15:34.968Z",
-      "updatedAt": "2026-07-03T08:53:30.141Z",
-      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\0ad933ef-1d73-4011-b708-a343e1e5b3d7.jsonl",
-      "workspacePath": "E:\\code\\prod\\claude-marketplace",
-      "provider": "claude-code",
-      "previousStatus": "in-review",
-      "shortId": "T-36",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2250%22%20cy%3D%2246%22%20r%3D%224%22%20fill%3D%22hsl(264%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2242%22%20y%3D%2238%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(264%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2242%2C34%2046%2C42%2038%2C42%22%20fill%3D%22hsl(264%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
-    },
-    {
-      "id": "637a17b0-20cc-46e4-918e-c794111d637d",
-      "title": "ช่วยเข้าไปอ่าน Folder Structure ที่ path นี้ `E:\\claude-skill` แล้ววิเคราะห์ใ...",
-      "description": "กำลังอ่าน folder structure ที่ `E:\\claude-skill` ก่อน",
-      "category": "task",
-      "status": "in-review",
-      "lastMessage": "   802805c..beede99  main -> main\n```",
-      "agents": [
-        {
-          "id": "claude-main",
-          "name": "Claude",
-          "avatar": "",
-          "isActive": false
-        }
-      ],
-      "gitBranch": "main",
-      "hasError": false,
-      "isInterrupted": false,
-      "hasQuestion": false,
-      "isRateLimited": false,
-      "lastActivity": {
-        "toolName": "Bash",
-        "summary": "git add .claude-plugin/marketplace.json plugins/plugin-social-post/ && git co...",
-        "outputHint": "12 lines of output",
-        "status": "completed"
-      },
-      "createdAt": "2026-06-29T07:06:41.838Z",
-      "updatedAt": "2026-06-29T09:25:04.701Z",
-      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\637a17b0-20cc-46e4-918e-c794111d637d.jsonl",
-      "workspacePath": "E:\\code\\prod\\claude-marketplace",
-      "provider": "claude-code",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%2243%2C26.5%2048.5%2C37.5%2037.5%2C37.5%22%20fill%3D%22hsl(77%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2232%22%20cy%3D%2221%22%20r%3D%228%22%20fill%3D%22hsl(77%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2216.5%22%20y%3D%225.5%22%20width%3D%229%22%20height%3D%229%22%20fill%3D%22hsl(77%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2210%2C36%2017%2C50%203%2C50%22%20fill%3D%22hsl(77%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2243%22%20cy%3D%2232%22%20r%3D%229.5%22%20fill%3D%22hsl(77%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
-      "shortId": "T-65"
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2228%22%20cy%3D%2246%22%20r%3D%227%22%20fill%3D%22hsl(42%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2242%22%20y%3D%2216%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(42%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2220%2C31%2027%2C45%2013%2C45%22%20fill%3D%22hsl(42%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-38"
     }
   ],
-  "lastUpdated": "2026-07-14T03:54:21.109Z"
+  "lastUpdated": "2026-08-05T07:44:03.404Z"
 }
