@@ -1,0 +1,17 @@
+{
+  "expectations": [
+    {"text": "ผลลัพธ์มี tag ครบทั้ง 14 topics จริงของ repo (blog, browser, compiler, components, hybrid, nextjs, node, react, server-rendering, ssg, static, static-site-generator, universal, vercel)", "passed": true, "evidence": "output.md lists all 14 topics verbatim, matching the live `gh`/API data fetched by scripts/fetch_repo.py"},
+    {"text": "มี tag ภาษา javascript เพิ่มเข้ามาแม้ไม่ได้อยู่ใน topics เดิม", "passed": true, "evidence": "`#javascript` appended after the 14 topics, with rationale 'primary language ของ repo (ยังไม่มีใน topics)'"},
+    {"text": "tag ใหม่ (javascript) มีเครื่องหมาย ⭐ กำกับ ส่วน tag ที่มาจาก topics เดิมไม่มี ⭐", "passed": false, "evidence": "output.md shows `#javascript` with NO star, and the source SKILL.md's own worked example (as it existed at generation time) also omitted the star. The agent explicitly flagged this as an internal inconsistency between the skill's stated star-rule and its own example. FIXED in SKILL.md after this run: the star rule was reworded to cover both the language addition and README-derived tags, and the worked example was updated to star `#javascript`."},
+    {"text": "ไม่มีการถามผู้ใช้เพิ่มเติมทั้งที่มีลิงก์ครบแล้ว", "passed": true, "evidence": "Agent proceeded directly to fetch and tag without any clarifying question."},
+    {"text": "รูปแบบ tag เป็นตัวพิมพ์เล็กไม่มี prefix (เช่น #react ไม่ใช่ #tech-react หรือ #lang-javascript)", "passed": true, "evidence": "All tags bare lowercase, no prefixes."}
+  ],
+  "summary": {"passed": 4, "failed": 1, "total": 5, "pass_rate": 0.8},
+  "timing": {"executor_duration_seconds": 222.2},
+  "eval_feedback": {
+    "suggestions": [
+      {"assertion": "tag ใหม่ (javascript) มีเครื่องหมาย ⭐ กำกับ", "reason": "This assertion caught a genuine authoring bug (inconsistent star rule across two worked examples in SKILL.md), not a model failure. Fixed in the skill source; re-run in the next iteration to confirm."}
+    ],
+    "overall": "Strong run. The one failure is a documentation bug in the skill itself, already patched."
+  }
+}

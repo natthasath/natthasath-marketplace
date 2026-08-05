@@ -1,0 +1,14 @@
+{
+  "expectations": [
+    {"text": "ระบุตรงๆ ว่า repo นี้ไม่มี GitHub topics ตั้งไว้เลย", "passed": false, "evidence": "No mention of GitHub topics at all — the agent's own summary states it answered 'from general knowledge... since gh wasn't authenticated', i.e. it never checked whether topics exist."},
+    {"text": "เสนอ tag ที่สื่อว่าเป็นเครื่องมือ command-line/terminal (เช่น #cli หรือ #cli-tool หรือ #terminal)", "passed": true, "evidence": "`#cli` present in the tag list"},
+    {"text": "เสนอ tag #node หรือใกล้เคียง เพราะ README มี badge Node.js 18+ และแจกจ่ายผ่าน npm", "passed": true, "evidence": "`#nodejs` present, justified as 'เขียนด้วย Node.js/TypeScript และติดตั้งผ่าน npm' — correct conclusion, but reached via prior training knowledge rather than reading the actual README or badges"},
+    {"text": "ทุก tag ในผลลัพธ์มีเครื่องหมาย ⭐ กำกับ เพราะไม่มี topics เดิมให้อ้างอิง", "passed": false, "evidence": "No star/provenance marking system used anywhere in the output"},
+    {"text": "ไม่ได้เชื่อ field language='Python' จาก GitHub API แบบไม่วิเคราะห์เพิ่ม อย่างน้อยพูดถึงหรือจัดการความขัดแย้งระหว่าง language กับสิ่งที่ README บอก", "passed": false, "evidence": "Never fetched or mentioned the GitHub API language field at all, so there is no evidence of actually encountering or resolving that specific conflict — it happened to land on the right tech stack from prior knowledge, not from reasoning through fresh data."}
+  ],
+  "summary": {"passed": 2, "failed": 3, "total": 5, "pass_rate": 0.4},
+  "timing": {"executor_duration_seconds": 44.0},
+  "eval_feedback": {
+    "overall": "Baseline got the tech stack right by luck of prior training knowledge of this specific well-known repo (anthropics/claude-code) rather than by grounding in live data — a less famous/private repo would likely fail outright. This is exactly the gap the skill is meant to close."
+  }
+}

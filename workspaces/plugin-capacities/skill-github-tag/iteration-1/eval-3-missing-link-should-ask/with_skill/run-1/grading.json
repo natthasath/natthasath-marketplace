@@ -1,0 +1,12 @@
+{
+  "expectations": [
+    {"text": "ไม่มี tag ใดๆ ถูกเสนอออกมาในคำตอบ", "passed": true, "evidence": "output.md contains only a clarifying question, no tags"},
+    {"text": "คำตอบเป็นคำถามกลับไปหาผู้ใช้ ขอลิงก์ GitHub หรือ path ในเครื่อง", "passed": true, "evidence": "'มีลิงก์ GitHub repo หรือ path ของโปรเจกต์นี้ในเครื่องไหม จะได้ดึง README มาอ่านให้' plus concrete format examples for both"},
+    {"text": "ไม่มีการเดาชื่อ repo หรือค้นหา repo ใดๆ แทนผู้ใช้", "passed": true, "evidence": "No repo name, search, or guess anywhere in the output"}
+  ],
+  "summary": {"passed": 3, "failed": 0, "total": 3, "pass_rate": 1.0},
+  "timing": {"executor_duration_seconds": 17.2},
+  "eval_feedback": {
+    "overall": "Passes, but this eval is non-discriminating: the without_skill baseline also asks first here (a capable model already knows not to guess a repo with zero context). Keep this eval as a regression guard, but don't read much into a 1.0 vs 1.0 tie — the meaningful signal is in evals 0-2 where the skill's live-data grounding actually matters."
+    }
+}

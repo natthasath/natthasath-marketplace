@@ -1,0 +1,12 @@
+{
+  "expectations": [
+    {"text": "ไม่มี tag ใดๆ ถูกเสนอออกมาในคำตอบ", "passed": true, "evidence": "No tags in the output, only clarifying questions"},
+    {"text": "คำตอบเป็นคำถามกลับไปหาผู้ใช้ ขอลิงก์ GitHub หรือ path ในเครื่อง", "passed": true, "evidence": "Asks for 'ลิงก์ หรือชื่อ repo' with examples of both URL and local path formats"},
+    {"text": "ไม่มีการเดาชื่อ repo หรือค้นหา repo ใดๆ แทนผู้ใช้", "passed": true, "evidence": "No repo guessed or searched"}
+  ],
+  "summary": {"passed": 3, "failed": 0, "total": 3, "pass_rate": 1.0},
+  "timing": {"executor_duration_seconds": 18.2},
+  "eval_feedback": {
+    "overall": "Matches the with-skill run — as expected, this eval doesn't discriminate between configurations. It's a useful regression guard, not a comparison point."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "expectations": [
+    {"text": "ผลลัพธ์มี tag ครบทั้ง 14 topics จริงของ repo (blog, browser, compiler, components, hybrid, nextjs, node, react, server-rendering, ssg, static, static-site-generator, universal, vercel)", "passed": false, "evidence": "Baseline produced #nextjs #react #javascript #typescript #frontend #framework #webdev #ssr #vercel #opensource — only 3 of 14 real topics overlap (nextjs, react, vercel), by coincidence rather than by checking real data. 11 real topics (blog, browser, compiler, components, hybrid, node, server-rendering, ssg, static, static-site-generator, universal) are missing; several invented tags (typescript, frontend, framework, webdev, opensource) aren't actual GitHub topics."},
+    {"text": "มี tag ภาษา javascript เพิ่มเข้ามาแม้ไม่ได้อยู่ใน topics เดิม", "passed": true, "evidence": "#javascript is present, though this is coincidental — the baseline had no concept of 'topics' as a separate source to supplement."},
+    {"text": "tag ใหม่ (javascript) มีเครื่องหมาย ⭐ กำกับ ส่วน tag ที่มาจาก topics เดิมไม่มี ⭐", "passed": false, "evidence": "No star/provenance system at all in the baseline output — every tag is presented with equal weight and no indication of source."},
+    {"text": "ไม่มีการถามผู้ใช้เพิ่มเติมทั้งที่มีลิงก์ครบแล้ว", "passed": true, "evidence": "Answered directly without asking a clarifying question."},
+    {"text": "รูปแบบ tag เป็นตัวพิมพ์เล็กไม่มี prefix (เช่น #react ไม่ใช่ #tech-react หรือ #lang-javascript)", "passed": true, "evidence": "Tags are bare lowercase, no prefixes."}
+  ],
+  "summary": {"passed": 3, "failed": 2, "total": 5, "pass_rate": 0.6},
+  "timing": {"executor_duration_seconds": 29.9},
+  "eval_feedback": {
+    "overall": "Assertions 1 and 3 specifically test grounding in the repo's real, live GitHub data — the baseline has no way to pass these since it never fetches the actual topics list. That's the expected and intended gap this skill exists to close."
+  }
+}

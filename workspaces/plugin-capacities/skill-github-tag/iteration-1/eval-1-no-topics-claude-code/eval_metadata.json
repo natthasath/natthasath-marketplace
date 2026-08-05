@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "no-topics-claude-code",
+  "prompt": "อยากเก็บ repo นี้ไว้ใน Capacities ต้องใส่ tag อะไรบ้าง https://github.com/anthropics/claude-code",
+  "assertions": [
+    {"text": "ระบุตรงๆ ว่า repo นี้ไม่มี GitHub topics ตั้งไว้เลย"},
+    {"text": "เสนอ tag ที่สื่อว่าเป็นเครื่องมือ command-line/terminal (เช่น #cli หรือ #cli-tool หรือ #terminal)"},
+    {"text": "เสนอ tag #node หรือใกล้เคียง เพราะ README มี badge Node.js 18+ และแจกจ่ายผ่าน npm"},
+    {"text": "ทุก tag ในผลลัพธ์มีเครื่องหมาย ⭐ กำกับ เพราะไม่มี topics เดิมให้อ้างอิง"},
+    {"text": "ไม่ได้เชื่อ field language='Python' จาก GitHub API แบบไม่วิเคราะห์เพิ่ม อย่างน้อยพูดถึงหรือจัดการความขัดแย้งระหว่าง language กับสิ่งที่ README บอก"}
+  ]
+}

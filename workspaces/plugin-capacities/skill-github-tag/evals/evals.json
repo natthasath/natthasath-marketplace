@@ -1,0 +1,33 @@
+{
+  "skill_name": "github-tag",
+  "evals": [
+    {
+      "id": 0,
+      "name": "full-topics-nextjs",
+      "prompt": "ช่วย tag repo นี้ให้หน่อยสำหรับเก็บลง Capacities https://github.com/vercel/next.js",
+      "expected_output": "ดึง GitHub topics ทั้ง 14 ตัวของ repo นี้มาเป็น tag หลัก (blog, browser, compiler, components, hybrid, nextjs, node, react, server-rendering, ssg, static, static-site-generator, universal, vercel) แล้วเสริม tag ภาษา JavaScript ที่ยังไม่มีใน topics เป็น tag ใหม่ (มี ⭐ กำกับ) ไม่ต้องถามผู้ใช้เพิ่มเพราะมีลิงก์มาแล้ว",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "no-topics-claude-code",
+      "prompt": "อยากเก็บ repo นี้ไว้ใน Capacities ต้องใส่ tag อะไรบ้าง https://github.com/anthropics/claude-code",
+      "expected_output": "repo นี้ไม่มี GitHub topics เลย (ต้องบอกผู้ใช้ตรงๆ ว่าไม่มี topics) ต้องดึง tag ทั้งหมดจากการวิเคราะห์ README + field language แทน ควรจับสัญญาณได้ครบว่าเป็น cli-tool/terminal tool, เกี่ยวกับ git workflow, แจกจ่ายผ่าน npm และมี badge Node.js 18+ แม้ field language จาก GitHub จะรายงานว่าเป็น Python ก็ตาม — คาดหวังว่าจะสังเกตเห็นความขัดแย้งนี้และเลือกใส่ tag ตามสัญญาณจาก README (เช่น node) แทนที่จะเชื่อ field language เพียงอย่างเดียว ทุก tag ควรมี ⭐ กำกับเพราะไม่มี topics เดิม",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "local-path-marketplace",
+      "prompt": "ช่วยดู README แล้วแนะนำ tag สำหรับ Capacities ให้หน่อย จากโปรเจกต์ในเครื่อง path E:\\code\\prod\\claude-marketplace",
+      "expected_output": "อ่าน README.md จาก path ที่ให้มาโดยตรง แล้วเช็คว่า path นี้เป็น git repo ที่มี remote เป็น github.com/natthasath/natthasath-marketplace หรือไม่ (เป็นจริง) แล้วดึง topics ของ repo นั้นมาประกอบ (claude, claude-marketpla, claude-plugin, claude-skills) รวมกับ tag ที่ได้จากเนื้อหา README เช่นเกี่ยวกับ Claude Code plugin marketplace ไม่ต้องถามผู้ใช้เพิ่มเพราะมี path มาแล้ว",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "missing-link-should-ask",
+      "prompt": "ช่วย tag repo ของฉันให้หน่อยสำหรับ Capacities",
+      "expected_output": "ไม่มีลิงก์ GitHub หรือ path ในเครื่องแนบมาด้วย ดังนั้น assistant ต้องถามผู้ใช้ก่อนเสมอว่าจะเอา repo ไหน (ขอลิงก์ GitHub หรือ path ในเครื่อง) ห้ามเดา repo เอง ห้ามค้นหา repo แทนผู้ใช้ และห้าม fabricate tag ใดๆ ออกมาก่อนที่จะรู้ว่าเป็น repo ไหน",
+      "files": []
+    }
+  ]
+}

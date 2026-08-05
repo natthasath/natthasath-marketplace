@@ -1,0 +1,13 @@
+{
+  "expectations": [
+    {"text": "อ่านไฟล์ README.md จาก path ที่ให้มาจริง ไม่ได้ถามผู้ใช้ซ้ำเพราะมี path มาแล้ว", "passed": true, "evidence": "Agent read the local README.md directly per its transcript summary and proceeded without asking any clarifying question"},
+    {"text": "ตรวจพบว่า path นี้เป็น git repo ที่มี GitHub remote (natthasath/natthasath-marketplace) และดึง topics มาใช้", "passed": true, "evidence": "Transcript shows `git -C ... remote get-url origin` returning the real remote, then the fetch script run against `natthasath/natthasath-marketplace` returning real topics"},
+    {"text": "ผลลัพธ์มี tag ที่ตรงกับ topics จริงของ repo อย่างน้อยบางส่วน (claude, claude-plugin, claude-skills, หรือ claude-marketpla)", "passed": true, "evidence": "output.md lists all 4 real topics verbatim: `#claude` `#claude-marketpla` `#claude-plugin` `#claude-skills`, even correctly noting the topic's own truncated spelling isn't a typo"},
+    {"text": "รูปแบบ tag เป็นตัวพิมพ์เล็กไม่มี prefix", "passed": true, "evidence": "All tags bare lowercase, no prefix"}
+  ],
+  "summary": {"passed": 4, "failed": 0, "total": 4, "pass_rate": 1.0},
+  "timing": {"executor_duration_seconds": 329.2},
+  "eval_feedback": {
+    "overall": "Clean pass, and the agent surfaced two useful real findings beyond the assertions: (1) the script's fetched README field is stale vs. the local file (GitHub's cached copy showed 12 plugins vs. 13 locally) — confirms the skill's rule to prefer the local file over the script's readme field in the local-path branch is correct and load-bearing, not just theoretical. (2) It re-flagged the same star-rule inconsistency caught in the nextjs run, independently — corroborating that the bug (now fixed) was real and would have confused every local-path invocation with a language addition."
+  }
+}

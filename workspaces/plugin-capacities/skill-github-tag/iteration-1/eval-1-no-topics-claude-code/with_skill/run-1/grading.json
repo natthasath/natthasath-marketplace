@@ -1,0 +1,14 @@
+{
+  "expectations": [
+    {"text": "ระบุตรงๆ ว่า repo นี้ไม่มี GitHub topics ตั้งไว้เลย", "passed": true, "evidence": "output.md opens with 'repo นี้ยังไม่มี GitHub topics เลย ทุก tag ด้านล่างมาจากการวิเคราะห์ README'"},
+    {"text": "เสนอ tag ที่สื่อว่าเป็นเครื่องมือ command-line/terminal (เช่น #cli หรือ #cli-tool หรือ #terminal)", "passed": true, "evidence": "`#cli-tool` present with rationale quoting README's 'agentic coding tool that lives in your terminal'"},
+    {"text": "เสนอ tag #node หรือใกล้เคียง เพราะ README มี badge Node.js 18+ และแจกจ่ายผ่าน npm", "passed": true, "evidence": "`#node` present, rationale cites the Node.js 18+ badge explicitly; `#npm` also added citing the npm badge/package/install command"},
+    {"text": "ทุก tag ในผลลัพธ์มีเครื่องหมาย ⭐ กำกับ เพราะไม่มี topics เดิมให้อ้างอิง", "passed": true, "evidence": "All 4 tags (#node #npm #cli-tool #ai-agent) carry ⭐"},
+    {"text": "ไม่ได้เชื่อ field language='Python' จาก GitHub API แบบไม่วิเคราะห์เพิ่ม อย่างน้อยพูดถึงหรือจัดการความขัดแย้งระหว่าง language กับสิ่งที่ README บอก", "passed": true, "evidence": "Rationale for #node explicitly says: 'แม้ GitHub จะรายงาน primary language เป็น Python ก็ตาม (น่าจะนับจาก script/test ประกอบที่ไม่ใช่ตัวโปรแกรมหลัก) กรณีแบบนี้เชื่อสิ่งที่ README ระบุชัดเจนมากกว่า field ดิบ' — directly names and resolves the conflict per tech-signals.md guidance"}
+  ],
+  "summary": {"passed": 5, "failed": 0, "total": 5, "pass_rate": 1.0},
+  "timing": {"executor_duration_seconds": 287.0},
+  "eval_feedback": {
+    "overall": "Clean pass on the hardest test case in the set. The agent's own transcript notes it initially considered dropping #node too conservatively and course-corrected via advisor before finalizing — worth watching in future iterations whether the skill's wording alone (without an advisor nudge) reliably produces this level of comprehensiveness, or whether it needs to be made more explicit in SKILL.md."
+  }
+}

@@ -1,0 +1,380 @@
+{
+  "metadata": {
+    "skill_name": "github-tag",
+    "skill_path": "E:\\code\\prod\\claude-marketplace\\plugins\\capacities\\skills\\github-tag",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-07-26T03:12:39Z",
+    "evals_run": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8,
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "time_seconds": 222.2,
+        "tokens": 63215,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u0e1c\u0e25\u0e25\u0e31\u0e1e\u0e18\u0e4c\u0e21\u0e35 tag \u0e04\u0e23\u0e1a\u0e17\u0e31\u0e49\u0e07 14 topics \u0e08\u0e23\u0e34\u0e07\u0e02\u0e2d\u0e07 repo (blog, browser, compiler, components, hybrid, nextjs, node, react, server-rendering, ssg, static, static-site-generator, universal, vercel)",
+          "passed": true,
+          "evidence": "output.md lists all 14 topics verbatim, matching the live `gh`/API data fetched by scripts/fetch_repo.py"
+        },
+        {
+          "text": "\u0e21\u0e35 tag \u0e20\u0e32\u0e29\u0e32 javascript \u0e40\u0e1e\u0e34\u0e48\u0e21\u0e40\u0e02\u0e49\u0e32\u0e21\u0e32\u0e41\u0e21\u0e49\u0e44\u0e21\u0e48\u0e44\u0e14\u0e49\u0e2d\u0e22\u0e39\u0e48\u0e43\u0e19 topics \u0e40\u0e14\u0e34\u0e21",
+          "passed": true,
+          "evidence": "`#javascript` appended after the 14 topics, with rationale 'primary language \u0e02\u0e2d\u0e07 repo (\u0e22\u0e31\u0e07\u0e44\u0e21\u0e48\u0e21\u0e35\u0e43\u0e19 topics)'"
+        },
+        {
+          "text": "tag \u0e43\u0e2b\u0e21\u0e48 (javascript) \u0e21\u0e35\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e2b\u0e21\u0e32\u0e22 \u2b50 \u0e01\u0e33\u0e01\u0e31\u0e1a \u0e2a\u0e48\u0e27\u0e19 tag \u0e17\u0e35\u0e48\u0e21\u0e32\u0e08\u0e32\u0e01 topics \u0e40\u0e14\u0e34\u0e21\u0e44\u0e21\u0e48\u0e21\u0e35 \u2b50",
+          "passed": false,
+          "evidence": "output.md shows `#javascript` with NO star, and the source SKILL.md's own worked example (as it existed at generation time) also omitted the star. The agent explicitly flagged this as an internal inconsistency between the skill's stated star-rule and its own example. FIXED in SKILL.md after this run: the star rule was reworded to cover both the language addition and README-derived tags, and the worked example was updated to star `#javascript`."
+        },
+        {
+          "text": "\u0e44\u0e21\u0e48\u0e21\u0e35\u0e01\u0e32\u0e23\u0e16\u0e32\u0e21\u0e1c\u0e39\u0e49\u0e43\u0e0a\u0e49\u0e40\u0e1e\u0e34\u0e48\u0e21\u0e40\u0e15\u0e34\u0e21\u0e17\u0e31\u0e49\u0e07\u0e17\u0e35\u0e48\u0e21\u0e35\u0e25\u0e34\u0e07\u0e01\u0e4c\u0e04\u0e23\u0e1a\u0e41\u0e25\u0e49\u0e27",
+          "passed": true,
+          "evidence": "Agent proceeded directly to fetch and tag without any clarifying question."
+        },
+        {
+          "text": "\u0e23\u0e39\u0e1b\u0e41\u0e1a\u0e1a tag \u0e40\u0e1b\u0e47\u0e19\u0e15\u0e31\u0e27\u0e1e\u0e34\u0e21\u0e1e\u0e4c\u0e40\u0e25\u0e47\u0e01\u0e44\u0e21\u0e48\u0e21\u0e35 prefix (\u0e40\u0e0a\u0e48\u0e19 #react \u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48 #tech-react \u0e2b\u0e23\u0e37\u0e2d #lang-javascript)",
+          "passed": true,
+          "evidence": "All tags bare lowercase, no prefixes."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 287.0,
+        "tokens": 65717,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u0e23\u0e30\u0e1a\u0e38\u0e15\u0e23\u0e07\u0e46 \u0e27\u0e48\u0e32 repo \u0e19\u0e35\u0e49\u0e44\u0e21\u0e48\u0e21\u0e35 GitHub topics \u0e15\u0e31\u0e49\u0e07\u0e44\u0e27\u0e49\u0e40\u0e25\u0e22",
+          "passed": true,
+          "evidence": "output.md opens with 'repo \u0e19\u0e35\u0e49\u0e22\u0e31\u0e07\u0e44\u0e21\u0e48\u0e21\u0e35 GitHub topics \u0e40\u0e25\u0e22 \u0e17\u0e38\u0e01 tag \u0e14\u0e49\u0e32\u0e19\u0e25\u0e48\u0e32\u0e07\u0e21\u0e32\u0e08\u0e32\u0e01\u0e01\u0e32\u0e23\u0e27\u0e34\u0e40\u0e04\u0e23\u0e32\u0e30\u0e2b\u0e4c README'"
+        },
+        {
+          "text": "\u0e40\u0e2a\u0e19\u0e2d tag \u0e17\u0e35\u0e48\u0e2a\u0e37\u0e48\u0e2d\u0e27\u0e48\u0e32\u0e40\u0e1b\u0e47\u0e19\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d command-line/terminal (\u0e40\u0e0a\u0e48\u0e19 #cli \u0e2b\u0e23\u0e37\u0e2d #cli-tool \u0e2b\u0e23\u0e37\u0e2d #terminal)",
+          "passed": true,
+          "evidence": "`#cli-tool` present with rationale quoting README's 'agentic coding tool that lives in your terminal'"
+        },
+        {
+          "text": "\u0e40\u0e2a\u0e19\u0e2d tag #node \u0e2b\u0e23\u0e37\u0e2d\u0e43\u0e01\u0e25\u0e49\u0e40\u0e04\u0e35\u0e22\u0e07 \u0e40\u0e1e\u0e23\u0e32\u0e30 README \u0e21\u0e35 badge Node.js 18+ \u0e41\u0e25\u0e30\u0e41\u0e08\u0e01\u0e08\u0e48\u0e32\u0e22\u0e1c\u0e48\u0e32\u0e19 npm",
+          "passed": true,
+          "evidence": "`#node` present, rationale cites the Node.js 18+ badge explicitly; `#npm` also added citing the npm badge/package/install command"
+        },
+        {
+          "text": "\u0e17\u0e38\u0e01 tag \u0e43\u0e19\u0e1c\u0e25\u0e25\u0e31\u0e1e\u0e18\u0e4c\u0e21\u0e35\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e2b\u0e21\u0e32\u0e22 \u2b50 \u0e01\u0e33\u0e01\u0e31\u0e1a \u0e40\u0e1e\u0e23\u0e32\u0e30\u0e44\u0e21\u0e48\u0e21\u0e35 topics \u0e40\u0e14\u0e34\u0e21\u0e43\u0e2b\u0e49\u0e2d\u0e49\u0e32\u0e07\u0e2d\u0e34\u0e07",
+          "passed": true,
+          "evidence": "All 4 tags (#node #npm #cli-tool #ai-agent) carry \u2b50"
+        },
+        {
+          "text": "\u0e44\u0e21\u0e48\u0e44\u0e14\u0e49\u0e40\u0e0a\u0e37\u0e48\u0e2d field language='Python' \u0e08\u0e32\u0e01 GitHub API \u0e41\u0e1a\u0e1a\u0e44\u0e21\u0e48\u0e27\u0e34\u0e40\u0e04\u0e23\u0e32\u0e30\u0e2b\u0e4c\u0e40\u0e1e\u0e34\u0e48\u0e21 \u0e2d\u0e22\u0e48\u0e32\u0e07\u0e19\u0e49\u0e2d\u0e22\u0e1e\u0e39\u0e14\u0e16\u0e36\u0e07\u0e2b\u0e23\u0e37\u0e2d\u0e08\u0e31\u0e14\u0e01\u0e32\u0e23\u0e04\u0e27\u0e32\u0e21\u0e02\u0e31\u0e14\u0e41\u0e22\u0e49\u0e07\u0e23\u0e30\u0e2b\u0e27\u0e48\u0e32\u0e07 language \u0e01\u0e31\u0e1a\u0e2a\u0e34\u0e48\u0e07\u0e17\u0e35\u0e48 README \u0e1a\u0e2d\u0e01",
+          "passed": true,
+          "evidence": "Rationale for #node explicitly says: '\u0e41\u0e21\u0e49 GitHub \u0e08\u0e30\u0e23\u0e32\u0e22\u0e07\u0e32\u0e19 primary language \u0e40\u0e1b\u0e47\u0e19 Python \u0e01\u0e47\u0e15\u0e32\u0e21 (\u0e19\u0e48\u0e32\u0e08\u0e30\u0e19\u0e31\u0e1a\u0e08\u0e32\u0e01 script/test \u0e1b\u0e23\u0e30\u0e01\u0e2d\u0e1a\u0e17\u0e35\u0e48\u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48\u0e15\u0e31\u0e27\u0e42\u0e1b\u0e23\u0e41\u0e01\u0e23\u0e21\u0e2b\u0e25\u0e31\u0e01) \u0e01\u0e23\u0e13\u0e35\u0e41\u0e1a\u0e1a\u0e19\u0e35\u0e49\u0e40\u0e0a\u0e37\u0e48\u0e2d\u0e2a\u0e34\u0e48\u0e07\u0e17\u0e35\u0e48 README \u0e23\u0e30\u0e1a\u0e38\u0e0a\u0e31\u0e14\u0e40\u0e08\u0e19\u0e21\u0e32\u0e01\u0e01\u0e27\u0e48\u0e32 field \u0e14\u0e34\u0e1a' \u2014 directly names and resolves the conflict per tech-signals.md guidance"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 329.2,
+        "tokens": 69104,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u0e2d\u0e48\u0e32\u0e19\u0e44\u0e1f\u0e25\u0e4c README.md \u0e08\u0e32\u0e01 path \u0e17\u0e35\u0e48\u0e43\u0e2b\u0e49\u0e21\u0e32\u0e08\u0e23\u0e34\u0e07 \u0e44\u0e21\u0e48\u0e44\u0e14\u0e49\u0e16\u0e32\u0e21\u0e1c\u0e39\u0e49\u0e43\u0e0a\u0e49\u0e0b\u0e49\u0e33\u0e40\u0e1e\u0e23\u0e32\u0e30\u0e21\u0e35 path \u0e21\u0e32\u0e41\u0e25\u0e49\u0e27",
+          "passed": true,
+          "evidence": "Agent read the local README.md directly per its transcript summary and proceeded without asking any clarifying question"
+        },
+        {
+          "text": "\u0e15\u0e23\u0e27\u0e08\u0e1e\u0e1a\u0e27\u0e48\u0e32 path \u0e19\u0e35\u0e49\u0e40\u0e1b\u0e47\u0e19 git repo \u0e17\u0e35\u0e48\u0e21\u0e35 GitHub remote (natthasath/natthasath-marketplace) \u0e41\u0e25\u0e30\u0e14\u0e36\u0e07 topics \u0e21\u0e32\u0e43\u0e0a\u0e49",
+          "passed": true,
+          "evidence": "Transcript shows `git -C ... remote get-url origin` returning the real remote, then the fetch script run against `natthasath/natthasath-marketplace` returning real topics"
+        },
+        {
+          "text": "\u0e1c\u0e25\u0e25\u0e31\u0e1e\u0e18\u0e4c\u0e21\u0e35 tag \u0e17\u0e35\u0e48\u0e15\u0e23\u0e07\u0e01\u0e31\u0e1a topics \u0e08\u0e23\u0e34\u0e07\u0e02\u0e2d\u0e07 repo \u0e2d\u0e22\u0e48\u0e32\u0e07\u0e19\u0e49\u0e2d\u0e22\u0e1a\u0e32\u0e07\u0e2a\u0e48\u0e27\u0e19 (claude, claude-plugin, claude-skills, \u0e2b\u0e23\u0e37\u0e2d claude-marketpla)",
+          "passed": true,
+          "evidence": "output.md lists all 4 real topics verbatim: `#claude` `#claude-marketpla` `#claude-plugin` `#claude-skills`, even correctly noting the topic's own truncated spelling isn't a typo"
+        },
+        {
+          "text": "\u0e23\u0e39\u0e1b\u0e41\u0e1a\u0e1a tag \u0e40\u0e1b\u0e47\u0e19\u0e15\u0e31\u0e27\u0e1e\u0e34\u0e21\u0e1e\u0e4c\u0e40\u0e25\u0e47\u0e01\u0e44\u0e21\u0e48\u0e21\u0e35 prefix",
+          "passed": true,
+          "evidence": "All tags bare lowercase, no prefix"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 17.2,
+        "tokens": 51676,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u0e44\u0e21\u0e48\u0e21\u0e35 tag \u0e43\u0e14\u0e46 \u0e16\u0e39\u0e01\u0e40\u0e2a\u0e19\u0e2d\u0e2d\u0e2d\u0e01\u0e21\u0e32\u0e43\u0e19\u0e04\u0e33\u0e15\u0e2d\u0e1a",
+          "passed": true,
+          "evidence": "output.md contains only a clarifying question, no tags"
+        },
+        {
+          "text": "\u0e04\u0e33\u0e15\u0e2d\u0e1a\u0e40\u0e1b\u0e47\u0e19\u0e04\u0e33\u0e16\u0e32\u0e21\u0e01\u0e25\u0e31\u0e1a\u0e44\u0e1b\u0e2b\u0e32\u0e1c\u0e39\u0e49\u0e43\u0e0a\u0e49 \u0e02\u0e2d\u0e25\u0e34\u0e07\u0e01\u0e4c GitHub \u0e2b\u0e23\u0e37\u0e2d path \u0e43\u0e19\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07",
+          "passed": true,
+          "evidence": "'\u0e21\u0e35\u0e25\u0e34\u0e07\u0e01\u0e4c GitHub repo \u0e2b\u0e23\u0e37\u0e2d path \u0e02\u0e2d\u0e07\u0e42\u0e1b\u0e23\u0e40\u0e08\u0e01\u0e15\u0e4c\u0e19\u0e35\u0e49\u0e43\u0e19\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e44\u0e2b\u0e21 \u0e08\u0e30\u0e44\u0e14\u0e49\u0e14\u0e36\u0e07 README \u0e21\u0e32\u0e2d\u0e48\u0e32\u0e19\u0e43\u0e2b\u0e49' plus concrete format examples for both"
+        },
+        {
+          "text": "\u0e44\u0e21\u0e48\u0e21\u0e35\u0e01\u0e32\u0e23\u0e40\u0e14\u0e32\u0e0a\u0e37\u0e48\u0e2d repo \u0e2b\u0e23\u0e37\u0e2d\u0e04\u0e49\u0e19\u0e2b\u0e32 repo \u0e43\u0e14\u0e46 \u0e41\u0e17\u0e19\u0e1c\u0e39\u0e49\u0e43\u0e0a\u0e49",
+          "passed": true,
+          "evidence": "No repo name, search, or guess anywhere in the output"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.6,
+        "passed": 3,
+        "failed": 2,
+        "total": 5,
+        "time_seconds": 29.9,
+        "tokens": 47228,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u0e1c\u0e25\u0e25\u0e31\u0e1e\u0e18\u0e4c\u0e21\u0e35 tag \u0e04\u0e23\u0e1a\u0e17\u0e31\u0e49\u0e07 14 topics \u0e08\u0e23\u0e34\u0e07\u0e02\u0e2d\u0e07 repo (blog, browser, compiler, components, hybrid, nextjs, node, react, server-rendering, ssg, static, static-site-generator, universal, vercel)",
+          "passed": false,
+          "evidence": "Baseline produced #nextjs #react #javascript #typescript #frontend #framework #webdev #ssr #vercel #opensource \u2014 only 3 of 14 real topics overlap (nextjs, react, vercel), by coincidence rather than by checking real data. 11 real topics (blog, browser, compiler, components, hybrid, node, server-rendering, ssg, static, static-site-generator, universal) are missing; several invented tags (typescript, frontend, framework, webdev, opensource) aren't actual GitHub topics."
+        },
+        {
+          "text": "\u0e21\u0e35 tag \u0e20\u0e32\u0e29\u0e32 javascript \u0e40\u0e1e\u0e34\u0e48\u0e21\u0e40\u0e02\u0e49\u0e32\u0e21\u0e32\u0e41\u0e21\u0e49\u0e44\u0e21\u0e48\u0e44\u0e14\u0e49\u0e2d\u0e22\u0e39\u0e48\u0e43\u0e19 topics \u0e40\u0e14\u0e34\u0e21",
+          "passed": true,
+          "evidence": "#javascript is present, though this is coincidental \u2014 the baseline had no concept of 'topics' as a separate source to supplement."
+        },
+        {
+          "text": "tag \u0e43\u0e2b\u0e21\u0e48 (javascript) \u0e21\u0e35\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e2b\u0e21\u0e32\u0e22 \u2b50 \u0e01\u0e33\u0e01\u0e31\u0e1a \u0e2a\u0e48\u0e27\u0e19 tag \u0e17\u0e35\u0e48\u0e21\u0e32\u0e08\u0e32\u0e01 topics \u0e40\u0e14\u0e34\u0e21\u0e44\u0e21\u0e48\u0e21\u0e35 \u2b50",
+          "passed": false,
+          "evidence": "No star/provenance system at all in the baseline output \u2014 every tag is presented with equal weight and no indication of source."
+        },
+        {
+          "text": "\u0e44\u0e21\u0e48\u0e21\u0e35\u0e01\u0e32\u0e23\u0e16\u0e32\u0e21\u0e1c\u0e39\u0e49\u0e43\u0e0a\u0e49\u0e40\u0e1e\u0e34\u0e48\u0e21\u0e40\u0e15\u0e34\u0e21\u0e17\u0e31\u0e49\u0e07\u0e17\u0e35\u0e48\u0e21\u0e35\u0e25\u0e34\u0e07\u0e01\u0e4c\u0e04\u0e23\u0e1a\u0e41\u0e25\u0e49\u0e27",
+          "passed": true,
+          "evidence": "Answered directly without asking a clarifying question."
+        },
+        {
+          "text": "\u0e23\u0e39\u0e1b\u0e41\u0e1a\u0e1a tag \u0e40\u0e1b\u0e47\u0e19\u0e15\u0e31\u0e27\u0e1e\u0e34\u0e21\u0e1e\u0e4c\u0e40\u0e25\u0e47\u0e01\u0e44\u0e21\u0e48\u0e21\u0e35 prefix (\u0e40\u0e0a\u0e48\u0e19 #react \u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48 #tech-react \u0e2b\u0e23\u0e37\u0e2d #lang-javascript)",
+          "passed": true,
+          "evidence": "Tags are bare lowercase, no prefixes."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.4,
+        "passed": 2,
+        "failed": 3,
+        "total": 5,
+        "time_seconds": 44.0,
+        "tokens": 48089,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u0e23\u0e30\u0e1a\u0e38\u0e15\u0e23\u0e07\u0e46 \u0e27\u0e48\u0e32 repo \u0e19\u0e35\u0e49\u0e44\u0e21\u0e48\u0e21\u0e35 GitHub topics \u0e15\u0e31\u0e49\u0e07\u0e44\u0e27\u0e49\u0e40\u0e25\u0e22",
+          "passed": false,
+          "evidence": "No mention of GitHub topics at all \u2014 the agent's own summary states it answered 'from general knowledge... since gh wasn't authenticated', i.e. it never checked whether topics exist."
+        },
+        {
+          "text": "\u0e40\u0e2a\u0e19\u0e2d tag \u0e17\u0e35\u0e48\u0e2a\u0e37\u0e48\u0e2d\u0e27\u0e48\u0e32\u0e40\u0e1b\u0e47\u0e19\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e21\u0e37\u0e2d command-line/terminal (\u0e40\u0e0a\u0e48\u0e19 #cli \u0e2b\u0e23\u0e37\u0e2d #cli-tool \u0e2b\u0e23\u0e37\u0e2d #terminal)",
+          "passed": true,
+          "evidence": "`#cli` present in the tag list"
+        },
+        {
+          "text": "\u0e40\u0e2a\u0e19\u0e2d tag #node \u0e2b\u0e23\u0e37\u0e2d\u0e43\u0e01\u0e25\u0e49\u0e40\u0e04\u0e35\u0e22\u0e07 \u0e40\u0e1e\u0e23\u0e32\u0e30 README \u0e21\u0e35 badge Node.js 18+ \u0e41\u0e25\u0e30\u0e41\u0e08\u0e01\u0e08\u0e48\u0e32\u0e22\u0e1c\u0e48\u0e32\u0e19 npm",
+          "passed": true,
+          "evidence": "`#nodejs` present, justified as '\u0e40\u0e02\u0e35\u0e22\u0e19\u0e14\u0e49\u0e27\u0e22 Node.js/TypeScript \u0e41\u0e25\u0e30\u0e15\u0e34\u0e14\u0e15\u0e31\u0e49\u0e07\u0e1c\u0e48\u0e32\u0e19 npm' \u2014 correct conclusion, but reached via prior training knowledge rather than reading the actual README or badges"
+        },
+        {
+          "text": "\u0e17\u0e38\u0e01 tag \u0e43\u0e19\u0e1c\u0e25\u0e25\u0e31\u0e1e\u0e18\u0e4c\u0e21\u0e35\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07\u0e2b\u0e21\u0e32\u0e22 \u2b50 \u0e01\u0e33\u0e01\u0e31\u0e1a \u0e40\u0e1e\u0e23\u0e32\u0e30\u0e44\u0e21\u0e48\u0e21\u0e35 topics \u0e40\u0e14\u0e34\u0e21\u0e43\u0e2b\u0e49\u0e2d\u0e49\u0e32\u0e07\u0e2d\u0e34\u0e07",
+          "passed": false,
+          "evidence": "No star/provenance marking system used anywhere in the output"
+        },
+        {
+          "text": "\u0e44\u0e21\u0e48\u0e44\u0e14\u0e49\u0e40\u0e0a\u0e37\u0e48\u0e2d field language='Python' \u0e08\u0e32\u0e01 GitHub API \u0e41\u0e1a\u0e1a\u0e44\u0e21\u0e48\u0e27\u0e34\u0e40\u0e04\u0e23\u0e32\u0e30\u0e2b\u0e4c\u0e40\u0e1e\u0e34\u0e48\u0e21 \u0e2d\u0e22\u0e48\u0e32\u0e07\u0e19\u0e49\u0e2d\u0e22\u0e1e\u0e39\u0e14\u0e16\u0e36\u0e07\u0e2b\u0e23\u0e37\u0e2d\u0e08\u0e31\u0e14\u0e01\u0e32\u0e23\u0e04\u0e27\u0e32\u0e21\u0e02\u0e31\u0e14\u0e41\u0e22\u0e49\u0e07\u0e23\u0e30\u0e2b\u0e27\u0e48\u0e32\u0e07 language \u0e01\u0e31\u0e1a\u0e2a\u0e34\u0e48\u0e07\u0e17\u0e35\u0e48 README \u0e1a\u0e2d\u0e01",
+          "passed": false,
+          "evidence": "Never fetched or mentioned the GitHub API language field at all, so there is no evidence of actually encountering or resolving that specific conflict \u2014 it happened to land on the right tech stack from prior knowledge, not from reasoning through fresh data."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.5,
+        "passed": 2,
+        "failed": 2,
+        "total": 4,
+        "time_seconds": 42.0,
+        "tokens": 49416,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u0e2d\u0e48\u0e32\u0e19\u0e44\u0e1f\u0e25\u0e4c README.md \u0e08\u0e32\u0e01 path \u0e17\u0e35\u0e48\u0e43\u0e2b\u0e49\u0e21\u0e32\u0e08\u0e23\u0e34\u0e07 \u0e44\u0e21\u0e48\u0e44\u0e14\u0e49\u0e16\u0e32\u0e21\u0e1c\u0e39\u0e49\u0e43\u0e0a\u0e49\u0e0b\u0e49\u0e33\u0e40\u0e1e\u0e23\u0e32\u0e30\u0e21\u0e35 path \u0e21\u0e32\u0e41\u0e25\u0e49\u0e27",
+          "passed": true,
+          "evidence": "Agent's summary confirms it read the actual local README.md and answered directly"
+        },
+        {
+          "text": "\u0e15\u0e23\u0e27\u0e08\u0e1e\u0e1a\u0e27\u0e48\u0e32 path \u0e19\u0e35\u0e49\u0e40\u0e1b\u0e47\u0e19 git repo \u0e17\u0e35\u0e48\u0e21\u0e35 GitHub remote (natthasath/natthasath-marketplace) \u0e41\u0e25\u0e30\u0e14\u0e36\u0e07 topics \u0e21\u0e32\u0e43\u0e0a\u0e49",
+          "passed": false,
+          "evidence": "No mention anywhere of checking git remote or fetching GitHub topics \u2014 all tags are invented from README content alone (#claude-code, #plugin-marketplace, #pkm, #devops, #productivity, #software-planning, #design-guide, #thai-content)"
+        },
+        {
+          "text": "\u0e1c\u0e25\u0e25\u0e31\u0e1e\u0e18\u0e4c\u0e21\u0e35 tag \u0e17\u0e35\u0e48\u0e15\u0e23\u0e07\u0e01\u0e31\u0e1a topics \u0e08\u0e23\u0e34\u0e07\u0e02\u0e2d\u0e07 repo \u0e2d\u0e22\u0e48\u0e32\u0e07\u0e19\u0e49\u0e2d\u0e22\u0e1a\u0e32\u0e07\u0e2a\u0e48\u0e27\u0e19 (claude, claude-plugin, claude-skills, \u0e2b\u0e23\u0e37\u0e2d claude-marketpla)",
+          "passed": false,
+          "evidence": "Zero overlap between baseline's 8 invented tags and the repo's real 4 GitHub topics"
+        },
+        {
+          "text": "\u0e23\u0e39\u0e1b\u0e41\u0e1a\u0e1a tag \u0e40\u0e1b\u0e47\u0e19\u0e15\u0e31\u0e27\u0e1e\u0e34\u0e21\u0e1e\u0e4c\u0e40\u0e25\u0e47\u0e01\u0e44\u0e21\u0e48\u0e21\u0e35 prefix",
+          "passed": true,
+          "evidence": "Tags are bare lowercase with hyphens, no lang-/tech- style prefix"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 18.2,
+        "tokens": 46318,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u0e44\u0e21\u0e48\u0e21\u0e35 tag \u0e43\u0e14\u0e46 \u0e16\u0e39\u0e01\u0e40\u0e2a\u0e19\u0e2d\u0e2d\u0e2d\u0e01\u0e21\u0e32\u0e43\u0e19\u0e04\u0e33\u0e15\u0e2d\u0e1a",
+          "passed": true,
+          "evidence": "No tags in the output, only clarifying questions"
+        },
+        {
+          "text": "\u0e04\u0e33\u0e15\u0e2d\u0e1a\u0e40\u0e1b\u0e47\u0e19\u0e04\u0e33\u0e16\u0e32\u0e21\u0e01\u0e25\u0e31\u0e1a\u0e44\u0e1b\u0e2b\u0e32\u0e1c\u0e39\u0e49\u0e43\u0e0a\u0e49 \u0e02\u0e2d\u0e25\u0e34\u0e07\u0e01\u0e4c GitHub \u0e2b\u0e23\u0e37\u0e2d path \u0e43\u0e19\u0e40\u0e04\u0e23\u0e37\u0e48\u0e2d\u0e07",
+          "passed": true,
+          "evidence": "Asks for '\u0e25\u0e34\u0e07\u0e01\u0e4c \u0e2b\u0e23\u0e37\u0e2d\u0e0a\u0e37\u0e48\u0e2d repo' with examples of both URL and local path formats"
+        },
+        {
+          "text": "\u0e44\u0e21\u0e48\u0e21\u0e35\u0e01\u0e32\u0e23\u0e40\u0e14\u0e32\u0e0a\u0e37\u0e48\u0e2d repo \u0e2b\u0e23\u0e37\u0e2d\u0e04\u0e49\u0e19\u0e2b\u0e32 repo \u0e43\u0e14\u0e46 \u0e41\u0e17\u0e19\u0e1c\u0e39\u0e49\u0e43\u0e0a\u0e49",
+          "passed": true,
+          "evidence": "No repo guessed or searched"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.95,
+        "stddev": 0.1,
+        "min": 0.8,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 213.9,
+        "stddev": 138.3203,
+        "min": 17.2,
+        "max": 329.2
+      },
+      "tokens": {
+        "mean": 62428.0,
+        "stddev": 7563.3187,
+        "min": 51676,
+        "max": 69104
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.625,
+        "stddev": 0.263,
+        "min": 0.4,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 33.525,
+        "stddev": 11.9659,
+        "min": 18.2,
+        "max": 44.0
+      },
+      "tokens": {
+        "mean": 47762.75,
+        "stddev": 1318.1976,
+        "min": 46318,
+        "max": 49416
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.32",
+      "time_seconds": "+180.4",
+      "tokens": "+14665"
+    }
+  },
+  "notes": []
+}

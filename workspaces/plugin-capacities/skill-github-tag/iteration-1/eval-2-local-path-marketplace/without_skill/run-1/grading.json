@@ -1,0 +1,13 @@
+{
+  "expectations": [
+    {"text": "อ่านไฟล์ README.md จาก path ที่ให้มาจริง ไม่ได้ถามผู้ใช้ซ้ำเพราะมี path มาแล้ว", "passed": true, "evidence": "Agent's summary confirms it read the actual local README.md and answered directly"},
+    {"text": "ตรวจพบว่า path นี้เป็น git repo ที่มี GitHub remote (natthasath/natthasath-marketplace) และดึง topics มาใช้", "passed": false, "evidence": "No mention anywhere of checking git remote or fetching GitHub topics — all tags are invented from README content alone (#claude-code, #plugin-marketplace, #pkm, #devops, #productivity, #software-planning, #design-guide, #thai-content)"},
+    {"text": "ผลลัพธ์มี tag ที่ตรงกับ topics จริงของ repo อย่างน้อยบางส่วน (claude, claude-plugin, claude-skills, หรือ claude-marketpla)", "passed": false, "evidence": "Zero overlap between baseline's 8 invented tags and the repo's real 4 GitHub topics"},
+    {"text": "รูปแบบ tag เป็นตัวพิมพ์เล็กไม่มี prefix", "passed": true, "evidence": "Tags are bare lowercase with hyphens, no lang-/tech- style prefix"}
+  ],
+  "summary": {"passed": 2, "failed": 2, "total": 4, "pass_rate": 0.5},
+  "timing": {"executor_duration_seconds": 42.0},
+  "eval_feedback": {
+    "overall": "Baseline produces a thoughtful but entirely self-invented taxonomy with no connection to the repo's actual (if sparse) GitHub topics — exactly the gap this skill is designed to close for local projects the user already has cloned."
+  }
+}

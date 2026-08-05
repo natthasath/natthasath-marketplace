@@ -1,0 +1,11 @@
+{
+  "eval_id": 2,
+  "eval_name": "local-path-marketplace",
+  "prompt": "ช่วยดู README แล้วแนะนำ tag สำหรับ Capacities ให้หน่อย จากโปรเจกต์ในเครื่อง path E:\\code\\prod\\claude-marketplace",
+  "assertions": [
+    {"text": "อ่านไฟล์ README.md จาก path ที่ให้มาจริง ไม่ได้ถามผู้ใช้ซ้ำเพราะมี path มาแล้ว"},
+    {"text": "ตรวจพบว่า path นี้เป็น git repo ที่มี GitHub remote (natthasath/natthasath-marketplace) และดึง topics มาใช้"},
+    {"text": "ผลลัพธ์มี tag ที่ตรงกับ topics จริงของ repo อย่างน้อยบางส่วน (claude, claude-plugin, claude-skills, หรือ claude-marketpla)"},
+    {"text": "รูปแบบ tag เป็นตัวพิมพ์เล็กไม่มี prefix"}
+  ]
+}

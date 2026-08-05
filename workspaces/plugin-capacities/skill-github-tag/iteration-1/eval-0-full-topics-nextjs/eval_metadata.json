@@ -1,0 +1,12 @@
+{
+  "eval_id": 0,
+  "eval_name": "full-topics-nextjs",
+  "prompt": "ช่วย tag repo นี้ให้หน่อยสำหรับเก็บลง Capacities https://github.com/vercel/next.js",
+  "assertions": [
+    {"text": "ผลลัพธ์มี tag ครบทั้ง 14 topics จริงของ repo (blog, browser, compiler, components, hybrid, nextjs, node, react, server-rendering, ssg, static, static-site-generator, universal, vercel)"},
+    {"text": "มี tag ภาษา javascript เพิ่มเข้ามาแม้ไม่ได้อยู่ใน topics เดิม"},
+    {"text": "tag ใหม่ (javascript) มีเครื่องหมาย ⭐ กำกับ ส่วน tag ที่มาจาก topics เดิมไม่มี ⭐"},
+    {"text": "ไม่มีการถามผู้ใช้เพิ่มเติมทั้งที่มีลิงก์ครบแล้ว"},
+    {"text": "รูปแบบ tag เป็นตัวพิมพ์เล็กไม่มี prefix (เช่น #react ไม่ใช่ #tech-react หรือ #lang-javascript)"}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "eval_id": 3,
+  "eval_name": "missing-link-should-ask",
+  "prompt": "ช่วย tag repo ของฉันให้หน่อยสำหรับ Capacities",
+  "assertions": [
+    {"text": "ไม่มี tag ใดๆ ถูกเสนอออกมาในคำตอบ"},
+    {"text": "คำตอบเป็นคำถามกลับไปหาผู้ใช้ ขอลิงก์ GitHub หรือ path ในเครื่อง"},
+    {"text": "ไม่มีการเดาชื่อ repo หรือค้นหา repo ใดๆ แทนผู้ใช้"}
+  ]
+}
