@@ -578,6 +578,149 @@ def render_chafa(path: str, width: int):
     return lines
 
 
+# --------------------------------------------------------------------------
+# HTML export
+#
+# ANSI escapes only become colour inside a terminal emulator. Anywhere that
+# renders markdown instead — claude.ai chat, a GitHub comment — they show up as
+# literal "[38;2;255;13;13m" noise tangled through the art. Translating the
+# same colours into inline styles gives those surfaces a way to display the
+# real thing, and the result is self-contained enough to publish as an artifact.
+# --------------------------------------------------------------------------
+
+SGR = None  # compiled lazily; re module import stays local to this feature
+
+
+def _html_escape(s: str) -> str:
+    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def ansi_to_html_body(lines) -> str:
+    """Convert the escape sequences this script emits into styled spans.
+
+    Only three forms are ever produced — 38;2;r;g;b (foreground),
+    48;2;r;g;b (background) and 0 (reset) — so the parser stays small.
+    Anything unrecognised is dropped rather than leaked into the output as
+    text, since a stray escape is always noise to a reader.
+    """
+    global SGR
+    if SGR is None:
+        import re
+
+        SGR = re.compile(r"\x1b\[([0-9;]*)m")
+
+    out = []
+    for line in lines:
+        parts = []
+        fg = bg = None
+        pos = 0
+        for m in SGR.finditer(line):
+            chunk = line[pos : m.start()]
+            if chunk:
+                parts.append(_span(chunk, fg, bg))
+            params = [p for p in m.group(1).split(";") if p != ""] or ["0"]
+            i = 0
+            while i < len(params):
+                if params[i] == "0":
+                    fg = bg = None
+                    i += 1
+                elif params[i] in ("38", "48") and params[i + 1 : i + 2] == ["2"]:
+                    rgb = tuple(int(v) for v in params[i + 2 : i + 5])
+                    if len(rgb) == 3:
+                        if params[i] == "38":
+                            fg = rgb
+                        else:
+                            bg = rgb
+                    i += 5
+                else:
+                    i += 1
+            pos = m.end()
+        tail = line[pos:]
+        if tail:
+            parts.append(_span(tail, fg, bg))
+        # A blank line still needs to occupy a row, and <pre> collapses nothing,
+        # so an empty string is fine here — the newline below does the work.
+        out.append("".join(parts))
+    return "\n".join(out)
+
+
+def _span(text: str, fg, bg) -> str:
+    esc = _html_escape(text)
+    if fg is None and bg is None:
+        return esc
+    style = []
+    if fg is not None:
+        style.append("color:#{:02x}{:02x}{:02x}".format(*fg))
+    if bg is not None:
+        style.append("background:#{:02x}{:02x}{:02x}".format(*bg))
+    return '<span style="{}">{}</span>'.format(";".join(style), esc)
+
+
+# line-height:1 is load-bearing, not styling. The half-block characters that
+# `chafa` builds its picture from (▀) have to tile edge to edge; any leading at
+# all opens a pale stripe between every row and shreds the image.
+HTML_PAGE = """<title>ASCII Art{title_suffix}</title>
+<style>
+  :root {{ color-scheme: dark; }}
+  body {{
+    margin: 0;
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    padding: 1.5rem 1rem;
+  }}
+  .meta {{
+    font-size: .8rem;
+    color: #7d8590;
+    margin: 0 0 .75rem;
+    font-variant-numeric: tabular-nums;
+  }}
+  .term {{
+    background: #010409;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+  }}
+  pre {{
+    margin: 0;
+    font-family: "Cascadia Mono", Consolas, "DejaVu Sans Mono", Menlo,
+                 "Liberation Mono", monospace;
+    font-size: {font_size};
+    line-height: 1;
+    letter-spacing: 0;
+    white-space: pre;
+    tab-size: 8;
+  }}
+</style>
+<p class="meta">{meta}</p>
+<div class="term"><pre>{body}</pre></div>
+"""
+
+
+def write_html(lines, path: str, meta: str, title: str, dense: bool):
+    # The title lands in a browser tab, so a multi-line --text has to collapse
+    # to one readable line rather than smuggling newlines into the tag.
+    title = " ".join(title.split())
+    if len(title) > 40:
+        title = title[:39].rstrip() + "…"
+    body = ansi_to_html_body(lines)
+    page = HTML_PAGE.format(
+        title_suffix=" — " + _html_escape(title) if title else "",
+        meta=_html_escape(meta),
+        body=body,
+        # Image modes pack far more columns than a banner does; shrinking the
+        # glyphs keeps the whole picture on screen without horizontal scrolling.
+        font_size="0.62rem" if dense else "0.85rem",
+    )
+    try:
+        with open(path, "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(page)
+    except OSError as exc:
+        die("เขียนไฟล์ HTML ไม่สำเร็จ: {}".format(exc))
+    print("html: {}".format(os.path.abspath(path)), file=sys.stderr)
+
+
 BRAILLE_DOTS = [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (0, 3), (1, 3)]
 
 
@@ -640,6 +783,12 @@ def build_parser():
         type=int,
         default=-1,
         help="เกณฑ์ 0-255 สำหรับ braille (ไม่ใส่ = ใช้ dithering)",
+    )
+    p.add_argument(
+        "--html",
+        metavar="PATH",
+        help="เขียนไฟล์ HTML แบบ self-contained ไว้ที่ PATH ด้วย สำหรับ publish เป็น Artifact "
+        "(ที่ที่ render markdown อย่าง claude.ai จะได้เห็นสีจริงแทนรหัส ANSI)",
     )
     p.add_argument("--list", action="store_true", help="พิมพ์ catalog เป็น JSON")
     p.add_argument("--list-fonts", nargs="?", const="", help="พิมพ์ฟอนต์ทั้งหมด (กรองด้วยคำค้นได้)")
@@ -724,9 +873,29 @@ def main(argv=None):
     if not pre_colored:
         lines = colorize(lines, color)
 
-    # Terminal only, by design: the point of this skill is seeing the art the
-    # moment it runs. Writing a file would just hand back a path to go open.
+    # stdout stays the primary output — the point of this skill is seeing the
+    # art the moment it runs. --html is an addition for surfaces that cannot
+    # render ANSI, never a replacement for showing it.
     sys.stdout.write("\n".join(lines) + "\n")
+
+    if args.html:
+        bits = [mode]
+        if mode in ("figlet", "toilet"):
+            bits.append("font " + args.font)
+        if mode == "cowsay":
+            bits.append(args.character)
+        if mode == "jp2a":
+            bits.append("ramp " + args.ramp)
+        if color != "none" and mode != "chafa":
+            bits.append(color)
+        bits.append("width {}".format(args.width))
+        write_html(
+            lines,
+            args.html,
+            meta=" · ".join(bits),
+            title=args.text or (os.path.basename(args.image) if args.image else ""),
+            dense=mode in image_modes,
+        )
     return 0
 
 

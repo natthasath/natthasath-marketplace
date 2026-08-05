@@ -16,7 +16,7 @@ Plugin for **boosting work productivity** — covers Tech Explainer, Meetings, P
 | `flashcard` | สร้าง Flashcard website (LexiCard) สำหรับเรียนคำศัพท์ รองรับหลายภาษา พร้อมระบบ Flip Card, Quiz และการออกเสียง |
 | `activity-report` | สรุปความคืบหน้ากิจกรรมในแผนการปฏิบัติงานประจำปีของสำนัก — ถามข้อมูลครบ 5W (แผน / ทำ / ได้ / ติด / ต่อ) แล้วสรุปเป็น 1 paragraph ภาษาทางการ |
 | `save-cost` | ติดตั้ง CLI tools ที่ลดการใช้ token (gh, jq, ast-grep, uv, git-delta, duckdb ฯลฯ) พร้อม config และอัปเดต CLAUDE.md ให้ Claude รู้ว่าควรใช้ tool ไหนเมื่อไหร่ |
-| `ascii-art` | แปลงข้อความอังกฤษหรือรูปภาพเป็น ASCII art — 8 โหมด (figlet, toilet, lolcat, cowsay, box, jp2a, chafa, braille) 571 ฟอนต์ พร้อมชุดสี ถามสไตล์ก่อนแล้วรันแสดงผลให้ทันที |
+| `ascii-art` | แปลงข้อความอังกฤษหรือรูปภาพเป็น ASCII art — 8 โหมด (figlet, toilet, lolcat, cowsay, box, jp2a, chafa, braille) 571 ฟอนต์ พร้อมชุดสี ถามโหมดก่อนแล้วค่อยถามออปชัน แสดงผลในเทอร์มินัลทันที และทำ HTML Artifact ให้ด้วยเมื่อผลลัพธ์มีสี |
 
 ### 🏆 Usage
 
