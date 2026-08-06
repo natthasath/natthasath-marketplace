@@ -15,9 +15,10 @@ description: >
 
 README คือหน้าแรกที่คนเจอเมื่อเปิด repo — มันตัดสินใน 5 วินาทีแรกว่าโปรเจกต์นี้ดูน่าเชื่อถือและใช้งานง่ายไหม README ที่มีโครงสร้างสม่ำเสมอทำให้คนสแกนหาสิ่งที่ต้องการเจอเร็ว และทำให้ทุกโปรเจกต์ในองค์กรดูเป็นชุดเดียวกัน
 
-ก่อน generate ให้อ่าน 3 ไฟล์นี้เสมอ:
+ก่อน generate ให้อ่าน 4 ไฟล์นี้เสมอ:
 - `references/emoji.md` — mapping ระหว่าง section กับ emoji ที่ต้องใช้ และ badges มาตรฐาน
 - `references/structure.md` — ลำดับ section, language rules และ progressive disclosure guidance
+- `references/callout.md` — เกณฑ์เลือกชนิด callout (GitHub Alert) และกฎว่าเมื่อไหร่ **ไม่ควร** ใส่
 - `references/example.md` — ตัวอย่าง README ที่ refactor แล้ว ใช้เป็น benchmark ของ tone และโครงสร้าง
 
 # รูปแบบ:
@@ -72,6 +73,7 @@ README คือหน้าแรกที่คนเจอเมื่อเ�
 - แปลงข้อมูลที่มี structure (เปรียบเทียบ, list ค่า) เป็น table หรือ bullet ให้ scan ได้เร็ว
 - endpoint และ external tool ทำเป็น clickable link เสมอ
 - **minimal** — ตัดคำฟุ่มเฟือย, ตัด section ที่ไม่มีเนื้อหาจริงทิ้ง, ไม่ต้องใส่ Table of Contents ถ้า README สั้น
+- **callout ใส่เฉพาะตอนที่ข้ามแล้วเกิดผลจริง** — ใช้ GitHub Alert (`> [!NOTE]` / `[!TIP]` / `[!IMPORTANT]` / `[!WARNING]` / `[!CAUTION]`) ได้มากสุด 1 อันต่อ section เกณฑ์เลือกชนิดและกรณีที่ไม่ควรใส่เลยอยู่ใน `references/callout.md` — ถ้า README เดิมใช้ dialect อื่น (`!!! note` ของ MkDocs, `::: note` ของ Docusaurus) ให้แปลงเป็น GitHub syntax เพราะ dialect พวกนั้น render ไม่ออกบน GitHub
 - ถ้ามีข้อมูลไม่ครบ (เช่น ไม่รู้ version หรือ setup) ให้ใส่ placeholder ที่ชัดเจนพร้อมหมายเหตุสั้น ๆ ว่าผู้ใช้ต้องเติมอะไร แทนที่จะเดามั่ว
 - หลังเขียนไฟล์เสร็จ สรุปสั้นๆ 1-2 บรรทัดในแชทว่าปรับอะไรไปบ้าง (เช่น "restructured 4 sections, added emoji convention, converted config to table") ไม่ต้องแปะเนื้อหาไฟล์ทั้งหมดซ้ำในแชท เพราะผู้ใช้เปิดไฟล์ดูเองได้อยู่แล้ว
 

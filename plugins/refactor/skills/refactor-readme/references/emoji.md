@@ -6,6 +6,7 @@ GitHub รองรับการใช้ emoji ผ่าน colon-syntax เ�
 
 ถ้าเจอ section ที่ไม่ตรงกับ mapping หลักเลย ให้เลือก emoji ที่สื่อความหมายของ section นั้นตรงที่สุดด้วยเหตุผล ไม่ใช่หยิบจากลิสต์ตายตัว
 
+> [!NOTE]
 > Commit message emoji convention ย้ายไปอยู่ที่ `plugins/projects/references/commit-emoji.md` แล้ว (ใช้โดย skill ที่สร้าง git commit จริง เช่น `checkpoint`, `debug`, `setup`)
 
 ## 🎖️ Badges มาตรฐาน (วางใต้ intro paragraph)
@@ -86,6 +87,7 @@ Dynamic badge กลุ่มที่ endpoint ขึ้นต้นด้ว�
 
 Platform/OS (กลุ่ม Compatibility) ไม่มี dynamic endpoint จริงรองรับ — ไม่มี service ไหน query ได้ว่า repo รองรับ OS ไหนบ้าง จึงใช้ static ได้ตามข้อยกเว้นนี้ ต่างจาก version/license/build ที่มี endpoint จริงรองรับแล้วต้องใช้ dynamic เสมอ
 
+> [!WARNING]
 > **ห้าม** ใช้ static badge แทน dynamic เมื่อมี endpoint จริงรองรับอยู่แล้ว (เช่น version, license, build status) และ **ห้ามสร้าง badge ที่ไม่มี metric ใดวัดได้จริงรองรับเลย** (เช่น `rating-★★★★★` ที่ไม่มี service ไหนให้ query คะแนน repo ได้จริง) เพราะจะกลายเป็น vanity badge ที่ทำให้ README ดูไม่น่าเชื่อถือ — **อีกข้อยกเว้น**: endpoint มีจริงแต่เข้าไม่ได้เพราะ repo เป็น private (ดู "Public vs Private Repo" ด้านบน) ตอนนั้นใช้ static แทนได้ แต่ **เฉพาะ** field ที่ verify ได้จากไฟล์ในโปรเจกต์เอง (version, license) — field ที่ต้องเดา (build status, stars, ฯลฯ) ยังห้ามใส่แบบ static อยู่ดี เพราะเป็นการเดา ไม่ใช่ข้อเท็จจริง
 
 ---
