@@ -1,9 +1,9 @@
 # 🎉 natthasath-marketplace
 
-A Claude Code plugin marketplace bundling 13 plugins and 60 skills across PKM, project planning, DevOps, content writing, language, design, and productivity — install with a single command and start using slash commands right away.
+A Claude Code plugin marketplace bundling 14 plugins and 61 skills across PKM, project planning, DevOps, content writing, language, design, and productivity — install with a single command and start using slash commands right away.
 
-![plugins](https://img.shields.io/badge/plugins-13-blue)
-![skills](https://img.shields.io/badge/skills-60-brightgreen)
+![plugins](https://img.shields.io/badge/plugins-14-blue)
+![skills](https://img.shields.io/badge/skills-61-brightgreen)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-marketplace-8A63D2)
 ![license](https://img.shields.io/github/license/natthasath/natthasath-marketplace)
 
@@ -17,6 +17,7 @@ A Claude Code plugin marketplace bundling 13 plugins and 60 skills across PKM, p
 | [`guide`](plugins/guide/README.md) | 3 | แนะนำแนวทางออกแบบ — Design Style, Font Pairing, Web Design และ Note-taking |
 | [`insight`](plugins/insight/README.md) | 2 | วิเคราะห์ web analytics — Google Analytics 4 และ Microsoft Clarity ผ่าน MCP |
 | [`language`](plugins/language/README.md) | 2 | จัดการงานด้านภาษา — ล่ามแปลต่อเนื่อง และ English Mentor |
+| [`license`](plugins/license/README.md) | 1 | เลือกและติดตั้ง License ให้โปรเจกต์ — สัมภาษณ์แบบภาษาชาวบ้าน แล้วเขียนไฟล์ให้ครบ |
 | [`masterplan`](plugins/masterplan/README.md) | 5 | วางแผนโปรเจกต์ซอฟต์แวร์ — Requirement, Architecture และ Database Design |
 | [`productive`](plugins/productive/README.md) | 11 | เพิ่มประสิทธิภาพการทำงาน — สรุปประชุม, ดาวน์โหลด PDF, ประเมินงาน IT, สร้าง Flashcard และแปลงข้อความ/รูปเป็น ASCII art |
 | [`projects`](plugins/projects/README.md) | 15 | จัดการ development project — scaffold workflow ตั้งแต่ setup จนถึง ship |
@@ -38,6 +39,7 @@ A Claude Code plugin marketplace bundling 13 plugins and 60 skills across PKM, p
 /plugin install guide@natthasath-marketplace
 /plugin install insight@natthasath-marketplace
 /plugin install language@natthasath-marketplace
+/plugin install license@natthasath-marketplace
 /plugin install masterplan@natthasath-marketplace
 /plugin install productive@natthasath-marketplace
 /plugin install projects@natthasath-marketplace

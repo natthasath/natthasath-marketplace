@@ -71,6 +71,13 @@
       "keywords": ["language", "translate", "translation", "english", "mentor", "grammar", "vocabulary", "แปล", "ล่าม", "interpreter"]
     },
     {
+      "name": "license",
+      "description": "Plugin รวม Skills สำหรับเลือกและติดตั้ง License ให้โปรเจกต์ — สัมภาษณ์แบบ interactive สำหรับคนที่ไม่รู้เรื่องลิขสิทธิ์และสิทธิบัตร",
+      "source": "./plugins/license",
+      "category": "development",
+      "keywords": ["license", "licensing", "copyright", "patent", "open-source", "mit", "apache", "gpl", "agpl", "lgpl", "mpl", "bsd", "creative-commons", "spdx", "busl", "source-available", "dual-licensing", "compliance"]
+    },
+    {
       "name": "guide",
       "description": "Plugin รวม Skills สำหรับให้คำแนะนำและจับคู่ตัวเลือกที่เหมาะสม ครอบคลุม Design Style, Font Pairing, Web Design และ Note-taking Pattern",
       "source": "./plugins/guide",
