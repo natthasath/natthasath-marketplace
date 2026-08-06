@@ -6,7 +6,7 @@
       "description": "ทำได้ครับ และผมตรวจสภาพเครื่องมาแล้ว — มีประเด็นสำคัญที่ต้องตัดสินใจก่อนลงมือ",
       "category": "feature",
       "status": "in-progress",
-      "lastMessage": "[...] ให้ตรง schema) แล้วผูกกับ pre-commit hook — แบบนี้จับได้ตั้งแต่ตอน commit ไม่ต้องรอมาเจอเองทีหลัง สนใจให้ทำไหมครับ",
+      "lastMessage": "[...] ่ `readme, markdown, documentation` ไม่มี `callout` หรือ `admonition` เลย คนค้นหาคำพวกนี้ใน marketplace จะหาไม่เจอ",
       "agents": [
         {
           "id": "claude-main",
@@ -22,12 +22,12 @@
       "isRateLimited": false,
       "lastActivity": {
         "toolName": "Bash",
-        "summary": "cd E:/code/prod/claude-marketplace && git fetch -q origin && echo \"ahead: $(g...",
-        "outputHint": "6 lines of output",
+        "summary": "cd E:/code/prod/claude-marketplace && echo \"=== root README ต้องแก้ไหม ===\" &...",
+        "outputHint": "5 lines of output",
         "status": "completed"
       },
       "createdAt": "2026-08-05T07:01:31.625Z",
-      "updatedAt": "2026-08-05T09:01:29.986Z",
+      "updatedAt": "2026-08-06T06:19:09.984Z",
       "filePath": "c:\\Users\\natthasath.sak\\.claude\\projects\\E--code-prod-claude-marketplace\\fb647b3f-dc16-4ed7-be0d-254aaf74f799.jsonl",
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
@@ -874,5 +874,5 @@
       "shortId": "T-38"
     }
   ],
-  "lastUpdated": "2026-08-05T09:01:31.964Z"
+  "lastUpdated": "2026-08-06T06:19:10.416Z"
 }
