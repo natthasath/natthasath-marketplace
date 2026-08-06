@@ -30,12 +30,12 @@ emoji ในตารางนี้ต้องตรงกับ `references/e
 | 15 | Screenshots | 📸 | เมื่อมี | มี UI หรือ CLI output ที่ช่วยให้เห็นภาพ |
 | 16 | API Reference | 📝 | เมื่อมี | มี endpoint หรือ public function หลัก |
 | 17 | Schedule / Cron | 📅 | เมื่อมี | มีงานที่รันตามเวลา |
-| 18 | Testing | 🧪 | เมื่อมี | มีวิธีรัน test suite หรือดู coverage |
-| 19 | Troubleshooting | ⚠️ | เมื่อมี | มีปัญหาที่พบบ่อยและวิธีแก้ |
-| 20 | Roadmap / Future Plans | 🦄 | เมื่อมี | มีแผนฟีเจอร์ในอนาคตที่ต้องการโชว์ |
-| 21 | Contributors / Credits / Thanks | 🙏 | เมื่อมี | ขอบคุณ contributor, library ที่ใช้ หรือแรงบันดาลใจของโปรเจกต์ |
-| 22 | Changelog | ⚡ | เมื่อมี | มีประวัติการอัปเดตที่ต้องการโชว์ |
-| 23 | Notifications / Webhooks / Alerts | 🔔 | เมื่อมี | มีฟีเจอร์แจ้งเตือนแบบ event-driven เช่น webhook, push notification |
+| 18 | Notifications / Webhooks / Alerts | 🔔 | เมื่อมี | มีฟีเจอร์แจ้งเตือนแบบ event-driven เช่น webhook, push notification — อยู่ต่อจาก Schedule / Cron เพราะเป็น automated behavior เหมือนกัน ต่างกันแค่ทริกเกอร์ด้วยเหตุการณ์แทนเวลา |
+| 19 | Testing | 🧪 | เมื่อมี | มีวิธีรัน test suite หรือดู coverage |
+| 20 | Troubleshooting | ⚠️ | เมื่อมี | มีปัญหาที่พบบ่อยและวิธีแก้ |
+| 21 | Roadmap / Future Plans | 🦄 | เมื่อมี | มีแผนฟีเจอร์ในอนาคตที่ต้องการโชว์ |
+| 22 | Contributors / Credits / Thanks | 🙏 | เมื่อมี | ขอบคุณ contributor, library ที่ใช้ หรือแรงบันดาลใจของโปรเจกต์ |
+| 23 | Changelog | ⚡ | เมื่อมี | มีประวัติการอัปเดตที่ต้องการโชว์ |
 | 24 | Security / Security Policy | 🛡️ | เมื่อมี | มี vulnerability reporting policy หรือ security best practices |
 | 25 | License | 📜 | เมื่อมี | เขียนเป็นประโยคเดียวลิงก์ไปไฟล์ LICENSE ในรูปแบบตายตัว: `This project is licensed under the [{License Type}](LICENSE).` เช่น `This project is licensed under the [MIT License](LICENSE).` — โครงประโยคห้ามเปลี่ยน สลับได้แค่ `{License Type}` ตาม license จริงของโปรเจกต์ (MIT License, Apache License 2.0, GNU GPLv3 ฯลฯ) และชื่อไฟล์ที่ลิงก์ไปให้ตรงกับที่มีจริงใน repo (`LICENSE`, `LICENSE.md`, `LICENSE.txt`) |
 | 26 | Contact / Author | ✉️ | เมื่อมี | เขียนเป็น 2 บรรทัดในรูปแบบตายตัว: `**{Name}** — {Title}, {Organization}` (เว้น 2 ช่องว่างท้ายบรรทัดนี้เพื่อขึ้นบรรทัดใหม่แบบ markdown hard break) ตามด้วยบรรทัดอีเมลเปล่าๆ เช่น `**Natthasath Saksupanara** — Computer Technical Officer, NIDA` แล้วบรรทัดถัดไปคือ `natthasath.sak@gmail.com` — โครงห้ามเปลี่ยน สลับได้แค่ `{Name}`, `{Title}`, `{Organization}` และอีเมลตามข้อมูลจริงของเจ้าของ repo นั้น (ดูจาก README เดิม, git config, หรือ CODEOWNERS) ถ้าไม่มีข้อมูลจริงให้ถามผู้ใช้แทนการเดา |
