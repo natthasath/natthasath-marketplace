@@ -1,0 +1,54 @@
+{
+  "eval_name": "eval-2-saas-anti-cloud",
+  "run": "with_skill",
+  "expectations": [
+    {
+      "text": "มีไฟล์ LICENSE ที่ตรงกับ template ที่ bundle ไว้ทุกตัวอักษร",
+      "passed": true,
+      "evidence": "closest=AGPL-3.0, coverage=1.0"
+    },
+    {
+      "text": "ถ้าเลือก BUSL-1.1 ต้องกรอกครบทั้ง 7 ค่า ไม่มี placeholder ค้าง",
+      "passed": true,
+      "evidence": "license=AGPL-3.0, leftover=[]"
+    },
+    {
+      "text": "ผู้ถือลิขสิทธิ์คือ Acme Co., Ltd. ไม่ใช่ชื่อบุคคลหรือ username",
+      "passed": true,
+      "evidence": "Acme found in: ['README', 'source headers']"
+    },
+    {
+      "text": "README มี section License ที่บอกเงื่อนไขพิเศษของ license นั้น ไม่ใช่แค่ชื่อ license",
+      "passed": true,
+      "evidence": "license section chars=179"
+    },
+    {
+      "text": "ถ้าเลือกกลุ่ม source-available README ต้องไม่มีคำว่า open source",
+      "passed": true,
+      "evidence": "n/a — chose AGPL-3.0 (not source-available)"
+    },
+    {
+      "text": "เสนอ AGPL-3.0 เป็นตัวเลือก พร้อมอธิบายว่าครอบคลุมการใช้ผ่านเครือข่าย",
+      "passed": true,
+      "evidence": "อธิบายข้อ 13 แต่ใช้ถ้อยคำ 'บริการผ่านเครือข่าย = แจกจ่าย' ซึ่งกว้างเกินจริง"
+    },
+    {
+      "text": "เสนอตัวเลือกกลุ่ม source-available อย่างน้อย 1 ตัว (BUSL-1.1 / Elastic-2.0 / SSPL-1.0)",
+      "passed": true,
+      "evidence": "เสนอ Elastic-2.0 และ BUSL-1.1 พร้อมตัวอย่างโปรเจกต์"
+    },
+    {
+      "text": "ระบุชัดเจนว่ากลุ่ม source-available ไม่ใช่ open source ตามนิยาม OSI",
+      "passed": true,
+      "evidence": "ระบุพร้อมผลกระทบ (Debian/Fedora ไม่รับ, contributor หาย)"
+    },
+    {
+      "text": "อธิบายข้อแลกเปลี่ยนของแต่ละทางเลือก ไม่ได้เสนอตัวเดียวโดยไม่มีเหตุผล",
+      "passed": true,
+      "evidence": "มีหัวข้อ 'ราคาที่ต้องยอมรับ' + เตือนเรื่อง CLA และ dual licensing"
+    }
+  ],
+  "passed": 9,
+  "total": 9,
+  "pass_rate": 1.0
+}

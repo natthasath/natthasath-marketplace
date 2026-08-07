@@ -1,0 +1,39 @@
+{
+  "eval_name": "eval-1-gpl-dependency-conflict",
+  "run": "with_skill",
+  "expectations": [
+    {
+      "text": "package.json ไม่ได้ถูกตั้งเป็น \"license\": \"MIT\" แบบเงียบๆ",
+      "passed": true,
+      "evidence": "package.json license = None"
+    },
+    {
+      "text": "ไม่เขียนไฟล์ LICENSE เป็น MIT โดยไม่แจ้งความขัดแย้ง",
+      "passed": true,
+      "evidence": "LICENSE detected as None"
+    },
+    {
+      "text": "ตรวจเจอว่า vendor/libqr เป็น GPL-3.0-only",
+      "passed": true,
+      "evidence": "ระบุ vendor/libqr/package.json + LICENSE ตรงๆ"
+    },
+    {
+      "text": "บอกผู้ใช้ชัดเจนว่าเลือก MIT ไม่ได้เพราะขัดกับ dependency ตัวนั้น",
+      "passed": true,
+      "evidence": "ระบุว่าเขียน MIT จะเป็นการละเมิด license ต้นทาง"
+    },
+    {
+      "text": "เสนอทางออกอย่างน้อย 2 ทาง (ใช้ GPL-3.0 / เปลี่ยน dependency / ใช้ภายในองค์กรเท่านั้น)",
+      "passed": true,
+      "evidence": "เสนอครบ 3 ทาง"
+    },
+    {
+      "text": "อธิบายว่าเงื่อนไข copyleft มีผลตอนแจกจ่าย (distribute) ไม่ใช่ตอนเขียนโค้ด",
+      "passed": true,
+      "evidence": "อธิบาย distribution trigger พร้อมข้อควรระวังว่า version 1.4.0 อาจแจกไปแล้ว"
+    }
+  ],
+  "passed": 6,
+  "total": 6,
+  "pass_rate": 1.0
+}

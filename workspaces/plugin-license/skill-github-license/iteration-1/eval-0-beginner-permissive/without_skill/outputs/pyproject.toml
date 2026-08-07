@@ -1,0 +1,16 @@
+[project]
+name = "qrsnap"
+version = "0.3.1"
+description = "Turn any URL into a QR code from the terminal"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Natthasath Saksri" }]
+dependencies = ["requests>=2.31", "click>=8.1", "qrcode>=7.4"]
+
+[project.scripts]
+qrsnap = "qrsnap.cli:main"
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"

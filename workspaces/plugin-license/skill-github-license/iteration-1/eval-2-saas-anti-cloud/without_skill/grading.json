@@ -1,0 +1,54 @@
+{
+  "eval_name": "eval-2-saas-anti-cloud",
+  "run": "without_skill",
+  "expectations": [
+    {
+      "text": "มีไฟล์ LICENSE ที่ตรงกับ template ที่ bundle ไว้ทุกตัวอักษร",
+      "passed": true,
+      "evidence": "closest=BUSL-1.1, coverage=0.857"
+    },
+    {
+      "text": "ถ้าเลือก BUSL-1.1 ต้องกรอกครบทั้ง 7 ค่า ไม่มี placeholder ค้าง",
+      "passed": true,
+      "evidence": "license=BUSL-1.1, leftover=[]"
+    },
+    {
+      "text": "ผู้ถือลิขสิทธิ์คือ Acme Co., Ltd. ไม่ใช่ชื่อบุคคลหรือ username",
+      "passed": true,
+      "evidence": "Acme found in: ['LICENSE', 'README', 'source headers']"
+    },
+    {
+      "text": "README มี section License ที่บอกเงื่อนไขพิเศษของ license นั้น ไม่ใช่แค่ชื่อ license",
+      "passed": true,
+      "evidence": "license section chars=1445"
+    },
+    {
+      "text": "ถ้าเลือกกลุ่ม source-available README ต้องไม่มีคำว่า open source",
+      "passed": false,
+      "evidence": "README mentions 'open source'"
+    },
+    {
+      "text": "เสนอ AGPL-3.0 เป็นตัวเลือก พร้อมอธิบายว่าครอบคลุมการใช้ผ่านเครือข่าย",
+      "passed": true,
+      "evidence": "อธิบายข้อ 13 ได้แม่นกว่า — ชี้ว่าบังคับเฉพาะเวอร์ชันที่แก้ไข"
+    },
+    {
+      "text": "เสนอตัวเลือกกลุ่ม source-available อย่างน้อย 1 ตัว (BUSL-1.1 / Elastic-2.0 / SSPL-1.0)",
+      "passed": true,
+      "evidence": "เลือก BUSL-1.1 และเทียบกับ FSL"
+    },
+    {
+      "text": "ระบุชัดเจนว่ากลุ่ม source-available ไม่ใช่ open source ตามนิยาม OSI",
+      "passed": true,
+      "evidence": "ใช้คำว่า source-available ตลอด และเตือนว่า GitHub จะขึ้น Other"
+    },
+    {
+      "text": "อธิบายข้อแลกเปลี่ยนของแต่ละทางเลือก ไม่ได้เสนอตัวเดียวโดยไม่มีเหตุผล",
+      "passed": true,
+      "evidence": "มีตารางเทียบ license + LICENSING.md"
+    }
+  ],
+  "passed": 8,
+  "total": 9,
+  "pass_rate": 0.889
+}

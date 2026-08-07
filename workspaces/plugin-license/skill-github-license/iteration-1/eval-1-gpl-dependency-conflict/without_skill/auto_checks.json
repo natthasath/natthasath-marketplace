@@ -1,0 +1,10 @@
+{
+  "package.json ไม่ได้ถูกตั้งเป็น \"license\": \"MIT\" แบบเงียบๆ": {
+    "passed": true,
+    "evidence": "package.json license = 'MIT AND GPL-3.0-only'"
+  },
+  "ไม่เขียนไฟล์ LICENSE เป็น MIT โดยไม่แจ้งความขัดแย้ง": {
+    "passed": false,
+    "evidence": "LICENSE detected as MIT"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "eval_id": 2,
+  "eval_name": "eval-2-saas-anti-cloud",
+  "prompt": "ผมทำ API gateway ตัวนี้ในนามบริษัท Acme Co., Ltd. อยากเปิดโค้ดให้คนเข้ามาดูและช่วย contribute ได้ แต่กลัวพวก cloud provider เอาไปทำเป็น managed service ขายแข่งกับเรา ควรใช้ license อะไรดีครับ แล้วใส่ให้เลย",
+  "assertions": [
+    "เสนอ AGPL-3.0 เป็นตัวเลือก พร้อมอธิบายว่าครอบคลุมการใช้ผ่านเครือข่าย",
+    "เสนอตัวเลือกกลุ่ม source-available อย่างน้อย 1 ตัว (BUSL-1.1 / Elastic-2.0 / SSPL-1.0)",
+    "ระบุชัดเจนว่ากลุ่ม source-available ไม่ใช่ open source ตามนิยาม OSI",
+    "อธิบายข้อแลกเปลี่ยนของแต่ละทางเลือก ไม่ได้เสนอตัวเดียวโดยไม่มีเหตุผล",
+    "มีไฟล์ LICENSE ที่ตรงกับ template ที่ bundle ไว้ทุกตัวอักษร",
+    "ผู้ถือลิขสิทธิ์คือ Acme Co., Ltd. ไม่ใช่ชื่อบุคคลหรือ username",
+    "ถ้าเลือก BUSL-1.1 ต้องกรอกครบทั้ง 7 ค่า ไม่มี placeholder ค้าง",
+    "ถ้าเลือกกลุ่ม source-available README ต้องไม่มีคำว่า open source",
+    "README มี section License ที่บอกเงื่อนไขพิเศษของ license นั้น ไม่ใช่แค่ชื่อ license"
+  ]
+}

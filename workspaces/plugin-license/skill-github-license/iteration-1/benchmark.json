@@ -1,0 +1,436 @@
+{
+  "metadata": {
+    "skill_name": "github-license",
+    "skill_path": "E:/code/prod/claude-marketplace/plugins/license/skills/github-license",
+    "executor_model": "claude-opus-5",
+    "analyzer_model": "claude-opus-5",
+    "timestamp": "2026-08-07T03:30:00Z",
+    "evals_run": [
+      0,
+      1,
+      2
+    ],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "eval_name": "eval-0-beginner-permissive",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 10,
+        "failed": 0,
+        "total": 10,
+        "time_seconds": 325.0,
+        "tokens": 83929,
+        "tool_calls": 23,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "มีไฟล์ LICENSE ที่ root ของโปรเจกต์",
+          "passed": true,
+          "evidence": "found LICENSE"
+        },
+        {
+          "text": "ข้อความใน LICENSE ตรงกับ template ที่ bundle ไว้ทุกตัวอักษร (ต่างได้เฉพาะ placeholder ที่เติม)",
+          "passed": true,
+          "evidence": "closest=MIT, coverage=1.0"
+        },
+        {
+          "text": "ไม่มี placeholder ค้างใน LICENSE ([year], [fullname], [yyyy], [name of copyright owner])",
+          "passed": true,
+          "evidence": "none"
+        },
+        {
+          "text": "บรรทัด copyright ระบุชื่อ Natthasath Saksri และปีปัจจุบัน",
+          "passed": true,
+          "evidence": "Copyright (c) 2026 Natthasath Saksri"
+        },
+        {
+          "text": "เลือก license กลุ่ม permissive (MIT / Apache-2.0 / BSD / ISC) ไม่ใช่ copyleft",
+          "passed": true,
+          "evidence": "detected MIT"
+        },
+        {
+          "text": "README มี section License ใช้ emoji 📜 ตาม convention ของ repo",
+          "passed": true,
+          "evidence": "found 📜 heading"
+        },
+        {
+          "text": "README มี license badge",
+          "passed": true,
+          "evidence": "shields.io license badge present"
+        },
+        {
+          "text": "pyproject.toml มี field license ที่เป็น SPDX id ตรงกับ license ที่เลือก",
+          "passed": true,
+          "evidence": "license = \"MIT\""
+        },
+        {
+          "text": "คำตอบอธิบายผลลัพธ์เป็นภาษาที่คนไม่รู้เรื่อง license เข้าใจได้ ไม่ทิ้งศัพท์ไว้ลอยๆ",
+          "passed": true,
+          "evidence": "อธิบาย MIT ด้วยผลลัพธ์จริง (ใครทำอะไรได้/ไม่ได้) ไม่ใช้คำว่า permissive ลอยๆ"
+        },
+        {
+          "text": "คำตอบมีข้อความว่านี่ไม่ใช่คำปรึกษาทางกฎหมาย",
+          "passed": true,
+          "evidence": "มีย่อหน้าปิดท้ายระบุข้อจำกัด"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "eval-0-beginner-permissive",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.7,
+        "passed": 7,
+        "failed": 3,
+        "total": 10,
+        "time_seconds": 214.4,
+        "tokens": 54828,
+        "tool_calls": 17,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "มีไฟล์ LICENSE ที่ root ของโปรเจกต์",
+          "passed": true,
+          "evidence": "found LICENSE"
+        },
+        {
+          "text": "ข้อความใน LICENSE ตรงกับ template ที่ bundle ไว้ทุกตัวอักษร (ต่างได้เฉพาะ placeholder ที่เติม)",
+          "passed": true,
+          "evidence": "closest=MIT, coverage=1.0"
+        },
+        {
+          "text": "ไม่มี placeholder ค้างใน LICENSE ([year], [fullname], [yyyy], [name of copyright owner])",
+          "passed": true,
+          "evidence": "none"
+        },
+        {
+          "text": "บรรทัด copyright ระบุชื่อ Natthasath Saksri และปีปัจจุบัน",
+          "passed": true,
+          "evidence": "Copyright (c) 2026 Natthasath Saksri"
+        },
+        {
+          "text": "เลือก license กลุ่ม permissive (MIT / Apache-2.0 / BSD / ISC) ไม่ใช่ copyleft",
+          "passed": true,
+          "evidence": "detected MIT"
+        },
+        {
+          "text": "README มี section License ใช้ emoji 📜 ตาม convention ของ repo",
+          "passed": false,
+          "evidence": "no 📜 heading"
+        },
+        {
+          "text": "README มี license badge",
+          "passed": false,
+          "evidence": "no badge"
+        },
+        {
+          "text": "pyproject.toml มี field license ที่เป็น SPDX id ตรงกับ license ที่เลือก",
+          "passed": true,
+          "evidence": "license = \"MIT\""
+        },
+        {
+          "text": "คำตอบอธิบายผลลัพธ์เป็นภาษาที่คนไม่รู้เรื่อง license เข้าใจได้ ไม่ทิ้งศัพท์ไว้ลอยๆ",
+          "passed": true,
+          "evidence": "อธิบายครบและอ่านง่าย"
+        },
+        {
+          "text": "คำตอบมีข้อความว่านี่ไม่ใช่คำปรึกษาทางกฎหมาย",
+          "passed": false,
+          "evidence": "ไม่พบข้อความข้อจำกัดทางกฎหมายเลย"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "eval-1-gpl-dependency-conflict",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 262.7,
+        "tokens": 85556,
+        "tool_calls": 16,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "package.json ไม่ได้ถูกตั้งเป็น \"license\": \"MIT\" แบบเงียบๆ",
+          "passed": true,
+          "evidence": "package.json license = None"
+        },
+        {
+          "text": "ไม่เขียนไฟล์ LICENSE เป็น MIT โดยไม่แจ้งความขัดแย้ง",
+          "passed": true,
+          "evidence": "LICENSE detected as None"
+        },
+        {
+          "text": "ตรวจเจอว่า vendor/libqr เป็น GPL-3.0-only",
+          "passed": true,
+          "evidence": "ระบุ vendor/libqr/package.json + LICENSE ตรงๆ"
+        },
+        {
+          "text": "บอกผู้ใช้ชัดเจนว่าเลือก MIT ไม่ได้เพราะขัดกับ dependency ตัวนั้น",
+          "passed": true,
+          "evidence": "ระบุว่าเขียน MIT จะเป็นการละเมิด license ต้นทาง"
+        },
+        {
+          "text": "เสนอทางออกอย่างน้อย 2 ทาง (ใช้ GPL-3.0 / เปลี่ยน dependency / ใช้ภายในองค์กรเท่านั้น)",
+          "passed": true,
+          "evidence": "เสนอครบ 3 ทาง"
+        },
+        {
+          "text": "อธิบายว่าเงื่อนไข copyleft มีผลตอนแจกจ่าย (distribute) ไม่ใช่ตอนเขียนโค้ด",
+          "passed": true,
+          "evidence": "อธิบาย distribution trigger พร้อมข้อควรระวังว่า version 1.4.0 อาจแจกไปแล้ว"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "eval-1-gpl-dependency-conflict",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.833,
+        "passed": 5,
+        "failed": 1,
+        "total": 6,
+        "time_seconds": 258.0,
+        "tokens": 52933,
+        "tool_calls": 12,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "package.json ไม่ได้ถูกตั้งเป็น \"license\": \"MIT\" แบบเงียบๆ",
+          "passed": true,
+          "evidence": "package.json license = 'MIT AND GPL-3.0-only'"
+        },
+        {
+          "text": "ไม่เขียนไฟล์ LICENSE เป็น MIT โดยไม่แจ้งความขัดแย้ง",
+          "passed": false,
+          "evidence": "LICENSE detected as MIT"
+        },
+        {
+          "text": "ตรวจเจอว่า vendor/libqr เป็น GPL-3.0-only",
+          "passed": true,
+          "evidence": "ระบุถูกต้องพร้อมชี้ว่า require() โดยตรง"
+        },
+        {
+          "text": "บอกผู้ใช้ชัดเจนว่าเลือก MIT ไม่ได้เพราะขัดกับ dependency ตัวนั้น",
+          "passed": true,
+          "evidence": "บอกว่า label ทั้ง repo เป็น MIT ไม่ได้"
+        },
+        {
+          "text": "เสนอทางออกอย่างน้อย 2 ทาง (ใช้ GPL-3.0 / เปลี่ยน dependency / ใช้ภายในองค์กรเท่านั้น)",
+          "passed": true,
+          "evidence": "เสนอเปลี่ยน dependency + ใช้ภายในองค์กร"
+        },
+        {
+          "text": "อธิบายว่าเงื่อนไข copyleft มีผลตอนแจกจ่าย (distribute) ไม่ใช่ตอนเขียนโค้ด",
+          "passed": true,
+          "evidence": "อธิบายไว้ชัด"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "eval-2-saas-anti-cloud",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 378.4,
+        "tokens": 97020,
+        "tool_calls": 22,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "มีไฟล์ LICENSE ที่ตรงกับ template ที่ bundle ไว้ทุกตัวอักษร",
+          "passed": true,
+          "evidence": "closest=AGPL-3.0, coverage=1.0"
+        },
+        {
+          "text": "ถ้าเลือก BUSL-1.1 ต้องกรอกครบทั้ง 7 ค่า ไม่มี placeholder ค้าง",
+          "passed": true,
+          "evidence": "license=AGPL-3.0, leftover=[]"
+        },
+        {
+          "text": "ผู้ถือลิขสิทธิ์คือ Acme Co., Ltd. ไม่ใช่ชื่อบุคคลหรือ username",
+          "passed": true,
+          "evidence": "Acme found in: ['README', 'source headers']"
+        },
+        {
+          "text": "README มี section License ที่บอกเงื่อนไขพิเศษของ license นั้น ไม่ใช่แค่ชื่อ license",
+          "passed": true,
+          "evidence": "license section chars=179"
+        },
+        {
+          "text": "ถ้าเลือกกลุ่ม source-available README ต้องไม่มีคำว่า open source",
+          "passed": true,
+          "evidence": "n/a — chose AGPL-3.0 (not source-available)"
+        },
+        {
+          "text": "เสนอ AGPL-3.0 เป็นตัวเลือก พร้อมอธิบายว่าครอบคลุมการใช้ผ่านเครือข่าย",
+          "passed": true,
+          "evidence": "อธิบายข้อ 13 แต่ใช้ถ้อยคำ 'บริการผ่านเครือข่าย = แจกจ่าย' ซึ่งกว้างเกินจริง"
+        },
+        {
+          "text": "เสนอตัวเลือกกลุ่ม source-available อย่างน้อย 1 ตัว (BUSL-1.1 / Elastic-2.0 / SSPL-1.0)",
+          "passed": true,
+          "evidence": "เสนอ Elastic-2.0 และ BUSL-1.1 พร้อมตัวอย่างโปรเจกต์"
+        },
+        {
+          "text": "ระบุชัดเจนว่ากลุ่ม source-available ไม่ใช่ open source ตามนิยาม OSI",
+          "passed": true,
+          "evidence": "ระบุพร้อมผลกระทบ (Debian/Fedora ไม่รับ, contributor หาย)"
+        },
+        {
+          "text": "อธิบายข้อแลกเปลี่ยนของแต่ละทางเลือก ไม่ได้เสนอตัวเดียวโดยไม่มีเหตุผล",
+          "passed": true,
+          "evidence": "มีหัวข้อ 'ราคาที่ต้องยอมรับ' + เตือนเรื่อง CLA และ dual licensing"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "eval-2-saas-anti-cloud",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.889,
+        "passed": 8,
+        "failed": 1,
+        "total": 9,
+        "time_seconds": 654.8,
+        "tokens": 91290,
+        "tool_calls": 32,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "มีไฟล์ LICENSE ที่ตรงกับ template ที่ bundle ไว้ทุกตัวอักษร",
+          "passed": true,
+          "evidence": "closest=BUSL-1.1, coverage=0.857"
+        },
+        {
+          "text": "ถ้าเลือก BUSL-1.1 ต้องกรอกครบทั้ง 7 ค่า ไม่มี placeholder ค้าง",
+          "passed": true,
+          "evidence": "license=BUSL-1.1, leftover=[]"
+        },
+        {
+          "text": "ผู้ถือลิขสิทธิ์คือ Acme Co., Ltd. ไม่ใช่ชื่อบุคคลหรือ username",
+          "passed": true,
+          "evidence": "Acme found in: ['LICENSE', 'README', 'source headers']"
+        },
+        {
+          "text": "README มี section License ที่บอกเงื่อนไขพิเศษของ license นั้น ไม่ใช่แค่ชื่อ license",
+          "passed": true,
+          "evidence": "license section chars=1445"
+        },
+        {
+          "text": "ถ้าเลือกกลุ่ม source-available README ต้องไม่มีคำว่า open source",
+          "passed": false,
+          "evidence": "README mentions 'open source'"
+        },
+        {
+          "text": "เสนอ AGPL-3.0 เป็นตัวเลือก พร้อมอธิบายว่าครอบคลุมการใช้ผ่านเครือข่าย",
+          "passed": true,
+          "evidence": "อธิบายข้อ 13 ได้แม่นกว่า — ชี้ว่าบังคับเฉพาะเวอร์ชันที่แก้ไข"
+        },
+        {
+          "text": "เสนอตัวเลือกกลุ่ม source-available อย่างน้อย 1 ตัว (BUSL-1.1 / Elastic-2.0 / SSPL-1.0)",
+          "passed": true,
+          "evidence": "เลือก BUSL-1.1 และเทียบกับ FSL"
+        },
+        {
+          "text": "ระบุชัดเจนว่ากลุ่ม source-available ไม่ใช่ open source ตามนิยาม OSI",
+          "passed": true,
+          "evidence": "ใช้คำว่า source-available ตลอด และเตือนว่า GitHub จะขึ้น Other"
+        },
+        {
+          "text": "อธิบายข้อแลกเปลี่ยนของแต่ละทางเลือก ไม่ได้เสนอตัวเดียวโดยไม่มีเหตุผล",
+          "passed": true,
+          "evidence": "มีตารางเทียบ license + LICENSING.md"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 322.033,
+        "stddev": 47.281,
+        "min": 262.7,
+        "max": 378.4
+      },
+      "tokens": {
+        "mean": 88835,
+        "stddev": 5825.659,
+        "min": 83929,
+        "max": 97020
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.807,
+        "stddev": 0.079,
+        "min": 0.7,
+        "max": 0.889
+      },
+      "time_seconds": {
+        "mean": 375.733,
+        "stddev": 198.131,
+        "min": 214.4,
+        "max": 654.8
+      },
+      "tokens": {
+        "mean": 66350.333,
+        "stddev": 17651.968,
+        "min": 52933,
+        "max": 91290
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.19",
+      "time_seconds": "-53.7",
+      "tokens": "+22485"
+    }
+  },
+  "notes": [
+    "3 evals × 1 run per configuration — too few samples for the stddev to mean much; treat it as a smoke test, not a measurement.",
+    "Assertion 'ตรวจเจอว่า vendor/libqr เป็น GPL-3.0-only' passes in both configurations — the baseline finds the conflict unaided, so this one does not discriminate. What differs is the action taken: with_skill wrote no license at all, baseline wrote MIT plus a warning.",
+    "Assertion 'ข้อความใน LICENSE ตรงกับ template ที่ bundle ไว้' favours with_skill by construction — only the skill has the bundled assets. Both configurations did reproduce authentic license text (baseline fetched from apache.org and diffed against Terraform), so this measures provenance, not correctness.",
+    "eval-0 baseline missed the repo's README conventions (📜 heading, license badge) and the not-legal-advice caveat — those three are where the whole eval-0 delta comes from.",
+    "eval-2 baseline argued AGPL does not block a cloud provider from hosting unmodified software, which is correct under AGPL §13 ('if you modify the Program'). references/catalog.md overstated AGPL's protection and has been corrected as a result of this run.",
+    "with_skill costs roughly 1.7× the tokens of baseline on eval-0/eval-1 but the baseline spent more on eval-2 by inventing extra deliverables (CLA.md, LICENSING.md, CONTRIBUTING.md) that were not asked for."
+  ]
+}

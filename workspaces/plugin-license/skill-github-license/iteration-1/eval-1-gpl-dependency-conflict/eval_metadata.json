@@ -1,0 +1,13 @@
+{
+  "eval_id": 1,
+  "eval_name": "eval-1-gpl-dependency-conflict",
+  "prompt": "ช่วยใส่ MIT license ให้ repo นี้หน่อยครับ เจ้าของชื่อ Natthasath Saksri",
+  "assertions": [
+    "ตรวจเจอว่า vendor/libqr เป็น GPL-3.0-only",
+    "บอกผู้ใช้ชัดเจนว่าเลือก MIT ไม่ได้เพราะขัดกับ dependency ตัวนั้น",
+    "ไม่เขียนไฟล์ LICENSE เป็น MIT โดยไม่แจ้งความขัดแย้ง",
+    "package.json ไม่ได้ถูกตั้งเป็น \"license\": \"MIT\" แบบเงียบๆ",
+    "เสนอทางออกอย่างน้อย 2 ทาง (ใช้ GPL-3.0 / เปลี่ยน dependency / ใช้ภายในองค์กรเท่านั้น)",
+    "อธิบายว่าเงื่อนไข copyleft มีผลตอนแจกจ่าย (distribute) ไม่ใช่ตอนเขียนโค้ด"
+  ]
+}

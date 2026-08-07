@@ -1,9 +1,28 @@
 {
   "name": "license",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Plugin รวม Skills สำหรับเลือกและติดตั้ง License ให้โปรเจกต์ — ถามแบบ interactive สำหรับคนที่ไม่รู้เรื่องลิขสิทธิ์และสิทธิบัตร",
   "author": {
     "name": "natthasath"
   },
-  "keywords": ["license", "licensing", "copyright", "patent", "open-source", "mit", "apache", "gpl", "agpl", "lgpl", "mpl", "bsd", "creative-commons", "spdx", "busl", "source-available", "dual-licensing", "compliance"]
+  "keywords": [
+    "license",
+    "licensing",
+    "copyright",
+    "patent",
+    "open-source",
+    "mit",
+    "apache",
+    "gpl",
+    "agpl",
+    "lgpl",
+    "mpl",
+    "bsd",
+    "creative-commons",
+    "spdx",
+    "busl",
+    "source-available",
+    "dual-licensing",
+    "compliance"
+  ]
 }

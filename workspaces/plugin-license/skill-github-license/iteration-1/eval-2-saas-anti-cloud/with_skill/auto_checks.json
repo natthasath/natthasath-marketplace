@@ -1,0 +1,22 @@
+{
+  "มีไฟล์ LICENSE ที่ตรงกับ template ที่ bundle ไว้ทุกตัวอักษร": {
+    "passed": true,
+    "evidence": "closest=AGPL-3.0, coverage=1.0"
+  },
+  "ถ้าเลือก BUSL-1.1 ต้องกรอกครบทั้ง 7 ค่า ไม่มี placeholder ค้าง": {
+    "passed": true,
+    "evidence": "license=AGPL-3.0, leftover=[]"
+  },
+  "ผู้ถือลิขสิทธิ์คือ Acme Co., Ltd. ไม่ใช่ชื่อบุคคลหรือ username": {
+    "passed": true,
+    "evidence": "Acme found in: ['README', 'source headers']"
+  },
+  "README มี section License ที่บอกเงื่อนไขพิเศษของ license นั้น ไม่ใช่แค่ชื่อ license": {
+    "passed": true,
+    "evidence": "license section chars=179"
+  },
+  "ถ้าเลือกกลุ่ม source-available README ต้องไม่มีคำว่า open source": {
+    "passed": true,
+    "evidence": "n/a — chose AGPL-3.0 (not source-available)"
+  }
+}

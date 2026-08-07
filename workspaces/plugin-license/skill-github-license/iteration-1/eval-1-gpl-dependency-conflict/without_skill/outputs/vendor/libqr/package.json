@@ -1,0 +1,7 @@
+{
+  "name": "libqr",
+  "version": "2.1.0",
+  "description": "QR rendering primitives",
+  "main": "index.js",
+  "license": "GPL-3.0-only"
+}

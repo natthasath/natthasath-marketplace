@@ -1,0 +1,17 @@
+{
+  "eval_id": 0,
+  "eval_name": "eval-0-beginner-permissive",
+  "prompt": "ผมเพิ่งทำ CLI tool ตัวนี้เสร็จ (qrsnap แปลง URL เป็น QR code) อยากปล่อยขึ้น GitHub ให้คนอื่นเอาไปใช้ครับ แต่ผมไม่รู้เรื่อง license เลย ไม่เคยอ่าน ใครจะเอาไปทำอะไรก็ได้ผมโอเคหมด ยิ่งมีคนใช้เยอะยิ่งดี เอาไปขายก็ไม่ว่า ช่วยจัดการให้ทีครับ ชื่อผม Natthasath Saksri",
+  "assertions": [
+    "มีไฟล์ LICENSE ที่ root ของโปรเจกต์",
+    "เลือก license กลุ่ม permissive (MIT / Apache-2.0 / BSD / ISC) ไม่ใช่ copyleft",
+    "ข้อความใน LICENSE ตรงกับ template ที่ bundle ไว้ทุกตัวอักษร (ต่างได้เฉพาะ placeholder ที่เติม)",
+    "ไม่มี placeholder ค้างใน LICENSE ([year], [fullname], [yyyy], [name of copyright owner])",
+    "บรรทัด copyright ระบุชื่อ Natthasath Saksri และปีปัจจุบัน",
+    "README มี section License ใช้ emoji 📜 ตาม convention ของ repo",
+    "README มี license badge",
+    "pyproject.toml มี field license ที่เป็น SPDX id ตรงกับ license ที่เลือก",
+    "คำตอบอธิบายผลลัพธ์เป็นภาษาที่คนไม่รู้เรื่อง license เข้าใจได้ ไม่ทิ้งศัพท์ไว้ลอยๆ",
+    "คำตอบมีข้อความว่านี่ไม่ใช่คำปรึกษาทางกฎหมาย"
+  ]
+}

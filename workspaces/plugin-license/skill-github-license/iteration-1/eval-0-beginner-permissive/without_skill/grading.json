@@ -1,0 +1,59 @@
+{
+  "eval_name": "eval-0-beginner-permissive",
+  "run": "without_skill",
+  "expectations": [
+    {
+      "text": "มีไฟล์ LICENSE ที่ root ของโปรเจกต์",
+      "passed": true,
+      "evidence": "found LICENSE"
+    },
+    {
+      "text": "ข้อความใน LICENSE ตรงกับ template ที่ bundle ไว้ทุกตัวอักษร (ต่างได้เฉพาะ placeholder ที่เติม)",
+      "passed": true,
+      "evidence": "closest=MIT, coverage=1.0"
+    },
+    {
+      "text": "ไม่มี placeholder ค้างใน LICENSE ([year], [fullname], [yyyy], [name of copyright owner])",
+      "passed": true,
+      "evidence": "none"
+    },
+    {
+      "text": "บรรทัด copyright ระบุชื่อ Natthasath Saksri และปีปัจจุบัน",
+      "passed": true,
+      "evidence": "Copyright (c) 2026 Natthasath Saksri"
+    },
+    {
+      "text": "เลือก license กลุ่ม permissive (MIT / Apache-2.0 / BSD / ISC) ไม่ใช่ copyleft",
+      "passed": true,
+      "evidence": "detected MIT"
+    },
+    {
+      "text": "README มี section License ใช้ emoji 📜 ตาม convention ของ repo",
+      "passed": false,
+      "evidence": "no 📜 heading"
+    },
+    {
+      "text": "README มี license badge",
+      "passed": false,
+      "evidence": "no badge"
+    },
+    {
+      "text": "pyproject.toml มี field license ที่เป็น SPDX id ตรงกับ license ที่เลือก",
+      "passed": true,
+      "evidence": "license = \"MIT\""
+    },
+    {
+      "text": "คำตอบอธิบายผลลัพธ์เป็นภาษาที่คนไม่รู้เรื่อง license เข้าใจได้ ไม่ทิ้งศัพท์ไว้ลอยๆ",
+      "passed": true,
+      "evidence": "อธิบายครบและอ่านง่าย"
+    },
+    {
+      "text": "คำตอบมีข้อความว่านี่ไม่ใช่คำปรึกษาทางกฎหมาย",
+      "passed": false,
+      "evidence": "ไม่พบข้อความข้อจำกัดทางกฎหมายเลย"
+    }
+  ],
+  "passed": 7,
+  "total": 10,
+  "pass_rate": 0.7
+}

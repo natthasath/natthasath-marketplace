@@ -1,0 +1,63 @@
+{
+  "skill_name": "github-license",
+  "evals": [
+    {
+      "id": 0,
+      "name": "eval-0-beginner-permissive",
+      "prompt": "ผมเพิ่งทำ CLI tool ตัวนี้เสร็จ (qrsnap แปลง URL เป็น QR code) อยากปล่อยขึ้น GitHub ให้คนอื่นเอาไปใช้ครับ แต่ผมไม่รู้เรื่อง license เลย ไม่เคยอ่าน ใครจะเอาไปทำอะไรก็ได้ผมโอเคหมด ยิ่งมีคนใช้เยอะยิ่งดี เอาไปขายก็ไม่ว่า ช่วยจัดการให้ทีครับ ชื่อผม Natthasath Saksri",
+      "expected_output": "เลือก MIT (หรือ Apache-2.0 พร้อมเหตุผล) · เขียน LICENSE verbatim เติมปีและชื่อครบ · เพิ่ม section 📜 License + badge ใน README · ใส่ license field ใน pyproject.toml · อธิบายผลลัพธ์เป็นภาษาชาวบ้าน",
+      "files": [
+        "fixtures/py-cli/"
+      ],
+      "assertions": [
+        "มีไฟล์ LICENSE ที่ root ของโปรเจกต์",
+        "เลือก license กลุ่ม permissive (MIT / Apache-2.0 / BSD / ISC) ไม่ใช่ copyleft",
+        "ข้อความใน LICENSE ตรงกับ template ที่ bundle ไว้ทุกตัวอักษร (ต่างได้เฉพาะ placeholder ที่เติม)",
+        "ไม่มี placeholder ค้างใน LICENSE ([year], [fullname], [yyyy], [name of copyright owner])",
+        "บรรทัด copyright ระบุชื่อ Natthasath Saksri และปีปัจจุบัน",
+        "README มี section License ใช้ emoji 📜 ตาม convention ของ repo",
+        "README มี license badge",
+        "pyproject.toml มี field license ที่เป็น SPDX id ตรงกับ license ที่เลือก",
+        "คำตอบอธิบายผลลัพธ์เป็นภาษาที่คนไม่รู้เรื่อง license เข้าใจได้ ไม่ทิ้งศัพท์ไว้ลอยๆ",
+        "คำตอบมีข้อความว่านี่ไม่ใช่คำปรึกษาทางกฎหมาย"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "eval-1-gpl-dependency-conflict",
+      "prompt": "ช่วยใส่ MIT license ให้ repo นี้หน่อยครับ เจ้าของชื่อ Natthasath Saksri",
+      "expected_output": "ตรวจเจอว่า vendor/libqr เป็น GPL-3.0-only · แจ้งว่าเลือก MIT ไม่ได้เพราะขัดกัน · เสนอทางออก (ใช้ GPL-3.0 / เปลี่ยน dependency / ใช้ภายในองค์กรเท่านั้น) · ไม่เขียน MIT ลงไปเงียบๆ",
+      "files": [
+        "fixtures/node-report/"
+      ],
+      "assertions": [
+        "ตรวจเจอว่า vendor/libqr เป็น GPL-3.0-only",
+        "บอกผู้ใช้ชัดเจนว่าเลือก MIT ไม่ได้เพราะขัดกับ dependency ตัวนั้น",
+        "ไม่เขียนไฟล์ LICENSE เป็น MIT โดยไม่แจ้งความขัดแย้ง",
+        "package.json ไม่ได้ถูกตั้งเป็น \"license\": \"MIT\" แบบเงียบๆ",
+        "เสนอทางออกอย่างน้อย 2 ทาง (ใช้ GPL-3.0 / เปลี่ยน dependency / ใช้ภายในองค์กรเท่านั้น)",
+        "อธิบายว่าเงื่อนไข copyleft มีผลตอนแจกจ่าย (distribute) ไม่ใช่ตอนเขียนโค้ด"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "eval-2-saas-anti-cloud",
+      "prompt": "ผมทำ API gateway ตัวนี้ในนามบริษัท Acme Co., Ltd. อยากเปิดโค้ดให้คนเข้ามาดูและช่วย contribute ได้ แต่กลัวพวก cloud provider เอาไปทำเป็น managed service ขายแข่งกับเรา ควรใช้ license อะไรดีครับ แล้วใส่ให้เลย",
+      "expected_output": "เสนอ AGPL-3.0 (ยังเป็น open source) เทียบกับ BUSL-1.1/Elastic-2.0 (ไม่ใช่ open source) พร้อมข้อแลกเปลี่ยนของแต่ละทาง · ถ้าเลือกกลุ่ม source-available ต้องเตือนว่าไม่ใช่ open source และห้ามเขียนคำนั้นใน README · เขียนไฟล์ให้ครบ",
+      "files": [
+        "fixtures/go-gateway/"
+      ],
+      "assertions": [
+        "เสนอ AGPL-3.0 เป็นตัวเลือก พร้อมอธิบายว่าครอบคลุมการใช้ผ่านเครือข่าย",
+        "เสนอตัวเลือกกลุ่ม source-available อย่างน้อย 1 ตัว (BUSL-1.1 / Elastic-2.0 / SSPL-1.0)",
+        "ระบุชัดเจนว่ากลุ่ม source-available ไม่ใช่ open source ตามนิยาม OSI",
+        "อธิบายข้อแลกเปลี่ยนของแต่ละทางเลือก ไม่ได้เสนอตัวเดียวโดยไม่มีเหตุผล",
+        "มีไฟล์ LICENSE ที่ตรงกับ template ที่ bundle ไว้ทุกตัวอักษร",
+        "ผู้ถือลิขสิทธิ์คือ Acme Co., Ltd. ไม่ใช่ชื่อบุคคลหรือ username",
+        "ถ้าเลือก BUSL-1.1 ต้องกรอกครบทั้ง 7 ค่า ไม่มี placeholder ค้าง",
+        "ถ้าเลือกกลุ่ม source-available README ต้องไม่มีคำว่า open source",
+        "README มี section License ที่บอกเงื่อนไขพิเศษของ license นั้น ไม่ใช่แค่ชื่อ license"
+      ]
+    }
+  ]
+}

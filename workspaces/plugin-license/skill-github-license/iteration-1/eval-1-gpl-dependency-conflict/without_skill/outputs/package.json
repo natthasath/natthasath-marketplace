@@ -1,0 +1,14 @@
+{
+  "name": "invoice-report",
+  "version": "1.4.0",
+  "description": "Generate branded PDF invoices with embedded QR payment codes",
+  "main": "src/index.js",
+  "scripts": { "start": "node src/index.js" },
+  "author": "Natthasath Saksri",
+  "license": "MIT AND GPL-3.0-only",
+  "dependencies": {
+    "pdfkit": "^0.15.0",
+    "dayjs": "^1.11.10",
+    "libqr": "file:./vendor/libqr"
+  }
+}

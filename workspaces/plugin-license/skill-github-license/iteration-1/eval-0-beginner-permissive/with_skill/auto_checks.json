@@ -1,0 +1,34 @@
+{
+  "มีไฟล์ LICENSE ที่ root ของโปรเจกต์": {
+    "passed": true,
+    "evidence": "found LICENSE"
+  },
+  "ข้อความใน LICENSE ตรงกับ template ที่ bundle ไว้ทุกตัวอักษร (ต่างได้เฉพาะ placeholder ที่เติม)": {
+    "passed": true,
+    "evidence": "closest=MIT, coverage=1.0"
+  },
+  "ไม่มี placeholder ค้างใน LICENSE ([year], [fullname], [yyyy], [name of copyright owner])": {
+    "passed": true,
+    "evidence": "none"
+  },
+  "บรรทัด copyright ระบุชื่อ Natthasath Saksri และปีปัจจุบัน": {
+    "passed": true,
+    "evidence": "Copyright (c) 2026 Natthasath Saksri"
+  },
+  "เลือก license กลุ่ม permissive (MIT / Apache-2.0 / BSD / ISC) ไม่ใช่ copyleft": {
+    "passed": true,
+    "evidence": "detected MIT"
+  },
+  "README มี section License ใช้ emoji 📜 ตาม convention ของ repo": {
+    "passed": true,
+    "evidence": "found 📜 heading"
+  },
+  "README มี license badge": {
+    "passed": true,
+    "evidence": "shields.io license badge present"
+  },
+  "pyproject.toml มี field license ที่เป็น SPDX id ตรงกับ license ที่เลือก": {
+    "passed": true,
+    "evidence": "license = \"MIT\""
+  }
+}
