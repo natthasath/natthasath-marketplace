@@ -11,7 +11,7 @@ Plugin for **Capacities PKM** — designs Spaces, Object Types, Tags, Collection
 | `spotify-tag` | จับคู่เพลงกับหมวด/Playlist ตามประเทศและ mood/แนวเพลง ค้นหาข้อมูลเพลงจากเว็บอัตโนมัติถ้าให้มาแค่ชื่อเพลง เสนอชื่อ Playlist ใหม่โทน Gen Z ถ้าไม่มีหมวดตรง — เรียกผ่าน `/spotify-tag` เท่านั้น ไม่ auto-trigger |
 | `glossary` | อธิบายความหมายตัวย่อหรือศัพท์เทคนิค (Abbreviations / Acronyms) แบบ 1 paragraph — เรียกผ่าน `/glossary` เท่านั้น ไม่ auto-trigger |
 | `knowledge` | สร้าง Knowledge Note พร้อม frontmatter และ sections ที่เป็นระบบ — เรียกผ่าน `/knowledge` เท่านั้น ไม่ auto-trigger |
-| `highlight` | แปลงข้อความธรรมดาให้อ่านง่ายขึ้นด้วย bold, italic, code ที่ render จริงตรงในแชททันที ไม่ใช้ `==highlight==`/`<u>underline</u>` (render ไม่ได้จริง) ไม่มี Artifact แยกหน้า ไม่มี code block markdown ดิบต่อท้าย — เรียกผ่าน `/highlight` เท่านั้น ไม่ auto-trigger |
+| `highlight` | แปลงข้อความธรรมดาให้อ่านง่ายขึ้นด้วยการเน้นจุดสำคัญ (bold, italic, code, ไฮไลต์สีจริง) render เป็นภาพจริงในแชททันทีผ่าน HTML widget ห้ามแก้ไขข้อความต้นฉบับ ไม่มี Artifact แยกหน้า — เรียกผ่าน `/highlight` เท่านั้น ไม่ auto-trigger |
 
 ### 🏆 Usage
 
@@ -35,10 +35,11 @@ Plugin for **Capacities PKM** — designs Spaces, Object Types, Tags, Collection
 
 ### 💎 Highlight Formatting Guide
 
-render ได้จริงในแชท Claude Code แค่ 3 แบบนี้ — ไม่ใช้ `==highlight==`/`<u>underline</u>` อีกต่อไปเพราะ chat renderer ไม่รองรับ (โผล่เป็นตัวอักษรดิบ ไม่ใช่สีเหลือง/ขีดเส้นใต้จริง)
+`highlight` render ผ่าน HTML widget (`visualize:show_widget`) ไม่ใช่ markdown ดิบในแชท — เลือก tag ตามความสำคัญ:
 
-| Formatting | Markdown | ใช้เมื่อ |
+| เน้นอะไร | Tag | ความถี่/ย่อหน้า |
 |---|---|---|
-| **ตัวหนา** | `**text**` | คำสำคัญ, แนวคิดหลัก, ชื่อที่ต้องจำ, คำเตือน, deadline, ห้ามพลาด |
-| *ตัวเอียง* | `*text*` | ชื่อสื่อ, คำต่างชาติ, นิยามครั้งแรก, proper noun พิเศษ |
-| `code` | `` `text` `` | command, path, ค่า technical |
+| command / path / ศัพท์เทคนิคเฉพาะทาง / ค่าที่ต้องตรงเป๊ะ | `<code>` | ทุกครั้งที่พบ |
+| ประโยค/วลีที่เป็นใจความสำคัญที่สุดของย่อหน้า (คำเตือน/ข้อสรุป) | `<mark>` | 0–1 |
+| ชื่อเรื่อง/entity หลัก/คำสำคัญรอง | `<strong>` | 3–6 คำ |
+| ชื่อสื่อ/คำต่างชาติ/คำที่กำลังนิยาม/ชื่อเฉพาะ | `<em>` | ตามเนื้อหา |
