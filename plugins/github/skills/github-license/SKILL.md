@@ -12,6 +12,7 @@ description: >
   "อยากเปิด source แต่ไม่อยากให้ใครเอาไปขาย", "MIT กับ Apache ต่างกันยังไง",
   "จะกัน AWS เอาโค้ดไปทำ managed service ยังไง", "ใส่ license ให้ dataset นี้"
   เรียกใช้ผ่าน `/github-license` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[license-id หรือ path ของโปรเจกต์]"
 disable-model-invocation: true
 ---
 

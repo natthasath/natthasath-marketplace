@@ -6,6 +6,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการเขียน LinkedIn post หรือ content ภาษาอังกฤษสำหรับ professional audience
   เช่น "ช่วยเขียนเรื่อง Docker ให้ดูเป็น expert หน่อย", "อยากโพสต์ LinkedIn เรื่อง..."
   เรียกใช้ผ่าน `/post-linkedin` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[หัวข้อหรือประเด็นที่อยากโพสต์]"
 disable-model-invocation: true
 ---
 

@@ -6,6 +6,7 @@ description: >
   เช่น "ช่วยแปลให้หน่อย", "ประโยคนี้ถูกไหม", "จะตอบ email นี้ยังไงดี", "ปรับ tone ให้ formal ขึ้น"
   เรียกใช้ผ่าน `/language:mentor-english` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
   สำหรับการฝึกสนทนาแบบ roleplay ใช้ /roleplay-english แทน
+argument-hint: "[--translation|--grammar|--reply|--tone|--vocab]"
 disable-model-invocation: true
 ---
 

@@ -6,6 +6,7 @@ description: >
   เช่น "ไม่รู้จะถามอะไรดี", "ต้องประชุมกับผู้บริหาร", "ช่วยเก็บ requirement หน่อย"
   เรียกใช้ผ่าน `/gather` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
   ใช้ต่อจาก /kickoff → ถัดไป /analyze
+argument-hint: "[ขอบเขตระบบที่ต้องเก็บ requirement]"
 disable-model-invocation: true
 ---
 

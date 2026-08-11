@@ -6,6 +6,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการจัดทำ System Requirement, วิเคราะห์ระบบ, หรือต้องการเอกสาร spec
   เช่น "ต้องการเอกสารระบบ", "ช่วยวิเคราะห์ระบบนี้หน่อย", "เขียน requirement ให้"
   เรียกใช้ผ่าน `/analyze` เท่านั้น — ไม่ auto-trigger จากบทสนทนา ใช้ต่อจาก /gather → ถัดไป /architect
+argument-hint: "[business needs ที่ต้องแปลงเป็น requirement]"
 disable-model-invocation: true
 ---
 

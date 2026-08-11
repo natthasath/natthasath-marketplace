@@ -1,6 +1,7 @@
 ---
 name: list-phase
 description: แสดงภาพรวม phases ทั้งหมด พร้อม status, target date และรายละเอียดของแต่ละ phase ใส่ตัวเลขเพื่อดูรายละเอียด phase นั้น ใช้ skill นี้เมื่อต้องการดูภาพรวม phases เช่น "ดู phases ทั้งหมด", "phase ไหนบ้าง"
+argument-hint: "[phase-number]"
 tools:
   - Read
   - Bash

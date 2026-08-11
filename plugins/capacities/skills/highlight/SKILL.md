@@ -7,6 +7,7 @@ description: >
   "format", "เน้นสิ่งสำคัญ", "จัด note", "ทำตัวหนา", "เพิ่ม bold/italic", "จัด formatting"
   หรือส่งข้อความมาพร้อมบอกว่าอยากให้ readable มากขึ้น —
   เรียกใช้ผ่าน `/highlight` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[ข้อความที่ต้องการจัดรูปแบบ]"
 disable-model-invocation: true
 ---
 

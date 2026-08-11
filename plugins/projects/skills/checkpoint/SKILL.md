@@ -1,6 +1,7 @@
 ---
 name: checkpoint
 description: สร้าง git safety commit ก่อนให้ Claude ทำงาน เพื่อป้องกัน code หาย ใช้ skill นี้ก่อนทุกครั้งที่จะให้ Claude implement หรือ refactor เช่น "checkpoint ก่อน", "เซฟ code ก่อน", "ก่อน implement ขอ checkpoint"
+argument-hint: "[task-id]"
 tools:
   - Read
   - Bash

@@ -1,6 +1,7 @@
 ---
 name: debug
 description: วิเคราะห์และแก้ bug ด้วย root cause analysis รองรับทั้งโหมดปกติและ --hotfix สำหรับ production emergency ใช้ skill นี้เมื่อมี bug หรือ error เช่น "แก้ bug นี้หน่อย", "production error", "debug ให้หน่อย"
+argument-hint: "[bug-description] [--hotfix]"
 tools:
   - Read
   - Grep

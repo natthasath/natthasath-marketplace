@@ -6,6 +6,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้แชร์บันทึก Daily Notes หรือข้อความใดๆ แล้วถามว่า "ควร tag อะไร",
   "รู้สึกยังไง", "mood วันนี้คืออะไร", หรือต้องการ categorize อารมณ์ลงใน Capacities —
   เรียกใช้ผ่าน `/mood-tag` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[ข้อความ Daily Note]"
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,7 @@
 ---
 name: add-task
 description: เพิ่ม task ใหม่เข้า backlog พร้อม Acceptance Criteria โดยร่าง, ขอ confirm แล้วค่อยบันทึก ใช้ skill นี้เมื่อต้องการเพิ่มงานใหม่เข้าโปรเจค เช่น "เพิ่ม task", "อยากทำเรื่อง...", "บันทึก feature ใหม่"
+argument-hint: "[task-description]"
 tools:
   - Read
   - Write

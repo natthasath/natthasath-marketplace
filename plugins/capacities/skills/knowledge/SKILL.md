@@ -6,6 +6,7 @@ description: >
   เช่น "อธิบาย Bay Plan", "บันทึกความรู้เรื่อง TCP/IP", "สร้าง note สำหรับ Kubernetes",
   "knowledge เรื่อง Load Balancer", "อยากเก็บนิยาม CQRS ลง Capacities"
   เรียกใช้ผ่าน `/knowledge` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[คำศัพท์หรือหัวข้อที่ต้องการบันทึก]"
 disable-model-invocation: true
 ---
 

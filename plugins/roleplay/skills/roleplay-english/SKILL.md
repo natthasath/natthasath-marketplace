@@ -5,6 +5,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการฝึกสนทนาภาษาอังกฤษผ่านการจำลองสถานการณ์
   เช่น "ซ้อมสัมภาษณ์งาน", "ฝึกพูดในที่ประชุม", "ฝึกคุยกับลูกค้าต่างชาติ", "ฝึก small talk"
   เรียกใช้ผ่าน `/roleplay-english` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[scenario ที่อยากฝึก]"
 disable-model-invocation: true
 ---
 

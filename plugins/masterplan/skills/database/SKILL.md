@@ -6,6 +6,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้พูดถึง database schema, table design, Entity-Relationship, Laravel migration, PostgreSQL model
   เช่น "ออกแบบ table ให้หน่อย", "ช่วยทำ ER diagram", "เขียน migration สำหรับระบบนี้"
   เรียกใช้ผ่าน `/database` เท่านั้น — ไม่ auto-trigger จากบทสนทนา ใช้ต่อจาก /architect และเป็นขั้นตอนสุดท้ายของ workflow
+argument-hint: "[ระบบที่ต้องออกแบบ schema]"
 disable-model-invocation: true
 ---
 

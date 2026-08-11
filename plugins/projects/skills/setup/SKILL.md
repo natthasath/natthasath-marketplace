@@ -1,6 +1,7 @@
 ---
 name: setup
 description: เริ่มต้น project ใหม่ด้วยการ scaffold โครงสร้าง .claude/ และ context/ ทั้งหมด พร้อม CLAUDE.md, rules, config, task tracking และ workflow skills ครบชุด ใช้ skill นี้เมื่อเริ่ม project ใหม่ เช่น "setup project", "เริ่ม project ใหม่", "สร้าง structure ให้หน่อย"
+argument-hint: "[project-name] [description]"
 tools:
   - Read
   - Write

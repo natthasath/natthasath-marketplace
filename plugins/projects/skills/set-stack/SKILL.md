@@ -1,6 +1,7 @@
 ---
 name: set-stack
 description: ตั้งค่า tech stack สำหรับ project ด้วยการเลือก preset หรือกำหนดเอง เขียนลง .claude/config/tech-stack.md ให้ implement/ship/debug ใช้ commands ถูกต้องอัตโนมัติ ใช้ skill นี้เมื่อเริ่มต้น project หรือเปลี่ยน stack เช่น "ตั้ง stack", "ใช้ Next.js + PostgreSQL"
+argument-hint: "[stack-preset หรือกำหนดเอง]"
 tools:
   - Write
   - Bash

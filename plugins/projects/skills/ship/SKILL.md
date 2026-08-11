@@ -1,6 +1,7 @@
 ---
 name: ship
 description: ตรวจสอบ pre-merge checklist ก่อน merge branch ครอบคลุม lint, types, tests และ acceptance criteria ใช้ skill นี้ก่อน merge ทุกครั้ง เช่น "ship task นี้", "merge ได้ไหม", "ตรวจสอบก่อน merge"
+argument-hint: "[task-id]"
 tools:
   - Read
   - Bash

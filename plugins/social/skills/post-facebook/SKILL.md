@@ -6,6 +6,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการเขียน Facebook post, content เชิงความคิด, หรือ Thought Leadership post
   เช่น "ช่วยเขียนเรื่อง X หน่อย", "อยากโพสต์เรื่อง...", "เขียน post เกี่ยวกับ..."
   เรียกใช้ผ่าน `/post-facebook` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[หัวข้อหรือประเด็นที่อยากโพสต์]"
 disable-model-invocation: true
 ---
 

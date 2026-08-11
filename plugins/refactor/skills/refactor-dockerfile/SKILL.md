@@ -6,6 +6,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้แชร์หรือขอสร้าง Dockerfile หรือต้องการ containerize application
   เช่น "อยากทำ Docker สำหรับ FastAPI", "ช่วย optimize Dockerfile นี้หน่อย", "สร้าง Dockerfile สำหรับ Node.js"
   เรียกใช้ผ่าน `/refactor-dockerfile` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[path ของ Dockerfile หรือ tech stack]"
 disable-model-invocation: true
 ---
 

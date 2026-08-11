@@ -6,6 +6,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้พิมพ์ชื่อเทคโนโลยี เครื่องมือ หรือแนวคิดใดๆ เช่น "Docker", "Kafka", "CQRS",
   "อธิบาย Kubernetes หน่อย", "Redis ต่างจาก Memcached ยังไง", "ทำไมต้องใช้ Message Queue" —
   เรียกใช้ผ่าน `/isolate` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[ชื่อเทคโนโลยีหรือแนวคิด]"
 disable-model-invocation: true
 ---
 

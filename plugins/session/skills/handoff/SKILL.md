@@ -7,7 +7,7 @@ description: >
   อยู่แล้วใน spec/PR/commit ซ้ำ และ redact ข้อมูลอ่อนไหวก่อนบันทึกเสมอ เรียกใช้ผ่าน
   `/handoff [สิ่งที่ session ถัดไปจะโฟกัส]` เท่านั้น — เป็น action ที่ตั้งใจทำตอนจบ session จึงไม่
   auto-trigger จากบทสนทนาทั่วไป ใช้เมื่อผู้ใช้จะหยุดพักหรือส่งต่องานให้ session/คนอื่นทำต่อ
-argument-hint: "session ถัดไปจะเอาไปทำอะไรต่อ"
+argument-hint: "[สิ่งที่ session ถัดไปจะโฟกัส]"
 disable-model-invocation: true
 tools:
   - Read

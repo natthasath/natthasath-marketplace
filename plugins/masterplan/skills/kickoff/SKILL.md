@@ -7,6 +7,7 @@ description: >
   เช่น "อยากสร้างแอป...", "ต้องการพัฒนาระบบ...", "ควรเริ่มต้นยังไง"
   เรียกใช้ผ่าน `/kickoff` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
   จุดเริ่มต้นของ workflow: /kickoff → /gather → /analyze → /architect → /database
+argument-hint: "[ไอเดียแอปหรือระบบที่อยากทำ]"
 disable-model-invocation: true
 ---
 

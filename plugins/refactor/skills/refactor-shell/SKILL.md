@@ -6,6 +6,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้แชร์หรือขอสร้าง Shell Script หรือ Bash Script
   เช่น "ช่วยเขียน script สำรองข้อมูล", "ช่วย refactor script นี้หน่อย", "อยาก automate การ deploy"
   เรียกใช้ผ่าน `/refactor-shell` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[path ของ .sh หรืองานที่ต้องการ]"
 disable-model-invocation: true
 ---
 

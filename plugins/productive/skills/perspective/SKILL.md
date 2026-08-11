@@ -6,6 +6,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ระบุหัวข้ออบรมหรือ workshop และต้องการมุมมองหรือข้อคิดจากผู้ปฏิบัติงานจริง
   เช่น "DevOps", "Cyber Security", "Agile", "Project Management" หรือหัวข้ออบรมใดก็ตาม
   เรียกใช้ผ่าน `/perspective` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[หัวข้ออบรม]"
 disable-model-invocation: true
 ---
 

@@ -6,6 +6,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้พูดถึง "export config", "backup settings", "snapshot การตั้งค่า",
   "สำรอง config", "เซฟ settings", "ย้าย config ไปเครื่องใหม่", "แนะนำ settings" ของโปรแกรมใดก็ตาม
   เรียกใช้ผ่าน `/utility:snapshot-config` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[ชื่อโปรแกรม]"
 disable-model-invocation: true
 ---
 

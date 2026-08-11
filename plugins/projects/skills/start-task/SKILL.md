@@ -1,6 +1,7 @@
 ---
 name: start-task
 description: เริ่มทำงาน task โดยย้าย task จาก backlog เข้า sprint และแนะนำชื่อ git branch ที่ควรสร้าง ใช้ skill นี้ก่อน /checkpoint และ /implement เช่น "เริ่ม task นี้", "start task", "จะทำ task นี้แล้ว"
+argument-hint: "[task-id]"
 tools:
   - Read
   - Edit

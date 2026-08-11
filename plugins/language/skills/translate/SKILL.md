@@ -6,6 +6,7 @@ description: >
   เช่น "ช่วยแปลให้ตลอด", "ทำตัวเป็นล่าม", "แปลทุกอย่างที่ฉันพิมพ์", "live translate", "แปล ไทย อังกฤษ"
   เรียกใช้ผ่าน `/language:translate` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
   ต่างจาก mentor-english ที่ให้คำอธิบายและสอน — skill นี้แปลอย่างเดียว รวดเร็ว ไม่มีคำพ่วง
+argument-hint: "[ภาษาต้นทาง ↔ ภาษาปลายทาง]"
 disable-model-invocation: true
 ---
 

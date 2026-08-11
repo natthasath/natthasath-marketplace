@@ -12,6 +12,7 @@ description: >
   "ทราฟฟิกมาจากไหน", "real-time analytics", "รายงาน analytics", "สรุปสถิติเว็บไซต์"
   หรือขอให้ดึง/สรุปข้อมูลจาก property GA4 ใดๆ เรียกใช้ผ่าน `/insight-ga4` เท่านั้น —
   ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[คำถามเกี่ยวกับ GA4 property]"
 tools:
   - Bash
   - Read

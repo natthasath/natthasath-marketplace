@@ -5,6 +5,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการตั้งชื่อ session
   เช่น "ตั้งชื่อ session นี้ว่า...", "session นี้ชื่ออะไร", "บันทึกว่า session นี้คือการทำงานเรื่อง..."
   เรียกใช้ผ่าน `/session-name` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[ชื่อ session]"
 disable-model-invocation: true
 ---
 

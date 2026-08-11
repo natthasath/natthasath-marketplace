@@ -6,6 +6,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการเลือก architecture, กำหนด tech stack, หรือออกแบบโครงสร้างระบบ
   เช่น "ควรใช้ Microservices ไหม", "เลือก architecture แบบไหนดี", "วางโครงสร้างระบบให้หน่อย"
   เรียกใช้ผ่าน `/architect` เท่านั้น — ไม่ auto-trigger จากบทสนทนา ใช้ต่อจาก /analyze → ถัดไป /database
+argument-hint: "[ระบบที่ต้องเลือก architecture]"
 disable-model-invocation: true
 ---
 

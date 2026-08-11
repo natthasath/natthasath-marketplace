@@ -6,6 +6,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการประเมินงาน IT ว่ายากแค่ไหน ต้องใช้ทักษะระดับไหน
   หรือถามว่า "งานนี้ level ไหน", "ยากไหม", "ต้องใช้ senior หรือเปล่า", "estimate ได้ไหม"
   เรียกใช้ผ่าน `/scorecard` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[งาน IT ที่ต้องการประเมิน]"
 disable-model-invocation: true
 ---
 

@@ -10,6 +10,7 @@ description: >
   Capacities ต้องใส่ tag อะไรบ้าง", "ดู README แล้วบอก tag ให้หน่อย" เรียกใช้ผ่าน `/github-tag`
   เท่านั้น — ไม่ auto-trigger จากบทสนทนา ถ้าผู้ใช้ยังไม่ได้แนบลิงก์ GitHub repo หรือ path ในเครื่อง
   มาด้วย ต้องถามก่อนเสมอ ห้ามเดา repo เอง
+argument-hint: "[URL ของ GitHub repo หรือ path ในเครื่อง]"
 tools:
   - Bash
   - Read

@@ -6,6 +6,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการออกแบบคำถามสัมภาษณ์งาน, เตรียม interview guide, หรือ roleplay เป็นนักสัมภาษณ์
   เช่น "ช่วยออกแบบคำถาม interview", "อยาก roleplay สัมภาษณ์งาน", "position นี้ควรถามอะไร"
   เรียกใช้ผ่าน `/roleplay-interview` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[ตำแหน่งงานหรือ profile ผู้สมัคร]"
 disable-model-invocation: true
 ---
 

@@ -6,6 +6,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้แชร์หรือขอสร้าง docker-compose.yml หรือ .env file
   เช่น "ช่วยทำ docker สำหรับ postgres กับ n8n", "รีแฟกเตอร์ docker-compose ให้หน่อย", "อยาก deploy service หลายตัว"
   เรียกใช้ผ่าน `/refactor-compose` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[path ของ docker-compose.yml]"
 disable-model-invocation: true
 ---
 

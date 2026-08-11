@@ -7,6 +7,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้แชร์หรือขอปรับปรุงไฟล์ README เช่น "ช่วยจัด README ให้หน่อย",
   "refactor readme นี้", "ทำ README ให้สวยแบบ github", "เขียน README สำหรับโปรเจกต์ FastAPI",
   "README ดูรก ช่วยจัดใหม่" เรียกใช้ผ่าน `/refactor-readme` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[path ของ README.md]"
 disable-model-invocation: true
 ---
 

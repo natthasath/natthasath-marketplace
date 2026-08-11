@@ -9,6 +9,7 @@ description: >
   repo นี้ให้หน่อย", "เจอ skill นี้ในเน็ต อยากได้แบบนี้บ้าง", "ก็อป skill อันนี้มาแปลงให้เข้ากับของเรา"
   หรือแปะลิงก์ GitHub ของ skill/agent มาพร้อมบอกว่าอยากใช้ในเครื่องนี้ เรียกใช้ผ่าน `/copycat`
   เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[ลิงก์ GitHub หรือเนื้อหา skill]"
 tools:
   - Bash
   - Read

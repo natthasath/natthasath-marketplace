@@ -5,6 +5,7 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการสร้าง flashcard หรือเรียนคำศัพท์
   เช่น "สร้าง flashcard ภาษาญี่ปุ่น", "ทำ flashcard คำศัพท์อังกฤษหมวดอาหาร", "เรียนคำศัพท์ IT 20 คำ", "สร้างชุดคำศัพท์"
   เรียกใช้ผ่าน `/flashcard` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+argument-hint: "[ภาษาและหมวดคำศัพท์]"
 disable-model-invocation: true
 ---
 
