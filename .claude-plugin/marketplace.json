@@ -12,7 +12,7 @@
       "description": "Plugin รวม Skills สำหรับ Capacities PKM ครอบคลุม Tags, Collections, Workflow, Knowledge Notes และ Text Formatting",
       "source": "./plugins/capacities",
       "category": "productivity",
-      "keywords": ["capacities", "pkm", "mood", "tags", "daily-notes", "highlight", "format", "markdown", "spotify", "music", "playlist", "github", "readme", "repo"]
+      "keywords": ["capacities", "pkm", "mood", "tags", "daily-notes", "highlight", "format", "markdown", "spotify", "music", "playlist"]
     },
     {
       "name": "masterplan",
@@ -71,11 +71,11 @@
       "keywords": ["language", "translate", "translation", "english", "mentor", "grammar", "vocabulary", "แปล", "ล่าม", "interpreter"]
     },
     {
-      "name": "license",
-      "description": "Plugin รวม Skills สำหรับเลือกและติดตั้ง License ให้โปรเจกต์ — สัมภาษณ์แบบ interactive สำหรับคนที่ไม่รู้เรื่องลิขสิทธิ์และสิทธิบัตร",
-      "source": "./plugins/license",
+      "name": "github",
+      "description": "Plugin รวม Skills สำหรับงาน GitHub repo — เลือกและติดตั้ง License ให้โปรเจกต์ (สัมภาษณ์แบบ interactive สำหรับคนที่ไม่รู้เรื่องลิขสิทธิ์และสิทธิบัตร) และแนะนำ Tag สำหรับบันทึก repo ลง Capacities จาก GitHub topics และ README",
+      "source": "./plugins/github",
       "category": "development",
-      "keywords": ["license", "licensing", "copyright", "patent", "open-source", "mit", "apache", "gpl", "agpl", "lgpl", "mpl", "bsd", "creative-commons", "spdx", "busl", "source-available", "dual-licensing", "compliance"]
+      "keywords": ["github", "repo", "readme", "topics", "tech-stack", "tags", "license", "licensing", "copyright", "patent", "open-source", "mit", "apache", "gpl", "agpl", "lgpl", "mpl", "bsd", "creative-commons", "spdx", "busl", "source-available", "dual-licensing", "compliance"]
     },
     {
       "name": "guide",

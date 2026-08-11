@@ -1,12 +1,13 @@
-# 🎉 license
+# 🎉 github
 
-Plugin for choosing and installing an open source license — the GitHub "Add license" flow, but it interviews you in plain language first, so you never have to know what "copyleft" means to pick the right one.
+Plugin for **GitHub repo workflows** — choosing and installing an open source license, and tagging repos for Capacities.
 
 ### ⭐ Skills
 
 | Skill | Description |
 |---|---|
 | `github-license` | Interview-driven license picker — asks 3-5 plain-language questions, checks dependency compatibility, then writes `LICENSE`, `NOTICE`, SPDX headers, the README License section and badge, and the `license` field in project metadata |
+| `github-tag` | ดึง GitHub topics ของ repo มาเป็น tag หลัก เสริมด้วย tag ภาษา/เทคโนโลยีที่เจอใน README สำหรับเก็บ repo ลง Capacities |
 
 ### 🏆 Usage
 
@@ -14,6 +15,8 @@ Plugin for choosing and installing an open source license — the GitHub "Add li
 /github-license                            # สัมภาษณ์แล้วเลือกให้
 /github-license MIT                        # รู้อยู่แล้วว่าจะใช้ตัวไหน — ข้ามการสัมภาษณ์
 /github-license <path ของโปรเจกต์>          # ระบุโปรเจกต์ปลายทาง
+
+/github-tag <URL ของ GitHub repo หรือ path ในเครื่อง>
 ```
 
 ### 💎 License Coverage
@@ -33,3 +36,7 @@ Plugin for choosing and installing an open source license — the GitHub "Add li
 
 > [!NOTE]
 > กลุ่ม Source-available และ `CC-BY-NC-4.0` ไม่ใช่ open source ตามนิยามของ OSI — skill จะแจ้งเตือนเสมอเมื่อเลือกกลุ่มนี้ และไม่เขียนคำว่า "open source" ลง README ให้
+
+### 💎 github-tag Output
+
+`github-tag` ดึง GitHub topics ของ repo มาเป็น tag หลัก (แม่นยำที่สุดเพราะเจ้าของ repo ตั้งไว้เอง) แล้วเสริมด้วย primary language และสัญญาณเทคโนโลยีที่สแกนเจอใน README — ดูรายละเอียด pattern ที่ใช้สแกนได้ใน [`references/tech-signals.md`](skills/github-tag/references/tech-signals.md)
