@@ -44,10 +44,10 @@
     },
     {
       "name": "productive",
-      "description": "Plugin รวม Skills เพิ่มประสิทธิภาพการทำงาน ครอบคลุม Isolate (Tech Explainer), Meetings Summary, PDF Downloader, Workplace Communication, IT Work Scorecard, Indicator Designer, Flashcard, Save Cost (Token-Efficient CLI Tools Installer) และ ASCII Art (Text/Image to ASCII Converter)",
+      "description": "Plugin รวม Skills เพิ่มประสิทธิภาพการทำงาน ครอบคลุม Isolate (Tech Explainer), Meetings Summary, PDF Downloader, Workplace Communication, IT Work Scorecard, Indicator Designer, Flashcard, Save Cost (Token-Efficient CLI Tools Installer), ASCII Art (Text/Image to ASCII Converter), Grill Me (Socratic Interview) และ Copycat (Skill Porting)",
       "source": "./plugins/productive",
       "category": "productivity",
-      "keywords": ["productive", "summary", "meetings", "mom", "minutes", "isolate", "tldr", "perspective", "pdf", "workplace", "communication", "professional", "scorecard", "it", "difficulty", "assessment", "indicator", "kpi", "action-plan", "measure", "flashcard", "vocabulary", "lexi", "word", "learn", "language", "quiz", "save-cost", "cli-tools", "token", "cost", "ascii-art", "ascii", "figlet", "toilet", "jp2a", "chafa", "cowsay", "banner", "text-to-ascii", "image-to-ascii"]
+      "keywords": ["productive", "summary", "meetings", "mom", "minutes", "isolate", "tldr", "perspective", "pdf", "workplace", "communication", "professional", "scorecard", "it", "difficulty", "assessment", "indicator", "kpi", "action-plan", "measure", "flashcard", "vocabulary", "lexi", "word", "learn", "language", "quiz", "save-cost", "cli-tools", "token", "cost", "ascii-art", "ascii", "figlet", "toilet", "jp2a", "chafa", "cowsay", "banner", "text-to-ascii", "image-to-ascii", "grill-me", "interview", "socratic", "decision-tree", "stress-test", "copycat", "skill-porting", "adaptation", "github"]
     },
     {
       "name": "projects",
@@ -58,10 +58,10 @@
     },
     {
       "name": "session",
-      "description": "Plugin รวม Skills สำหรับจัดการ Session ของ Claude Code — ตั้งชื่อ บันทึกวัตถุประสงค์ และรักษาบริบทของ session",
+      "description": "Plugin รวม Skills สำหรับจัดการ Session ของ Claude Code — ตั้งชื่อ บันทึกวัตถุประสงค์ รักษาบริบทของ session และเขียนเอกสารส่งไม้ต่อตอนจบ session",
       "source": "./plugins/session",
       "category": "productivity",
-      "keywords": ["session", "context", "workflow", "memory", "claude-code"]
+      "keywords": ["session", "context", "workflow", "memory", "claude-code", "handoff", "redact"]
     },
     {
       "name": "language",
