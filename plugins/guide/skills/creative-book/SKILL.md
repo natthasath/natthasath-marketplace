@@ -6,7 +6,8 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ถามเรื่อง font, design style, หรือการเตรียม presentation/report —
   เช่น "ทำ slide McKinsey ใช้ font อะไร", "อยากได้ style แบบ Apple", "ทำ dashboard ใช้ font ไหนดี",
   "เตรียม pitch deck startup", "ต้องการ design แบบ minimal" หรือบอก use case โดยไม่ระบุชื่อ style —
-  แม้ผู้ใช้จะไม่ได้พูดถึง design system โดยตรง ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/guide:creative-book` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:

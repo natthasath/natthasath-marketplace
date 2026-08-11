@@ -11,8 +11,8 @@ description: >
   "โปรเจกต์นี้ควรใช้ license อะไร", "ใส่ MIT ให้หน่อย", "เพิ่ม LICENSE ให้ repo",
   "อยากเปิด source แต่ไม่อยากให้ใครเอาไปขาย", "MIT กับ Apache ต่างกันยังไง",
   "จะกัน AWS เอาโค้ดไปทำ managed service ยังไง", "ใส่ license ให้ dataset นี้"
-  — แม้ผู้ใช้จะไม่ได้เอ่ยชื่อ license ตัวไหนเลย ถ้าเขากำลังคิดว่าจะให้คนอื่นใช้งานของเขาได้แค่ไหน
-  ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/github-license` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท

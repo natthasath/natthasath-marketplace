@@ -5,7 +5,8 @@ description: >
   เขียนในเสียงของ Senior Engineer ที่มีประสบการณ์จริง ไม่ใช่ตำรา HR
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ระบุหัวข้ออบรมหรือ workshop และต้องการมุมมองหรือข้อคิดจากผู้ปฏิบัติงานจริง
   เช่น "DevOps", "Cyber Security", "Agile", "Project Management" หรือหัวข้ออบรมใดก็ตาม
-  แม้จะไม่ได้ขอ "มุมมอง" โดยตรง ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/perspective` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:

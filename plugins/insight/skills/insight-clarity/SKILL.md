@@ -10,13 +10,14 @@ description: >
   ก่อนเรียก tool จริงเสมอ ใช้ skill นี้ทันทีเมื่อผู้ใช้พูดถึง "Microsoft Clarity",
   "Clarity", "rage click", "dead click", "session recording", "scroll depth",
   "UX เว็บไซต์", "คนคลิกมั่วๆ ตรงไหนบ้าง", "ทำไมคนไม่กด", "heatmap พฤติกรรมผู้ใช้"
-  หรือขอวิเคราะห์พฤติกรรมผู้ใช้บนหน้าเว็บใดๆ แม้ผู้ใช้จะไม่ได้พูดคำว่า "Clarity"
-  ตรงๆ ให้ trigger skill นี้เสมอเมื่อมีคำขอลักษณะนี้
+  หรือขอวิเคราะห์พฤติกรรมผู้ใช้บนหน้าเว็บใดๆ เรียกใช้ผ่าน `/insight-clarity` เท่านั้น —
+  ไม่ auto-trigger จากบทสนทนา
 tools:
   - Bash
   - Read
   - Write
   - Artifact
+disable-model-invocation: true
 ---
 
 # บทบาท:

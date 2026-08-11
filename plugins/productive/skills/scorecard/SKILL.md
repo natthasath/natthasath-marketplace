@@ -5,7 +5,8 @@ description: >
   ครอบคลุมทุกสายงาน: Infrastructure, Network, Database, Developer, Security, Cloud, DevOps
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการประเมินงาน IT ว่ายากแค่ไหน ต้องใช้ทักษะระดับไหน
   หรือถามว่า "งานนี้ level ไหน", "ยากไหม", "ต้องใช้ senior หรือเปล่า", "estimate ได้ไหม"
-  แม้ไม่ได้พูดถึง scorecard โดยตรง
+  เรียกใช้ผ่าน `/scorecard` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:

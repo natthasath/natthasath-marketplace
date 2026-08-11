@@ -6,7 +6,8 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้วางข้อความธรรมดาแล้วต้องการให้อ่านง่ายขึ้น, ขอให้ "highlight",
   "format", "เน้นสิ่งสำคัญ", "จัด note", "ทำตัวหนา", "เพิ่ม bold/italic", "จัด formatting"
   หรือส่งข้อความมาพร้อมบอกว่าอยากให้ readable มากขึ้น —
-  แม้ผู้ใช้จะไม่ได้พูดถึง Capacities โดยตรง ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/highlight` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:

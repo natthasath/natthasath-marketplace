@@ -8,13 +8,14 @@ description: >
   ทันทีเมื่อผู้ใช้พูดถึง "ติดตั้ง CLI tools ประหยัด token", "setup tools ให้ Claude ใช้",
   "ลด token usage", "ทำไม Claude กิน token เยอะ", "มี tool อะไรช่วยลด context บ้าง"
   หรือกำลังเริ่ม setup เครื่อง/โปรเจกต์ใหม่และถามหา best practice ด้าน tooling
-  แม้ผู้ใช้จะไม่ได้พูดคำว่า "token" หรือ "CLI" ตรงๆ ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/save-cost` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
 tools:
   - Bash
   - Read
   - Write
   - Edit
   - AskUserQuestion
+disable-model-invocation: true
 ---
 
 # บทบาท:

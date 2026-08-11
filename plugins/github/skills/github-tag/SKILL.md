@@ -5,13 +5,15 @@ description: >
   สำหรับบันทึกลง Capacities โดยดึง GitHub topics ที่ repo นั้นตั้งไว้อยู่แล้วมาเป็น
   tag หลัก แล้วเสริมด้วย tag ภาษา/เทคโนโลยีที่เจอใน README แต่ยังไม่มีใน topics
   รูปแบบ tag เป็นแบบเปลือยเหมือน GitHub topic เช่น `#python` `#docker` `#cli-tool`
-  ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการ tag repo, จัดหมวด project บน GitHub ลง Capacities,
+  ใช้เมื่อผู้ใช้ต้องการ tag repo, จัดหมวด project บน GitHub ลง Capacities,
   หรือถามว่า repo นี้ควร tag ว่าอะไร เช่น "ช่วย tag repo นี้หน่อย", "อยากเก็บ repo นี้ลง
-  Capacities ต้องใส่ tag อะไรบ้าง", "ดู README แล้วบอก tag ให้หน่อย" — ถ้าผู้ใช้ยังไม่ได้
-  แนบลิงก์ GitHub repo หรือ path ในเครื่องมาด้วย ต้องถามก่อนเสมอ ห้ามเดา repo เอง
+  Capacities ต้องใส่ tag อะไรบ้าง", "ดู README แล้วบอก tag ให้หน่อย" เรียกใช้ผ่าน `/github-tag`
+  เท่านั้น — ไม่ auto-trigger จากบทสนทนา ถ้าผู้ใช้ยังไม่ได้แนบลิงก์ GitHub repo หรือ path ในเครื่อง
+  มาด้วย ต้องถามก่อนเสมอ ห้ามเดา repo เอง
 tools:
   - Bash
   - Read
+disable-model-invocation: true
 ---
 
 # บทบาท:

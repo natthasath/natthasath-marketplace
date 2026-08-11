@@ -9,12 +9,12 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้พูดถึง ASCII art, figlet, toilet, jp2a, chafa, banner, ตัวอักษรใหญ่,
   แปลงรูปเป็นตัวอักษร, ทำ header สวยๆ ให้ README/CLI/MOTD, "ทำโลโก้เป็น ASCII", "เอาชื่อนี้ทำเป็น
   ตัวใหญ่ๆ", "แปลงรูปนี้เป็นตัวหนังสือ", "ทำ splash screen ให้ CLI", "อยากได้ ASCII เท่ๆ" —
-  แม้ผู้ใช้จะไม่ได้เอ่ยคำว่า ASCII ตรงๆ ถ้าเขาต้องการตัวอักษรขนาดใหญ่แบบศิลปะหรือแปลงภาพเป็น
-  ตัวอักษร ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/ascii-art` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
 tools:
   - Bash
   - Read
   - AskUserQuestion
+disable-model-invocation: true
 ---
 
 # บทบาท:

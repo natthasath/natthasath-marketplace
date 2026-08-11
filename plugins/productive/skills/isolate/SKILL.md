@@ -5,7 +5,8 @@ description: >
   ช่วยให้เข้าใจ "ทำไมถึงมี" และ "ต่างจากอะไร" ไม่ใช่แค่ "คืออะไร"
   ใช้ skill นี้ทันทีเมื่อผู้ใช้พิมพ์ชื่อเทคโนโลยี เครื่องมือ หรือแนวคิดใดๆ เช่น "Docker", "Kafka", "CQRS",
   "อธิบาย Kubernetes หน่อย", "Redis ต่างจาก Memcached ยังไง", "ทำไมต้องใช้ Message Queue" —
-  แม้จะไม่ได้ขอ summary โดยตรง ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/isolate` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:

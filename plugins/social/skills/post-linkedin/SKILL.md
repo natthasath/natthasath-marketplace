@@ -5,7 +5,8 @@ description: >
   ช่วยสร้าง personal branding และ thought leadership สำหรับ professional audience
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการเขียน LinkedIn post หรือ content ภาษาอังกฤษสำหรับ professional audience
   เช่น "ช่วยเขียนเรื่อง Docker ให้ดูเป็น expert หน่อย", "อยากโพสต์ LinkedIn เรื่อง..."
-  แม้จะแค่บอกหัวข้อ IT/tech ที่อยากโพสต์โดยไม่ได้ระบุ platform ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/post-linkedin` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:

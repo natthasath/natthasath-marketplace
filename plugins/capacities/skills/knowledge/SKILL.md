@@ -5,7 +5,8 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการบันทึกความหมาย คำนิยาม หรือ knowledge ของคำศัพท์ หัวข้อ หรือแนวคิดใดๆ
   เช่น "อธิบาย Bay Plan", "บันทึกความรู้เรื่อง TCP/IP", "สร้าง note สำหรับ Kubernetes",
   "knowledge เรื่อง Load Balancer", "อยากเก็บนิยาม CQRS ลง Capacities"
-  แม้ผู้ใช้จะไม่ได้พูดถึง Capacities โดยตรง ให้ trigger skill นี้เสมอเมื่อต้องการ structured knowledge note
+  เรียกใช้ผ่าน `/knowledge` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:

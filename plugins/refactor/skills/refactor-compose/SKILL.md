@@ -5,7 +5,8 @@ description: >
   ตามแนวทาง best practice มุ่งเน้น structure, consistency และ production readiness
   ใช้ skill นี้ทันทีเมื่อผู้ใช้แชร์หรือขอสร้าง docker-compose.yml หรือ .env file
   เช่น "ช่วยทำ docker สำหรับ postgres กับ n8n", "รีแฟกเตอร์ docker-compose ให้หน่อย", "อยาก deploy service หลายตัว"
-  แม้จะแค่บอกชื่อ service หรือ tech stack ที่ต้องการ deploy ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/refactor-compose` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:

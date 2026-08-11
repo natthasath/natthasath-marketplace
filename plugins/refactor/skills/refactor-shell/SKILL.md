@@ -5,7 +5,8 @@ description: >
   พร้อม error handling, logging และ production-ready best practices
   ใช้ skill นี้ทันทีเมื่อผู้ใช้แชร์หรือขอสร้าง Shell Script หรือ Bash Script
   เช่น "ช่วยเขียน script สำรองข้อมูล", "ช่วย refactor script นี้หน่อย", "อยาก automate การ deploy"
-  แม้จะแค่บอกว่าต้องการ automate task บน Linux/Mac ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/refactor-shell` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:

@@ -6,7 +6,8 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ถามเรื่องการจดบันทึก วิธีจด note หรือไม่รู้ว่าควรใช้ pattern ไหน —
   เช่น "จะจด note ประชุมดีไหม", "อยากสร้าง PKM แบบไหนดี", "จดเรียนแบบไหนให้ทบทวนง่าย",
   "debug log ควรจดยังไง", "อยากเก็บ knowledge base ระยะยาว"
-  แม้ผู้ใช้จะไม่ได้พูดถึง pattern โดยตรง ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/guide:note-taking` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:

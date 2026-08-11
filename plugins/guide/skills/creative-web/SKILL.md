@@ -7,7 +7,8 @@ description: >
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ถามเรื่อง design เว็บไซต์, landing page, web UI, สี, หรือ font เว็บ —
   เช่น "ทำเว็บ portfolio ใช้ style อะไรดี", "อยากได้เว็บแบบ Stripe", "landing page SaaS ใช้สีไหน",
   "ทำเว็บโรงพยาบาล", "เว็บ ecommerce ควร design ยังไง", "อยากได้ dark theme แบบ dev tool" —
-  แม้ผู้ใช้จะไม่ได้พูดถึงชื่อ design style โดยตรง ให้ trigger skill นี้เสมอเมื่อเป็นงานออกแบบเว็บ
+  เรียกใช้ผ่าน `/guide:creative-web` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:

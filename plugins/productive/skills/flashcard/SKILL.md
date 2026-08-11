@@ -4,7 +4,8 @@ description: >
   สร้าง Flashcard website (LexiCard) สำหรับเรียนคำศัพท์ รองรับหลายภาษา พร้อมระบบ Flip Card, Quiz และการออกเสียง
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการสร้าง flashcard หรือเรียนคำศัพท์
   เช่น "สร้าง flashcard ภาษาญี่ปุ่น", "ทำ flashcard คำศัพท์อังกฤษหมวดอาหาร", "เรียนคำศัพท์ IT 20 คำ", "สร้างชุดคำศัพท์"
-  แม้ผู้ใช้จะไม่ได้พูดถึง flashcard โดยตรง ให้ trigger skill นี้เสมอเมื่อต้องการท่องหรือเรียนคำศัพท์
+  เรียกใช้ผ่าน `/flashcard` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:

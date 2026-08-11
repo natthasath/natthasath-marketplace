@@ -30,21 +30,30 @@ plugins/<plugin>/skills/<skill-name>/
 ---
 name: skill-name
 description: >
-  [ภาษาไทย] อธิบายว่า skill ทำอะไร ต่อด้วย "ใช้ skill นี้ทันทีเมื่อผู้ใช้พูดถึง..." แล้วยกตัวอย่าง
-  ประโยคที่ผู้ใช้น่าจะพิมพ์จริง 3-4 ตัวอย่างในเครื่องหมายคำพูด ปิดท้ายด้วยประโยคย้ำว่า
-  "แม้ผู้ใช้จะไม่ได้พูดถึง X โดยตรง ให้ trigger skill นี้เสมอ"
+  [ภาษาไทย] อธิบายว่า skill ทำอะไร แล้วปิดท้ายด้วย "เรียกใช้ผ่าน `/skill-name` เท่านั้น —
+  ไม่ auto-trigger จากบทสนทนา"
+disable-model-invocation: true
 tools:
   - Bash
   - Read
 ---
 ```
 
-- `description` คือกลไกหลักที่ทำให้ skill ถูก trigger — ต้อง "pushy" หน่อย (บอกชัดว่าต้อง trigger
-  เมื่อไหร่ ไม่ใช่แค่บอกว่าทำอะไรได้) ไม่งั้น Claude มักจะ under-trigger skill
-  ดูตัวอย่างจริงใน `plugins/productive/skills/save-cost/SKILL.md` หรือ `ascii-art/SKILL.md`
+- **นโยบายปัจจุบันของ marketplace นี้คือ manual-invoke-only ทุก skill** — ทุก skill ต้องใส่
+  `disable-model-invocation: true` เสมอ (field มาตรฐานของ Claude Code ยืนยันแล้วว่าใช้ได้จริง:
+  ปิด auto-trigger จากบทสนทนา แต่เรียกผ่าน `/skill-name` ได้ตามปกติ) ยกเว้น skill ใน plugin
+  `projects` เท่านั้นที่ไม่ต้องใส่ (ยังคงพฤติกรรมเดิม)
+- เพราะงั้น `description` **ไม่ต้อง** เขียนแบบ pushy บอกให้ auto-trigger เหมือนที่เอกสาร skill-creator
+  ทั่วไปแนะนำ (นั่นออกแบบมาสำหรับ skill ที่ auto-trigger ได้) — แทนที่ด้วยการอธิบายว่าทำอะไร ใช้ตอนไหน
+  ให้ผู้ใช้ (คน) อ่านแล้วรู้ว่าจะเรียกเมื่อไหร่ แล้วปิดท้ายด้วยประโยคบอกวิธีเรียกตรงๆ ดูตัวอย่างจริงใน
+  `plugins/productive/skills/save-cost/SKILL.md` หรือ `plugins/session/skills/session-name/SKILL.md`
 - ภาษาไทยเป็นหลัก คงศัพท์เทคนิค/ชื่อเฉพาะภาษาอังกฤษไว้ (เช่น "GitHub topics", "API")
+- ใช้ `/skill-name` เปล่าๆ ในประโยคเรียกใช้ ยกเว้น plugin `guide`, `language`, `utility` ที่ต้องมี
+  prefix ชื่อ plugin ด้วย (เช่น `/utility:os-design`) — เช็ค README ของ plugin ปลายทางก่อนเขียนเสมอ
+  เพราะ convention นี้ไม่ได้เหมือนกันทุก plugin
 - `tools:` เป็น optional list — ใส่เฉพาะตอนที่ skill ต้องใช้เครื่องมือนอกเหนือจากอ่าน/เขียนข้อความ
-  ทั่วไป (เช่น `Bash` ถ้ามี script ที่ต้องรัน, `Write` ถ้าต้องสร้างไฟล์ผลลัพธ์)
+  ทั่วไป (เช่น `Bash` ถ้ามี script ที่ต้องรัน, `Write` ถ้าต้องสร้างไฟล์ผลลัพธ์, `Agent` ถ้าต้อง
+  dispatch subagent)
 
 ## 3. โครงสร้าง body
 

@@ -10,13 +10,14 @@ description: >
   browser) ใช้ skill นี้ทันทีเมื่อผู้ใช้พูดถึง "Google Analytics", "GA4", "traffic
   เว็บ", "คนเข้าเว็บกี่คน", "หน้าไหนคนดูเยอะสุด", "conversion rate", "funnel",
   "ทราฟฟิกมาจากไหน", "real-time analytics", "รายงาน analytics", "สรุปสถิติเว็บไซต์"
-  หรือขอให้ดึง/สรุปข้อมูลจาก property GA4 ใดๆ แม้ผู้ใช้จะไม่ได้พูดคำว่า "GA4" หรือ
-  "Google Analytics" ตรงๆ ให้ trigger skill นี้เสมอเมื่อมีคำขอลักษณะนี้
+  หรือขอให้ดึง/สรุปข้อมูลจาก property GA4 ใดๆ เรียกใช้ผ่าน `/insight-ga4` เท่านั้น —
+  ไม่ auto-trigger จากบทสนทนา
 tools:
   - Bash
   - Read
   - Write
   - Artifact
+disable-model-invocation: true
 ---
 
 # บทบาท:

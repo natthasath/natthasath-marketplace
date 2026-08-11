@@ -5,7 +5,8 @@ description: >
   แบ่งเป็น 4 โซน: Yellow (บวก+พลังสูง), Red (ลบ+พลังสูง), Green (บวก+พลังต่ำ), Blue (ลบ+พลังต่ำ)
   ใช้ skill นี้ทันทีเมื่อผู้ใช้แชร์บันทึก Daily Notes หรือข้อความใดๆ แล้วถามว่า "ควร tag อะไร",
   "รู้สึกยังไง", "mood วันนี้คืออะไร", หรือต้องการ categorize อารมณ์ลงใน Capacities —
-  แม้ผู้ใช้จะไม่ได้พูดถึง Yale Mood Meter หรือ Capacities โดยตรง ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/mood-tag` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:

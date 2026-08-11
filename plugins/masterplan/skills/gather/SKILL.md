@@ -4,8 +4,9 @@ description: >
   รวบรวมและจัดโครงสร้าง Requirement ของระบบผ่านการตั้งคำถามกับ stakeholder อย่างเป็นระบบ
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการเก็บ requirement, สัมภาษณ์ stakeholder, หรือวิเคราะห์ความต้องการของระบบ
   เช่น "ไม่รู้จะถามอะไรดี", "ต้องประชุมกับผู้บริหาร", "ช่วยเก็บ requirement หน่อย"
-  แม้ผู้ใช้จะไม่ได้พูดคำว่า requirement โดยตรง ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/gather` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
   ใช้ต่อจาก /kickoff → ถัดไป /analyze
+disable-model-invocation: true
 ---
 
 # บทบาท:

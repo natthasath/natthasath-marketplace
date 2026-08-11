@@ -5,7 +5,8 @@ description: >
   ด้าน security, performance และ efficient build caching
   ใช้ skill นี้ทันทีเมื่อผู้ใช้แชร์หรือขอสร้าง Dockerfile หรือต้องการ containerize application
   เช่น "อยากทำ Docker สำหรับ FastAPI", "ช่วย optimize Dockerfile นี้หน่อย", "สร้าง Dockerfile สำหรับ Node.js"
-  แม้จะแค่บอก tech stack โดยไม่ได้แนบ Dockerfile มา ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/refactor-dockerfile` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:

@@ -42,12 +42,17 @@ marketplace นี้เลือกไว้แล้วว่าไม่ต�
 แล้วแทนที่ด้วยอะไรที่ generic หรือถามผู้ใช้ถ้าจำเป็นต้องรู้ค่าเฉพาะของเครื่องเขา (เช่น path ที่อยากให้
 บันทึกไฟล์ผลลัพธ์ไว้)
 
-## 4. เขียน description ใหม่ให้ "pushy" ตาม pattern
+## 4. เขียน description ใหม่ให้ manual-invoke-only ตาม pattern
 
-Description ของ skill ต้นทางส่วนใหญ่ (โดยเฉพาะจาก Anthropic's official skill examples หรือ
-community skills) เขียนแบบสุภาพเรียบๆ บอกแค่ว่าทำอะไรได้ — แต่ pattern ของ marketplace นี้ต้อง
-"pushy" กว่านั้น คือต้องบอกชัดว่า "ใช้ skill นี้ทันทีเมื่อ..." พร้อมยกตัวอย่างประโยคที่ผู้ใช้พิมพ์จริง
-ให้เขียนใหม่ทั้งหมด ไม่ใช่แค่แปล — ดูรายละเอียดใน `references/repo-pattern.md` หัวข้อ 2
+Marketplace นี้ตั้งนโยบายว่าทุก skill ต้อง `disable-model-invocation: true` เสมอ (ยกเว้น plugin
+`projects`) — ใส่ field นี้ในทุก skill ที่สร้างโดยไม่ต้องถามผู้ใช้ (เป็น default ของ repo นี้ไปแล้ว)
+
+ถ้า description ของ skill ต้นทางเขียนแบบ pushy บอกให้ auto-trigger (เช่น "use this whenever...",
+"always invoke when...") ให้ตัดส่วนนั้นออก แล้วเขียนใหม่ให้บอกแค่ว่า skill ทำอะไร ใช้ตอนไหน (สำหรับ
+คนอ่าน ไม่ใช่สำหรับ trigger อัตโนมัติ) แล้วปิดท้ายด้วย "เรียกใช้ผ่าน `/skill-name` เท่านั้น —
+ไม่ auto-trigger จากบทสนทนา" — ถ้า skill ต้นทางเดิมก็ manual-invoke-only อยู่แล้ว (มี field แบบ
+`disable-model-invocation`/`disableModelInvocation` หรือคล้ายกัน) แปลว่า intent ตรงกับ pattern นี้
+พอดี ไม่ต้องเปลี่ยนอะไรมาก แค่แปล/เรียบเรียงใหม่ตาม `references/repo-pattern.md` หัวข้อ 2
 
 ## 5. ตั้งชื่อ skill ใหม่
 

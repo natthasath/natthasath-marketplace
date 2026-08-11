@@ -5,7 +5,8 @@ description: >
   เกินกว่าคำตอบที่ซ้อมมาและประสบการณ์ที่บอกเล่าในพื้นผิว
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการออกแบบคำถามสัมภาษณ์งาน, เตรียม interview guide, หรือ roleplay เป็นนักสัมภาษณ์
   เช่น "ช่วยออกแบบคำถาม interview", "อยาก roleplay สัมภาษณ์งาน", "position นี้ควรถามอะไร"
-  แม้จะแค่บอก position หรือ JD มาโดยไม่ได้ขอ "คำถามสัมภาษณ์" โดยตรง ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/roleplay-interview` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:

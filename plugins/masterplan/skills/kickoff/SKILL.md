@@ -5,8 +5,9 @@ description: >
   สร้างไฟล์ masterplan.md เป็นพิมพ์เขียวสำหรับการพัฒนา
   ใช้ skill นี้ทันทีเมื่อผู้ใช้มีไอเดียแอปหรือระบบใหม่ที่อยากสร้าง หรือต้องการวางแผนการพัฒนา
   เช่น "อยากสร้างแอป...", "ต้องการพัฒนาระบบ...", "ควรเริ่มต้นยังไง"
-  แม้ผู้ใช้จะไม่ได้พูดถึง masterplan โดยตรง ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/kickoff` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
   จุดเริ่มต้นของ workflow: /kickoff → /gather → /analyze → /architect → /database
+disable-model-invocation: true
 ---
 
 # บทบาท:

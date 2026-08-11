@@ -5,7 +5,8 @@ description: >
   ครอบคลุม Objective, Key Topics, Discussions, Decisions, Action Items และ Next Step
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการสรุปการประชุม
   เช่น "สรุปประชุมหน่อย", "ช่วยเขียน MOM", "นี่คือ note จากประชุมวันนี้"
-  แม้จะไม่ได้พูดว่า "สรุป" โดยตรง เช่น "เมื่อกี้ประชุมมา มีเรื่องนี้นี้นี้" ให้ trigger skill นี้เสมอ
+  เช่น "เมื่อกี้ประชุมมา มีเรื่องนี้นี้นี้" เรียกใช้ผ่าน `/comeet` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:

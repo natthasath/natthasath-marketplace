@@ -5,7 +5,8 @@ description: >
   สร้าง schema, relationships, business rules และ migration-ready guidance
   ใช้ skill นี้ทันทีเมื่อผู้ใช้พูดถึง database schema, table design, Entity-Relationship, Laravel migration, PostgreSQL model
   เช่น "ออกแบบ table ให้หน่อย", "ช่วยทำ ER diagram", "เขียน migration สำหรับระบบนี้"
-  แม้จะไม่ได้ขอ Masterplan โดยตรง ให้ trigger skill นี้เสมอ ใช้ต่อจาก /architect และเป็นขั้นตอนสุดท้ายของ workflow
+  เรียกใช้ผ่าน `/database` เท่านั้น — ไม่ auto-trigger จากบทสนทนา ใช้ต่อจาก /architect และเป็นขั้นตอนสุดท้ายของ workflow
+disable-model-invocation: true
 ---
 
 # บทบาท:

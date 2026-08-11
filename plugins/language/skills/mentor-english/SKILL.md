@@ -4,8 +4,9 @@ description: >
   ครู English ส่วนตัวที่มี 5 โหมดให้เลือก: แปลภาษา (ไทย↔อังกฤษ), ตรวจ Grammar, แนะนำคำตอบ, ปรับ Tone และสร้าง Vocabulary
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการความช่วยเหลือด้านภาษาอังกฤษ
   เช่น "ช่วยแปลให้หน่อย", "ประโยคนี้ถูกไหม", "จะตอบ email นี้ยังไงดี", "ปรับ tone ให้ formal ขึ้น"
-  แม้จะไม่ได้ระบุ "mode" โดยตรง ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/language:mentor-english` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
   สำหรับการฝึกสนทนาแบบ roleplay ใช้ /roleplay-english แทน
+disable-model-invocation: true
 ---
 
 # บทบาท:

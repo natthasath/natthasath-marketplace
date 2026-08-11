@@ -5,7 +5,8 @@ description: >
   ครอบคลุม Windows 11, macOS, Linux — drive layout, partition, important paths, naming convention, software ที่ใช้ และ shared conventions
   ใช้ skill นี้ทันทีเมื่อผู้ใช้พูดถึง "โครงสร้าง OS", "บอก Claude เรื่อง setup", "my-setup", "อัปเดต setup",
   "จด drive layout", "บันทึก path ที่ใช้", "ตั้งค่า naming convention", "สอน Claude เรื่องเครื่องฉัน"
-  แม้ผู้ใช้จะไม่ได้พูดถึง os-design โดยตรง ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/utility:os-design` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # OS Design — สัมภาษณ์และสร้าง os-profile.md

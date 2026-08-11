@@ -7,14 +7,15 @@ description: >
   ภาษา) ปรับโครงสร้างไฟล์และ frontmatter ให้ตรง pattern ของ repo นี้ แล้วถามก่อนเสมอว่าจะใส่ไว้ใน
   plugin ไหน ใช้ skill นี้ทันทีเมื่อผู้ใช้พูดถึง "เอา skill นี้มาปรับใช้หน่อย", "copycat skill จาก
   repo นี้ให้หน่อย", "เจอ skill นี้ในเน็ต อยากได้แบบนี้บ้าง", "ก็อป skill อันนี้มาแปลงให้เข้ากับของเรา"
-  หรือแปะลิงก์ GitHub ของ skill/agent มาพร้อมบอกว่าอยากใช้ในเครื่องนี้ แม้ผู้ใช้จะไม่ได้พูดคำว่า
-  "copycat" ตรงๆ ให้ trigger skill นี้เสมอเมื่อมีความต้องการนำ skill จากที่อื่นมาปรับใช้
+  หรือแปะลิงก์ GitHub ของ skill/agent มาพร้อมบอกว่าอยากใช้ในเครื่องนี้ เรียกใช้ผ่าน `/copycat`
+  เท่านั้น — ไม่ auto-trigger จากบทสนทนา
 tools:
   - Bash
   - Read
   - Write
   - Glob
   - Grep
+disable-model-invocation: true
 ---
 
 # บทบาท:
@@ -69,7 +70,7 @@ private repo ได้ถ้า login ไว้) แล้ว fallback เป็
 ## 3. ประเมินและวางแผนดัดแปลง
 เปิด `references/adaptation-guide.md` ทำตามขั้นตอน 1–6 ในนั้น: เช็ค dependency ภายนอกที่เครื่องนี้
 อาจไม่มี, เช็ค license/การอ้างอิงต้นทาง, generalize สิ่งที่เฉพาะเจาะจงกับคนอื่น, เขียน description
-ใหม่ให้ pushy ตาม pattern, และร่างชื่อ skill ใหม่
+ใหม่ตาม pattern (manual-invoke-only เสมอ ไม่ auto-trigger), และร่างชื่อ skill ใหม่
 
 ## 4. สรุปให้ผู้ใช้ฟังก่อนเสมอ
 แสดงสรุปสั้นๆ (ไม่ใช่ก็อปเนื้อหาต้นฉบับมาแปะทั้งดุ้น) ว่า:

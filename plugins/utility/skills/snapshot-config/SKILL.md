@@ -5,7 +5,8 @@ description: >
   รองรับ Windows 11, macOS, Linux Ubuntu — ครอบคลุม editor, terminal, shell, package manager, dev tools
   ใช้ skill นี้ทันทีเมื่อผู้ใช้พูดถึง "export config", "backup settings", "snapshot การตั้งค่า",
   "สำรอง config", "เซฟ settings", "ย้าย config ไปเครื่องใหม่", "แนะนำ settings" ของโปรแกรมใดก็ตาม
-  แม้ผู้ใช้จะไม่ได้พูดถึง snapshot-config โดยตรง ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/utility:snapshot-config` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # Snapshot Config — Export และแนะนำการตั้งค่าโปรแกรม

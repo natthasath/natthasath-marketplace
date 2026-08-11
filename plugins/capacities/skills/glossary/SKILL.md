@@ -4,7 +4,8 @@ description: >
   อธิบายความหมายของตัวย่อหรือศัพท์เทคนิค (Abbreviations / Acronyms) ในรูปแบบ 1 paragraph สำหรับบันทึกลง Capacities
   ใช้ skill นี้ทันทีเมื่อผู้ใช้พิมพ์ตัวย่อและต้องการคำอธิบาย เช่น "CVE คืออะไร", "อธิบาย SLA ให้หน่อย",
   "ความหมายของ API", "จดความหมายของ DNS" หรือแปะตัวย่อมาเฉย ๆ โดยไม่มีบริบทอื่น —
-  แม้ผู้ใช้จะไม่ได้พูดถึง Capacities หรือ glossary โดยตรง ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/glossary` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:

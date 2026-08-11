@@ -5,7 +5,8 @@ description: >
   ครอบคลุม patterns, tech stacks, infrastructure design และ integration strategies
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการเลือก architecture, กำหนด tech stack, หรือออกแบบโครงสร้างระบบ
   เช่น "ควรใช้ Microservices ไหม", "เลือก architecture แบบไหนดี", "วางโครงสร้างระบบให้หน่อย"
-  แม้ผู้ใช้จะไม่ได้พูดถึง architect โดยตรง ให้ trigger skill นี้เสมอ ใช้ต่อจาก /analyze → ถัดไป /database
+  เรียกใช้ผ่าน `/architect` เท่านั้น — ไม่ auto-trigger จากบทสนทนา ใช้ต่อจาก /analyze → ถัดไป /database
+disable-model-invocation: true
 ---
 
 # บทบาท:

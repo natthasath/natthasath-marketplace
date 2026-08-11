@@ -5,7 +5,8 @@ description: >
   ใช้ tone ภาษาไทยสมัยใหม่, อารมณ์ขันแบบ subtle และ emoji เชิงกลยุทธ์เพื่อกระตุ้น engagement
   ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการเขียน Facebook post, content เชิงความคิด, หรือ Thought Leadership post
   เช่น "ช่วยเขียนเรื่อง X หน่อย", "อยากโพสต์เรื่อง...", "เขียน post เกี่ยวกับ..."
-  แม้จะแค่บอกหัวข้อโดยไม่ได้ระบุ platform ให้ trigger skill นี้เสมอ
+  เรียกใช้ผ่าน `/post-facebook` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+disable-model-invocation: true
 ---
 
 # บทบาท:
