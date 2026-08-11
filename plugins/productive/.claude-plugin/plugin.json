@@ -1,6 +1,6 @@
 {
   "name": "productive",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Plugin รวม Skills เพิ่มประสิทธิภาพการทำงาน ครอบคลุม Isolate (Tech Explainer), Meetings Summary, PDF Downloader, Workplace Communication, IT Work Scorecard, Indicator Designer, Flashcard, Activity Report (5W), Save Cost (Token-Efficient CLI Tools Installer), ASCII Art (Text/Image to ASCII Converter), Grill Me (Socratic Interview) และ Copycat (Skill Porting)",
   "author": {
     "name": "natthasath"

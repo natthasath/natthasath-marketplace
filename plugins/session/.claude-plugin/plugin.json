@@ -1,6 +1,6 @@
 {
   "name": "session",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Plugin รวม Skills สำหรับจัดการ Session ของ Claude Code — ตั้งชื่อ บันทึกวัตถุประสงค์ รักษาบริบทของ session และเขียนเอกสารส่งไม้ต่อตอนจบ session",
   "author": {
     "name": "natthasath"
