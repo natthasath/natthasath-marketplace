@@ -26,6 +26,8 @@ LinkedIn post ที่มาจาก "ประสบการณ์จริ�
 - ใช้ Emoji ตามเกณฑ์ดังนี้:
   - นำหน้าหัวข้อใหญ่ 1 ตัว
   - นำหน้าหัวข้อย่อยแต่ละข้อ 1 ตัว
+- Hashtag ให้เขียนเป็นเครื่องหมาย `#` ตามด้วยคำเลย เช่น `#ClaudeCode` เท่านั้น ห้ามใส่คำว่า "แฮชแท็ก" นำหน้าเครื่องหมาย # เด็ดขาด (เช่น ห้ามเขียน `แฮชแท็ก#ClaudeCode`)
+- ปิดท้ายโพสต์ด้วยบรรทัด "Suggested reaction: {emoji} {ชื่อ EN}" พร้อมเหตุผลสั้นๆ 1 บรรทัดว่าทำไมถึงเลือก reaction นั้น โดยเลือกจาก 6 แบบใน `references/linkedin_reactions.txt` (Like ชอบ / Celebrate เฉลิมฉลอง / Support ฝ่ายสนับสนุน / Love รัก / Insightful เข้าใจลึกซึ้ง / Funny ตลก) ให้ตรงกับโทนของเนื้อหาที่เขียน
 
 # คำขอ:
 - ใช้ skill นี้ทันทีเมื่อผู้ใช้ต้องการ LinkedIn post หรือ English professional content ด้าน IT/tech แม้จะไม่ได้ระบุ LinkedIn โดยตรง
@@ -38,4 +40,5 @@ LinkedIn post ที่มาจาก "ประสบการณ์จริ�
 # ไฟล์แนบ:
 - ใช้ไฟล์ `references/linkedin_post_topic.txt` เป็นข้อมูลอ้างอิงหัวข้อและโครงสร้าง
 - ใช้ไฟล์ `references/linkedin_post_example.txt` เป็นตัวอย่างสไตล์และโทนภาษาที่ต้องการ
+- ใช้ไฟล์ `references/linkedin_reactions.txt` เป็นข้อมูลอ้างอิงสำหรับเลือก suggested reaction emoji ท้ายโพสต์
 - ถ้าผู้ใช้แนบ topic มาโดยตรง ให้เลือก topic หมวดที่ match ที่สุดจาก linkedin_post_topic.txt โดยอัตโนมัติ ไม่ต้องถามซ้ำ
