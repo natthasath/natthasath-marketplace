@@ -1,6 +1,6 @@
 # 🎉 natthasath-marketplace
 
-A Claude Code plugin marketplace bundling 14 plugins and 61 skills across PKM, project planning, DevOps, content writing, language, design, and productivity — install with a single command and start using slash commands right away.
+A Claude Code plugin marketplace bundling 14 plugins and 61 skills across PKM, project planning, session management, content writing, language, design, and productivity — install with a single command and start using slash commands right away.
 
 ![plugins](https://img.shields.io/badge/plugins-14-blue)
 ![skills](https://img.shields.io/badge/skills-61-brightgreen)
@@ -12,7 +12,6 @@ A Claude Code plugin marketplace bundling 14 plugins and 61 skills across PKM, p
 | Plugin | Skills | วัตถุประสงค์ |
 |---|---|---|
 | [`capacities`](plugins/capacities/README.md) | 6 | จัดการ PKM บน Capacities — Tags, Knowledge Notes และ Text Formatting |
-| [`devops`](plugins/devops/README.md) | 1 | จัดการ Session Context — ตั้งชื่อและบันทึกจุดประสงค์ของ session |
 | [`document`](plugins/document/README.md) | 2 | จัดการเอกสารภาษาไทย — ตรวจสอบหนังสือราชการ และ blind ข้อมูล sensitive |
 | [`github`](plugins/github/README.md) | 2 | จัดการงาน GitHub repo — เลือก/ติดตั้ง License และแนะนำ Tag สำหรับเก็บ repo ลง Capacities |
 | [`guide`](plugins/guide/README.md) | 3 | แนะนำแนวทางออกแบบ — Design Style, Font Pairing, Web Design และ Note-taking |
@@ -23,6 +22,7 @@ A Claude Code plugin marketplace bundling 14 plugins and 61 skills across PKM, p
 | [`projects`](plugins/projects/README.md) | 15 | จัดการ development project — scaffold workflow ตั้งแต่ setup จนถึง ship |
 | [`refactor`](plugins/refactor/README.md) | 4 | ปรับปรุงโครงสร้างไฟล์ — Docker, Shell Script และ README |
 | [`roleplay`](plugins/roleplay/README.md) | 4 | จำลองบทบาทเพื่อฝึกทักษะ — สัมภาษณ์งาน, สอบสวน, กลยุทธ์ และภาษาอังกฤษ |
+| [`session`](plugins/session/README.md) | 1 | จัดการ Session ของ Claude Code — ตั้งชื่อและบันทึกจุดประสงค์ของ session |
 | [`social`](plugins/social/README.md) | 2 | สร้างโพสต์โซเชียลมีเดีย — Facebook และ LinkedIn |
 | [`utility`](plugins/utility/README.md) | 2 | จัดการระบบปฏิบัติการ — OS Setup และ Config Snapshot |
 
@@ -34,7 +34,6 @@ A Claude Code plugin marketplace bundling 14 plugins and 61 skills across PKM, p
 
 # 2. ติดตั้ง plugin ที่ต้องการ
 /plugin install capacities@natthasath-marketplace
-/plugin install devops@natthasath-marketplace
 /plugin install document@natthasath-marketplace
 /plugin install github@natthasath-marketplace
 /plugin install guide@natthasath-marketplace
@@ -45,6 +44,7 @@ A Claude Code plugin marketplace bundling 14 plugins and 61 skills across PKM, p
 /plugin install projects@natthasath-marketplace
 /plugin install refactor@natthasath-marketplace
 /plugin install roleplay@natthasath-marketplace
+/plugin install session@natthasath-marketplace
 /plugin install social@natthasath-marketplace
 /plugin install utility@natthasath-marketplace
 ```

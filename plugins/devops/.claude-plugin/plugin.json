@@ -1,9 +1,0 @@
-{
-  "name": "devops",
-  "version": "0.1.0",
-  "description": "Plugin รวม Skills สำหรับ DevOps ครอบคลุม Session Management และ Workflow",
-  "author": {
-    "name": "natthasath"
-  },
-  "keywords": ["devops", "session", "workflow", "context", "management"]
-}

@@ -1,6 +1,6 @@
-# 🎉 devops
+# 🎉 session
 
-Plugin for **DevOps workflow** — manages session context and streamlines working with Claude Code.
+Plugin for **managing Claude Code sessions** — names, tracks purpose, and preserves context across a working session.
 
 ### ⭐ Skills
 

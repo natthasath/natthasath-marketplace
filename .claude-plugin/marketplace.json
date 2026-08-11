@@ -57,11 +57,11 @@
       "keywords": ["projects", "setup", "task", "phase", "implement", "debug", "ship", "checkpoint", "workflow", "development"]
     },
     {
-      "name": "devops",
-      "description": "Plugin รวม Skills สำหรับ DevOps ครอบคลุม Session Management และ Workflow",
-      "source": "./plugins/devops",
-      "category": "development",
-      "keywords": ["devops", "session", "workflow", "context", "management"]
+      "name": "session",
+      "description": "Plugin รวม Skills สำหรับจัดการ Session ของ Claude Code — ตั้งชื่อ บันทึกวัตถุประสงค์ และรักษาบริบทของ session",
+      "source": "./plugins/session",
+      "category": "productivity",
+      "keywords": ["session", "context", "workflow", "memory", "claude-code"]
     },
     {
       "name": "language",

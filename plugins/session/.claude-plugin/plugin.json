@@ -1,0 +1,9 @@
+{
+  "name": "session",
+  "version": "0.2.0",
+  "description": "Plugin รวม Skills สำหรับจัดการ Session ของ Claude Code — ตั้งชื่อ บันทึกวัตถุประสงค์ และรักษาบริบทของ session",
+  "author": {
+    "name": "natthasath"
+  },
+  "keywords": ["session", "context", "workflow", "memory", "claude-code"]
+}
