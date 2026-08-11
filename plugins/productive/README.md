@@ -2,6 +2,9 @@
 
 Plugin for **boosting work productivity** — covers Tech Explainer, Meetings, PDF, Workplace Communication, IT Scorecard, KPI, Flashcard, Activity Report, and ASCII Art.
 
+> [!NOTE]
+> ทุก skill ใน plugin นี้เรียกใช้ผ่าน slash command เท่านั้น (`disable-model-invocation: true`) — ไม่ auto-trigger จากบทสนทนา
+
 ### ⭐ Skills
 
 | Skill | วัตถุประสงค์ |

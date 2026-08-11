@@ -2,6 +2,9 @@
 
 Plugin for **recommendations and matching the right choice** — Design Style, Font Pairing, Web Design, and Note-taking Pattern.
 
+> [!NOTE]
+> ทุก skill ใน plugin นี้เรียกใช้ผ่าน slash command เท่านั้น (`disable-model-invocation: true`) — ไม่ auto-trigger จากบทสนทนา
+
 ### ⭐ Skills
 
 | Skill | วัตถุประสงค์ |

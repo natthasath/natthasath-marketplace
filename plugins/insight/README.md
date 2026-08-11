@@ -2,6 +2,9 @@
 
 Plugin for **web analytics analysis** — pulls data from Google Analytics 4 and Microsoft Clarity through their official MCP servers, then presents it as a shareable web dashboard.
 
+> [!NOTE]
+> ทุก skill ใน plugin นี้เรียกใช้ผ่าน slash command เท่านั้น (`disable-model-invocation: true`) — ไม่ auto-trigger จากบทสนทนา
+
 ### ⭐ Skills
 
 | Skill | วัตถุประสงค์ |

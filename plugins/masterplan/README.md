@@ -2,6 +2,9 @@
 
 Plugin for **software project planning and analysis** — covers everything from Requirements through Architecture and Database Design, ready for implementation.
 
+> [!NOTE]
+> ทุก skill ใน plugin นี้เรียกใช้ผ่าน slash command เท่านั้น (`disable-model-invocation: true`) — ไม่ auto-trigger จากบทสนทนา
+
 ### ⭐ Skills
 
 | Skill | วัตถุประสงค์ |

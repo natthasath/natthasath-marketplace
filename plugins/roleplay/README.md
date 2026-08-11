@@ -2,6 +2,9 @@
 
 Plugin for **role-play simulation** — practice interview skills, investigation, strategic decision-making, and English conversation through realistic scenarios.
 
+> [!NOTE]
+> ทุก skill ใน plugin นี้เรียกใช้ผ่าน slash command เท่านั้น (`disable-model-invocation: true`) — ไม่ auto-trigger จากบทสนทนา
+
 ### ⭐ Skills
 
 | Skill | วัตถุประสงค์ |
