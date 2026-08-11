@@ -2,15 +2,12 @@
 
 Plugin for **language tools** — continuous interpretation with no extra commentary, plus an English Mentor for language learning.
 
-> [!NOTE]
-> ทุก skill ใน plugin นี้เรียกใช้ผ่าน slash command เท่านั้น (`disable-model-invocation: true`) — ไม่ auto-trigger จากบทสนทนา
-
 ### ⭐ Skills
 
 | Skill | วัตถุประสงค์ |
 |---|---|
-| `translate` | ล่ามแปลภาษาแบบต่อเนื่องระหว่าง 2 ภาษา ตรวจจับภาษาอัตโนมัติ แปลอย่างเดียวไม่มีคำอธิบาย |
-| `mentor-english` | ครู English ส่วนตัว รองรับ 5 โหมด: แปล, ตรวจแกรมมา, คิดประโยคตอบกลับ, ปรับ tone, คลังคำศัพท์ |
+| `translate` | ล่ามแปลภาษาแบบต่อเนื่องระหว่าง 2 ภาษา ตรวจจับภาษาอัตโนมัติ แปลอย่างเดียวไม่มีคำอธิบาย — เรียกผ่าน `/language:translate` เท่านั้น ไม่ auto-trigger |
+| `mentor-english` | ครู English ส่วนตัว รองรับ 5 โหมด: แปล, ตรวจแกรมมา, คิดประโยคตอบกลับ, ปรับ tone, คลังคำศัพท์ — เรียกผ่าน `/language:mentor-english` เท่านั้น ไม่ auto-trigger |
 
 ### 🏆 Usage
 

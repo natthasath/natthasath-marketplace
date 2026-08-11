@@ -2,9 +2,6 @@
 
 Plugin for **setting up and managing development projects** — scaffolds the `.claude/` and `context/` structure, with skills covering the full workflow from init to ship.
 
-> [!NOTE]
-> ต่างจาก plugin อื่นใน marketplace นี้ — skill ใน `projects` ยัง auto-trigger จากบทสนทนาได้ตามปกติ (ไม่ได้ตั้ง `disable-model-invocation: true`) เพราะออกแบบมาเป็น workflow pipeline ที่ต่อเนื่องกัน (setup → add-phase → add-task → ... → ship)
-
 ### ⭐ Skills
 
 | Skill | วัตถุประสงค์ |

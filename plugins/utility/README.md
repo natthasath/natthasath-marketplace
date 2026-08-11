@@ -2,15 +2,12 @@
 
 Plugin for **managing OS setup and config snapshots** — records your personal system layout and exports program settings, covering Windows 11, macOS (Mac Mini M4), and Linux Ubuntu Desktop 24.04.
 
-> [!NOTE]
-> ทุก skill ใน plugin นี้เรียกใช้ผ่าน slash command เท่านั้น (`disable-model-invocation: true`) — ไม่ auto-trigger จากบทสนทนา
-
 ### ⭐ Skills
 
 | Skill | วัตถุประสงค์ |
 |---|---|
-| `os-design` | สัมภาษณ์ผู้ใช้และสร้าง `os-profile.md` — บันทึก drive layout, paths, naming convention, software และ shared conventions ครบทุก OS |
-| `snapshot-config` | Export และ snapshot การตั้งค่าโปรแกรม พร้อมแนะนำการตั้งค่าที่เหมาะสมตาม OS และ workflow ของผู้ใช้ |
+| `os-design` | สัมภาษณ์ผู้ใช้และสร้าง `os-profile.md` — บันทึก drive layout, paths, naming convention, software และ shared conventions ครบทุก OS — เรียกผ่าน `/utility:os-design` เท่านั้น ไม่ auto-trigger |
+| `snapshot-config` | Export และ snapshot การตั้งค่าโปรแกรม พร้อมแนะนำการตั้งค่าที่เหมาะสมตาม OS และ workflow ของผู้ใช้ — เรียกผ่าน `/utility:snapshot-config` เท่านั้น ไม่ auto-trigger |
 
 ### 🏆 Usage
 

@@ -2,15 +2,12 @@
 
 Plugin for **web analytics analysis** — pulls data from Google Analytics 4 and Microsoft Clarity through their official MCP servers, then presents it as a shareable web dashboard.
 
-> [!NOTE]
-> ทุก skill ใน plugin นี้เรียกใช้ผ่าน slash command เท่านั้น (`disable-model-invocation: true`) — ไม่ auto-trigger จากบทสนทนา
-
 ### ⭐ Skills
 
 | Skill | วัตถุประสงค์ |
 |---|---|
-| `insight-ga4` | วิเคราะห์ Google Analytics 4 ผ่าน `google-analytics-mcp` — traffic เทียบช่วงเวลา (WoW/MoM), top pages, channel breakdown, funnel/conversion, real-time users, audience demographics |
-| `insight-clarity` | วิเคราะห์พฤติกรรมผู้ใช้จาก Microsoft Clarity ผ่าน `clarity-mcp-server` — UX health check (rage/dead clicks), engagement time/scroll depth, session recording lookup พร้อมจัดการโควต้า API 10 requests/วันให้อัตโนมัติด้วย local cache |
+| `insight-ga4` | วิเคราะห์ Google Analytics 4 ผ่าน `google-analytics-mcp` — traffic เทียบช่วงเวลา (WoW/MoM), top pages, channel breakdown, funnel/conversion, real-time users, audience demographics — เรียกผ่าน `/insight-ga4` เท่านั้น ไม่ auto-trigger |
+| `insight-clarity` | วิเคราะห์พฤติกรรมผู้ใช้จาก Microsoft Clarity ผ่าน `clarity-mcp-server` — UX health check (rage/dead clicks), engagement time/scroll depth, session recording lookup พร้อมจัดการโควต้า API 10 requests/วันให้อัตโนมัติด้วย local cache — เรียกผ่าน `/insight-clarity` เท่านั้น ไม่ auto-trigger |
 
 ### 🚀 Usage
 

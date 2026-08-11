@@ -2,15 +2,12 @@
 
 Plugin for **creating social media posts** — focused on Thought Leadership and Personal Branding for Facebook and LinkedIn.
 
-> [!NOTE]
-> ทุก skill ใน plugin นี้เรียกใช้ผ่าน slash command เท่านั้น (`disable-model-invocation: true`) — ไม่ auto-trigger จากบทสนทนา
-
 ### ⭐ Skills
 
 | Skill | วัตถุประสงค์ |
 |---|---|
-| `post-facebook` | เขียนโพสต์ Facebook ภาษาไทยแนว Thought Leadership จริงจังปนกวนเล็กน้อย |
-| `post-linkedin` | เขียนโพสต์ LinkedIn ภาษาอังกฤษสายไอทีและเทคโนโลยี เพื่อ Personal Branding |
+| `post-facebook` | เขียนโพสต์ Facebook ภาษาไทยแนว Thought Leadership จริงจังปนกวนเล็กน้อย — เรียกผ่าน `/post-facebook` เท่านั้น ไม่ auto-trigger |
+| `post-linkedin` | เขียนโพสต์ LinkedIn ภาษาอังกฤษสายไอทีและเทคโนโลยี เพื่อ Personal Branding — เรียกผ่าน `/post-linkedin` เท่านั้น ไม่ auto-trigger |
 
 ### 🏆 Usage
 

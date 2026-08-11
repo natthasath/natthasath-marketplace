@@ -2,19 +2,16 @@
 
 Plugin for **Capacities PKM** — designs Spaces, Object Types, Tags, Collections, Knowledge Notes, and Text Formatting into a consistent, fast-to-scan system.
 
-> [!NOTE]
-> ทุก skill ใน plugin นี้เรียกใช้ผ่าน slash command เท่านั้น (`disable-model-invocation: true`) — ไม่ auto-trigger จากบทสนทนา
-
 ### ⭐ Skills
 
 | Skill | วัตถุประสงค์ |
 |---|---|
-| `mood-tag` | วิเคราะห์อารมณ์จาก Daily Notes และแนะนำ Mood Tag ตาม Yale Mood Meter Framework |
-| `movies-tag` | วิเคราะห์ genre/theme ของหนัง และแนะนำ Genre Tags สำหรับ Capacities |
-| `spotify-tag` | จับคู่เพลงกับหมวด/Playlist ตามประเทศและ mood/แนวเพลง ค้นหาข้อมูลเพลงจากเว็บอัตโนมัติถ้าให้มาแค่ชื่อเพลง เสนอชื่อ Playlist ใหม่โทน Gen Z ถ้าไม่มีหมวดตรง |
-| `glossary` | อธิบายความหมายตัวย่อหรือศัพท์เทคนิค (Abbreviations / Acronyms) แบบ 1 paragraph |
-| `knowledge` | สร้าง Knowledge Note พร้อม frontmatter และ sections ที่เป็นระบบ |
-| `highlight` | แปลงข้อความธรรมดาให้อ่านง่ายขึ้นด้วย bold, italic, code, highlight, underline |
+| `mood-tag` | วิเคราะห์อารมณ์จาก Daily Notes และแนะนำ Mood Tag ตาม Yale Mood Meter Framework — เรียกผ่าน `/mood-tag` เท่านั้น ไม่ auto-trigger |
+| `movies-tag` | วิเคราะห์ genre/theme ของหนัง และแนะนำ Genre Tags สำหรับ Capacities — เรียกผ่าน `/movies-tag` เท่านั้น ไม่ auto-trigger |
+| `spotify-tag` | จับคู่เพลงกับหมวด/Playlist ตามประเทศและ mood/แนวเพลง ค้นหาข้อมูลเพลงจากเว็บอัตโนมัติถ้าให้มาแค่ชื่อเพลง เสนอชื่อ Playlist ใหม่โทน Gen Z ถ้าไม่มีหมวดตรง — เรียกผ่าน `/spotify-tag` เท่านั้น ไม่ auto-trigger |
+| `glossary` | อธิบายความหมายตัวย่อหรือศัพท์เทคนิค (Abbreviations / Acronyms) แบบ 1 paragraph — เรียกผ่าน `/glossary` เท่านั้น ไม่ auto-trigger |
+| `knowledge` | สร้าง Knowledge Note พร้อม frontmatter และ sections ที่เป็นระบบ — เรียกผ่าน `/knowledge` เท่านั้น ไม่ auto-trigger |
+| `highlight` | แปลงข้อความธรรมดาให้อ่านง่ายขึ้นด้วย bold, italic, code, highlight, underline — เรียกผ่าน `/highlight` เท่านั้น ไม่ auto-trigger |
 
 ### 🏆 Usage
 

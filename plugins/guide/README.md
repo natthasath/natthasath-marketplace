@@ -2,16 +2,13 @@
 
 Plugin for **recommendations and matching the right choice** — Design Style, Font Pairing, Web Design, and Note-taking Pattern.
 
-> [!NOTE]
-> ทุก skill ใน plugin นี้เรียกใช้ผ่าน slash command เท่านั้น (`disable-model-invocation: true`) — ไม่ auto-trigger จากบทสนทนา
-
 ### ⭐ Skills
 
 | Skill | วัตถุประสงค์ |
 |---|---|
-| `creative-book` | แนะนำ Design Style + Font Pairing (ไทย/อังกฤษ) สำหรับ presentation, report, สื่อสิ่งพิมพ์ — 42 สไตล์ |
-| `creative-web` | แนะนำ Design Style สำหรับเว็บไซต์ พร้อม Font, Color Palette (hex) และเว็บอ้างอิงจริง — 20 สไตล์ |
-| `note-taking` | แนะนำ Pattern การจดโน้ตที่เหมาะกับงาน เช่น Cornell, Zettelkasten, PARA, Outline |
+| `creative-book` | แนะนำ Design Style + Font Pairing (ไทย/อังกฤษ) สำหรับ presentation, report, สื่อสิ่งพิมพ์ — 42 สไตล์ — เรียกผ่าน `/guide:creative-book` เท่านั้น ไม่ auto-trigger |
+| `creative-web` | แนะนำ Design Style สำหรับเว็บไซต์ พร้อม Font, Color Palette (hex) และเว็บอ้างอิงจริง — 20 สไตล์ — เรียกผ่าน `/guide:creative-web` เท่านั้น ไม่ auto-trigger |
+| `note-taking` | แนะนำ Pattern การจดโน้ตที่เหมาะกับงาน เช่น Cornell, Zettelkasten, PARA, Outline — เรียกผ่าน `/guide:note-taking` เท่านั้น ไม่ auto-trigger |
 
 ### 🏆 Usage
 

@@ -2,18 +2,15 @@
 
 Plugin for **software project planning and analysis** — covers everything from Requirements through Architecture and Database Design, ready for implementation.
 
-> [!NOTE]
-> ทุก skill ใน plugin นี้เรียกใช้ผ่าน slash command เท่านั้น (`disable-model-invocation: true`) — ไม่ auto-trigger จากบทสนทนา
-
 ### ⭐ Skills
 
 | Skill | วัตถุประสงค์ |
 |---|---|
-| `kickoff` | ช่วยนักพัฒนาวางแผนไอเดียแอปผ่านการสนทนา และสร้าง `masterplan.md` |
-| `gather` | เก็บรวบรวม Business และ Technical Requirements จาก Stakeholders อย่างเป็นระบบ |
-| `analyze` | แปลง Business Needs เป็น Functional และ Technical System Requirements |
-| `architect` | เลือกและกำหนด IT Architecture ที่จะใช้ ครอบคลุม Infrastructure, Application และ Integration Strategy |
-| `database` | ออกแบบ Database Schema สำหรับ PostgreSQL และ Laravel พร้อม Migration-ready guidance |
+| `kickoff` | ช่วยนักพัฒนาวางแผนไอเดียแอปผ่านการสนทนา และสร้าง `masterplan.md` — เรียกผ่าน `/kickoff` เท่านั้น ไม่ auto-trigger |
+| `gather` | เก็บรวบรวม Business และ Technical Requirements จาก Stakeholders อย่างเป็นระบบ — เรียกผ่าน `/gather` เท่านั้น ไม่ auto-trigger |
+| `analyze` | แปลง Business Needs เป็น Functional และ Technical System Requirements — เรียกผ่าน `/analyze` เท่านั้น ไม่ auto-trigger |
+| `architect` | เลือกและกำหนด IT Architecture ที่จะใช้ ครอบคลุม Infrastructure, Application และ Integration Strategy — เรียกผ่าน `/architect` เท่านั้น ไม่ auto-trigger |
+| `database` | ออกแบบ Database Schema สำหรับ PostgreSQL และ Laravel พร้อม Migration-ready guidance — เรียกผ่าน `/database` เท่านั้น ไม่ auto-trigger |
 
 ### 🏆 Usage
 

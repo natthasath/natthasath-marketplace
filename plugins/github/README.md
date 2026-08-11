@@ -2,15 +2,12 @@
 
 Plugin for **GitHub repo workflows** — choosing and installing an open source license, and tagging repos for Capacities.
 
-> [!NOTE]
-> ทุก skill ใน plugin นี้เรียกใช้ผ่าน slash command เท่านั้น (`disable-model-invocation: true`) — ไม่ auto-trigger จากบทสนทนา
-
 ### ⭐ Skills
 
 | Skill | Description |
 |---|---|
-| `github-license` | Interview-driven license picker — asks 3-5 plain-language questions, checks dependency compatibility, then writes `LICENSE`, `NOTICE`, SPDX headers, the README License section and badge, and the `license` field in project metadata |
-| `github-tag` | ดึง GitHub topics ของ repo มาเป็น tag หลัก เสริมด้วย tag ภาษา/เทคโนโลยีที่เจอใน README สำหรับเก็บ repo ลง Capacities |
+| `github-license` | Interview-driven license picker — asks 3-5 plain-language questions, checks dependency compatibility, then writes `LICENSE`, `NOTICE`, SPDX headers, the README License section and badge, and the `license` field in project metadata. Slash command only (`/github-license`) — no auto-trigger |
+| `github-tag` | ดึง GitHub topics ของ repo มาเป็น tag หลัก เสริมด้วย tag ภาษา/เทคโนโลยีที่เจอใน README สำหรับเก็บ repo ลง Capacities — เรียกผ่าน `/github-tag` เท่านั้น ไม่ auto-trigger |
 
 ### 🏆 Usage
 

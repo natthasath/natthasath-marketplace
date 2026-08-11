@@ -2,17 +2,14 @@
 
 Plugin for improving code and documentation quality — Docker, Shell Script, and README to production-ready standard with consistent patterns.
 
-> [!NOTE]
-> ทุก skill ใน plugin นี้เรียกใช้ผ่าน slash command เท่านั้น (`disable-model-invocation: true`) — ไม่ auto-trigger จากบทสนทนา
-
 ### ⭐ Skills
 
 | Skill | Description |
 |---|---|
-| `refactor-compose` | Refactor `docker-compose.yml` and `.env` to best practice |
-| `refactor-dockerfile` | Create and refactor `Dockerfile` with security, performance, and layer caching |
-| `refactor-shell` | Create and refactor Shell scripts with error handling, logging, and standard structure |
-| `refactor-readme` | Refactor `README.md` to a minimal open-source standard — English headers, emoji convention, a leaner dedicated pattern for monorepo sub-folder/component READMEs, a GitHub Alert callout standard, and zone-based horizontal rules |
+| `refactor-compose` | Refactor `docker-compose.yml` and `.env` to best practice. Slash command only (`/refactor-compose`) — no auto-trigger |
+| `refactor-dockerfile` | Create and refactor `Dockerfile` with security, performance, and layer caching. Slash command only (`/refactor-dockerfile`) — no auto-trigger |
+| `refactor-shell` | Create and refactor Shell scripts with error handling, logging, and standard structure. Slash command only (`/refactor-shell`) — no auto-trigger |
+| `refactor-readme` | Refactor `README.md` to a minimal open-source standard — English headers, emoji convention, a leaner dedicated pattern for monorepo sub-folder/component READMEs, a GitHub Alert callout standard, and zone-based horizontal rules. Slash command only (`/refactor-readme`) — no auto-trigger |
 
 ### 🏆 Usage
 
