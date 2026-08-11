@@ -11,7 +11,7 @@ Plugin for **Capacities PKM** — designs Spaces, Object Types, Tags, Collection
 | `spotify-tag` | จับคู่เพลงกับหมวด/Playlist ตามประเทศและ mood/แนวเพลง ค้นหาข้อมูลเพลงจากเว็บอัตโนมัติถ้าให้มาแค่ชื่อเพลง เสนอชื่อ Playlist ใหม่โทน Gen Z ถ้าไม่มีหมวดตรง — เรียกผ่าน `/spotify-tag` เท่านั้น ไม่ auto-trigger |
 | `glossary` | อธิบายความหมายตัวย่อหรือศัพท์เทคนิค (Abbreviations / Acronyms) แบบ 1 paragraph — เรียกผ่าน `/glossary` เท่านั้น ไม่ auto-trigger |
 | `knowledge` | สร้าง Knowledge Note พร้อม frontmatter และ sections ที่เป็นระบบ — เรียกผ่าน `/knowledge` เท่านั้น ไม่ auto-trigger |
-| `highlight` | แปลงข้อความธรรมดาให้อ่านง่ายขึ้นด้วย bold, italic, code, highlight, underline แสดงเป็น Interactive Artifact ที่เลียนแบบสี/style ของ Capacities จริง พร้อมปุ่ม Copy Markdown — เรียกผ่าน `/highlight` เท่านั้น ไม่ auto-trigger |
+| `highlight` | แปลงข้อความธรรมดาให้อ่านง่ายขึ้นด้วย bold, italic, code, highlight, underline ตอบตรงในแชท (render จริง + code block markdown ดิบให้ copy) ไม่เปิด Artifact แยกหน้า — เรียกผ่าน `/highlight` เท่านั้น ไม่ auto-trigger |
 
 ### 🏆 Usage
 
