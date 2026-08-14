@@ -1,9 +1,9 @@
 # 🎉 natthasath-marketplace
 
-A Claude Code plugin marketplace bundling 14 plugins and 64 skills across PKM, project planning, session management, content writing, language, design, and productivity — install with a single command and start using slash commands right away.
+A Claude Code plugin marketplace bundling 15 plugins and 65 skills across PKM, project planning, session management, content writing, language, design, and productivity — install with a single command and start using slash commands right away.
 
-![plugins](https://img.shields.io/badge/plugins-14-blue)
-![skills](https://img.shields.io/badge/skills-64-brightgreen)
+![plugins](https://img.shields.io/badge/plugins-15-blue)
+![skills](https://img.shields.io/badge/skills-65-brightgreen)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-marketplace-8A63D2)
 ![license](https://img.shields.io/github/license/natthasath/natthasath-marketplace)
 
@@ -12,6 +12,7 @@ A Claude Code plugin marketplace bundling 14 plugins and 64 skills across PKM, p
 | Plugin | Skills | วัตถุประสงค์ |
 |---|---|---|
 | [`capacities`](plugins/capacities/README.md) | 6 | จัดการ PKM บน Capacities — Tags, Knowledge Notes และ Text Formatting |
+| [`cookbook`](plugins/cookbook/README.md) | 1 | คลังเทคนิคการใช้งาน AI CLI/Tools — Claude Code CLI, Claude Design, Codex CLI, Antigravity CLI เก็บนอก repo เพิ่มเทคนิคใหม่ได้เรื่อยๆ |
 | [`document`](plugins/document/README.md) | 2 | จัดการเอกสารภาษาไทย — ตรวจสอบหนังสือราชการ และ blind ข้อมูล sensitive |
 | [`github`](plugins/github/README.md) | 2 | จัดการงาน GitHub repo — เลือก/ติดตั้ง License และแนะนำ Tag สำหรับเก็บ repo ลง Capacities |
 | [`guide`](plugins/guide/README.md) | 3 | แนะนำแนวทางออกแบบ — Design Style, Font Pairing, Web Design และ Note-taking |
@@ -34,6 +35,7 @@ A Claude Code plugin marketplace bundling 14 plugins and 64 skills across PKM, p
 
 # 2. ติดตั้ง plugin ที่ต้องการ
 /plugin install capacities@natthasath-marketplace
+/plugin install cookbook@natthasath-marketplace
 /plugin install document@natthasath-marketplace
 /plugin install github@natthasath-marketplace
 /plugin install guide@natthasath-marketplace
