@@ -4,7 +4,7 @@ description: >
   จัดการคลังเทคนิคการใช้งาน AI CLI/Tools ต่างๆ (Claude Code CLI, Claude Design, Codex CLI, Antigravity CLI, ฯลฯ)
   ที่เก็บเป็นไฟล์ markdown แยกโฟลเดอร์ตาม tool อยู่นอก repo ของ plugin — ดูเทคนิคที่มี, เพิ่มเทคนิคใหม่,
   อัพเดทเทคนิคเดิม, หรือค้นหาตาม tool/level/tag
-  เรียกใช้ผ่าน `/cookbook:cookbook` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+  เรียกใช้ผ่าน `/obsidian:cookbook` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
 disable-model-invocation: true
 ---
 
@@ -18,7 +18,7 @@ disable-model-invocation: true
 ทุกไฟล์เทคนิคต้องตาม `references/template.md` เป๊ะๆ — อ่านไฟล์นั้นก่อนเพิ่มหรือแก้ไขเทคนิคใดๆ เสมอ
 
 ## Config File
-บันทึก path ที่ผู้ใช้กำหนดไว้ที่: `~/.config/claude-cookbook/settings.json`
+บันทึก path ที่ผู้ใช้กำหนดไว้ที่: `~/.config/claude-obsidian/settings.json`
 
 รูปแบบ:
 ```json
@@ -29,12 +29,12 @@ disable-model-invocation: true
 
 ## Step 0: ตรวจสอบ Storage Path (ทำก่อนทุกครั้ง)
 
-1. อ่านไฟล์ `~/.config/claude-cookbook/settings.json`
+1. อ่านไฟล์ `~/.config/claude-obsidian/settings.json`
 2. ถ้า **ไม่มีไฟล์** (ใช้ครั้งแรก) → ถามผู้ใช้ว่าต้องการเก็บคลังเทคนิคไว้ที่ path ไหน แนะนำ default
-   `~/claude-cookbook` แล้ว **สร้าง config file** บันทึก path ที่เลือกไว้ จากนั้นดำเนินการต่อ
+   `~/claude-obsidian` แล้ว **สร้าง config file** บันทึก path ที่เลือกไว้ จากนั้นดำเนินการต่อ
 
    > **ทำไมไม่ default ไปที่โฟลเดอร์ของ plugin เอง:** plugin ที่ติดตั้งจริงถูกเก็บไว้ใต้
-   > `~/.claude/plugins/cache/<marketplace>/cookbook/<version>/` — path นี้เปลี่ยนทุกครั้งที่อัปเดต version
+   > `~/.claude/plugins/cache/<marketplace>/obsidian/<version>/` — path นี้เปลี่ยนทุกครั้งที่อัปเดต version
    > และไฟล์ทั้งโฟลเดอร์จะถูกแทนที่/ลบตอน reinstall ถ้าเก็บเทคนิค (ข้อมูลที่ผู้ใช้ค่อยๆ สะสม) ไว้ในนั้น
    > ข้อมูลจะหายเมื่อ plugin อัปเดต จึงต้องเก็บไว้ในตำแหน่งที่ผู้ใช้เป็นเจ้าของและคงอยู่ข้าม version แทน
 

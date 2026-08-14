@@ -106,11 +106,11 @@
       "keywords": ["insight", "analytics", "web-analytics", "google-analytics", "ga4", "microsoft-clarity", "clarity", "dashboard", "mcp", "traffic", "conversion", "ux", "rage-click", "session-recording"]
     },
     {
-      "name": "cookbook",
-      "description": "Plugin สำหรับ Skill Cookbook รวบรวมเทคนิคการใช้งานเครื่องมือ AI CLI/Tools ต่างๆ (Claude Code CLI, Claude Design, Codex CLI, Antigravity CLI) แยกเก็บเป็นไฟล์ markdown นอก repo เพิ่มเทคนิคใหม่ได้เรื่อยๆ ทั้งจากผู้ใช้เองและสั่งให้ Claude ค้น/อัพเดทให้",
-      "source": "./plugins/cookbook",
+      "name": "obsidian",
+      "description": "Plugin สำหรับคลังความรู้แบบ markdown ที่เก็บนอก repo ครอบคลุม Skill Cookbook รวบรวมเทคนิคการใช้งานเครื่องมือ AI CLI/Tools ต่างๆ (Claude Code CLI, Claude Design, Codex CLI, Antigravity CLI) เพิ่มเทคนิคใหม่ได้เรื่อยๆ ทั้งจากผู้ใช้เองและสั่งให้ Claude ค้น/อัพเดทให้",
+      "source": "./plugins/obsidian",
       "category": "productivity",
-      "keywords": ["cookbook", "cli", "techniques", "claude-code", "codex-cli", "antigravity-cli", "claude-design", "reference", "knowledge-base", "tips"]
+      "keywords": ["obsidian", "markdown", "vault", "cookbook", "cli", "techniques", "claude-code", "codex-cli", "antigravity-cli", "claude-design", "reference", "knowledge-base", "tips"]
     }
   ]
 }

@@ -12,13 +12,13 @@ A Claude Code plugin marketplace bundling 15 plugins and 65 skills across PKM, p
 | Plugin | Skills | วัตถุประสงค์ |
 |---|---|---|
 | [`capacities`](plugins/capacities/README.md) | 6 | จัดการ PKM บน Capacities — Tags, Knowledge Notes และ Text Formatting |
-| [`cookbook`](plugins/cookbook/README.md) | 1 | คลังเทคนิคการใช้งาน AI CLI/Tools — Claude Code CLI, Claude Design, Codex CLI, Antigravity CLI เก็บนอก repo เพิ่มเทคนิคใหม่ได้เรื่อยๆ |
 | [`document`](plugins/document/README.md) | 2 | จัดการเอกสารภาษาไทย — ตรวจสอบหนังสือราชการ และ blind ข้อมูล sensitive |
 | [`github`](plugins/github/README.md) | 2 | จัดการงาน GitHub repo — เลือก/ติดตั้ง License และแนะนำ Tag สำหรับเก็บ repo ลง Capacities |
 | [`guide`](plugins/guide/README.md) | 3 | แนะนำแนวทางออกแบบ — Design Style, Font Pairing, Web Design และ Note-taking |
 | [`insight`](plugins/insight/README.md) | 2 | วิเคราะห์ web analytics — Google Analytics 4 และ Microsoft Clarity ผ่าน MCP |
 | [`language`](plugins/language/README.md) | 2 | จัดการงานด้านภาษา — ล่ามแปลต่อเนื่อง และ English Mentor |
 | [`masterplan`](plugins/masterplan/README.md) | 5 | วางแผนโปรเจกต์ซอฟต์แวร์ — Requirement, Architecture และ Database Design |
+| [`obsidian`](plugins/obsidian/README.md) | 1 | คลังความรู้แบบ markdown ที่เก็บนอก repo — เริ่มจาก Cookbook เทคนิคการใช้งาน AI CLI/Tools (Claude Code CLI, Claude Design, Codex CLI, Antigravity CLI) |
 | [`productive`](plugins/productive/README.md) | 13 | เพิ่มประสิทธิภาพการทำงาน — สรุปประชุม, ดาวน์โหลด PDF, ประเมินงาน IT, สร้าง Flashcard, แปลงข้อความ/รูปเป็น ASCII art, สัมภาษณ์แบบ Socratic และดัดแปลง skill จากที่อื่น |
 | [`projects`](plugins/projects/README.md) | 15 | จัดการ development project — scaffold workflow ตั้งแต่ setup จนถึง ship |
 | [`refactor`](plugins/refactor/README.md) | 4 | ปรับปรุงโครงสร้างไฟล์ — Docker, Shell Script และ README |
@@ -35,13 +35,13 @@ A Claude Code plugin marketplace bundling 15 plugins and 65 skills across PKM, p
 
 # 2. ติดตั้ง plugin ที่ต้องการ
 /plugin install capacities@natthasath-marketplace
-/plugin install cookbook@natthasath-marketplace
 /plugin install document@natthasath-marketplace
 /plugin install github@natthasath-marketplace
 /plugin install guide@natthasath-marketplace
 /plugin install insight@natthasath-marketplace
 /plugin install language@natthasath-marketplace
 /plugin install masterplan@natthasath-marketplace
+/plugin install obsidian@natthasath-marketplace
 /plugin install productive@natthasath-marketplace
 /plugin install projects@natthasath-marketplace
 /plugin install refactor@natthasath-marketplace
