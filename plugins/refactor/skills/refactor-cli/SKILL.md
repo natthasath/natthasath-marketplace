@@ -32,6 +32,9 @@ CLI ที่ดีคือ CLI ที่ผู้ใช้เดา behavior �
 - `references/resource-and-crud.md` — Resource Model, Core CRUD Operations, Auth/Identity
 - `references/lifecycle-and-distribution.md` — Version/Compatibility, Update/Upgrade, Shell Completion,
   Uninstall/Cleanup, Cross-Platform Path/Env Handling
+- `references/help-text-format.md` — รูปแบบการ render ข้อความ `--help` ที่แท้จริง (column alignment, ลำดับ
+  Usage/Commands/Arguments/Options, `[aliases: x]`, `[possible values: ...]`, `[experimental]`) เขียนเป็น
+  ภาษาอังกฤษเสมอ — ใช้ตอน render ผลลัพธ์สุดท้ายของทุก command ที่แก้
 
 # รูปแบบ:
 
@@ -58,7 +61,13 @@ CLI ที่ดีคือ CLI ที่ผู้ใช้เดา behavior �
 6. **sync ไฟล์ที่เกี่ยวข้อง** — README.md ของโปรเจกต์ (ส่วนที่อธิบาย command), shell completion script (ถ้า
    tool generate ไว้), CHANGELOG (ถ้ามี) ให้ตรงกับโครงสร้างใหม่ — ห้ามแก้โค้ดแล้วปล่อยเอกสารไม่ตรงของจริง
 
-7. หลังแก้เสร็จ สรุปสั้นๆ ว่าปรับหมวดไหนไปบ้างและทำไม ไม่ต้องแปะโค้ดทั้งไฟล์ซ้ำในแชท
+7. **render `--help` ตาม `references/help-text-format.md`** — หลังแก้โครงสร้างเสร็จ ต้องเช็คว่า `--help`
+   ของทุก command ที่แก้ (ทั้ง top level และ subcommand) render ออกมาตรง format นั้นจริง (column alignment,
+   `[aliases: x]`, `[possible values: ...]`, `-h/-V` ท้ายสุด ฯลฯ) เป็นภาษาอังกฤษทั้งหมด ถ้า framework ของภาษา
+   นั้นไม่ generate ให้ตรงเป๊ะโดย default ให้ปรับ help template ของ framework เอง (ดูวิธีต่อภาษาใน
+   `help-text-format.md`)
+
+8. หลังแก้เสร็จ สรุปสั้นๆ ว่าปรับหมวดไหนไปบ้างและทำไม ไม่ต้องแปะโค้ดทั้งไฟล์ซ้ำในแชท
 
 # คำขอ:
 - **แก้ไฟล์ตรงๆ ในโปรเจกต์ ไม่ต้องตอบเป็น Artifact** — เหมือน `refactor-readme`
