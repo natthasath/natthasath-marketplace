@@ -1,9 +1,9 @@
 {
   "name": "refactor",
-  "version": "0.5.10",
-  "description": "Plugin รวม Skills สำหรับ Refactor และปรับปรุงโครงสร้างไฟล์ ครอบคลุม Dockerfile, Docker Compose, Shell Script และ README",
+  "version": "0.6.0",
+  "description": "Plugin รวม Skills สำหรับ Refactor และปรับปรุงโครงสร้างไฟล์ ครอบคลุม Dockerfile, Docker Compose, Shell Script, README และโครงสร้าง command ของ CLI tool",
   "author": {
     "name": "natthasath"
   },
-  "keywords": ["refactor", "dockerfile", "docker-compose", "shell-script", "readme", "markdown", "documentation", "emoji", "devops", "best-practices"]
+  "keywords": ["refactor", "dockerfile", "docker-compose", "shell-script", "readme", "markdown", "documentation", "emoji", "devops", "best-practices", "cli", "command-design", "help", "clap", "cobra", "click", "commander", "cross-platform"]
 }

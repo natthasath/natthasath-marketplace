@@ -10,6 +10,7 @@ Plugin for improving code and documentation quality — Docker, Shell Script, an
 | `refactor-dockerfile` | Create and refactor `Dockerfile` with security, performance, and layer caching. Slash command only (`/refactor-dockerfile`) — no auto-trigger |
 | `refactor-shell` | Create and refactor Shell scripts with error handling, logging, and standard structure. Slash command only (`/refactor-shell`) — no auto-trigger |
 | `refactor-readme` | Refactor `README.md` to a minimal open-source standard — English headers, emoji convention, a leaner dedicated pattern for monorepo sub-folder/component READMEs, a GitHub Alert callout standard, and zone-based horizontal rules. Slash command only (`/refactor-readme`) — no auto-trigger |
+| `refactor-cli` | Audit and refactor a CLI tool's command structure against a language-agnostic standard (identity/hierarchy, I/O contract, interaction model, safety model, config/observability, resource CRUD, lifecycle/distribution) — detects the implementation language first, edits the real parser code, and syncs README/completion/CHANGELOG. Slash command only (`/refactor-cli`) — no auto-trigger |
 
 ### 🏆 Usage
 
@@ -20,6 +21,7 @@ Plugin for improving code and documentation quality — Docker, Shell Script, an
 /refactor-dockerfile <path ของ Dockerfile หรือ stack ที่ต้องการ>
 /refactor-shell <path ของ .sh หรืองานที่ต้องการให้ script ทำ>
 /refactor-readme <path ของ README.md>
+/refactor-cli <path ของ CLI tool project หรือชื่อ command ที่ต้องการตรวจ>
 ```
 
 ### 💎 README Section Emoji Convention

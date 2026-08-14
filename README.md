@@ -1,9 +1,9 @@
 # 🎉 natthasath-marketplace
 
-A Claude Code plugin marketplace bundling 15 plugins and 65 skills across PKM, project planning, session management, content writing, language, design, and productivity — install with a single command and start using slash commands right away.
+A Claude Code plugin marketplace bundling 15 plugins and 66 skills across PKM, project planning, session management, content writing, language, design, and productivity — install with a single command and start using slash commands right away.
 
 ![plugins](https://img.shields.io/badge/plugins-15-blue)
-![skills](https://img.shields.io/badge/skills-65-brightgreen)
+![skills](https://img.shields.io/badge/skills-66-brightgreen)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-marketplace-8A63D2)
 ![license](https://img.shields.io/github/license/natthasath/natthasath-marketplace)
 
@@ -21,7 +21,7 @@ A Claude Code plugin marketplace bundling 15 plugins and 65 skills across PKM, p
 | [`obsidian`](plugins/obsidian/README.md) | 1 | คลังความรู้แบบ markdown ที่เก็บนอก repo — เริ่มจาก Cookbook เทคนิคการใช้งาน AI CLI/Tools (Claude Code CLI, Claude Design, Codex CLI, Antigravity CLI) |
 | [`productive`](plugins/productive/README.md) | 13 | เพิ่มประสิทธิภาพการทำงาน — สรุปประชุม, ดาวน์โหลด PDF, ประเมินงาน IT, สร้าง Flashcard, แปลงข้อความ/รูปเป็น ASCII art, สัมภาษณ์แบบ Socratic และดัดแปลง skill จากที่อื่น |
 | [`projects`](plugins/projects/README.md) | 15 | จัดการ development project — scaffold workflow ตั้งแต่ setup จนถึง ship |
-| [`refactor`](plugins/refactor/README.md) | 4 | ปรับปรุงโครงสร้างไฟล์ — Docker, Shell Script และ README |
+| [`refactor`](plugins/refactor/README.md) | 5 | ปรับปรุงโครงสร้างไฟล์ — Docker, Shell Script, README และโครงสร้าง command ของ CLI tool |
 | [`roleplay`](plugins/roleplay/README.md) | 4 | จำลองบทบาทเพื่อฝึกทักษะ — สัมภาษณ์งาน, สอบสวน, กลยุทธ์ และภาษาอังกฤษ |
 | [`session`](plugins/session/README.md) | 2 | จัดการ Session ของ Claude Code — ตั้งชื่อ บันทึกจุดประสงค์ และเขียนเอกสารส่งไม้ต่อตอนจบ session |
 | [`social`](plugins/social/README.md) | 2 | สร้างโพสต์โซเชียลมีเดีย — Facebook และ LinkedIn |

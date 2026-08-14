@@ -23,10 +23,10 @@
     },
     {
       "name": "refactor",
-      "description": "Plugin รวม Skills สำหรับ Refactor และปรับปรุงโครงสร้างไฟล์ ครอบคลุม Dockerfile, Docker Compose, Shell Script และ README",
+      "description": "Plugin รวม Skills สำหรับ Refactor และปรับปรุงโครงสร้างไฟล์ ครอบคลุม Dockerfile, Docker Compose, Shell Script, README และโครงสร้าง command ของ CLI tool",
       "source": "./plugins/refactor",
       "category": "development",
-      "keywords": ["refactor", "dockerfile", "docker-compose", "shell-script", "readme", "markdown", "documentation", "callout", "admonition", "github-alert", "section-order", "horizontal-rule", "devops", "best-practices"]
+      "keywords": ["refactor", "dockerfile", "docker-compose", "shell-script", "readme", "markdown", "documentation", "callout", "admonition", "github-alert", "section-order", "horizontal-rule", "devops", "best-practices", "cli", "command-design", "help", "clap", "cobra", "click", "commander", "cross-platform"]
     },
     {
       "name": "roleplay",
