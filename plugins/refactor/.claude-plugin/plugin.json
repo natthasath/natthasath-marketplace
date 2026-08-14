@@ -1,6 +1,6 @@
 {
   "name": "refactor",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Plugin รวม Skills สำหรับ Refactor และปรับปรุงโครงสร้างไฟล์ ครอบคลุม Dockerfile, Docker Compose, Shell Script, README และโครงสร้าง command ของ CLI tool",
   "author": {
     "name": "natthasath"
