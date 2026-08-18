@@ -111,6 +111,13 @@
       "source": "./plugins/obsidian",
       "category": "productivity",
       "keywords": ["obsidian", "markdown", "vault", "cookbook", "cli", "techniques", "claude-code", "codex-cli", "antigravity-cli", "claude-design", "reference", "knowledge-base", "tips"]
+    },
+    {
+      "name": "drive",
+      "description": "Plugin รวม Skills สำหรับบันทึกไฟล์ไปยัง Google Drive โดยอัตโนมัติ ครอบคลุมการค้นหาและดาวน์โหลด ebook/PDF จากแหล่งที่ถูกกฎหมายแล้วเซฟเข้า Drive ผ่าน Google Apps Script โดยไม่ต้องให้ผู้ใช้ดาวน์โหลด/อัปโหลดเอง",
+      "source": "./plugins/drive",
+      "category": "productivity",
+      "keywords": ["drive", "google-drive", "ebook", "pdf", "apps-script", "download", "copyright", "automation"]
     }
   ]
 }

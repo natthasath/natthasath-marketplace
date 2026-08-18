@@ -1,9 +1,9 @@
 # 🎉 natthasath-marketplace
 
-A Claude Code plugin marketplace bundling 15 plugins and 66 skills across PKM, project planning, session management, content writing, language, design, and productivity — install with a single command and start using slash commands right away.
+A Claude Code plugin marketplace bundling 16 plugins and 67 skills across PKM, project planning, session management, content writing, language, design, and productivity — install with a single command and start using slash commands right away.
 
-![plugins](https://img.shields.io/badge/plugins-15-blue)
-![skills](https://img.shields.io/badge/skills-66-brightgreen)
+![plugins](https://img.shields.io/badge/plugins-16-blue)
+![skills](https://img.shields.io/badge/skills-67-brightgreen)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-marketplace-8A63D2)
 ![license](https://img.shields.io/github/license/natthasath/natthasath-marketplace)
 
@@ -13,6 +13,7 @@ A Claude Code plugin marketplace bundling 15 plugins and 66 skills across PKM, p
 |---|---|---|
 | [`capacities`](plugins/capacities/README.md) | 6 | จัดการ PKM บน Capacities — Tags, Knowledge Notes และ Text Formatting |
 | [`document`](plugins/document/README.md) | 2 | จัดการเอกสารภาษาไทย — ตรวจสอบหนังสือราชการ และ blind ข้อมูล sensitive |
+| [`drive`](plugins/drive/README.md) | 1 | บันทึกไฟล์ไปยัง Google Drive อัตโนมัติ — ค้นหาและดาวน์โหลด ebook/PDF จากแหล่งถูกกฎหมายผ่าน Google Apps Script |
 | [`github`](plugins/github/README.md) | 2 | จัดการงาน GitHub repo — เลือก/ติดตั้ง License และแนะนำ Tag สำหรับเก็บ repo ลง Capacities |
 | [`guide`](plugins/guide/README.md) | 3 | แนะนำแนวทางออกแบบ — Design Style, Font Pairing, Web Design และ Note-taking |
 | [`insight`](plugins/insight/README.md) | 2 | วิเคราะห์ web analytics — Google Analytics 4 และ Microsoft Clarity ผ่าน MCP |
@@ -36,6 +37,7 @@ A Claude Code plugin marketplace bundling 15 plugins and 66 skills across PKM, p
 # 2. ติดตั้ง plugin ที่ต้องการ
 /plugin install capacities@natthasath-marketplace
 /plugin install document@natthasath-marketplace
+/plugin install drive@natthasath-marketplace
 /plugin install github@natthasath-marketplace
 /plugin install guide@natthasath-marketplace
 /plugin install insight@natthasath-marketplace

@@ -1,0 +1,9 @@
+{
+  "name": "drive",
+  "version": "0.1.0",
+  "description": "Plugin รวม Skills สำหรับบันทึกไฟล์ไปยัง Google Drive โดยอัตโนมัติ ครอบคลุมการค้นหาและดาวน์โหลด ebook/PDF จากแหล่งที่ถูกกฎหมายแล้วเซฟเข้า Drive ผ่าน Google Apps Script โดยไม่ต้องให้ผู้ใช้ดาวน์โหลด/อัปโหลดเอง",
+  "author": {
+    "name": "natthasath"
+  },
+  "keywords": ["drive", "google-drive", "ebook", "pdf", "apps-script", "download", "copyright", "automation"]
+}
