@@ -44,10 +44,10 @@
     },
     {
       "name": "productive",
-      "description": "Plugin รวม Skills เพิ่มประสิทธิภาพการทำงาน ครอบคลุม Isolate (Tech Explainer), Meetings Summary, PDF Downloader, Workplace Communication, IT Work Scorecard, Indicator Designer, Flashcard, Save Cost (Token-Efficient CLI Tools Installer), ASCII Art (Text/Image to ASCII Converter), Grill Me (Socratic Interview) และ Copycat (Skill Porting)",
+      "description": "Plugin รวม Skills เพิ่มประสิทธิภาพการทำงาน ครอบคลุม Isolate (Tech Explainer), Meetings Summary, PDF Downloader, Workplace Communication, IT Work Scorecard, Indicator Designer, Flashcard, Save Cost (Token-Efficient CLI Tools Installer), ASCII Art (Text/Image to ASCII Converter), Grill Me (Socratic Interview), Copycat (Skill Porting) และ Encryption (Secure File Exchange)",
       "source": "./plugins/productive",
       "category": "productivity",
-      "keywords": ["productive", "summary", "meetings", "mom", "minutes", "isolate", "tldr", "perspective", "pdf", "workplace", "communication", "professional", "scorecard", "it", "difficulty", "assessment", "indicator", "kpi", "action-plan", "measure", "flashcard", "vocabulary", "lexi", "word", "learn", "language", "quiz", "save-cost", "cli-tools", "token", "cost", "ascii-art", "ascii", "figlet", "toilet", "jp2a", "chafa", "cowsay", "banner", "text-to-ascii", "image-to-ascii", "grill-me", "interview", "socratic", "decision-tree", "stress-test", "copycat", "skill-porting", "adaptation", "github"]
+      "keywords": ["productive", "summary", "meetings", "mom", "minutes", "isolate", "tldr", "perspective", "pdf", "workplace", "communication", "professional", "scorecard", "it", "difficulty", "assessment", "indicator", "kpi", "action-plan", "measure", "flashcard", "vocabulary", "lexi", "word", "learn", "language", "quiz", "save-cost", "cli-tools", "token", "cost", "ascii-art", "ascii", "figlet", "toilet", "jp2a", "chafa", "cowsay", "banner", "text-to-ascii", "image-to-ascii", "grill-me", "interview", "socratic", "decision-tree", "stress-test", "copycat", "skill-porting", "adaptation", "github", "encryption", "gpg", "passphrase", "secure-file-exchange", "archive", "aes-256"]
     },
     {
       "name": "projects",
