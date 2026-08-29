@@ -64,8 +64,12 @@ uv run --script scripts/secure_send.py "<source_dir>" "<archive_output_path>" "<
 
 script จะทำครบในตัวเอง: สร้าง passphrase สุ่ม (ดูเหตุผลที่ไม่ใช้ diceware wordlist ในขั้นตอนที่ 5), tar+gzip
 source_dir, เข้ารหัสด้วย gpg (ผ่าน `--passphrase-fd 0` ไม่ผ่าน argv), decrypt กลับมาเทียบ sha256 ทันทีเพื่อ
-ยืนยันว่า decrypt ได้จริงก่อนส่งมอบ, เขียน passphrase ลงไฟล์ output, และลบไฟล์ temp ทั้งหมดใน `finally` เสมอ
-ไม่ว่าจะสำเร็จหรือ error
+ยืนยันว่า decrypt ได้จริงก่อนส่งมอบ, เขียน passphrase ลงไฟล์ output, สร้างไฟล์คำแนะนำการ decrypt ภาษาไทย
+(`<ชื่อ archive>.HOW-TO-DECRYPT.txt`) จากเทมเพลต `assets/decrypt-instructions.txt` ไว้ข้างๆ archive ให้ผู้รับ
+ที่ไม่คุ้น gpg ทำตามได้เอง และลบไฟล์ temp ทั้งหมดใน `finally` เสมอไม่ว่าจะสำเร็จหรือ error
+
+ไฟล์คำแนะนำนี้**ไม่มี passphrase หรือข้อมูลลับอยู่เลย** (มีแค่ชื่อไฟล์ archive กับคำสั่งติดตั้ง/decrypt ทั่วไป)
+จึงส่งไปพร้อมกับ archive ทางช่องทางเดียวกันได้ตามปกติ — ที่ต้องแยกช่องทางมีแค่ไฟล์ passphrase เท่านั้น
 
 script พิมพ์ผลลัพธ์เป็น JSON บรรทัดเดียวเท่านั้น (ไม่มี passphrase หรือชื่อไฟล์ภายใน archive ปนอยู่) —
 **อ่านผลลัพธ์นี้แล้วรายงานต่อผู้ใช้โดยไม่เพิ่มเติมเนื้อหาที่ script ไม่ได้ให้มา** โดยเฉพาะห้ามเปิดไฟล์
@@ -81,15 +85,15 @@ passphrase มาอ่านแล้ว print ลงแชท
 ✅ เข้ารหัสสำเร็จ
 📦 Archive: <archive_output> (<file_count> ไฟล์, <total_bytes> bytes)
 🔑 Passphrase: บันทึกไว้ที่ <passphrase_output> (ไม่แสดงในแชทนี้)
+📄 คำแนะนำการ decrypt (ภาษาไทย): บันทึกไว้ที่ <instructions_output>
 ✓ ตรวจสอบ round-trip แล้ว: decrypt กลับมาได้ตรงกับต้นฉบับ (hash match)
 ```
 
 แล้วแนะนำผู้ใช้เสมอ:
-- **ส่ง encrypted archive กับไฟล์ passphrase คนละช่องทาง/คนละข้อความกัน** เช่น archive ทาง email, passphrase
-  ทาง SMS หรือแอปแชทคนละอันกัน
-- **ฝั่งผู้รับต้องมี OpenPGP tool ติดตั้งอยู่** (Gpg4win บน Windows / GPG Suite หรือ `brew install gnupg` บน
-  macOS / `gnupg` บน Linux ซึ่งมักติดตั้งมาอยู่แล้ว) แต่ **ไม่ต้องสร้างหรือแลก key ใดๆ** เพราะเป็นการเข้ารหัส
-  แบบ symmetric — ฝั่งรับแค่รัน `gpg --decrypt <archive>.tar.gz.gpg` แล้วใส่ passphrase ที่ได้รับก็พอ
+- **ส่ง 2 ไฟล์นี้ไปพร้อมกันได้ตามปกติ**: encrypted archive (`<archive_output>`) กับไฟล์คำแนะนำการ decrypt
+  (`<instructions_output>`) — ไฟล์คำแนะนำไม่มีข้อมูลลับ ผู้รับจะได้รู้ทันทีว่าต้องติดตั้งอะไรและรันคำสั่งไหน
+- **ส่งไฟล์ passphrase แยกช่องทาง/คนละข้อความจาก 2 ไฟล์ข้างต้นเสมอ** เช่น archive+คำแนะนำทาง email,
+  passphrase ทาง SMS หรือแอปแชทคนละอัน
 - แนะนำให้ลบไฟล์ passphrase ออกจากเครื่องหลังส่งสำเร็จ หรือย้ายเข้า password manager แทนการเก็บเป็นไฟล์
   ข้อความไว้เฉยๆ
 

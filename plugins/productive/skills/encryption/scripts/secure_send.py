@@ -9,6 +9,13 @@ generate a separate random passphrase for secure file exchange.
 Usage:
     uv run --script secure_send.py <source_dir> <archive_output_path> <passphrase_output_path>
 
+Besides the encrypted archive and the passphrase file, this also writes a
+Thai-language "how to decrypt" instructions file next to the archive, filled
+in from assets/decrypt-instructions.txt, so a non-technical recipient knows
+how to install gpg and run the decrypt command themselves. That file has no
+secret in it (no passphrase, no file listing) so it's fine to hand to the
+recipient over the same channel as the archive.
+
 Design notes (see plugins/productive/skills/encryption/SKILL.md for the full
 security design discussion):
 
@@ -56,6 +63,8 @@ _GROUP_COUNT = 6  # 24 chars * log2(54) ~= 138 bits of entropy
 # Max coded S2K iteration count gpg accepts -- strongest available KDF work factor.
 _S2K_COUNT = "65011712"
 
+_INSTRUCTIONS_TEMPLATE = Path(__file__).resolve().parent.parent / "assets" / "decrypt-instructions.txt"
+
 
 def fail(message: str) -> None:
     print(json.dumps({"status": "error", "message": message}))
@@ -84,6 +93,22 @@ def chmod_best_effort(path: Path, mode: int) -> None:
         os.chmod(path, mode)
     except OSError:
         pass  # Best-effort on platforms/filesystems that don't support POSIX modes.
+
+
+def write_decrypt_instructions(archive_output: Path) -> Path:
+    """Writes a Thai-language, non-secret 'how to decrypt' file next to the
+    archive so the recipient (who may not know gpg) can follow along. Derives
+    the instructions filename from the archive name so multiple transfers in
+    the same folder don't collide."""
+    archive_name = archive_output.name
+    decrypted_name = archive_name[: -len(".gpg")] if archive_name.endswith(".gpg") else f"{archive_name}.decrypted"
+
+    template = _INSTRUCTIONS_TEMPLATE.read_text(encoding="utf-8")
+    content = template.replace("__ARCHIVE_NAME__", archive_name).replace("__DECRYPTED_NAME__", decrypted_name)
+
+    instructions_output = archive_output.parent / f"{decrypted_name}.HOW-TO-DECRYPT.txt"
+    instructions_output.write_text(content, encoding="utf-8", newline="\n")
+    return instructions_output
 
 
 def run_gpg(args: list[str], passphrase: str) -> None:
@@ -182,11 +207,14 @@ def main() -> None:
         passphrase_output.write_text(passphrase + "\n", encoding="utf-8", newline="\n")
         chmod_best_effort(passphrase_output, 0o600)
 
+        instructions_output = write_decrypt_instructions(archive_output)
+
         print(json.dumps({
             "status": "ok",
             "source_dir": str(source_dir),
             "archive_output": str(archive_output),
             "passphrase_output": str(passphrase_output),
+            "instructions_output": str(instructions_output),
             "file_count": source_file_count,
             "total_bytes": source_total_bytes,
             "archive_bytes": archive_output.stat().st_size,
