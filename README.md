@@ -1,9 +1,9 @@
 # 🎉 natthasath-marketplace
 
-A Claude Code plugin marketplace bundling 16 plugins and 68 skills across PKM, project planning, session management, content writing, language, design, and productivity — install with a single command and start using slash commands right away.
+A Claude Code plugin marketplace bundling 16 plugins and 69 skills across PKM, project planning, session management, content writing, language, design, and productivity — install with a single command and start using slash commands right away.
 
 ![plugins](https://img.shields.io/badge/plugins-16-blue)
-![skills](https://img.shields.io/badge/skills-68-brightgreen)
+![skills](https://img.shields.io/badge/skills-69-brightgreen)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-marketplace-8A63D2)
 ![license](https://img.shields.io/github/license/natthasath/natthasath-marketplace)
 
@@ -15,7 +15,7 @@ A Claude Code plugin marketplace bundling 16 plugins and 68 skills across PKM, p
 | [`document`](plugins/document/README.md) | 2 | จัดการเอกสารภาษาไทย — ตรวจสอบหนังสือราชการ และ blind ข้อมูล sensitive |
 | [`drive`](plugins/drive/README.md) | 1 | บันทึกไฟล์ไปยัง Google Drive อัตโนมัติ — ค้นหาและดาวน์โหลด ebook/PDF จากแหล่งถูกกฎหมายผ่าน Google Apps Script |
 | [`github`](plugins/github/README.md) | 2 | จัดการงาน GitHub repo — เลือก/ติดตั้ง License และแนะนำ Tag สำหรับเก็บ repo ลง Capacities |
-| [`guide`](plugins/guide/README.md) | 3 | แนะนำแนวทางออกแบบ — Design Style, Font Pairing, Web Design และ Note-taking |
+| [`guide`](plugins/guide/README.md) | 4 | แนะนำแนวทางออกแบบ — Design Style, Font Pairing, Web Design, Diagram Design และ Note-taking |
 | [`insight`](plugins/insight/README.md) | 2 | วิเคราะห์ web analytics — Google Analytics 4 และ Microsoft Clarity ผ่าน MCP |
 | [`language`](plugins/language/README.md) | 2 | จัดการงานด้านภาษา — ล่ามแปลต่อเนื่อง และ English Mentor |
 | [`masterplan`](plugins/masterplan/README.md) | 5 | วางแผนโปรเจกต์ซอฟต์แวร์ — Requirement, Architecture และ Database Design |

@@ -1,9 +1,9 @@
 {
   "name": "guide",
-  "version": "0.2.0",
-  "description": "Plugin รวม Skills สำหรับให้คำแนะนำและจับคู่ตัวเลือกที่เหมาะสม ครอบคลุม Design Style, Font Pairing, Web Design และ Note-taking Pattern",
+  "version": "0.3.0",
+  "description": "Plugin รวม Skills สำหรับให้คำแนะนำและจับคู่ตัวเลือกที่เหมาะสม ครอบคลุม Design Style, Font Pairing, Web Design, Note-taking Pattern และ Diagram Design",
   "author": {
     "name": "natthasath"
   },
-  "keywords": ["guide", "recommend", "design", "font", "creative", "presentation", "slide", "web", "website", "landing-page", "ui", "color-palette", "note-taking", "cornell", "zettelkasten", "para", "outline", "pattern"]
+  "keywords": ["guide", "recommend", "design", "font", "creative", "presentation", "slide", "web", "website", "landing-page", "ui", "color-palette", "note-taking", "cornell", "zettelkasten", "para", "outline", "pattern", "diagram", "svg", "html", "flowchart", "architecture", "mermaid", "drawio"]
 }
