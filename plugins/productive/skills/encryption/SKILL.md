@@ -31,8 +31,10 @@ Claude รันคำสั่งเองทีละขั้น:
 ## ขั้นตอนที่ 1 — ถาม path ทั้งสามจากผู้ใช้เสมอ
 ห้าม default เอาเองหรือจำ path จากบทสนทนาก่อนหน้า ต้องถามทุกครั้งที่รัน:
 1. **Source path** — โฟลเดอร์ที่จะเข้ารหัส
-2. **Output path สำหรับ encrypted archive**
-3. **Output path สำหรับไฟล์ passphrase**
+2. **Output path สำหรับ encrypted archive** — เป็น path ไฟล์เต็ม (ผู้ใช้เลือกชื่อ archive เองได้)
+3. **Output โฟลเดอร์สำหรับไฟล์ passphrase** — ต้องเป็น**โฟลเดอร์** ไม่ใช่ชื่อไฟล์ เพราะ script จะเขียนไฟล์ชื่อ
+   `passphrase.txt` ลงในโฟลเดอร์นี้เสมอ (ชื่อไฟล์ตายตัว ไม่ใช้ชื่อที่ผู้ใช้ตั้ง) เพื่อให้คาดเดาได้ทุกครั้งว่า
+   passphrase อยู่ไฟล์ไหน
 
 ตรวจสอบว่า source path มีอยู่จริงและเป็นโฟลเดอร์ก่อนไปขั้นต่อไป (`Test-Path -PathType Container` บน
 PowerShell หรือ `[ -d ... ]` บน Bash) ถ้าไม่เจอ แจ้งผู้ใช้และหยุด
@@ -55,18 +57,21 @@ PowerShell หรือ `[ -d ... ]` บน Bash) ถ้าไม่เจอ �
 ไม่สำเร็จ พร้อมเหตุผลที่เห็นจาก output ของคำสั่ง อย่าเดาสาเหตุเอง
 
 ## ขั้นตอนที่ 3 — รัน script หลัก
-เรียก `scripts/secure_send.py` ด้วย `uv run --script` ส่ง 3 path เป็น argument (path ไม่ใช่ข้อมูลลับ ส่งผ่าน
-argument ได้ตามปกติ — ที่ห้ามผ่าน argument คือ passphrase เท่านั้น ซึ่ง script จัดการผ่าน stdin ให้แล้ว):
+เรียก `scripts/secure_send.py` ด้วย `uv run --script` ส่ง 3 argument (path ไม่ใช่ข้อมูลลับ ส่งผ่าน argument
+ได้ตามปกติ — ที่ห้ามผ่าน argument คือ passphrase เท่านั้น ซึ่ง script จัดการผ่าน stdin ให้แล้ว) argument ที่ 3
+ต้องเป็น**โฟลเดอร์** ตามขั้นตอนที่ 1:
 
 ```bash
-uv run --script scripts/secure_send.py "<source_dir>" "<archive_output_path>" "<passphrase_output_path>"
+uv run --script scripts/secure_send.py "<source_dir>" "<archive_output_path>" "<passphrase_output_dir>"
 ```
 
 script จะทำครบในตัวเอง: สร้าง passphrase สุ่ม (ดูเหตุผลที่ไม่ใช้ diceware wordlist ในขั้นตอนที่ 5), tar+gzip
 source_dir, เข้ารหัสด้วย gpg (ผ่าน `--passphrase-fd 0` ไม่ผ่าน argv), decrypt กลับมาเทียบ sha256 ทันทีเพื่อ
-ยืนยันว่า decrypt ได้จริงก่อนส่งมอบ, เขียน passphrase ลงไฟล์ output, สร้างไฟล์คำแนะนำการ decrypt ภาษาไทย
-(`<ชื่อ archive>.HOW-TO-DECRYPT.txt`) จากเทมเพลต `assets/decrypt-instructions.txt` ไว้ข้างๆ archive ให้ผู้รับ
-ที่ไม่คุ้น gpg ทำตามได้เอง และลบไฟล์ temp ทั้งหมดใน `finally` เสมอไม่ว่าจะสำเร็จหรือ error
+ยืนยันว่า decrypt ได้จริงก่อนส่งมอบ, เขียน passphrase ลงไฟล์ `passphrase.txt` ในโฟลเดอร์ที่ระบุ, สร้างไฟล์
+คำแนะนำการ decrypt ภาษาไทยชื่อ `HOW-TO-DECRYPT.md` (จัดรูปแบบสไตล์ README ตาม skill `/refactor-readme` —
+title มี emoji, header เป็นภาษาอังกฤษ, code block ระบุภาษา, ตารางสำหรับคำสั่งติดตั้งแต่ละ OS) จากเทมเพลต
+`assets/decrypt-instructions.md` ไว้ข้างๆ archive ให้ผู้รับที่ไม่คุ้น gpg ทำตามได้เอง และลบไฟล์ temp ทั้งหมด
+ใน `finally` เสมอไม่ว่าจะสำเร็จหรือ error
 
 ไฟล์คำแนะนำนี้**ไม่มี passphrase หรือข้อมูลลับอยู่เลย** (มีแค่ชื่อไฟล์ archive กับคำสั่งติดตั้ง/decrypt ทั่วไป)
 จึงส่งไปพร้อมกับ archive ทางช่องทางเดียวกันได้ตามปกติ — ที่ต้องแยกช่องทางมีแค่ไฟล์ passphrase เท่านั้น

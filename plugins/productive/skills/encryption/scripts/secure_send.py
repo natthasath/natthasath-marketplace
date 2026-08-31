@@ -7,14 +7,20 @@
 generate a separate random passphrase for secure file exchange.
 
 Usage:
-    uv run --script secure_send.py <source_dir> <archive_output_path> <passphrase_output_path>
+    uv run --script secure_send.py <source_dir> <archive_output_path> <passphrase_output_dir>
+
+archive_output_path is a full file path (the caller picks the archive's
+name). passphrase_output_dir is a *directory* -- the passphrase always gets
+written there as a fixed filename (passphrase.txt), never whatever name the
+caller might have been tempted to give it, so every run produces the same
+predictable filename for tooling/humans to look for.
 
 Besides the encrypted archive and the passphrase file, this also writes a
-Thai-language "how to decrypt" instructions file next to the archive, filled
-in from assets/decrypt-instructions.txt, so a non-technical recipient knows
-how to install gpg and run the decrypt command themselves. That file has no
-secret in it (no passphrase, no file listing) so it's fine to hand to the
-recipient over the same channel as the archive.
+Thai-language "how to decrypt" instructions file (HOW-TO-DECRYPT.md) next to
+the archive, filled in from assets/decrypt-instructions.md, so a
+non-technical recipient knows how to install gpg and run the decrypt command
+themselves. That file has no secret in it (no passphrase, no file listing)
+so it's fine to hand to the recipient over the same channel as the archive.
 
 Design notes (see plugins/productive/skills/encryption/SKILL.md for the full
 security design discussion):
@@ -63,7 +69,9 @@ _GROUP_COUNT = 6  # 24 chars * log2(54) ~= 138 bits of entropy
 # Max coded S2K iteration count gpg accepts -- strongest available KDF work factor.
 _S2K_COUNT = "65011712"
 
-_INSTRUCTIONS_TEMPLATE = Path(__file__).resolve().parent.parent / "assets" / "decrypt-instructions.txt"
+_INSTRUCTIONS_TEMPLATE = Path(__file__).resolve().parent.parent / "assets" / "decrypt-instructions.md"
+_PASSPHRASE_FILENAME = "passphrase.txt"
+_INSTRUCTIONS_FILENAME = "HOW-TO-DECRYPT.md"
 
 
 def fail(message: str) -> None:
@@ -97,16 +105,17 @@ def chmod_best_effort(path: Path, mode: int) -> None:
 
 def write_decrypt_instructions(archive_output: Path) -> Path:
     """Writes a Thai-language, non-secret 'how to decrypt' file next to the
-    archive so the recipient (who may not know gpg) can follow along. Derives
-    the instructions filename from the archive name so multiple transfers in
-    the same folder don't collide."""
+    archive so the recipient (who may not know gpg) can follow along. Always
+    named HOW-TO-DECRYPT.md -- a fixed, predictable name -- so re-running the
+    skill for a later transfer in the same folder just refreshes it in place;
+    it has no secret content, so overwriting it is harmless."""
     archive_name = archive_output.name
     decrypted_name = archive_name[: -len(".gpg")] if archive_name.endswith(".gpg") else f"{archive_name}.decrypted"
 
     template = _INSTRUCTIONS_TEMPLATE.read_text(encoding="utf-8")
     content = template.replace("__ARCHIVE_NAME__", archive_name).replace("__DECRYPTED_NAME__", decrypted_name)
 
-    instructions_output = archive_output.parent / f"{decrypted_name}.HOW-TO-DECRYPT.txt"
+    instructions_output = archive_output.parent / _INSTRUCTIONS_FILENAME
     instructions_output.write_text(content, encoding="utf-8", newline="\n")
     return instructions_output
 
@@ -124,23 +133,27 @@ def run_gpg(args: list[str], passphrase: str) -> None:
 
 def main() -> None:
     if len(sys.argv) != 4:
-        fail("usage: secure_send.py <source_dir> <archive_output_path> <passphrase_output_path>")
+        fail("usage: secure_send.py <source_dir> <archive_output_path> <passphrase_output_dir>")
 
     source_dir = Path(sys.argv[1]).expanduser().resolve()
     archive_output = Path(sys.argv[2]).expanduser().resolve()
-    passphrase_output = Path(sys.argv[3]).expanduser().resolve()
+    passphrase_dir = Path(sys.argv[3]).expanduser().resolve()
+    passphrase_output = passphrase_dir / _PASSPHRASE_FILENAME
 
     if not source_dir.is_dir():
         fail(f"source_dir ไม่ใช่โฟลเดอร์หรือไม่พบ: {source_dir}")
-
-    if archive_output == passphrase_output:
-        fail("archive_output_path และ passphrase_output_path ต้องไม่ใช่ path เดียวกัน")
 
     if shutil.which("gpg") is None:
         fail("ไม่พบ gpg บนเครื่องนี้ — ต้องติดตั้งก่อนเรียก script นี้ (SKILL.md เป็นคนเช็ค/ติดตั้งก่อนหน้านี้แล้ว)")
 
     archive_output.parent.mkdir(parents=True, exist_ok=True)
-    passphrase_output.parent.mkdir(parents=True, exist_ok=True)
+    passphrase_dir.mkdir(parents=True, exist_ok=True)
+
+    if archive_output == passphrase_output:
+        fail("archive_output_path จะไปทับไฟล์ passphrase.txt ในโฟลเดอร์เดียวกัน — เลือกโฟลเดอร์อื่นสำหรับ passphrase")
+
+    if archive_output.name == _INSTRUCTIONS_FILENAME:
+        fail(f"archive_output_path ต้องไม่ชื่อ {_INSTRUCTIONS_FILENAME} เพราะจะไปทับไฟล์คำแนะนำ decrypt")
 
     source_file_count = 0
     source_total_bytes = 0
