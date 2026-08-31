@@ -10,6 +10,7 @@ Plugin for **Capacities PKM** — designs Spaces, Object Types, Tags, Collection
 | `movies-tag` | วิเคราะห์ genre/theme ของหนัง และแนะนำ Genre Tags สำหรับ Capacities — เรียกผ่าน `/movies-tag` เท่านั้น ไม่ auto-trigger |
 | `spotify-tag` | จับคู่เพลงกับหมวด/Playlist ตามประเทศและ mood/แนวเพลง ค้นหาข้อมูลเพลงจากเว็บอัตโนมัติถ้าให้มาแค่ชื่อเพลง เสนอชื่อ Playlist ใหม่โทน Gen Z ถ้าไม่มีหมวดตรง — เรียกผ่าน `/spotify-tag` เท่านั้น ไม่ auto-trigger |
 | `glossary` | อธิบายความหมายตัวย่อหรือศัพท์เทคนิค (Abbreviations / Acronyms) แบบ 1 paragraph — เรียกผ่าน `/glossary` เท่านั้น ไม่ auto-trigger |
+| `question` | ตอบคำถามทั่วไปแบบสั้น กระชับ ตรงประเด็น แบบ 1 paragraph — เรียกผ่าน `/question` เท่านั้น ไม่ auto-trigger |
 | `knowledge` | สร้าง Knowledge Note พร้อม frontmatter และ sections ที่เป็นระบบ — เรียกผ่าน `/knowledge` เท่านั้น ไม่ auto-trigger |
 | `highlight` | แปลงข้อความธรรมดาให้อ่านง่ายขึ้นด้วยการเน้นจุดสำคัญ (bold, italic, code, ไฮไลต์สีจริง) render เป็นภาพจริงในแชททันทีผ่าน HTML widget ห้ามแก้ไขข้อความต้นฉบับ ไม่มี Artifact แยกหน้า — เรียกผ่าน `/highlight` เท่านั้น ไม่ auto-trigger |
 
@@ -20,6 +21,7 @@ Plugin for **Capacities PKM** — designs Spaces, Object Types, Tags, Collection
 /movies-tag <ชื่อหนังหรือคำอธิบายเนื้อเรื่อง>
 /spotify-tag <ชื่อเพลง เนื้อเพลง หรือบรรยากาศที่ต้องการ>
 /glossary <ตัวย่อหรือศัพท์เทคนิค>
+/question <คำถามที่ต้องการคำตอบ>
 /knowledge <คำศัพท์หรือหัวข้อที่ต้องการบันทึก>
 /highlight <ข้อความที่ต้องการจัดรูปแบบ>
 ```

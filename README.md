@@ -1,9 +1,9 @@
 # 🎉 natthasath-marketplace
 
-A Claude Code plugin marketplace bundling 16 plugins and 67 skills across PKM, project planning, session management, content writing, language, design, and productivity — install with a single command and start using slash commands right away.
+A Claude Code plugin marketplace bundling 16 plugins and 68 skills across PKM, project planning, session management, content writing, language, design, and productivity — install with a single command and start using slash commands right away.
 
 ![plugins](https://img.shields.io/badge/plugins-16-blue)
-![skills](https://img.shields.io/badge/skills-67-brightgreen)
+![skills](https://img.shields.io/badge/skills-68-brightgreen)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-marketplace-8A63D2)
 ![license](https://img.shields.io/github/license/natthasath/natthasath-marketplace)
 
@@ -11,7 +11,7 @@ A Claude Code plugin marketplace bundling 16 plugins and 67 skills across PKM, p
 
 | Plugin | Skills | วัตถุประสงค์ |
 |---|---|---|
-| [`capacities`](plugins/capacities/README.md) | 6 | จัดการ PKM บน Capacities — Tags, Knowledge Notes และ Text Formatting |
+| [`capacities`](plugins/capacities/README.md) | 7 | จัดการ PKM บน Capacities — Tags, Knowledge Notes และ Text Formatting |
 | [`document`](plugins/document/README.md) | 2 | จัดการเอกสารภาษาไทย — ตรวจสอบหนังสือราชการ และ blind ข้อมูล sensitive |
 | [`drive`](plugins/drive/README.md) | 1 | บันทึกไฟล์ไปยัง Google Drive อัตโนมัติ — ค้นหาและดาวน์โหลด ebook/PDF จากแหล่งถูกกฎหมายผ่าน Google Apps Script |
 | [`github`](plugins/github/README.md) | 2 | จัดการงาน GitHub repo — เลือก/ติดตั้ง License และแนะนำ Tag สำหรับเก็บ repo ลง Capacities |

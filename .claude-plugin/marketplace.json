@@ -12,7 +12,7 @@
       "description": "Plugin รวม Skills สำหรับ Capacities PKM ครอบคลุม Tags, Collections, Workflow, Knowledge Notes และ Text Formatting",
       "source": "./plugins/capacities",
       "category": "productivity",
-      "keywords": ["capacities", "pkm", "mood", "tags", "daily-notes", "highlight", "format", "markdown", "spotify", "music", "playlist"]
+      "keywords": ["capacities", "pkm", "mood", "tags", "daily-notes", "highlight", "format", "markdown", "spotify", "music", "playlist", "question", "qa"]
     },
     {
       "name": "masterplan",
