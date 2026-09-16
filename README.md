@@ -20,7 +20,7 @@ A Claude Code plugin marketplace bundling 16 plugins and 70 skills across PKM, p
 | [`language`](plugins/language/README.md) | 2 | จัดการงานด้านภาษา — ล่ามแปลต่อเนื่อง และ English Mentor |
 | [`masterplan`](plugins/masterplan/README.md) | 5 | วางแผนโปรเจกต์ซอฟต์แวร์ — Requirement, Architecture และ Database Design |
 | [`obsidian`](plugins/obsidian/README.md) | 1 | คลังความรู้แบบ markdown ที่เก็บนอก repo — เริ่มจาก Cookbook เทคนิคการใช้งาน AI CLI/Tools (Claude Code CLI, Claude Design, Codex CLI, Antigravity CLI) |
-| [`productive`](plugins/productive/README.md) | 16 | เพิ่มประสิทธิภาพการทำงาน — สรุปประชุม, ดาวน์โหลด PDF, ประเมินงาน IT, สร้าง Flashcard, แปลงข้อความ/รูปเป็น ASCII art, สัมภาษณ์แบบ Socratic, ดัดแปลง skill จากที่อื่น, เข้ารหัสไฟล์สำหรับส่งต่ออย่างปลอดภัย, วิเคราะห์ Single Point of Failure และวางแผนรับมือสถานการณ์หน้างาน |
+| [`productive`](plugins/productive/README.md) | 17 | เพิ่มประสิทธิภาพการทำงาน — สรุปประชุม, ดาวน์โหลด PDF, ประเมินงาน IT, สร้าง Flashcard, แปลงข้อความ/รูปเป็น ASCII art, สัมภาษณ์แบบ Socratic, ดัดแปลง skill จากที่อื่น, เข้ารหัสไฟล์สำหรับส่งต่ออย่างปลอดภัย, วิเคราะห์ Single Point of Failure, วางแผนรับมือสถานการณ์หน้างาน และบันทึก event ลง Google Calendar |
 | [`projects`](plugins/projects/README.md) | 15 | จัดการ development project — scaffold workflow ตั้งแต่ setup จนถึง ship |
 | [`refactor`](plugins/refactor/README.md) | 5 | ปรับปรุงโครงสร้างไฟล์ — Docker, Shell Script, README และโครงสร้าง command ของ CLI tool |
 | [`roleplay`](plugins/roleplay/README.md) | 4 | จำลองบทบาทเพื่อฝึกทักษะ — สัมภาษณ์งาน, สอบสวน, กลยุทธ์ และภาษาอังกฤษ |

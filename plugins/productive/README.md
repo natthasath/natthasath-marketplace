@@ -22,6 +22,7 @@ Plugin for **boosting work productivity** — covers Tech Explainer, Meetings, P
 | `encryption` | เตรียมไฟล์สำคัญสำหรับส่งต่ออย่างปลอดภัย — รวมโฟลเดอร์เป็น tar.gz เดียว เข้ารหัสด้วย GPG symmetric AES-256 สร้าง `passphrase.txt` แยกไฟล์ พร้อมไฟล์คำแนะนำการ decrypt สไตล์ README ชื่อ `HOW-TO-DECRYPT.md` แนบไปกับ archive ตรวจสอบ decrypt ได้จริงก่อนส่งมอบ และแนะนำให้ส่ง archive กับ passphrase คนละช่องทางกัน — เรียกผ่าน `/encryption` เท่านั้น ไม่ auto-trigger |
 | `spof` | วิเคราะห์หา Single Point of Failure ในระบบหรือสถาปัตยกรรม ครอบคลุม Infrastructure, Network, Database, Application, Third-party/Vendor และ Human/Process พร้อมระดับความเสี่ยง (Impact × Likelihood) และแนวทางแก้ไข — เรียกผ่าน `/spof` เท่านั้น ไม่ auto-trigger |
 | `scenario` | วางแผนรับมือสถานการณ์หน้างาน (Event, ร้านค้า, Call Center, โรงพยาบาล, คลังสินค้า) จัดหมวดหมู่สถานการณ์ที่พบบ่อย 12 แบบ (Capacity, Missing Info, Identity, Duplicate, Registration, Walk-in, Group, Wrong Target, Special Case, Timing, Queue, Manual Override) พร้อมแผนรับมือ 3 ระดับ Plan A/B/C — เรียกผ่าน `/scenario` เท่านั้น ไม่ auto-trigger |
+| `coevent` | บันทึก Event ลง Google Calendar แบบครบขั้นตอน — เลือกปฏิทิน ตั้งชื่อ วันเวลาสถานที่ ผู้เข้าร่วม เพิ่ม Google Meet และการแจ้งเตือน (default ล่วงหน้า 1 วันตอน 05:00 น. บวกอีกรอบ 15 นาทีก่อนเริ่มถ้าเป็นการประชุม) ค้นเว็บให้เองถ้าไม่ระบุวันเวลา/สถานที่ และรองรับ event จัดหลายวันแบบ all-day — เรียกผ่าน `/coevent` เท่านั้น ไม่ auto-trigger |
 
 ### 🏆 Usage
 
@@ -42,4 +43,5 @@ Plugin for **boosting work productivity** — covers Tech Explainer, Meetings, P
 /encryption
 /spof <ระบบหรือสถาปัตยกรรมที่ต้องการวิเคราะห์>
 /scenario <งานหรือกระบวนการปฏิบัติงานที่ต้องการวางแผนรับมือสถานการณ์>
+/coevent <รายละเอียด event ที่ต้องการบันทึก>
 ```
