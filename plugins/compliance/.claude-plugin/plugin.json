@@ -1,0 +1,26 @@
+{
+  "name": "compliance",
+  "version": "0.1.0",
+  "description": "Plugin รวม Agents สำหรับค้นและสรุปกฎหมาย ระเบียบ ข้อบังคับจากแหล่งทางการ ครอบคลุม Regulation Researcher (พ.ร.บ./พ.ร.ฎ./กฎกระทรวง/ประกาศทั่วไป) และ Procurement Advisor (ระเบียบจัดซื้อจัดจ้างภาครัฐไทยโดยเฉพาะ)",
+  "author": {
+    "name": "natthasath"
+  },
+  "keywords": [
+    "compliance",
+    "legal",
+    "law",
+    "regulation",
+    "กฎหมาย",
+    "ระเบียบ",
+    "ข้อบังคับ",
+    "ราชกิจจานุเบกษา",
+    "krisdika",
+    "procurement",
+    "จัดซื้อจัดจ้าง",
+    "พัสดุ",
+    "e-gp",
+    "government",
+    "research",
+    "agent"
+  ]
+}

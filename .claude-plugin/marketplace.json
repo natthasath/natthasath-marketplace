@@ -118,6 +118,13 @@
       "source": "./plugins/drive",
       "category": "productivity",
       "keywords": ["drive", "google-drive", "ebook", "pdf", "apps-script", "download", "copyright", "automation"]
+    },
+    {
+      "name": "compliance",
+      "description": "Plugin รวม Agents สำหรับค้นและสรุปกฎหมาย ระเบียบ ข้อบังคับจากแหล่งทางการ ครอบคลุม Regulation Researcher (พ.ร.บ./พ.ร.ฎ./กฎกระทรวง/ประกาศทั่วไป) และ Procurement Advisor (ระเบียบจัดซื้อจัดจ้างภาครัฐไทยโดยเฉพาะ)",
+      "source": "./plugins/compliance",
+      "category": "productivity",
+      "keywords": ["compliance", "legal", "law", "regulation", "กฎหมาย", "ระเบียบ", "ข้อบังคับ", "ราชกิจจานุเบกษา", "krisdika", "procurement", "จัดซื้อจัดจ้าง", "พัสดุ", "e-gp", "government", "research", "agent"]
     }
   ]
 }

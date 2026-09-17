@@ -1,9 +1,10 @@
 # 🎉 natthasath-marketplace
 
-A Claude Code plugin marketplace bundling 16 plugins and 70 skills across PKM, project planning, session management, content writing, language, design, and productivity — install with a single command and start using slash commands right away.
+A Claude Code plugin marketplace bundling 17 plugins, 70 skills, and 2 agents across PKM, project planning, session management, content writing, language, design, productivity, and legal/regulatory research — install with a single command and start using slash commands right away.
 
-![plugins](https://img.shields.io/badge/plugins-16-blue)
+![plugins](https://img.shields.io/badge/plugins-17-blue)
 ![skills](https://img.shields.io/badge/skills-70-brightgreen)
+![agents](https://img.shields.io/badge/agents-2-orange)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-marketplace-8A63D2)
 ![license](https://img.shields.io/github/license/natthasath/natthasath-marketplace)
 
@@ -11,6 +12,7 @@ A Claude Code plugin marketplace bundling 16 plugins and 70 skills across PKM, p
 
 | Plugin | Skills | วัตถุประสงค์ |
 |---|---|---|
+| [`compliance`](plugins/compliance/README.md) | 2 agents | ค้นและสรุปกฎหมาย ระเบียบ ข้อบังคับจากแหล่งทางการ — Regulation Researcher (กฎหมายทั่วไป) และ Procurement Advisor (ระเบียบจัดซื้อจัดจ้างภาครัฐ) |
 | [`capacities`](plugins/capacities/README.md) | 7 | จัดการ PKM บน Capacities — Tags, Knowledge Notes และ Text Formatting |
 | [`creative`](plugins/creative/README.md) | 3 | แนะนำแนวทางออกแบบ — Design Style, Font Pairing, Web Design และ Note-taking |
 | [`document`](plugins/document/README.md) | 2 | จัดการเอกสารภาษาไทย — ตรวจสอบหนังสือราชการ และ blind ข้อมูล sensitive |
@@ -43,6 +45,7 @@ Plugin จากนักพัฒนาอื่นที่แนะนำ —
 /plugin marketplace add natthasath/natthasath-marketplace
 
 # 2. ติดตั้ง plugin ที่ต้องการ
+/plugin install compliance@natthasath-marketplace
 /plugin install capacities@natthasath-marketplace
 /plugin install creative@natthasath-marketplace
 /plugin install document@natthasath-marketplace
