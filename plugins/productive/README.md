@@ -23,6 +23,7 @@ Plugin for **boosting work productivity** — covers Tech Explainer, Meetings, P
 | `spof` | วิเคราะห์หา Single Point of Failure ในระบบหรือสถาปัตยกรรม ครอบคลุม Infrastructure, Network, Database, Application, Third-party/Vendor และ Human/Process พร้อมระดับความเสี่ยง (Impact × Likelihood) และแนวทางแก้ไข — เรียกผ่าน `/spof` เท่านั้น ไม่ auto-trigger |
 | `scenario` | วางแผนรับมือสถานการณ์หน้างาน (Event, ร้านค้า, Call Center, โรงพยาบาล, คลังสินค้า) จัดหมวดหมู่สถานการณ์ที่พบบ่อย 12 แบบ (Capacity, Missing Info, Identity, Duplicate, Registration, Walk-in, Group, Wrong Target, Special Case, Timing, Queue, Manual Override) พร้อมแผนรับมือ 3 ระดับ Plan A/B/C — เรียกผ่าน `/scenario` เท่านั้น ไม่ auto-trigger |
 | `coevent` | บันทึก Event ลง Google Calendar แบบครบขั้นตอน — เลือกปฏิทิน ตั้งชื่อ วันเวลาสถานที่ สถานะว่าง/ไม่ว่าง description (ถามและร่างให้ถ้าต้องการ) ผู้เข้าร่วม เพิ่ม Google Meet และการแจ้งเตือน (default ล่วงหน้า 1 วันตอน 05:00 น. บวกอีกรอบ 15 นาทีก่อนเริ่มถ้าเป็นการประชุม) ค้นเว็บให้เองถ้าไม่ระบุวันเวลา/สถานที่ รองรับ event จัดหลายวันแบบ all-day และเทศกาล/ฤดูกาลที่กินเวลายาวนาน (ถามผู้ใช้ก่อนเสมอว่าจะทำเป็น all-day ช่วงเดียวหรือแยกเป็น 2 event วันแรก/วันสุดท้ายของเทศกาล) รองรับบันทึกหลาย event พร้อมกัน (โหมด Bulk) โดยถามค่าที่ใช้ร่วมกันทั้งชุดเพียงรอบเดียวแล้วสรุปเป็นตารางเดียวให้ยืนยันครั้งเดียวจบ — เรียกผ่าน `/coevent` เท่านั้น ไม่ auto-trigger |
+| `upskill-reskill` | บันทึกทักษะใหม่ที่พัฒนา/เรียนรู้ไปพร้อมกับ Claude ลงไฟล์ `Upskill-Reskill-Log.md` สะสมต่อเนื่องบน Google Drive ครอบคลุมสายงาน Computer Technical Officer แบบกว้างๆ (Network, Server, Database, DevOps, Frontend, Backend, API, Cloud, Security, Automation) และทักษะ AI/LLM ทุกชนิด (Claude, ChatGPT, Grok ฯลฯ) — ใน Claude Code auto-trigger เองทันทีหลัง push code ขึ้น git สำเร็จถ้าเนื้อหาเข้าข่ายทักษะใหม่ ใน Claude Chat/Cowork trigger เมื่อพิมพ์ `upskill & reskill` หรือเรียกตรงผ่าน `/upskill-reskill [ชื่อทักษะ]` ได้ทุกที่ — **ข้อยกเว้นเดียว**ในปลั๊กอินนี้ที่ auto-trigger ได้ |
 
 ### 🏆 Usage
 
@@ -44,4 +45,5 @@ Plugin for **boosting work productivity** — covers Tech Explainer, Meetings, P
 /spof <ระบบหรือสถาปัตยกรรมที่ต้องการวิเคราะห์>
 /scenario <งานหรือกระบวนการปฏิบัติงานที่ต้องการวางแผนรับมือสถานการณ์>
 /coevent <รายละเอียด event ที่ต้องการบันทึก>
+/upskill-reskill [ชื่อทักษะใหม่ที่ต้องการบันทึก]
 ```
