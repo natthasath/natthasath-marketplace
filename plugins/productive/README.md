@@ -6,7 +6,7 @@ Plugin for **boosting work productivity** — covers Tech Explainer, Meetings, P
 
 | Skill | วัตถุประสงค์ |
 |---|---|
-| `isolate` | อธิบายคำศัพท์หรือเทคโนโลยีแบบเจาะลึกผ่าน 6 มิติ: TL;DR, Problem, Solution, Use Cases, Compare, Key Takeaway — เรียกผ่าน `/isolate` เท่านั้น ไม่ auto-trigger |
+| `breakdown` | อธิบายคำศัพท์หรือเทคโนโลยีแบบเจาะลึกผ่าน 6 มิติ: TL;DR, Problem, Solution, Use Cases, Compare, Key Takeaway — เรียกผ่าน `/breakdown` เท่านั้น ไม่ auto-trigger |
 | `comeet` | สรุปการประชุมเป็นโครงสร้างมาตรฐาน: Objective, Key Topics, Discussions, Decisions, Action Items และ Next Step — เรียกผ่าน `/comeet` เท่านั้น ไม่ auto-trigger |
 | `perspective` | ให้มุมมองและข้อคิดจากหัวข้ออบรม เขียนในเสียงของ Senior Engineer — เจ็บแต่จริง ไม่ใช่สไตล์ HR — เรียกผ่าน `/perspective` เท่านั้น ไม่ auto-trigger |
 | `ebook` | ค้นหาและดาวน์โหลดไฟล์ PDF จากแหล่งที่น่าเชื่อถือและถูกกฎหมาย รองรับทั้งค้นหาจากชื่อและดาวน์โหลดจาก URL — เรียกผ่าน `/ebook` เท่านั้น ไม่ auto-trigger |
@@ -27,7 +27,7 @@ Plugin for **boosting work productivity** — covers Tech Explainer, Meetings, P
 ### 🏆 Usage
 
 ```
-/isolate <ชื่อเทคโนโลยีหรือแนวคิด>
+/breakdown <ชื่อเทคโนโลยีหรือแนวคิด>
 /comeet
 /perspective <หัวข้ออบรม>
 /ebook <ชื่อหนังสือหรือ URL>
