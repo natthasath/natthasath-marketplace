@@ -1,6 +1,6 @@
 # 🎉 productive
 
-Plugin for **boosting work productivity** — covers Tech Explainer, Meetings, PDF, Workplace Communication, IT Scorecard, KPI, Flashcard, Activity Report, and ASCII Art.
+Plugin for **boosting work productivity** — covers Tech Explainer, Meetings, PDF, Workplace Communication, IT Scorecard, KPI, Flashcard, and Activity Report.
 
 ### ⭐ Skills
 
@@ -16,7 +16,6 @@ Plugin for **boosting work productivity** — covers Tech Explainer, Meetings, P
 | `flashcard` | สร้าง Flashcard website (LexiCard) สำหรับเรียนคำศัพท์ รองรับหลายภาษา พร้อมระบบ Flip Card, Quiz และการออกเสียง — เรียกผ่าน `/flashcard` เท่านั้น ไม่ auto-trigger |
 | `activity-report` | สรุปความคืบหน้ากิจกรรมในแผนการปฏิบัติงานประจำปีของสำนัก — ถามข้อมูลครบ 5W (แผน / ทำ / ได้ / ติด / ต่อ) แล้วสรุปเป็น 1 paragraph ภาษาทางการ — เรียกผ่าน `/activity-report` เท่านั้น ไม่ auto-trigger |
 | `save-cost` | ติดตั้ง CLI tools ที่ลดการใช้ token (gh, jq, ast-grep, uv, git-delta, duckdb ฯลฯ) พร้อม config และอัปเดต CLAUDE.md ให้ Claude รู้ว่าควรใช้ tool ไหนเมื่อไหร่ — เรียกผ่าน `/save-cost` เท่านั้น ไม่ auto-trigger |
-| `ascii-art` | แปลงข้อความอังกฤษหรือรูปภาพเป็น ASCII art — 8 โหมด (figlet, toilet, lolcat, cowsay, box, jp2a, chafa, braille) 571 ฟอนต์ พร้อมชุดสี ถามทีละคำถามตามลำดับ (โหมด → ฟอนต์ → สี → กรอบ) แสดงผลในเทอร์มินัลทันที และทำ HTML Artifact ให้ด้วยเมื่อผลลัพธ์มีสี — เรียกผ่าน `/ascii-art` เท่านั้น ไม่ auto-trigger |
 | `grill-me` | สัมภาษณ์ผู้ใช้อย่างเข้มข้นเพื่อ stress-test แผน การตัดสินใจ หรือไอเดีย — แตกเป็น design tree ถามเป็นรอบตาม frontier พร้อมคำตอบแนะนำทุกข้อ เรียกผ่าน `/grill-me` เท่านั้น ไม่ auto-trigger |
 | `copycat` | คัดลอกและดัดแปลง skill จากที่อื่น (GitHub, marketplace อื่น) ให้ตรงกับ pattern ของ marketplace นี้ — สรุปต้นทาง เช็ค dependency/license เสนอการปรับ แล้วถามก่อนเสมอว่าจะใส่ plugin ไหน — เรียกผ่าน `/copycat` เท่านั้น ไม่ auto-trigger |
 | `encryption` | เตรียมไฟล์สำคัญสำหรับส่งต่ออย่างปลอดภัย — รวมโฟลเดอร์เป็น tar.gz เดียว เข้ารหัสด้วย GPG symmetric AES-256 สร้าง `passphrase.txt` แยกไฟล์ พร้อมไฟล์คำแนะนำการ decrypt สไตล์ README ชื่อ `HOW-TO-DECRYPT.md` แนบไปกับ archive ตรวจสอบ decrypt ได้จริงก่อนส่งมอบ และแนะนำให้ส่ง archive กับ passphrase คนละช่องทางกัน — เรียกผ่าน `/encryption` เท่านั้น ไม่ auto-trigger |
@@ -38,7 +37,6 @@ Plugin for **boosting work productivity** — covers Tech Explainer, Meetings, P
 /flashcard <ภาษาและหมวดคำศัพท์ที่ต้องการ>
 /activity-report <ชื่อกิจกรรม>
 /save-cost
-/ascii-art <ข้อความภาษาอังกฤษ หรือ path ของไฟล์รูป>
 /grill-me <แผน การตัดสินใจ หรือไอเดียที่อยากให้ช่วย stress-test>
 /copycat <ลิงก์ GitHub หรือเนื้อหา skill ที่อยากเอามาปรับใช้>
 /encryption
