@@ -16,7 +16,7 @@ A Claude Code plugin marketplace bundling 17 plugins, 69 skills, and 2 agents ac
 | [`capacities`](plugins/capacities/README.md) | 7 | จัดการ PKM บน Capacities — Tags, Knowledge Notes และ Text Formatting |
 | [`creative`](plugins/creative/README.md) | 3 | แนะนำแนวทางออกแบบ — Design Style, Font Pairing, Web Design และ Note-taking |
 | [`document`](plugins/document/README.md) | 2 | จัดการเอกสารภาษาไทย — ตรวจสอบหนังสือราชการ และ blind ข้อมูล sensitive |
-| [`drive`](plugins/drive/README.md) | 1 | บันทึกไฟล์ไปยัง Google Drive อัตโนมัติ — ค้นหาและดาวน์โหลด ebook/PDF จากแหล่งถูกกฎหมายผ่าน Google Apps Script |
+| [`drive`](plugins/drive/README.md) | 3 | บันทึกไฟล์ไปยัง Google Drive อัตโนมัติ — ค้นหาและดาวน์โหลด ebook/PDF ผ่าน Google Apps Script และดูแลลิสต์หนังสือ (อยากได้/ซื้อแล้ว) จาก SE-ED/Naiin |
 | [`github`](plugins/github/README.md) | 2 | จัดการงาน GitHub repo — เลือก/ติดตั้ง License และแนะนำ Tag สำหรับเก็บ repo ลง Capacities |
 | [`insight`](plugins/insight/README.md) | 2 | วิเคราะห์ web analytics — Google Analytics 4 และ Microsoft Clarity ผ่าน MCP |
 | [`language`](plugins/language/README.md) | 2 | จัดการงานด้านภาษา — ล่ามแปลต่อเนื่อง และ English Mentor |
