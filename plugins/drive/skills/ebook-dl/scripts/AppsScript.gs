@@ -1,5 +1,5 @@
 /**
- * ebook-drive — Google Apps Script (Drive Queue + Web App)
+ * ebook-dl — Google Apps Script (Drive Queue + Web App)
  * ------------------------------------------------------------------
  * WHY THIS EXISTS
  * Claude usually runs inside a network-sandboxed environment that can only
@@ -54,7 +54,9 @@
 var SECRET_TOKEN = 'REPLACE_WITH_YOUR_OWN_SECRET';
  
 // Folder Claude saves books into. Jobs may override this per-job.
-var DEFAULT_FOLDER = 'ebook';
+// Supports a nested path ("Parent/Child") — each segment is resolved or
+// created level by level; a plain name with no "/" still works as before.
+var DEFAULT_FOLDER = 'Automation/ebook';
  
 // Name of the queue file Claude writes jobs into.
 var QUEUE_FILENAME = '_queue.json';
@@ -289,12 +291,19 @@ function findFileByName(folder, name) {
   return it.hasNext() ? it.next() : null;
 }
  
-function getOrCreateFolder(name) {
-  var folders = DriveApp.getFoldersByName(name);
-  if (folders.hasNext()) {
-    return folders.next();
+/**
+ * Resolves (creating as needed) a folder, walking a "Parent/Child" path one
+ * segment at a time. A plain name with no "/" behaves exactly as before.
+ */
+function getOrCreateFolder(path) {
+  var segments = String(path).split('/').filter(function (s) { return s.length > 0; });
+  var parent = DriveApp.getRootFolder();
+  for (var i = 0; i < segments.length; i++) {
+    var name = segments[i];
+    var existing = parent.getFoldersByName(name);
+    parent = existing.hasNext() ? existing.next() : parent.createFolder(name);
   }
-  return DriveApp.createFolder(name);
+  return parent;
 }
  
 function jsonOutput(obj) {

@@ -1,5 +1,5 @@
 ---
-name: ebook-drive
+name: ebook-dl
 description: >
   ค้นหาหนังสือหรือเอกสาร PDF จากแหล่งที่ถูกกฎหมายบนอินเทอร์เน็ต แล้วบันทึกเข้าโฟลเดอร์ Google Drive ของผู้ใช้
   โดยอัตโนมัติผ่าน Google Apps Script — ผู้ใช้ไม่ต้องดาวน์โหลดหรืออัปโหลดไฟล์เองแม้แต่ขั้นตอนเดียว
@@ -7,7 +7,7 @@ description: >
   ebook/PDF ไว้ใน Google Drive โดยเฉพาะ เช่น "หาหนังสือเล่มนี้ให้หน่อย แล้วเก็บใน Drive",
   "เจอปกหนังสือนี้ อยากได้ PDF" ต้องตรวจสอบสิทธิ์เผยแพร่อย่างเคร่งครัดก่อนดาวน์โหลดทุกครั้ง
   ไม่ใช้กับการดาวน์โหลดลงเครื่อง local (ใช้ skill ebook แทนกรณีนั้น)
-  เรียกใช้ผ่าน `/drive:ebook-drive` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
+  เรียกใช้ผ่าน `/drive:ebook-dl` เท่านั้น — ไม่ auto-trigger จากบทสนทนา
 argument-hint: "[ชื่อหนังสือ/เอกสาร หรือ URL ไฟล์ PDF หรือแนบรูปปกหนังสือ]"
 allowed-tools: WebSearch, WebFetch, Read, Write, Edit, Bash, mcp__Google_Drive__search_files, mcp__Google_Drive__create_file, mcp__Google_Drive__list_recent_files, mcp__Google_Drive__trash_file, mcp__Google_Drive__get_file_metadata, mcp__memory__memory_list, mcp__memory__memory_read, mcp__memory__memory_write
 compatibility: ต้องเชื่อมต่อ Google Drive MCP connector และต้อง deploy Google Apps Script ของผู้ใช้เองครั้งแรก (ดู references/setup-guide.md และ scripts/AppsScript.gs) เพื่อให้ดาวน์โหลดไฟล์เข้า Drive ได้แบบอัตโนมัติ
@@ -55,11 +55,11 @@ Drive MCP connector เป็น first-party authenticated tool ไม่ได�
 
 ### 1. Local Config File (ใช้งานจริง — เช็คก่อนเสมอ)
 
-บันทึกไว้ที่: `~/.config/claude-ebook-drive/settings.json`
+บันทึกไว้ที่: `~/.config/claude-ebook-dl/settings.json`
 
 ```json
 {
-  "drive_folder_name": "ebook",
+  "drive_folder_name": "Automation/ebook",
   "apps_script_url": "https://script.google.com/macros/s/XXXXXXXXXXXX/exec",
   "apps_script_secret": "xxxxxxxxxxxxxxxxxxxxxxxx"
 }
@@ -69,7 +69,7 @@ Drive MCP connector เป็น first-party authenticated tool ไม่ได�
 
 ### 2. Persistent Memory (สำรองข้ามแชท)
 
-เก็บไว้ที่ path คงที่: `/areas/ebook-drive.md` ผ่าน `mcp__memory__*` — เป็นความจำที่ตามผู้ใช้ข้ามทุก session/ทุกอุปกรณ์ ใช้ฟื้นค่า config กลับมาได้โดยไม่ต้องให้ผู้ใช้ deploy Apps Script ใหม่หรือพิมพ์ค่าซ้ำ
+เก็บไว้ที่ path คงที่: `/areas/ebook-dl.md` ผ่าน `mcp__memory__*` — เป็นความจำที่ตามผู้ใช้ข้ามทุก session/ทุกอุปกรณ์ ใช้ฟื้นค่า config กลับมาได้โดยไม่ต้องให้ผู้ใช้ deploy Apps Script ใหม่หรือพิมพ์ค่าซ้ำ
 
 **ข้อควรรู้ก่อนเขียนลง memory:** `apps_script_secret` ทำหน้าที่เหมือนรหัสผ่าน (ใครมี URL+secret คู่นี้สั่งเขียนไฟล์ลง Drive โฟลเดอร์เป้าหมายได้) โดยปกติควรเก็บไว้แค่ local config เท่านั้น — เขียนลง memory เฉพาะตอนที่ผู้ใช้ขอให้ "จำ" ค่านี้ไว้อย่างชัดเจนเท่านั้น (เช่นพูดว่า "จำ URL/secret นี้ไว้ด้วย") ถ้าผู้ใช้ยังไม่เคยพูดแบบนี้ ให้เขียนแค่ local config พอ
 
@@ -77,7 +77,7 @@ Drive MCP connector เป็น first-party authenticated tool ไม่ได�
 
 1. อ่านไฟล์ local config ด้วย Bash/Read
 2. **ถ้ามี local config ครบ 3 ฟิลด์แล้ว** → ใช้ค่านั้นได้เลย ไม่ต้องเช็ค memory ไม่ต้องถามซ้ำ ไม่ต้องทดสอบซ้ำทุกครั้ง
-3. **ถ้าไม่มี local config** → เช็ค memory ก่อนเริ่ม setup ใหม่: `mcp__memory__memory_list` ดูว่ามี `/areas/ebook-drive.md` ไหม ถ้ามี `mcp__memory__memory_read` แล้วดึง `apps_script_url`/`apps_script_secret`/`drive_folder_name` ออกมา
+3. **ถ้าไม่มี local config** → เช็ค memory ก่อนเริ่ม setup ใหม่: `mcp__memory__memory_list` ดูว่ามี `/areas/ebook-dl.md` ไหม ถ้ามี `mcp__memory__memory_read` แล้วดึง `apps_script_url`/`apps_script_secret`/`drive_folder_name` ออกมา
    - **ถ้า memory มีครบทั้ง URL และ secret** → เขียนกลับเข้า local config ทันที ทดสอบยิง request จริงอีกครั้งเพื่อยืนยันว่า deployment ยังใช้งานได้ (อาจถูกลบ/แก้ไปแล้วก็ได้) แล้วใช้งานต่อได้เลย ไม่ต้องถามผู้ใช้อะไรเพิ่ม
    - **ถ้า memory มีแค่ URL แต่ไม่มี secret** (กรณีที่ยังไม่เคยได้รับอนุญาตให้เก็บ secret) → บอกผู้ใช้ว่าเจอ URL เดิมจาก session ก่อนหน้า ขอแค่ secret กลับมาอีกครั้ง ไม่ต้อง deploy ใหม่
    - **ถ้า memory ไม่มีเลย** (ใช้ครั้งแรกจริงๆ) → เปิด `references/setup-guide.md` แล้วพาผู้ใช้ทำตามขั้นตอน deploy Google Apps Script (ใช้โค้ดจาก `scripts/AppsScript.gs`) จนได้ `apps_script_url` และ `apps_script_secret` กลับมา — ช่วยสุ่ม secret ด้วย `openssl rand -hex 24` ผ่าน Bash ได้ถ้าผู้ใช้ขอ
@@ -87,7 +87,7 @@ Drive MCP connector เป็น first-party authenticated tool ไม่ได�
 
 ### เปลี่ยนการตั้งค่า
 
-Trigger เมื่อผู้ใช้พูดถึง: "เปลี่ยนโฟลเดอร์", "ตั้งค่าใหม่", "apps script ใช้ไม่ได้แล้ว", "deploy ใหม่" หรือคล้ายกัน — แสดงค่าปัจจุบันจาก config, ถามค่าใหม่, อัปเดตไฟล์, ยืนยันด้วยการทดสอบยิง request จริงอีกครั้งก่อนสรุปว่าเปลี่ยนสำเร็จ — ถ้าค่าเดิมเคยถูกจำไว้ใน `/areas/ebook-drive.md` ด้วย อัปเดตที่นั่นให้ตรงกันเสมอ (อ่านเวอร์ชันปัจจุบันก่อนเขียนทับด้วย `if_version`)
+Trigger เมื่อผู้ใช้พูดถึง: "เปลี่ยนโฟลเดอร์", "ตั้งค่าใหม่", "apps script ใช้ไม่ได้แล้ว", "deploy ใหม่" หรือคล้ายกัน — แสดงค่าปัจจุบันจาก config, ถามค่าใหม่, อัปเดตไฟล์, ยืนยันด้วยการทดสอบยิง request จริงอีกครั้งก่อนสรุปว่าเปลี่ยนสำเร็จ — ถ้าค่าเดิมเคยถูกจำไว้ใน `/areas/ebook-dl.md` ด้วย อัปเดตที่นั่นให้ตรงกันเสมอ (อ่านเวอร์ชันปัจจุบันก่อนเขียนทับด้วย `if_version`)
 
 ## พิจารณาแหล่งที่น่าเชื่อถือก่อนเสมอ (ทุกกรณี)
 
@@ -96,6 +96,15 @@ Trigger เมื่อผู้ใช้พูดถึง: "เปลี่ย
 - คลังเอกสารสาธารณะ เช่น archive.org (เฉพาะที่ให้ดาวน์โหลดฟรีจริง ไม่ใช่ borrow แบบมีกำหนดเวลา), research papers, open access journals
 
 **ห้ามส่งต่อให้ Apps Script ดาวน์โหลดจากแหล่งเหล่านี้เด็ดขาด:** Scribd, dokumen.pub, เว็บ "instant download"/"full chapters" ที่ขายไฟล์ละเมิดลิขสิทธิ์, เว็บส่วนบุคคลที่ฝากไฟล์เต็มเล่มของหนังสือมีลิขสิทธิ์, หรือแหล่งใดก็ตามที่ไม่มั่นใจในสิทธิ์เผยแพร่ — ในกรณีเหล่านี้ให้บันทึกเป็น "Not Available" แทนการดาวน์โหลด และอธิบายเหตุผลกับผู้ใช้พร้อมเสนอทางเลือก (ซื้อ, ยืมผ่านห้องสมุด ฯลฯ)
+
+## หา Folder ID จาก drive_folder_name
+
+`drive_folder_name` อาจเป็น path ซ้อนหลายชั้น (ค่าเริ่มต้นตอนนี้คือ `Automation/ebook`) — Google Drive API ค้นหา folder ด้วย path แบบนี้ตรงๆ ไม่ได้ ต้อง resolve ทีละชั้นก่อนใช้ `<folder id>` ในขั้นตอนถัดไปทุกครั้ง (ทั้ง Drive Queue และ Book List):
+
+1. แตก `drive_folder_name` ด้วย `/` ได้ลำดับชั้น เช่น `["Automation", "ebook"]`
+2. ค้นหาชั้นแรกจาก root ด้วย `mcp__Google_Drive__search_files` (query: `mimeType = 'application/vnd.google-apps.folder' and title = '<ชื่อชั้นนี้>' and 'root' in parents`) — ถ้าไม่เจอให้สร้างด้วย `mcp__Google_Drive__create_file` (mimeType folder)
+3. ใช้ id ที่ได้เป็น parent แล้วค้นหาชั้นถัดไปด้วย query เดิมแต่เปลี่ยนเป็น `'<parent id>' in parents` — ทำซ้ำจนครบทุกชั้น
+4. id ของชั้นสุดท้ายคือ `<folder id>` ที่ใช้ต่อในทุกขั้นตอนด้านล่าง (ถ้า `drive_folder_name` เป็นชื่อชั้นเดียวไม่มี `/` ก็ข้ามไปทำแค่ขั้นตอนที่ 2 ครั้งเดียว)
 
 ## สั่งงาน Apps Script
 
@@ -114,7 +123,7 @@ Trigger เมื่อผู้ใช้พูดถึง: "เปลี่ย
       "id": "<timestamp-slug ที่ไม่ซ้ำ>",
       "url": "<source pdf url ที่ตรวจลิขสิทธิ์แล้ว>",
       "filename": "<ชื่อไฟล์ .pdf ที่สื่อความหมาย>",
-      "folder": "ebook",
+      "folder": "Automation/ebook",
       "status": "pending",
       "queuedAt": "<ISO timestamp>"
     }

@@ -1,6 +1,6 @@
-# Setup Guide: Google Apps Script สำหรับ ebook-drive
+# Setup Guide: Google Apps Script สำหรับ ebook-dl
  
-อ่านไฟล์นี้เมื่อผู้ใช้ยังไม่เคยตั้งค่า `apps_script_url` (ครั้งแรกที่เรียก `/ebook-drive`) หรือเมื่อผู้ใช้ขอให้ช่วยตั้งค่าใหม่/แก้ปัญหา deployment
+อ่านไฟล์นี้เมื่อผู้ใช้ยังไม่เคยตั้งค่า `apps_script_url` (ครั้งแรกที่เรียก `/ebook-dl`) หรือเมื่อผู้ใช้ขอให้ช่วยตั้งค่าใหม่/แก้ปัญหา deployment
  
 ## ทำไมต้องมีขั้นตอนนี้
  
@@ -10,11 +10,11 @@ Google Apps Script แก้ปัญหาทั้งสองข้อพร�
  
 ## ขั้นตอน (ใช้เวลา ~5 นาที ทำครั้งเดียว)
  
-1. ไปที่ **https://script.google.com/** (ล็อกอินด้วย Google account เดียวกับที่มีโฟลเดอร์ `ebook` ใน Drive)
+1. ไปที่ **https://script.google.com/** (ล็อกอินด้วย Google account เดียวกับที่มีโฟลเดอร์ `Automation/ebook` ใน Drive)
 2. คลิก **New project** (โครงการใหม่)
 3. ลบโค้ด placeholder ทั้งหมดในไฟล์ `Code.gs` แล้ววางโค้ดทั้งหมดจากไฟล์ `scripts/AppsScript.gs` ที่มากับ skill นี้ลงไปแทน
 4. แก้บรรทัด `var SECRET_TOKEN = 'REPLACE_WITH_YOUR_OWN_SECRET';` — เปลี่ยนเป็นค่าสุ่มที่ยาวและคาดเดายาก (แนะนำให้รันคำสั่ง `openssl rand -hex 24` แล้ว copy ผลลัพธ์มาใส่ หรือให้ Claude ช่วยสุ่มให้)
-5. ตั้งชื่อโครงการ (มุมซ้ายบน) เช่น "ebook-drive"
+5. ตั้งชื่อโครงการ (มุมซ้ายบน) เช่น "ebook-dl"
 6. กด **Deploy** (มุมขวาบน) > **New deployment**
 7. คลิกไอคอนเฟือง ⚙️ ข้าง "Select type" แล้วเลือก **Web app**
 8. ตั้งค่า:
@@ -22,7 +22,7 @@ Google Apps Script แก้ปัญหาทั้งสองข้อพร�
    - **Who has access**: Anyone
 9. กด **Deploy** — ระบบจะขอ **Authorize access** ให้กด Authorize แล้วเลือกบัญชี Google ของคุณ (จะมีหน้าเตือน "Google hasn't verified this app" เพราะเป็นสคริปต์ส่วนตัวของคุณเอง — คลิก Advanced > Go to [ชื่อโครงการ] (unsafe) เพื่อดำเนินการต่อได้อย่างปลอดภัย เนื่องจากเป็นโค้ดที่คุณเป็นคนเขียน/วางเอง)
 10. คัดลอก **Web app URL** ที่ได้ (รูปแบบ `https://script.google.com/macros/s/XXXXXXXXXXXX/exec`)
-11. ส่ง **Web app URL** และ **SECRET_TOKEN** ที่ตั้งไว้ในขั้นตอนที่ 4 กลับมาให้ Claude — Claude จะบันทึกลง config file (`~/.config/claude-ebook-drive/settings.json`) และใช้ได้ทันทีตั้งแต่เล่มถัดไป
+11. ส่ง **Web app URL** และ **SECRET_TOKEN** ที่ตั้งไว้ในขั้นตอนที่ 4 กลับมาให้ Claude — Claude จะบันทึกลง config file (`~/.config/claude-ebook-dl/settings.json`) และใช้ได้ทันทีตั้งแต่เล่มถัดไป
 ## ⭐ ขั้นตอนสำคัญ: เปิดโหมดอัตโนมัติเต็มรูปแบบ (Drive Queue)
  
 **ทำขั้นตอนนี้ด้วย ไม่งั้นคุณจะต้องกดลิงก์เองทุกเล่ม**
@@ -33,7 +33,7 @@ Google Apps Script แก้ปัญหาทั้งสองข้อพร�
 2. เลือกฟังก์ชัน **`installTrigger`** จาก dropdown ด้านบน (ข้างปุ่ม Run)
 3. กด **Run** — จะมีขอ Authorize อีกครั้ง (เพราะเพิ่มสิทธิ์สร้าง trigger) ให้อนุญาต
 4. ตรวจสอบที่เมนูซ้าย ⏰ **Triggers** — ต้องเห็น `processQueue` ตั้งเป็น "Time-driven / Minutes timer / Every minute"
-เท่านี้เสร็จ ตั้งแต่นี้ไป Claude จะเขียน job ลงไฟล์ `_queue.json` ในโฟลเดอร์ `ebook` ของคุณ แล้วสคริปต์จะเก็บงานไปทำเองทุกนาที โดยคุณ**ไม่ต้องกดอะไรอีกเลย**
+เท่านี้เสร็จ ตั้งแต่นี้ไป Claude จะเขียน job ลงไฟล์ `_queue.json` ในโฟลเดอร์ `Automation/ebook` ของคุณ แล้วสคริปต์จะเก็บงานไปทำเองทุกนาที โดยคุณ**ไม่ต้องกดอะไรอีกเลย**
  
 ### เปรียบเทียบสองโหมด
  
@@ -54,7 +54,7 @@ Google Apps Script แก้ปัญหาทั้งสองข้อพร�
 ## การทดสอบว่าตั้งค่าสำเร็จ
  
 - **MODE A**: Claude จะเขียน job ทดสอบลง `_queue.json` แล้วรอ ~1 นาที จากนั้นอ่านไฟล์นั้นซ้ำ ต้องเห็น `"status": "done"` พร้อม `driveUrl` และไฟล์โผล่ในโฟลเดอร์จริง — ถ้ายังเป็น `pending` เกิน 3 นาทีแปลว่า trigger ยังไม่ถูกติดตั้ง
-- **MODE B**: Claude จะยิง request ทดสอบพร้อม secret และ URL ของไฟล์ PDF เล็กๆ ที่รู้จักแหล่งที่มาแน่ชัด แล้วตรวจว่าได้ `{"success": true, ...}` กลับมา และไฟล์ไปโผล่ในโฟลเดอร์ `ebook` จริง
+- **MODE B**: Claude จะยิง request ทดสอบพร้อม secret และ URL ของไฟล์ PDF เล็กๆ ที่รู้จักแหล่งที่มาแน่ชัด แล้วตรวจว่าได้ `{"success": true, ...}` กลับมา และไฟล์ไปโผล่ในโฟลเดอร์ `Automation/ebook` จริง
 ## แก้ปัญหาที่พบบ่อย
  
 - **Claude เรียก URL นี้เองไม่ได้เลย (ได้ `PROXY_REJECTED` HTTP 403, "404 client error" หรือ "read timeout" ทั้งที่เปิดใน browser ของคุณเองได้ปกติ)** — พบบ่อยมากใน Cowork ไม่ใช่ปัญหาของ deployment คุณเลย โดเมน `script.google.com` ถูกบล็อกที่ network proxy ของ sandbox ตั้งแต่ต้นทาง คำขอไม่เคยเดินทางถึง Google ด้วยซ้ำ และ Claude มีกฎห้ามเลี่ยงด้วย `curl`/Python **วิธีแก้ที่ถูกต้องคือเปิด MODE A (Drive Queue)** ตามหัวข้อ "⭐ ขั้นตอนสำคัญ" ด้านบน — ไม่ใช่การ deploy ใหม่ (deploy กี่รอบก็ไม่หาย เพราะต้นเหตุอยู่ฝั่ง Claude ไม่ใช่ฝั่งคุณ)
