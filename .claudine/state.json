@@ -1,12 +1,12 @@
 {
   "conversations": [
     {
-      "id": "b0daff33-aa3d-48ad-b686-1d52247b4a4f",
+      "id": "b6edd3d1-5d64-417e-bdc2-78b75971a8a6",
       "title": "Untitled Conversation",
-      "description": "Looks consistent. Now let's update the description in frontmatter to mention the new fields, per memory checklist (update README.md, plugin.json version too).",
+      "description": "ทดสอบ skill กับตัวอย่างแรกของคุณ (AI Passport vs ส่งเสริมการมีบุตร) โดยค้นเว็บหาตัวเลขจริงมาใช้ตามที่ออกแบบไว้ นี่คือผลลัพธ์ตัวอย่าง:",
       "category": "feature",
       "status": "in-progress",
-      "lastMessage": "Committed and pushed as `60f93c2` on `main`.",
+      "lastMessage": "[...] off`) เลยไม่ได้แตะ\nทุกอย่างพร้อมใช้งานแล้ว เรียกผ่าน `/tradeoff <สถานการณ์หรือทางเลือกที่ต้องการเทียบ>` ได้เลยครับ",
       "agents": [
         {
           "id": "claude-main",
@@ -22,25 +22,91 @@
       "isRateLimited": false,
       "lastActivity": {
         "toolName": "Bash",
-        "summary": "git diff -- plugins/productive/skills/copycat/SKILL.md plugins/productive/ski...",
-        "outputHint": "36 lines of output",
-        "status": "completed"
+        "summary": "cd \"E:/code/prod/claude-marketplace\" && git add .claudine/state.json && git c...",
+        "status": "running"
       },
-      "createdAt": "2026-09-16T03:19:27.852Z",
-      "updatedAt": "2026-09-16T04:37:51.026Z",
-      "filePath": "c:\\Users\\natthasath.sak\\.claude\\projects\\E--code-prod-claude-marketplace\\b0daff33-aa3d-48ad-b686-1d52247b4a4f.jsonl",
+      "createdAt": "2026-09-23T04:11:10.664Z",
+      "updatedAt": "2026-09-23T05:48:24.734Z",
+      "filePath": "c:\\Users\\natthasath.sak\\.claude\\projects\\E--code-prod-claude-marketplace\\b6edd3d1-5d64-417e-bdc2-78b75971a8a6.jsonl",
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
-      "shortId": "T-228",
+      "shortId": "T-239",
       "previousStatus": "in-review"
     },
     {
-      "id": "ba3a29b4-b1da-4533-8ed6-ded9a2a5fb2b",
+      "id": "27de2d95-c3c1-441a-ae59-3a6a804f33b8",
       "title": "Untitled Conversation",
-      "description": "I'll scan all SKILL.md files across every plugin and check their frontmatter for completeness.",
+      "description": "I'll locate the `book-wishlist` and `book-owned` skills in the `drive` plugin to see their current structure before planning the Bitly integration.",
       "category": "feature",
       "status": "in-review",
-      "lastMessage": "[...] epo-pattern.md` ใส่เฉพาะ skill ที่ต้องใช้จริง ไม่ใช่ทุก skill ต้องมี\nไม่มีอะไรต้องแก้ไข ไม่มีการเปลี่ยนแปลงไฟล์ใดๆ",
+      "lastMessage": "[...] ion/conversation metadata, unrelated to this task) unstaged — let me know if you actually want that committed too.",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "cd \"E:/code/prod/claude-marketplace\" && git push",
+        "outputHint": "To https://github.com/natthasath/natthasath-marketplace.git\n   2a41bc3..c4a7f50  main -> main",
+        "status": "completed"
+      },
+      "createdAt": "2026-09-22T04:15:12.075Z",
+      "updatedAt": "2026-09-22T04:38:45.014Z",
+      "filePath": "c:\\Users\\natthasath.sak\\.claude\\projects\\E--code-prod-claude-marketplace\\27de2d95-c3c1-441a-ae59-3a6a804f33b8.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "shortId": "T-238"
+    },
+    {
+      "id": "c5a53534-70cc-49c6-adf4-ad8c1c44c06f",
+      "title": "Untitled Conversation",
+      "description": "I'll start by looking at the existing `drive` plugin structure and other skills to understand the \"4 major headings\" pattern the user wants to reuse.",
+      "category": "feature",
+      "status": "in-review",
+      "lastMessage": "[...] local Claudine session metadata, not part of the skill work — let me know if you actually want that committed too.",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "cd \"/e/code/prod/claude-marketplace\" && git push",
+        "outputHint": "To https://github.com/natthasath/natthasath-marketplace.git\n   191151c..2a41bc3  main -> main",
+        "status": "completed"
+      },
+      "createdAt": "2026-09-21T03:52:04.200Z",
+      "updatedAt": "2026-09-21T04:38:44.938Z",
+      "filePath": "c:\\Users\\natthasath.sak\\.claude\\projects\\E--code-prod-claude-marketplace\\c5a53534-70cc-49c6-adf4-ad8c1c44c06f.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "shortId": "T-237",
+      "previousStatus": "in-review"
+    },
+    {
+      "id": "3fb82576-cfae-4247-aaf7-873fa76b6311",
+      "title": "Untitled Conversation",
+      "description": "Found it — this repo has `plugins/drive/skills/ebook-drive`. Let me check its structure.",
+      "category": "feature",
+      "status": "in-review",
+      "lastMessage": "[...] ou'll need to paste the updated `AppsScript.gs` into your deployment for the new nested-path logic to take effect.",
       "agents": [
         {
           "id": "claude-main",
@@ -55,25 +121,59 @@
       "hasQuestion": false,
       "isRateLimited": false,
       "lastActivity": {
-        "toolName": "AskUserQuestion",
-        "outputHint": "Your questions have been answered: \"ทั้ง 67 skills ผ่านตาม convention ที่มีอยู่แล้วในไฟล์ repo-patte...",
+        "toolName": "Bash",
+        "summary": "cd \"/e/code/prod/claude-marketplace\" && git push",
+        "outputHint": "To https://github.com/natthasath/natthasath-marketplace.git\n   b18cb78..191151c  main -> main",
         "status": "completed"
       },
-      "createdAt": "2026-09-16T02:43:35.557Z",
-      "updatedAt": "2026-09-16T03:18:32.068Z",
-      "filePath": "c:\\Users\\natthasath.sak\\.claude\\projects\\E--code-prod-claude-marketplace\\ba3a29b4-b1da-4533-8ed6-ded9a2a5fb2b.jsonl",
+      "createdAt": "2026-09-21T03:37:20.986Z",
+      "updatedAt": "2026-09-21T03:45:16.957Z",
+      "filePath": "c:\\Users\\natthasath.sak\\.claude\\projects\\E--code-prod-claude-marketplace\\3fb82576-cfae-4247-aaf7-873fa76b6311.jsonl",
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
-      "shortId": "T-227",
-      "previousStatus": "todo"
+      "shortId": "T-236",
+      "previousStatus": "needs-input"
     },
     {
-      "id": "39da1a96-2a92-4d20-80ff-e7dba20166c8",
+      "id": "5507b33a-fcb5-4486-95f6-9ee419ef8a39",
       "title": "Untitled Conversation",
-      "description": "มีคำถามสำคัญ 2 ข้อก่อนเริ่มออกแบบ skill นี้ เพราะเครื่องนี้ไม่มี Google Calendar API/MCP ติดตั้งไว้ (เช็คแล้ว — มีแค่ Google Drive MCP และ `claude-in-chrome` สำหรับควบคุมเบราว์เซอร์)",
+      "description": "Now I have everything I need. Let me make all the changes: rename the skill directory, update SKILL.md, and update the two plugin manifests plus README.",
       "category": "feature",
       "status": "in-review",
-      "lastMessage": "[...]  uncommitted changes to `.claudine/state.json` and `plugins/productive/skills/copycat/*` (unrelated to this task).",
+      "lastMessage": "[...] efore this session started) was left out of the commit since it's unrelated session state, not part of the rename.",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "cd \"E:/code/prod/claude-marketplace\" && git push",
+        "outputHint": "To https://github.com/natthasath/natthasath-marketplace.git\n   fe95185..b18cb78  main -> main",
+        "status": "completed"
+      },
+      "createdAt": "2026-09-18T08:07:24.885Z",
+      "updatedAt": "2026-09-18T08:25:28.046Z",
+      "filePath": "c:\\Users\\natthasath.sak\\.claude\\projects\\E--code-prod-claude-marketplace\\5507b33a-fcb5-4486-95f6-9ee419ef8a39.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "shortId": "T-235"
+    },
+    {
+      "id": "94d6d29a-16f8-42f8-8dec-fd03d46a2541",
+      "title": "Untitled Conversation",
+      "description": "Now let me view the README.md sections in full to edit correctly.",
+      "category": "task",
+      "status": "in-review",
+      "lastMessage": "[...] d — it was already modified before this session (unrelated tool/session state), not part of the ascii-art removal.",
       "agents": [
         {
           "id": "claude-main",
@@ -90,16 +190,287 @@
       "lastActivity": {
         "toolName": "Bash",
         "summary": "git push origin main",
+        "outputHint": "To https://github.com/natthasath/natthasath-marketplace.git\n   8d0e93a..fe95185  main -> main",
+        "status": "completed"
+      },
+      "createdAt": "2026-09-18T06:25:43.822Z",
+      "updatedAt": "2026-09-18T08:07:20.016Z",
+      "filePath": "c:\\Users\\natthasath.sak\\.claude\\projects\\E--code-prod-claude-marketplace\\94d6d29a-16f8-42f8-8dec-fd03d46a2541.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "shortId": "T-234",
+      "previousStatus": "in-review"
+    },
+    {
+      "id": "8acef5f7-43c7-4163-b358-b2d9cbd0afd9",
+      "title": "Untitled Conversation",
+      "description": "สรุปความเข้าใจ และคิดไว้ก่อนที่จะเริ่มทำจริงครับ — ทำได้แน่นอน แต่มีจุดที่อยากเช็กกับคุณก่อน เพราะมันขัดกับ pattern ที่เราเคยตกลงกันไว้ และมีจุดที่ต้องออกแบบให้ชัดก่อนเขียน SKILL.md",
+      "category": "feature",
+      "status": "in-review",
+      "lastMessage": "[...] in`. Left `.claudine/state.json` out since it's unrelated pre-existing session-state noise, not part of this work.",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "git push",
+        "outputHint": "To https://github.com/natthasath/natthasath-marketplace.git\n   8d2fd38..8d0e93a  main -> main",
+        "status": "completed"
+      },
+      "createdAt": "2026-09-17T08:01:31.187Z",
+      "updatedAt": "2026-09-17T08:40:10.480Z",
+      "filePath": "c:\\Users\\natthasath.sak\\.claude\\projects\\E--code-prod-claude-marketplace\\8acef5f7-43c7-4163-b358-b2d9cbd0afd9.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "shortId": "T-233"
+    },
+    {
+      "id": "dfac176c-9786-4376-b118-24e4fbf66dba",
+      "title": "Untitled Conversation",
+      "description": "No `agents` directory anywhere yet. Let me check `FRAMEWORK.md` (likely documents conventions for this marketplace) and a sample SKILL.md for format reference.",
+      "category": "task",
+      "status": "in-review",
+      "lastMessage": "[...]  agent ไม่เห็นบทสนทนาก่อนหน้า (ไม่มี conversation history ส่งต่อให้) ต้องใส่ context ที่จำเป็นทั้งหมดในคำสั่งเดียว",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "git commit -m \"$(cat <<'EOF'\nfeat(compliance): add compliance plugin with reg...",
+        "outputHint": "8 lines of output",
+        "status": "completed"
+      },
+      "createdAt": "2026-09-17T04:15:37.122Z",
+      "updatedAt": "2026-09-17T08:26:14.835Z",
+      "filePath": "c:\\Users\\natthasath.sak\\.claude\\projects\\E--code-prod-claude-marketplace\\dfac176c-9786-4376-b118-24e4fbf66dba.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "shortId": "T-231"
+    },
+    {
+      "id": "537603d7-eeaf-4a2b-9b43-28d11384b215",
+      "title": "ช่วยดูให้หน่อยมี skill ไหนที่ใช้ hooks บ้าง",
+      "description": "None of these are actual Claude Code \"hooks\" (PreToolUse/PostToolUse etc.) — they're just incidental matches: \"Webhooks\" mentions in emoji/structure reference docs, and a React `hooks/` folder exam...",
+      "category": "task",
+      "status": "in-review",
+      "lastMessage": "[...] างของ `os-design`\nถ้าต้องการตั้ง hook ใหม่ (เช่น รันคำสั่งอัตโนมัติตอน tool call) ใช้ skill `update-config` ได้เลย",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Grep",
+        "summary": "\"hooks\" (in E:\\code\\prod\\claude-marketplace\\plugins\\refactor\\skills\\refactor-readme\\references\\emoji.md)",
+        "outputHint": "5 lines of output",
+        "status": "completed"
+      },
+      "createdAt": "2026-09-17T07:51:19.690Z",
+      "updatedAt": "2026-09-17T07:54:59.382Z",
+      "filePath": "c:\\Users\\natthasath.sak\\.claude\\projects\\E--code-prod-claude-marketplace\\537603d7-eeaf-4a2b-9b43-28d11384b215.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "shortId": "T-232"
+    },
+    {
+      "id": "6a4c2f2b-3b4f-48b4-914f-6378714a718b",
+      "title": "Untitled Conversation",
+      "description": "ขอบคุณสำหรับคำตอบครับ สรุปดีไซน์ที่จะปรับ:",
+      "category": "feature",
+      "status": "in-progress",
+      "lastMessage": "[...] .claudine/state.json` still shows as locally modified — I left that untouched since it's unrelated to this change.",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": true
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "cd \"/e/code/prod/claude-marketplace\" && git push origin main",
+        "outputHint": "To https://github.com/natthasath/natthasath-marketplace.git\n   6b83d45..acbe397  main -> main",
+        "status": "completed"
+      },
+      "createdAt": "2026-09-17T02:37:54.057Z",
+      "updatedAt": "2026-09-17T04:12:26.401Z",
+      "filePath": "c:\\Users\\natthasath.sak\\.claude\\projects\\E--code-prod-claude-marketplace\\6a4c2f2b-3b4f-48b4-914f-6378714a718b.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "shortId": "T-230",
+      "previousStatus": "in-review"
+    },
+    {
+      "id": "2f155eba-681c-4a8f-a644-ccad2bd4df6e",
+      "title": "Untitled Conversation",
+      "description": "Now let's add the mode-detection and bulk flow sections.",
+      "category": "feature",
+      "status": "in-review",
+      "lastMessage": "[...] ed as `6b83d45`. The unrelated `.claudine/state.json` change was left untouched since it wasn't part of this work.",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "git push",
+        "outputHint": "To https://github.com/natthasath/natthasath-marketplace.git\n   2a47878..6b83d45  main -> main",
+        "status": "completed"
+      },
+      "createdAt": "2026-09-16T06:49:58.850Z",
+      "updatedAt": "2026-09-16T07:59:13.522Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\2f155eba-681c-4a8f-a644-ccad2bd4df6e.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "shortId": "T-229",
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%2223%2C30.5%2028.5%2C41.5%2017.5%2C41.5%22%20fill%3D%22hsl(317%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2236%22%20cy%3D%2249%22%20r%3D%228%22%20fill%3D%22hsl(317%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2244.5%22%20y%3D%2213.5%22%20width%3D%229%22%20height%3D%229%22%20fill%3D%22hsl(317%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2218%2C24%2025%2C38%2011%2C38%22%20fill%3D%22hsl(317%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2231%22%20cy%3D%2244%22%20r%3D%229.5%22%20fill%3D%22hsl(317%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
+    },
+    {
+      "id": "b0daff33-aa3d-48ad-b686-1d52247b4a4f",
+      "title": "Untitled Conversation",
+      "description": "Looks consistent. Now let's update the description in frontmatter to mention the new fields, per memory checklist (update README.md, plugin.json version too).",
+      "category": "feature",
+      "status": "in-review",
+      "lastMessage": "Committed and pushed as `2a47878` — everything is now clean (`git status` shows no pending changes).",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "git push",
+        "outputHint": "To https://github.com/natthasath/natthasath-marketplace.git\n   60f93c2..2a47878  main -> main",
+        "status": "completed"
+      },
+      "createdAt": "2026-09-16T03:19:27.852Z",
+      "updatedAt": "2026-09-16T04:38:11.226Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\b0daff33-aa3d-48ad-b686-1d52247b4a4f.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "previousStatus": "in-review",
+      "shortId": "T-228",
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Crect%20x%3D%2213.5%22%20y%3D%2222.5%22%20width%3D%2211%22%20height%3D%2211%22%20fill%3D%22hsl(301%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2228%2C31%2034%2C43%2022%2C43%22%20fill%3D%22hsl(301%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2237%22%20cy%3D%2246%22%20r%3D%226.5%22%20fill%3D%22hsl(301%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2239%22%20y%3D%224%22%20width%3D%2214%22%20height%3D%2214%22%20fill%3D%22hsl(301%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
+    },
+    {
+      "id": "ba3a29b4-b1da-4533-8ed6-ded9a2a5fb2b",
+      "title": "Untitled Conversation",
+      "description": "I'll scan all SKILL.md files across every plugin and check their frontmatter for completeness.",
+      "category": "feature",
+      "status": "in-review",
+      "lastMessage": "[...] epo-pattern.md` ใส่เฉพาะ skill ที่ต้องใช้จริง ไม่ใช่ทุก skill ต้องมี\nไม่มีอะไรต้องแก้ไข ไม่มีการเปลี่ยนแปลงไฟล์ใดๆ",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "AskUserQuestion",
+        "outputHint": "Your questions have been answered: \"ทั้ง 67 skills ผ่านตาม convention ที่มีอยู่แล้วในไฟล์ repo-patte...",
+        "status": "completed"
+      },
+      "createdAt": "2026-09-16T02:43:35.557Z",
+      "updatedAt": "2026-09-16T03:18:32.068Z",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\ba3a29b4-b1da-4533-8ed6-ded9a2a5fb2b.jsonl",
+      "workspacePath": "E:\\code\\prod\\claude-marketplace",
+      "provider": "claude-code",
+      "previousStatus": "todo",
+      "shortId": "T-227",
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2221%22%20cy%3D%2232%22%20r%3D%228.5%22%20fill%3D%22hsl(219%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2228%22%20y%3D%2239%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(219%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2243%2C4.5%2048.5%2C15.5%2037.5%2C15.5%22%20fill%3D%22hsl(219%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
+    },
+    {
+      "id": "39da1a96-2a92-4d20-80ff-e7dba20166c8",
+      "title": "Untitled Conversation",
+      "description": "มีคำถามสำคัญ 2 ข้อก่อนเริ่มออกแบบ skill นี้ เพราะเครื่องนี้ไม่มี Google Calendar API/MCP ติดตั้งไว้ (เช็คแล้ว — มีแค่ Google Drive MCP และ `claude-in-chrome` สำหรับควบคุมเบราว์เซอร์)",
+      "category": "feature",
+      "status": "in-review",
+      "lastMessage": "[...]  uncommitted changes to `.claudine/state.json` and `plugins/productive/skills/copycat/*` (unrelated to this task).",
+      "agents": [
+        {
+          "id": "claude-main",
+          "name": "Claude",
+          "avatar": "",
+          "isActive": false
+        }
+      ],
+      "gitBranch": "main",
+      "hasError": false,
+      "isInterrupted": false,
+      "hasQuestion": false,
+      "isRateLimited": false,
+      "lastActivity": {
+        "toolName": "Bash",
+        "summary": "git push origin main",
         "outputHint": "To https://github.com/natthasath/natthasath-marketplace.git\n   9db3e6a..037af8c  main -> main",
         "status": "completed"
       },
       "createdAt": "2026-09-15T03:20:34.457Z",
       "updatedAt": "2026-09-16T02:43:22.800Z",
-      "filePath": "c:\\Users\\natthasath.sak\\.claude\\projects\\E--code-prod-claude-marketplace\\39da1a96-2a92-4d20-80ff-e7dba20166c8.jsonl",
+      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\39da1a96-2a92-4d20-80ff-e7dba20166c8.jsonl",
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
+      "previousStatus": "in-review",
       "shortId": "T-226",
-      "previousStatus": "in-review"
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2253%22%20cy%3D%2252%22%20r%3D%228.5%22%20fill%3D%22hsl(243%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2248%22%20y%3D%2247%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(243%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2251%2C44.5%2056.5%2C55.5%2045.5%2C55.5%22%20fill%3D%22hsl(243%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
     },
     {
       "id": "a2b38b69-bd2a-493f-a010-8bb770a15fe4",
@@ -133,8 +504,8 @@
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
       "previousStatus": "in-review",
-      "shortId": "T-189",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%2226%2C38%2030%2C46%2022%2C46%22%20fill%3D%22hsl(224%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2242%22%20cy%3D%2214%22%20r%3D%228%22%20fill%3D%22hsl(224%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%228%22%20y%3D%2224%22%20width%3D%2212%22%20height%3D%2212%22%20fill%3D%22hsl(224%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2230%2C42%2034%2C50%2026%2C50%22%20fill%3D%22hsl(224%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2246%22%20cy%3D%2218%22%20r%3D%228%22%20fill%3D%22hsl(224%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpolygon%20points%3D%2226%2C38%2030%2C46%2022%2C46%22%20fill%3D%22hsl(224%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2242%22%20cy%3D%2214%22%20r%3D%228%22%20fill%3D%22hsl(224%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%228%22%20y%3D%2224%22%20width%3D%2212%22%20height%3D%2212%22%20fill%3D%22hsl(224%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2230%2C42%2034%2C50%2026%2C50%22%20fill%3D%22hsl(224%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2246%22%20cy%3D%2218%22%20r%3D%228%22%20fill%3D%22hsl(224%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-189"
     },
     {
       "id": "2e4673c4-993f-43b5-9a3f-8d729c5e84a8",
@@ -167,8 +538,8 @@
       "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\2e4673c4-993f-43b5-9a3f-8d729c5e84a8.jsonl",
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
-      "shortId": "T-188",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2252%22%20cy%3D%2250%22%20r%3D%227%22%20fill%3D%22hsl(126%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2246%22%20y%3D%2244%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(126%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2248%2C39%2055%2C53%2041%2C53%22%20fill%3D%22hsl(126%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2252%22%20cy%3D%2250%22%20r%3D%227%22%20fill%3D%22hsl(126%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2246%22%20y%3D%2244%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(126%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2248%2C39%2055%2C53%2041%2C53%22%20fill%3D%22hsl(126%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-188"
     },
     {
       "id": "6b628d06-20bf-4ba0-9479-ad0abefceaa1",
@@ -201,8 +572,8 @@
       "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\6b628d06-20bf-4ba0-9479-ad0abefceaa1.jsonl",
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
-      "shortId": "T-187",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%2238%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(40%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2242%2C8%2048%2C20%2036%2C20%22%20fill%3D%22hsl(40%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2214%22%20cy%3D%2230%22%20r%3D%228%22%20fill%3D%22hsl(40%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2226%22%20y%3D%2242%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(40%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Crect%20x%3D%2222%22%20y%3D%2238%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(40%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2242%2C8%2048%2C20%2036%2C20%22%20fill%3D%22hsl(40%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2214%22%20cy%3D%2230%22%20r%3D%228%22%20fill%3D%22hsl(40%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2226%22%20y%3D%2242%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(40%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-187"
     },
     {
       "id": "6672c52c-6fed-4cb1-acd4-04229c59e9aa",
@@ -236,8 +607,8 @@
       "workspacePath": "E:\\code\\prod\\claude-marketplace",
       "provider": "claude-code",
       "previousStatus": "in-review",
-      "shortId": "T-186",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Crect%20x%3D%2224.5%22%20y%3D%223.5%22%20width%3D%2217%22%20height%3D%2217%22%20fill%3D%22hsl(319%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2212%2C29%2018%2C41%206%2C41%22%20fill%3D%22hsl(319%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2235%22%20cy%3D%2214%22%20r%3D%229.5%22%20fill%3D%22hsl(319%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%227%22%20y%3D%2230%22%20width%3D%2214%22%20height%3D%2214%22%20fill%3D%22hsl(319%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E"
+      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%236b7280%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Crect%20x%3D%2224.5%22%20y%3D%223.5%22%20width%3D%2217%22%20height%3D%2217%22%20fill%3D%22hsl(319%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2212%2C29%2018%2C41%206%2C41%22%20fill%3D%22hsl(319%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2235%22%20cy%3D%2214%22%20r%3D%229.5%22%20fill%3D%22hsl(319%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%227%22%20y%3D%2230%22%20width%3D%2214%22%20height%3D%2214%22%20fill%3D%22hsl(319%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
+      "shortId": "T-186"
     },
     {
       "id": "ca217a4f-e0be-4e03-ab4a-69257683f06e",
@@ -343,70 +714,7 @@
       "previousStatus": "in-review",
       "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Crect%20x%3D%2238%22%20y%3D%2226%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(172%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2230%2C12%2036%2C24%2024%2C24%22%20fill%3D%22hsl(172%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2218%22%20cy%3D%2250%22%20r%3D%228%22%20fill%3D%22hsl(172%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2246%22%20y%3D%2234%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(172%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
       "shortId": "T-141"
-    },
-    {
-      "id": "66785abf-31ec-47f8-a2c4-7d15a5ea4316",
-      "title": "Untitled Conversation",
-      "description": "API Error: Sonnet 5's safeguards flagged this message. Our intentionally broad safeguards allow us to deliver more capabilities faster, but can sometimes flag legitimate cybersecurity work. Apply t...",
-      "category": "feature",
-      "status": "in-review",
-      "lastMessage": "[...] port.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude\nRequest ID: req_011CeBRKbdarWccU86avuD8V",
-      "agents": [
-        {
-          "id": "claude-main",
-          "name": "Claude",
-          "avatar": "",
-          "isActive": false
-        }
-      ],
-      "gitBranch": "main",
-      "hasError": false,
-      "isInterrupted": false,
-      "hasQuestion": false,
-      "isRateLimited": false,
-      "createdAt": "2026-08-19T03:43:01.526Z",
-      "updatedAt": "2026-08-19T03:45:51.470Z",
-      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\66785abf-31ec-47f8-a2c4-7d15a5ea4316.jsonl",
-      "workspacePath": "E:\\code\\prod\\claude-marketplace",
-      "provider": "claude-code",
-      "previousStatus": "in-review",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Crect%20x%3D%2224.5%22%20y%3D%223.5%22%20width%3D%2217%22%20height%3D%2217%22%20fill%3D%22hsl(355%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2212%2C29%2018%2C41%206%2C41%22%20fill%3D%22hsl(355%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Ccircle%20cx%3D%2235%22%20cy%3D%2214%22%20r%3D%229.5%22%20fill%3D%22hsl(355%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%227%22%20y%3D%2230%22%20width%3D%2214%22%20height%3D%2214%22%20fill%3D%22hsl(355%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
-      "shortId": "T-140"
-    },
-    {
-      "id": "90c445e5-76e5-4afd-8e58-4f5456f3d0f3",
-      "title": "Untitled Conversation",
-      "description": "อยากช่วยคิดชื่อให้ตรงกับสิ่งที่ต้องการก่อน แล้วค่อยว่ากันเรื่อง design จริงๆ ทีหลังนะครับ",
-      "category": "feature",
-      "status": "in-review",
-      "lastMessage": "[...] related pre-existing changes (`.claudine/state.json`, `productive/copycat`) are still sitting unstaged, untouched.",
-      "agents": [
-        {
-          "id": "claude-main",
-          "name": "Claude",
-          "avatar": "",
-          "isActive": false
-        }
-      ],
-      "gitBranch": "main",
-      "hasError": false,
-      "isInterrupted": false,
-      "hasQuestion": false,
-      "isRateLimited": false,
-      "lastActivity": {
-        "toolName": "Bash",
-        "summary": "git commit -m \"$(cat <<'EOF'\nfeat(drive): scaffold drive plugin and restructu...",
-        "outputHint": "19 lines of output",
-        "status": "completed"
-      },
-      "createdAt": "2026-08-14T02:59:27.987Z",
-      "updatedAt": "2026-08-18T00:58:35.362Z",
-      "filePath": "C:\\Users\\natthasath.sak\\.claude\\projects\\e--code-prod-claude-marketplace\\90c445e5-76e5-4afd-8e58-4f5456f3d0f3.jsonl",
-      "workspacePath": "E:\\code\\prod\\claude-marketplace",
-      "provider": "claude-code",
-      "icon": "data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%2310b981%22%20opacity%3D%220.1%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2215%22%20cy%3D%2220%22%20r%3D%225.5%22%20fill%3D%22hsl(141%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Crect%20x%3D%2216%22%20y%3D%2221%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22hsl(141%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%3Cpolygon%20points%3D%2225%2C21.5%2033.5%2C38.5%2016.5%2C38.5%22%20fill%3D%22hsl(141%2C%2060%25%2C%2050%25)%22%20opacity%3D%220.7%22%2F%3E%0A%20%20%20%20%20%20%3C%2Fsvg%3E",
-      "shortId": "T-136"
     }
   ],
-  "lastUpdated": "2026-09-16T04:37:51.471Z"
+  "lastUpdated": "2026-09-23T05:48:25.198Z"
 }
