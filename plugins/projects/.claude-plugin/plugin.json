@@ -1,6 +1,6 @@
 {
   "name": "projects",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Plugin สำหรับ setup และจัดการ development project — scaffold โครงสร้าง context/, rules, config พร้อม skills ครบ workflow ตั้งแต่ setup จนถึง ship",
   "author": {
     "name": "natthasath"
@@ -16,22 +16,5 @@
     "ship",
     "debug",
     "status"
-  ],
-  "skills": [
-    "setup",
-    "checkpoint",
-    "add-phase",
-    "add-task",
-    "start-task",
-    "implement",
-    "ship",
-    "done-task",
-    "done-phase",
-    "debug",
-    "status",
-    "today",
-    "list-task",
-    "list-phase",
-    "set-stack"
   ]
 }
