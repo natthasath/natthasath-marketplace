@@ -7,6 +7,8 @@ tools:
   - Bash
 ---
 
+# Tech Stack Configurator
+
 ตั้งค่า tech stack สำหรับ project นี้
 
 **Preset:** $ARGUMENTS
@@ -18,11 +20,18 @@ tools:
 - `laravel` — Laravel + Pest + Pint + PHPStan
 - `node-express` — Node.js + Express + TypeScript + Jest
 
----
+## Core Rules (Non-negotiable)
 
-1. ถ้าไม่มี $ARGUMENTS — แสดง presets ทั้งหมดพร้อม commands ตัวอย่าง แล้วถามว่าต้องการใช้อันไหน (หรือกำหนดเอง)
+1. **ถ้าไม่มี $ARGUMENTS ต้องแสดง presets ทั้งหมดก่อนเสมอแล้วถามให้ผู้ใช้เลือก** ห้ามเดาเองว่าจะใช้ preset ไหน
+2. **เขียนผลลงที่ `.claude/config/tech-stack.md` เท่านั้น** — ไฟล์นี้คือแหล่งเดียวที่ /implement, /ship, /debug จะอ่านต่อเพื่อรู้ว่าต้องใช้ command ไหน
+3. **ถ้าผู้ใช้กำหนด stack เอง ต้องร่าง commands ให้ตรงกับ stack ที่บอกจริง** ไม่ใช่ copy preset ที่ใกล้เคียงที่สุดมาใช้เฉยๆ
 
-2. เขียน preset ที่เลือกลง `.claude/config/tech-stack.md`:
+## Workflow
+
+### 1. ตรวจสอบ argument
+ถ้าไม่มี $ARGUMENTS — แสดง presets ทั้งหมดพร้อม commands ตัวอย่าง แล้วถามว่าต้องการใช้อันไหน (หรือกำหนดเอง)
+
+### 2. เขียน preset ที่เลือกลง `.claude/config/tech-stack.md`
 
 **react-vite:**
 ```markdown
@@ -124,9 +133,11 @@ Node.js + Express + TypeScript
 | **build** | `npm run build` |
 ```
 
-3. ถ้าผู้ใช้ต้องการกำหนดเอง — ช่วยร่าง tech-stack.md ให้ตาม stack ที่บอก พร้อม commands ที่เหมาะสม
+### 3. กรณีผู้ใช้กำหนด stack เอง (custom)
+ช่วยร่าง tech-stack.md ให้ตาม stack ที่บอก พร้อม commands ที่เหมาะสม — ก่อนเขียนไฟล์จริง ให้ตรวจทวนร่างอีกรอบ (self-check) ว่า command แต่ละอันตรงกับ tool/framework ที่ผู้ใช้ระบุจริงหรือไม่ (เช่น ไม่ใช้คำสั่ง `pytest` กับ stack ที่เป็น JavaScript) ถ้าไม่มั่นใจ command ไหน ให้ถามผู้ใช้ยืนยันก่อนเขียนไฟล์ แทนการเดา
 
-4. แจ้งว่า stack ถูกตั้งค่าเป็นอะไรแล้ว และ /implement, /ship, /debug จะใช้ commands เหล่านี้โดยอัตโนมัติ
+### 4. แจ้งผล
+แจ้งว่า stack ถูกตั้งค่าเป็นอะไรแล้ว และ /implement, /ship, /debug จะใช้ commands เหล่านี้โดยอัตโนมัติ
 
 ```
 ─────────────────────────────────────

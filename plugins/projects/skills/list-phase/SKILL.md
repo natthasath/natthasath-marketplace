@@ -9,13 +9,20 @@ tools:
 
 !`cat context/plans/PLAN.md 2>/dev/null`
 
-แสดงภาพรวม phases ของโปรเจค
+# Phase List Viewer
+
+แสดงภาพรวม phases ของโปรเจค อ่านข้อมูลจาก PLAN.md (และไฟล์ phase ที่เกี่ยวข้องถ้ามีการระบุหมายเลข) แล้วแสดงผลเป็น CLI output ที่อ่านง่าย
 
 **Input:** $ARGUMENTS (ถ้าไม่มี = แสดงทุก phase, ถ้ามีตัวเลข = แสดงรายละเอียด phase นั้น)
 
----
+## Core Rules (Non-negotiable)
 
-## กรณีไม่มี argument — แสดงภาพรวมทุก phase
+1. **เรียงตาม phase number เสมอ** เวลาแสดงภาพรวมทุก phase
+2. **`▶` นำหน้า phase ที่ status เป็น 🔄 In Progress เสมอ** (active phase ปัจจุบัน) — ถ้าไม่มี phase ไหน In Progress ให้ `▶` นำหน้า phase แรกที่ยังไม่ Done แทน
+
+## Workflow
+
+### 1. ไม่มี argument — แสดงภาพรวมทุก phase
 
 อ่าน Status Overview table จาก PLAN.md ด้านบน แล้วแสดงในรูปแบบนี้:
 
@@ -33,10 +40,7 @@ tools:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-กฎการแสดงผล:
-- `▶` นำหน้า phase ที่ status เป็น 🔄 In Progress (active phase ปัจจุบัน)
-- ถ้าไม่มี phase ไหน In Progress ให้ `▶` นำหน้า phase แรกที่ยังไม่ Done
-- เรียงตาม phase number เสมอ
+(กฎการเรียงลำดับและเครื่องหมาย `▶` เป็นไปตาม Core Rules ด้านบน)
 
 ```
 ─────────────────────────────────────
@@ -45,9 +49,7 @@ tools:
 ─────────────────────────────────────
 ```
 
----
-
-## กรณีมี argument เป็นตัวเลข — แสดงรายละเอียด phase นั้น
+### 2. มี argument เป็นตัวเลข — แสดงรายละเอียด phase นั้น
 
 อ่านไฟล์ phase ที่ระบุ:
 ```bash

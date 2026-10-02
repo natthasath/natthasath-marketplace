@@ -6,9 +6,19 @@ tools:
   - Bash
 ---
 
+# Project Status Viewer
+
 แสดงภาพรวมสถานะโปรเจคทั้งหมด
 
-อ่านไฟล์เหล่านี้แล้วสรุป:
+## Core Rules (Non-negotiable)
+
+1. **ต้องอ่านครบทั้ง 6 แหล่งข้อมูลก่อนสรุปเสมอ** ห้ามข้ามแหล่งไหนแม้จะดูซ้ำกับที่เคยตอบไปก่อนหน้า
+2. **"แนะนำ next action" ต้องมาจากข้อมูลจริงที่อ่านได้ในรอบนี้** ไม่ใช่คำแนะนำทั่วไปที่ไม่อิงสถานะปัจจุบัน
+
+## Workflow
+
+### 1. รวบรวมข้อมูล
+อ่านไฟล์และรันคำสั่งเหล่านี้แล้วสรุป:
 1. `.claude/config/current-phase.md` → phase number ปัจจุบัน (N)
 2. `context/plans/PLAN.md` → ชื่อ phase และ % เสร็จ
 3. `context/tasks/in_progress/current_sprint.md` → งานที่กำลังทำ
@@ -16,6 +26,7 @@ tools:
 5. รัน `git status --short` → มี uncommitted changes ไหม
 6. รัน `git log --oneline -5` → commits ล่าสุด
 
+### 2. แสดงผล
 แสดงผลในรูปแบบนี้:
 ─────────────────────────────
 📍 Phase ปัจจุบัน: [ชื่อ] ([X/Y tasks เสร็จ])

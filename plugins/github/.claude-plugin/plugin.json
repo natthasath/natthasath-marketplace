@@ -1,6 +1,6 @@
 {
   "name": "github",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Plugin รวม Skills สำหรับงาน GitHub repo — เลือกและติดตั้ง License ให้โปรเจกต์ (interview แบบภาษาชาวบ้าน) และแนะนำ Tag สำหรับบันทึก repo ลง Capacities จาก GitHub topics และ README",
   "author": {
     "name": "natthasath"

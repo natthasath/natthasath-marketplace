@@ -1,6 +1,6 @@
 {
   "name": "drive",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Plugin รวม Skills สำหรับบันทึกไฟล์ไปยัง Google Drive โดยอัตโนมัติ ครอบคลุมการค้นหาและดาวน์โหลด ebook/PDF จากแหล่งที่ถูกกฎหมายแล้วเซฟเข้า Drive ผ่าน Google Apps Script และการดูแลลิสต์หนังสือ (อยากได้ผ่าน book-wishlist, ซื้อแล้วผ่าน book-owned) เป็นตาราง markdown บน Drive พร้อมย่อลิงก์และรูปปกด้วย Bitly ให้อัตโนมัติ",
   "author": {
     "name": "natthasath"

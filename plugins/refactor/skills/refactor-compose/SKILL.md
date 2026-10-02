@@ -10,14 +10,23 @@ argument-hint: "[path ของ docker-compose.yml]"
 disable-model-invocation: true
 ---
 
-# บทบาท:
+# Docker Compose Standardizer
+
 คุณทำหน้าที่เป็นผู้เชี่ยวชาญด้าน Docker & DevOps สำหรับการสร้างและปรับปรุงไฟล์ `docker-compose.yml` และ `.env` ให้เป็นมาตรฐาน ครอบคลุมทั้ง service ordering, naming convention, environment variables, และ production readiness
 
 docker-compose ที่มีมาตรฐานชัดเจนทำให้ทีมเข้าใจโครงสร้างได้ทันที ลด configuration error และทำให้ environment ระหว่าง dev/staging/prod สอดคล้องกัน — ซึ่งป้องกัน "works on my machine" ได้ในระยะยาว
 
-# รูปแบบ:
+## Core Rules (Non-negotiable)
 
-1. โครงสร้าง Docker Compose
+1. **ตอบแบบ Artifact เสมอ** เพื่อให้นำไปใช้งานได้ทันที
+2. **ตอบเป็นภาษาไทย (อธิบาย) พร้อม code ภาษาอังกฤษ** — ไม่ต้องอธิบายเหตุผลทุกบรรทัดที่แก้ แต่ถ้ามีข้อเสนอแนะที่ต่างจาก standard ให้ระบุเหตุผลกำกับไว้เสมอ
+3. **ปรับให้ตรงตามมาตรฐานทุกข้อใน Workflow เสมอ** ไม่ใช่เลือกทำบางข้อ รวมถึงข้อกำหนดพิเศษในขั้นตอนที่ 6
+4. **ค่าทั้งหมดใน `docker-compose.yml` ต้องมาจาก `.env` เท่านั้น** ห้ามกำหนดค่าเริ่มต้น (default) ไว้ใน compose file ตรงๆ
+5. **ใช้ skill นี้ทันทีเมื่อผู้ใช้แชร์ docker config, บอกชื่อ service ที่ต้องการ deploy, หรือถามว่าจะ setup Docker stack ยังไง**
+
+## Workflow
+
+### 1. โครงสร้าง Docker Compose
 *หลักการ: การเรียง properties ตามลำดับมาตรฐานทำให้ review และ debug ง่ายขึ้นมาก*
 
 ปรับแต่ง `docker-compose.yml` ให้เรียงลำดับ properties ตามมาตรฐาน:
@@ -38,7 +47,7 @@ docker-compose ที่มีมาตรฐานชัดเจนทำใ�
 - volumes
 ```
 
-2. Naming Convention
+### 2. Naming Convention
 *หลักการ: ชื่อที่ consistent ตาม tech ทำให้รู้ว่า service ไหนคืออะไรโดยไม่ต้องอ่าน config ทั้งหมด*
 
 - กำหนด service name ใน `docker-compose.yml` ตาม {tech} ที่ใช้ เช่น nginx, mongodb, postgres
@@ -57,7 +66,7 @@ docker-compose ที่มีมาตรฐานชัดเจนทำใ�
       driver: local
   ```
 
-3. โครงสร้าง Environment Variables
+### 3. โครงสร้าง Environment Variables
 *หลักการ: การจัดกลุ่ม env ตาม service ทำให้หาค่าที่ต้องแก้ได้ทันที และลดโอกาส copy-paste ผิด*
 
 ปรับแต่ง `.env` ให้เรียงลำดับ group ของ service configuration ตามมาตรฐาน:
@@ -85,18 +94,18 @@ docker-compose ที่มีมาตรฐานชัดเจนทำใ�
   - {Service}_HTTPS_PORT
 - {Service Others} Configuration
 
-4. Structure & Documentation
+### 4. Structure & Documentation
 *หลักการ: comment ภาษาอังกฤษและการจัดกลุ่มตาม service ช่วยให้คนที่ไม่คุ้นเคยกับ project เข้าใจได้เร็วขึ้น*
 
 - ใช้ภาษาอังกฤษในการ comment
 - จัดกลุ่ม configuration ตาม Service
 - ใช้รูปแบบ comment: # {Service} configuration
 
-5. ไฟล์ที่ต้องมี
+### 5. ไฟล์ที่ต้องมี
 - `docker-compose.yml`: ไฟล์หลักพร้อม volume mappings ที่เหมาะสม
 - `.env`: ตัวแปรสภาพแวดล้อมพร้อมค่าเริ่มต้น
 
-6. ข้อกำหนดพิเศษ
+### 6. ข้อกำหนดพิเศษ
 - ไม่ต้องกำหนดเลข version docker ในไฟล์ `docker-compose.yml`
 - ไม่ต้อง comment ในไฟล์ `docker-compose.yml`
 - ไม่ต้องกำหนด network name และ volume name ใน `.env`
@@ -118,12 +127,12 @@ docker-compose ที่มีมาตรฐานชัดเจนทำใ�
 
 กรุณาปรับปรุง code ที่มีอยู่หรือสร้างตัวอย่างโครงสร้างใหม่ที่เป็นไปตามมาตรฐานข้างต้น ให้ครบทุกข้อ ไม่ต้องอธิบายเหตุผล หรือสรุปอะไรก็ตาม แต่ถ้ามีข้อเสนอแนะในการปรับปรุง code ที่ต่างออกไป ให้เสนอมาพร้อมอธิบายเหตุผลมาด้วย
 
-# คำขอ:
-- ช่วยตอบแบบ Artifact เพื่อให้นำไปใช้งานได้ทันที
-- ตอบเป็นภาษาไทย (อธิบาย) พร้อม code ภาษาอังกฤษ
-- ไม่ต้องอธิบายเหตุผลในทุกบรรทัด — แต่หากมีข้อเสนอแนะที่ต่างออกไป ให้ระบุเหตุผล
-- ใช้ skill นี้ทันทีเมื่อผู้ใช้แชร์ docker config, บอกชื่อ service ที่ต้องการ deploy, หรือถามว่าจะ setup Docker stack ยังไง
+### 7. Self-check ก่อนส่งมอบ
+*หลักการ: มาตรฐานในขั้นตอน 1-6 มีรายละเอียดเยอะและตรวจสอบได้เองจากสิ่งที่เขียนไว้ — เช็คทวนร่างกับมาตรฐานทุกข้อก่อนส่ง ถูกกว่าปล่อยให้ผู้ใช้เจอเองทีหลัง*
+- ไล่เช็คร่างที่จะส่งกับ Core Rules และข้อกำหนดพิเศษ (ขั้นตอน 6) ทีละข้อ: ไม่มี version key หรือ comment หลงเหลือใน `docker-compose.yml`, ไม่มี default value ฝังอยู่ใน compose (ต้องอยู่ใน `.env` เท่านั้น), image เป็น FQIN, ชื่อ service/container/network/volume ตรง naming convention
+- ถ้าพบจุดที่ไม่ผ่าน ให้แก้ก่อนแล้วเช็คซ้ำอีกรอบ ก่อนส่งเป็น Artifact ให้ผู้ใช้เห็น
 
-# ไฟล์แนบ:
-- หากมี `docker-compose.yml` หรือ `.env` เดิมแนบมา ให้ refactor ตามมาตรฐานข้างต้นทุกข้อ
-- หากมีแค่ชื่อ service หรือ tech stack ให้สร้างโครงสร้างใหม่จาก template มาตรฐานได้เลย ไม่ต้องถามเพิ่ม
+## Edge cases
+- มี `docker-compose.yml` หรือ `.env` เดิมแนบมา → refactor ตามมาตรฐานข้างต้นทุกข้อ
+- มีแค่ชื่อ service หรือ tech stack โดยไม่มีไฟล์เดิม → สร้างโครงสร้างใหม่จาก template มาตรฐานได้เลย ไม่ต้องถามเพิ่ม
+- มีค่า environment variable ที่ยังไม่ตรงตาม group ของ service → แก้ให้ตรงกลุ่มไปเลยโดยไม่ต้องถาม

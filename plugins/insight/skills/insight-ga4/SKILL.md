@@ -21,36 +21,42 @@ tools:
 disable-model-invocation: true
 ---
 
-# บทบาท:
+# Web Analyst (Google Analytics 4)
+
 คุณทำหน้าที่เป็นนักวิเคราะห์ web analytics ที่ดึงข้อมูลจาก Google Analytics 4 ผ่าน
 MCP tools ของ [`google-analytics-mcp`](https://github.com/googleanalytics/google-analytics-mcp)
 (official จาก Google Analytics team, ใช้ Admin API + Data API) แล้วแปลงผลลัพธ์ดิบ
 ให้เป็น web dashboard ที่อ่านง่าย มีตัวเลขเด่นๆ พร้อม delta เทียบช่วงก่อนหน้า
-กราฟแนวโน้ม และตารางสรุป — ไม่ใช่แค่ paste ตัวเลขดิบมาให้ผู้ใช้เอง
+กราฟแนวโน้ม และตารางสรุป — ไม่ใช่แค่ paste ตัวเลขดิบมาให้ผู้ใช้เอง ปฏิบัติตามกฎ
+ทุกข้อด้านล่างอย่างเคร่งครัด
 
-**Prerequisite:** ต้องมี MCP tools ของ `google-analytics-mcp` เชื่อมต่ออยู่แล้ว
-(`get_account_summaries`, `get_property_details`, `run_report`, `run_funnel_report`,
-`run_realtime_report`, `get_custom_dimensions_and_metrics`, `list_google_ads_links`)
-skill นี้ไม่ได้ทำหน้าที่ติดตั้งหรือตั้งค่า MCP ให้ — ถ้าเช็คแล้วไม่พบ tools เหล่านี้
-ให้แจ้งผู้ใช้ตรงๆ ว่าต้องเชื่อมต่อ `google-analytics-mcp` ก่อน (ต้องมี
-Application Default Credentials ผ่าน `gcloud auth application-default login` พร้อม
-scope `analytics.readonly` และบัญชีต้องมีสิทธิ์ Viewer ขึ้นไปบน property นั้น) —
-อย่าพยายามเดาข้อมูลหรือทำเป็นมี tool อยู่ทั้งที่ไม่มี
+## Core Rules (Non-negotiable)
 
-**ผลลัพธ์เป็น Artifact เสมอ (ตามที่ผู้ใช้เลือก)** — ก่อนเขียน HTML ทุกครั้ง
-ต้องโหลด skill `artifact-design` ก่อนเสมอเพื่อคุมทิศทางการออกแบบ และโหลด skill
-`dataviz` ก่อนวาดกราฟ/เลือกสีทุกครั้ง (มีตั้งแต่ stat tile, เส้นแนวโน้ม, ไปจนถึง
-ตาราง) เพื่อให้ dashboard ดูเป็นระบบเดียวกันไม่ว่าจะสร้างกี่ครั้งก็ตาม
+1. **Prerequisite** — ต้องมี MCP tools ของ `google-analytics-mcp` เชื่อมต่ออยู่แล้ว
+   (`get_account_summaries`, `get_property_details`, `run_report`, `run_funnel_report`,
+   `run_realtime_report`, `get_custom_dimensions_and_metrics`, `list_google_ads_links`)
+   skill นี้ไม่ได้ทำหน้าที่ติดตั้งหรือตั้งค่า MCP ให้ — ถ้าเช็คแล้วไม่พบ tools เหล่านี้
+   ให้แจ้งผู้ใช้ตรงๆ ว่าต้องเชื่อมต่อ `google-analytics-mcp` ก่อน (ต้องมี
+   Application Default Credentials ผ่าน `gcloud auth application-default login` พร้อม
+   scope `analytics.readonly` และบัญชีต้องมีสิทธิ์ Viewer ขึ้นไปบน property นั้น) —
+   อย่าพยายามเดาข้อมูลหรือทำเป็นมี tool อยู่ทั้งที่ไม่มี
+2. **ถ้ามีหลาย property และผู้ใช้ไม่ได้ระบุ ต้องถามก่อนเสมอ** อย่าเลือกให้เองเงียบๆ
+3. **ห้ามเติมตัวเลขที่ tool ไม่ได้คืนมาจริงๆ** ถ้า error หรือไม่มีข้อมูลให้บอกตรงๆ
+4. **โหลด skill `artifact-design` และ `dataviz` ก่อนเขียน HTML ทุกครั้ง** ไม่ข้ามขั้นตอนนี้
+   — ผลลัพธ์เป็น Artifact เสมอ เพื่อให้ dashboard ดูเป็นระบบเดียวกันไม่ว่าจะสร้างกี่ครั้งก็ตาม
+5. **อ่าน `references/metrics.md` ก่อนสร้าง query แต่ละโหมด** ถ้าต้องการ field ที่ไม่อยู่
+   ในนั้นให้เช็คด้วย `get_custom_dimensions_and_metrics` แทนการเดาชื่อ field เอง
+   (ชื่อ custom dimension/metric ต่างกันได้ในแต่ละ property)
 
-# รูปแบบ:
+## Workflow
 
-## ขั้นตอนที่ 1 — เช็คว่า MCP พร้อมใช้งาน
+### 1. เช็คว่า MCP พร้อมใช้งาน
 
 เช็คว่ามี tool ของ `google-analytics-mcp` อยู่ใน available tools หรือไม่ (เช่นผ่าน
 ToolSearch หรือดูใน system reminder ของ MCP servers) ถ้าไม่พบ ให้หยุดแล้วอธิบาย
-prerequisite ด้านบนให้ผู้ใช้ทราบ แทนที่จะดำเนินการต่อ
+prerequisite ตาม Core Rules ข้อ 1 ให้ผู้ใช้ทราบ แทนที่จะดำเนินการต่อ
 
-## ขั้นตอนที่ 2 — ระบุ property และช่วงเวลา
+### 2. ระบุ property และช่วงเวลา
 
 - ถ้าผู้ใช้ไม่ได้ระบุ GA4 property มาให้ชัดเจน และมีมากกว่า 1 property ที่เข้าถึงได้
   ให้เรียก `get_account_summaries` มาแสดงตัวเลือกแล้วถามผู้ใช้ว่าต้องการ property ไหน
@@ -58,7 +64,7 @@ prerequisite ด้านบนให้ผู้ใช้ทราบ แทน
   ล่าสุดเทียบกับ 7 วันก่อนหน้า (WoW) ถ้าขอ "สรุปรายเดือน" ใช้ 30 วันล่าสุดเทียบ 30 วัน
   ก่อนหน้า (MoM) — บอกผู้ใช้เสมอว่ากำลังใช้ช่วงเวลาไหนเผื่อไม่ตรงกับที่ตั้งใจ
 
-## ขั้นตอนที่ 3 — เลือกโหมดวิเคราะห์
+### 3. เลือกโหมดวิเคราะห์
 
 ถามหรืออนุมานจากคำขอของผู้ใช้ว่าต้องการโหมดไหน (เลือกได้มากกว่า 1 โหมดในรายงานเดียว):
 
@@ -74,7 +80,7 @@ dimension/metric ที่ควรใช้ — ถ้าต้องการ 
 `get_custom_dimensions_and_metrics` เพื่อยืนยันชื่อ field ที่ถูกต้องของ property
 นั้นแทนการเดา (ชื่อ custom dimension/metric ต่างกันได้ในแต่ละ property)
 
-## ขั้นตอนที่ 4 — ดึงข้อมูลจริง
+### 4. ดึงข้อมูลจริง
 
 สำหรับโหมดที่ต้องเทียบช่วงเวลา (WoW/MoM) ให้เรียก `run_report` สองครั้ง (ช่วงปัจจุบัน
 กับช่วงเทียบ) แล้วคำนวณ % เปลี่ยนแปลงเอง — ง่ายและตรวจสอบได้กว่าพยายามให้ API
@@ -83,7 +89,12 @@ dimension/metric ที่ควรใช้ — ถ้าต้องการ 
 ถ้า tool คืน error หรือไม่มีข้อมูล (เช่น property ไม่มีข้อมูลในช่วงนั้น) ให้บอกผู้ใช้
 ตรงๆ ว่าเกิดอะไรขึ้น ห้ามเติมตัวเลขสมมติเข้าไปแทน
 
-## ขั้นตอนที่ 5 — สร้าง Web Artifact Dashboard
+*Self-check ก่อนไปขั้นตอนถัดไป: ถ้าเลือกหลายโหมดพร้อมกัน (ข้อ 3) ให้ไล่เช็คว่าทุกโหมด
+ที่เลือกดึงข้อมูลสำเร็จครบแล้ว และ % เปลี่ยนแปลงที่คำนวณเอง (ช่วงปัจจุบัน vs ช่วงเทียบ)
+คำนวณถูกต้องจริง ก่อนนำไปสร้าง dashboard — เพราะเป็นตัวเลขที่คำนวณเอง ไม่ใช่ค่าที่ API
+คืนมาตรงๆ จึงผิดง่ายถ้าไม่ทวน ถ้าพบโหมดไหนข้อมูลขาดหรือคำนวณผิด ให้แก้/ดึงใหม่ก่อน*
+
+### 5. สร้าง Web Artifact Dashboard
 
 โหลด skill `artifact-design` และ `dataviz` ก่อนเขียน HTML เสมอ (ดูหัวข้อบทบาทด้านบน)
 โครงสร้าง dashboard ควรมี:
@@ -100,21 +111,22 @@ dimension/metric ที่ควรใช้ — ถ้าต้องการ 
 ตั้ง favicon เป็น 📈 และตั้งชื่อไฟล์/title ให้สื่อถึง property + ช่วงเวลา เพื่อให้แยก
 รายงานแต่ละครั้งออกจากกันได้ง่ายถ้าผู้ใช้ขอดูหลายรอบ
 
-## ขั้นตอนที่ 6 — สรุปสั้นๆ ในแชท
+### 6. สรุปสั้นๆ ในแชท
 
 นอกจาก Artifact แล้ว ให้สรุปเป็น bullet 3-5 ข้อในแชทด้วย (ตัวเลขเด่น + insight สั้นๆ)
 เพื่อให้ผู้ใช้ไม่ต้องเปิด artifact ก็รู้ประเด็นหลักได้ทันที
 
-# คำขอ:
-- ห้ามดำเนินการถ้ายังไม่พบ MCP tools ของ `google-analytics-mcp` — แจ้ง prerequisite
-  ให้ผู้ใช้แทนการเดาหรือสร้างข้อมูลปลอม
-- ถ้ามีหลาย property และผู้ใช้ไม่ได้ระบุ ต้องถามก่อนเสมอ อย่าเลือกให้เองเงียบๆ
-- ห้ามเติมตัวเลขที่ tool ไม่ได้คืนมาจริงๆ ถ้า error หรือไม่มีข้อมูลให้บอกตรงๆ
-- โหลด `artifact-design` และ `dataviz` ก่อนเขียน HTML ทุกครั้ง ไม่ข้ามขั้นตอนนี้
-- อ่าน `references/metrics.md` ก่อนสร้าง query แต่ละโหมด ถ้าต้องการ field ที่ไม่อยู่
-  ในนั้นให้เช็คด้วย `get_custom_dimensions_and_metrics` แทนการเดาชื่อ field เอง
-
-# ไฟล์แนบ:
+## Supporting files
 - GA4 property (ชื่อหรือ ID) — ถ้าไม่ระบุและมีหลาย property ต้องถามก่อน
 - ช่วงเวลาที่ต้องการดู (ถ้าไม่ระบุจะใช้ default ตามขั้นตอนที่ 2)
 - โหมดวิเคราะห์ที่ต้องการ (ถ้าไม่ระบุจะถามหรืออนุมานจากคำขอ)
+- `references/metrics.md` — ดูก่อนสร้าง query ทุกโหมด เพื่อรู้ว่าควรเรียก tool ไหน
+  พร้อม dimension/metric ที่ควรใช้
+
+## Edge cases
+- **ไม่พบ MCP tools ของ `google-analytics-mcp`** → แจ้ง prerequisite (Core Rules ข้อ 1)
+  ให้ผู้ใช้แทนการเดาหรือสร้างข้อมูลปลอม
+- **Tool คืน error หรือ property ไม่มีข้อมูลในช่วงที่ขอ** → บอกผู้ใช้ตรงๆ ว่าเกิดอะไรขึ้น
+  ห้ามเติมตัวเลขสมมติเข้าไปแทน
+- **ต้องการ metric/dimension ที่ไม่อยู่ใน `references/metrics.md`** → เช็คด้วย
+  `get_custom_dimensions_and_metrics` แทนการเดาชื่อ field เอง

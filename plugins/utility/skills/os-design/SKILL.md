@@ -11,32 +11,41 @@ disable-model-invocation: true
 
 # OS Design — สัมภาษณ์และสร้าง os-profile.md
 
-## บทบาท
 คุณทำหน้าที่เป็นผู้ช่วยที่สัมภาษณ์ผู้ใช้เพื่อทำความเข้าใจโครงสร้าง OS และ workflow ส่วนตัวของพวกเขา
-เป้าหมายคือสร้างไฟล์ `os-profile.md` (ตำแหน่งตาม path จาก Step 0) ที่ skill อื่นๆ ใน plugin utility จะใช้เป็น context
+เป้าหมายคือสร้างไฟล์ `os-profile.md` (ตำแหน่งตาม path จาก Workflow ขั้นตอน 1) ที่ skill อื่นๆ ใน plugin utility จะใช้เป็น context
+ปฏิบัติตามกฎทุกข้อด้านล่างอย่างเคร่งครัด
 
-## ขั้นตอนการทำงาน
+## Core Rules (Non-negotiable)
 
-### Step 0: ตรวจสอบ Save Path
+1. **ถามทีละ Phase** — อย่าถามทีเดียวทุก Phase เพราะจะทำให้ user ล้นข้อมูล
+2. **แสดงตัวอย่างเสมอก่อนถาม** โดยเฉพาะ naming convention — อ่านจาก `references/naming-conventions.md` ก่อน
+3. **ยืดหยุ่น** — ถ้า user บอกว่าไม่มีหรือไม่ใช้บาง section ให้ข้ามไปได้ ไม่ต้องบังคับตอบ
+4. **สรุปก่อน save เสมอ** — หลังถามครบทุก Phase ที่เลือก ต้องสรุปสิ่งที่จะเขียนให้ user ยืนยันก่อน 1 ครั้ง
+   ห้ามเขียนไฟล์ทันทีโดยไม่ให้ยืนยัน
+5. **บันทึก path ที่ save ไฟล์ให้ user ทราบเสมอ** หลังเขียนไฟล์สำเร็จ
+6. **ห้ามเก็บ `os-profile.md` ไว้ในโฟลเดอร์ของ plugin เอง** ต้องเก็บที่ path ที่ผู้ใช้กำหนดเท่านั้น เพราะ
+   plugin cache จะถูกแทนที่/ลบทุกครั้งที่อัปเดต version — ข้อมูลส่วนตัวของผู้ใช้จะหายไปถ้าเก็บผิดที่
 
-## Config File
-บันทึก path ที่ผู้ใช้กำหนดไว้ที่: `~/.config/claude-utility/settings.json`
+## Supporting files
+- **Config File** — บันทึก path ที่ผู้ใช้กำหนดไว้ที่ `~/.config/claude-utility/settings.json`
+  รูปแบบ:
+  ```json
+  {
+    "os_profile_path": "/path/to/os-profile.md"
+  }
+  ```
+- `references/naming-conventions.md` — ตัวอย่าง naming style ที่ต้องอ่านก่อนถาม Phase D (Core Rules ข้อ 2)
 
-รูปแบบ:
-```json
-{
-  "os_profile_path": "/path/to/os-profile.md"
-}
-```
+## Workflow
 
-## ขั้นตอนตรวจสอบ path (ทำก่อนทุกครั้ง)
+### 1. ตรวจสอบ Save Path (ทำก่อนทุกครั้ง)
 1. อ่านไฟล์ `~/.config/claude-utility/settings.json`
 2. ถ้า **ไม่มีไฟล์** (ใช้ครั้งแรก) → ถามผู้ใช้ว่าต้องการบันทึก `os-profile.md` ที่ folder ไหน พร้อมบอก default ว่า `~/.claude/claude-utility/os-profile.md` แล้ว **สร้าง config file** บันทึก path ที่เลือก จากนั้นดำเนินการต่อ
 
    > **ทำไมไม่ default ไปที่โฟลเดอร์ของ plugin เอง:** plugin ที่ติดตั้งจริงจะถูกเก็บไว้ใต้ `~/.claude/plugins/cache/<marketplace>/utility/<version>/` — path นี้เปลี่ยนทุกครั้งที่อัปเดต version และไฟล์ทั้งโฟลเดอร์จะถูกแทนที่/ลบตอน reinstall ถ้าเก็บ os-profile.md (ข้อมูลส่วนตัวของผู้ใช้) ไว้ในนั้น ข้อมูลจะหายเมื่อ plugin อัปเดต จึงต้องเก็บไว้ในตำแหน่งที่ผู้ใช้เป็นเจ้าของและคงอยู่ข้าม version แทน
 3. ถ้า **มีไฟล์แล้ว** → ใช้ `os_profile_path` จาก config โดยตรง ไม่ต้องถามซ้ำ
 
-## เปลี่ยน Save Path
+#### เปลี่ยน Save Path
 trigger เมื่อผู้ใช้พูดถึง: "เปลี่ยน path", "บันทึกที่อื่น", "set profile path", "ย้าย os-profile" หรือคล้ายกัน
 
 ขั้นตอน:
@@ -47,7 +56,7 @@ trigger เมื่อผู้ใช้พูดถึง: "เปลี่ย
 
 ---
 
-### Step 1: ตรวจสอบสถานะ
+### 2. ตรวจสอบสถานะ
 
 ก่อนเริ่ม ให้ตรวจสอบว่าไฟล์ที่ `os_profile_path` (จาก config ใน Step 0) มีอยู่แล้วหรือไม่
 
@@ -57,7 +66,7 @@ trigger เมื่อผู้ใช้พูดถึง: "เปลี่ย
   > 1. อัปเดตเฉพาะบางส่วน (ระบุว่าส่วนไหน)
   > 2. เขียนใหม่ทั้งหมด"
 
-### Step 2: เลือก OS ที่จะ configure
+### 3. เลือก OS ที่จะ configure
 
 ถามผู้ใช้ว่าต้องการ configure OS ใด:
 > "ต้องการ configure OS ใดบ้าง?
@@ -70,7 +79,7 @@ trigger เมื่อผู้ใช้พูดถึง: "เปลี่ย
 
 ---
 
-## Phase A: Windows 11
+### 4. Phase A: Windows 11
 
 ### A1 — Drive Layout
 ```
@@ -97,7 +106,7 @@ Windows ของคุณมีกี่ Drive? แต่ละ Drive (C:, D:, 
 
 ---
 
-## Phase B: macOS
+### 5. Phase B: macOS
 
 ### B1 — Disk Layout
 ```
@@ -123,7 +132,7 @@ Mac มี external drive หรือ volume เพิ่มเติมไห�
 
 ---
 
-## Phase C: Linux Ubuntu Desktop 24.04
+### 6. Phase C: Linux Ubuntu Desktop 24.04
 
 ### C1 — Partition Layout
 ```
@@ -152,9 +161,9 @@ Ubuntu partition เป็นยังไง?
 
 ---
 
-## Phase D: Naming Convention
+### 7. Phase D: Naming Convention
 
-อ่าน `references/naming-conventions.md` ก่อน แล้วนำตัวอย่างมาแสดงให้ผู้ใช้เห็นขณะถาม
+อ่าน `references/naming-conventions.md` ก่อน แล้วนำตัวอย่างมาแสดงให้ผู้ใช้เห็นขณะถาม (Core Rules ข้อ 2)
 
 ### D1 — Folder Naming
 ```
@@ -198,7 +207,7 @@ Ubuntu partition เป็นยังไง?
 
 ---
 
-## Phase E: Software Inventory
+### 8. Phase E: Software Inventory
 
 ### E1 — Cross-Platform Software
 ```
@@ -216,7 +225,7 @@ Software ที่ใช้เฉพาะบาง OS มีอะไรบ้�
 
 ---
 
-## Phase F: Shared Conventions
+### 9. Phase F: Shared Conventions
 
 ### F1 — Project Location
 ```
@@ -240,10 +249,12 @@ Projects/Code อยู่ที่ path ไหนในแต่ละ OS?
 
 ---
 
-## Step 3: สร้าง my-setup.md
+### 10. Self-check แล้วสร้าง my-setup.md
 
-หลังจากถามครบทุก Phase ที่ผู้ใช้เลือกแล้ว สร้างไฟล์ที่ `<os_profile_path จาก Step 0>`
-โดยใช้โครงสร้างนี้:
+หลังจากถามครบทุก Phase ที่ผู้ใช้เลือกแล้ว ก่อนสรุปให้ผู้ใช้ยืนยัน (Core Rules ข้อ 4) ให้ทวนก่อนว่า
+ทุก Phase ที่ถามไปมีคำตอบสะท้อนอยู่ในร่างที่จะเขียนครบ (ไม่มีคำตอบไหนตกหล่นหายไประหว่างทาง) ส่วน
+Phase ที่ผู้ใช้บอกข้ามไปเองถือว่าผ่าน ไม่ต้องมีคำตอบ — ถ้าพบคำตอบไหนหายไป ให้เติมก่อนแสดงสรุป
+จากนั้นสร้างไฟล์ที่ `<os_profile_path จาก Workflow ขั้นตอน 1>` โดยใช้โครงสร้างนี้:
 
 ```markdown
 # My Personal Setup Reference
@@ -339,12 +350,3 @@ _Last updated: YYYY-MM-DD_
 [รายละเอียด]
 ```
 
----
-
-## หลักการสำคัญ
-
-- **ถามทีละ Phase** อย่าถามทีเดียวทุก Phase — ทำให้ user ล้นข้อมูล
-- **แสดงตัวอย่างเสมอ** ก่อนถาม โดยเฉพาะ naming convention — อ่านจาก `references/naming-conventions.md`
-- **ยืดหยุ่น** ถ้า user บอกว่าไม่มีหรือไม่ใช้บาง section ให้ข้ามไปได้
-- **สรุปก่อน save** หลังถามครบ ให้สรุปสิ่งที่จะเขียนให้ user ยืนยันก่อน 1 ครั้ง
-- **บันทึก path** ที่ save ไฟล์ให้ user ทราบเสมอ

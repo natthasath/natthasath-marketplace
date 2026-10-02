@@ -1,6 +1,6 @@
 {
   "name": "insight",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Plugin รวม Skills สำหรับวิเคราะห์ web analytics ครอบคลุม Google Analytics 4 (insight-ga4) และ Microsoft Clarity (insight-clarity) ผ่าน official MCP servers ของแต่ละแพลตฟอร์ม สรุปผลเป็น web dashboard (Artifact) พร้อมจัดการโควต้า Clarity API อัตโนมัติ",
   "author": {
     "name": "natthasath"

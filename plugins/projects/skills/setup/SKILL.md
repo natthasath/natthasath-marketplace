@@ -10,13 +10,22 @@ tools:
   - Glob
 ---
 
+# Project Scaffold Setup
+
 เตรียม project structure ใหม่สำหรับการพัฒนาด้วย Claude Code
 
 Project name และ description: $ARGUMENTS
 
----
+## Core Rules (Non-negotiable)
 
-## Step 0 — รับข้อมูล
+1. **ต้องรอ confirm จากผู้ใช้ก่อนเริ่ม Execute (Step 2) เสมอ** — ถ้าผู้ใช้ตอบ "no" ให้หยุดทันที ห้าม scaffold ไฟล์ใดๆ โดยไม่ได้รับอนุญาตก่อน
+2. **สร้างไฟล์/โฟลเดอร์ให้ครบทุกรายการตามที่แสดงไว้ในแผน (Step 1)** ห้ามข้ามรายการใดไปเฉยๆ
+3. **ก่อนรายงานผลสำเร็จ (Step 3) ต้องตรวจสอบว่าแต่ละไฟล์/โฟลเดอร์ถูกสร้างขึ้นจริง** ไม่ใช่แค่สมมติว่าสำเร็จ ถ้าไฟล์ไหนสร้างไม่สำเร็จ ให้แก้ไขหรือลองใหม่ก่อน ห้ามรายงาน ✓ ให้สิ่งที่ยังไม่เกิดขึ้นจริง
+4. **git commit ทำเป็นลำดับสุดท้ายของ Step 2 เท่านั้น** หลังสร้างไฟล์ทั้งหมดเสร็จสมบูรณ์แล้ว ไม่ commit ไฟล์ที่ยังสร้างไม่ครบ
+
+## Workflow
+
+### 0. รับข้อมูล
 
 ถ้า $ARGUMENTS ว่างเปล่า ให้ถามผู้ใช้ก่อน:
 
@@ -29,9 +38,7 @@ Parse $ARGUMENTS เป็น:
 - PROJECT_NAME = token แรก (เช่น "my-api") หรือถามถ้าไม่มี
 - DESCRIPTION = ส่วนที่เหลือ (quoted string หรือว่างก็ได้)
 
----
-
-## Step 1 — แสดงแผนและขอ confirm
+### 1. แสดงแผนและขอ confirm
 
 แสดงรายการสิ่งที่จะสร้าง:
 
@@ -63,11 +70,19 @@ Parse $ARGUMENTS เป็น:
 
 รอ confirm ก่อน — ถ้า no หยุดทันที
 
----
+### 2. Execute (หลัง confirm เท่านั้น)
 
-## Step 2 — Execute (หลัง confirm เท่านั้น)
+ทำตาม checklist นี้ทีละข้อจนครบ ห้ามข้ามข้อใดไป — แต่ละข้อคือไฟล์/โฟลเดอร์หนึ่งรายการจากแผนที่แสดงใน Step 1:
+- [ ] 2a. CLAUDE.md
+- [ ] 2b. .claude/config/current-phase.md
+- [ ] 2c. .claude/config/task-format.md
+- [ ] 2d. .claude/config/tech-stack.md
+- [ ] 2e. .claude/rules/ (6 ไฟล์)
+- [ ] 2f. context/plans/PLAN.md
+- [ ] 2g. task files และ directories
+- [ ] 2h. git initial commit (ทำหลังสุด หลังข้อ 2a-2g เสร็จครบเท่านั้น)
 
-### 2a. สร้าง CLAUDE.md
+#### 2a. สร้าง CLAUDE.md
 
 ```markdown
 # <PROJECT_NAME> — Claude Code Instructions
@@ -115,7 +130,7 @@ Parse $ARGUMENTS เป็น:
 | `/today` | สรุปงานที่ทำวันนี้ |
 ```
 
-### 2b. สร้าง .claude/config/current-phase.md
+#### 2b. สร้าง .claude/config/current-phase.md
 
 ```markdown
 ---
@@ -125,7 +140,7 @@ description: Phase ปัจจุบัน — อัปเดตอัตโ�
 phase: (ยังไม่มี — รัน /add-phase ก่อน)
 ```
 
-### 2c. สร้าง .claude/config/task-format.md
+#### 2c. สร้าง .claude/config/task-format.md
 
 ```markdown
 ---
@@ -144,7 +159,7 @@ format: phase
 | global | TSK-001, TSK-002 | ลำดับ global ไม่ reset ข้าม phase |
 ```
 
-### 2d. สร้าง .claude/config/tech-stack.md
+#### 2d. สร้าง .claude/config/tech-stack.md
 
 ```markdown
 ---
@@ -167,7 +182,7 @@ description: Tech stack และ commands สำหรับ project นี้ 
 | **build** | (ยังไม่ได้ตั้งค่า) |
 ```
 
-### 2e. สร้าง .claude/rules/ (อ่านจาก references/ แล้ว copy)
+#### 2e. สร้าง .claude/rules/ (อ่านจาก references/ แล้ว copy)
 
 อ่านแต่ละไฟล์จาก `references/` ที่ bundled มากับ skill แล้วสร้างไฟล์เหล่านี้ใน `.claude/rules/`:
 - `references/git-conventions.md` → `.claude/rules/git-conventions.md`
@@ -179,7 +194,7 @@ description: Tech stack และ commands สำหรับ project นี้ 
 
 > หมายเหตุ: rules เหล่านี้เป็น starting point ทั่วไป ควรปรับให้เหมาะกับ tech stack ของโปรเจค
 
-### 2f. สร้าง context/plans/PLAN.md
+#### 2f. สร้าง context/plans/PLAN.md
 
 ```markdown
 # Master Development Plan — <PROJECT_NAME>
@@ -205,7 +220,7 @@ A phase is "Done" when ALL of the following are true:
 - [ ] Tested manually or E2E
 ```
 
-### 2g. สร้าง task files และ directories
+#### 2g. สร้าง task files และ directories
 
 สร้าง directories:
 - `context/tasks/backlog/`
@@ -273,7 +288,7 @@ _(ย้าย tasks จาก backlog มาที่นี่เมื่อ�
 _(tasks ที่เสร็จแล้วจะถูก append ที่นี่โดย /done-task)_
 ```
 
-### 2h. Git initial commit
+#### 2h. Git initial commit
 
 อ่าน `../../references/commit-emoji.md` เพื่อดู emoji convention ก่อน commit
 
@@ -282,9 +297,9 @@ git add .
 git commit -m "🎉 chore: setup project structure — <PROJECT_NAME>"
 ```
 
----
+### 3. Self-check แล้วรายงานผล
 
-## Step 3 — รายงานผล
+ก่อนแสดงรายงานผล ให้ตรวจทวนก่อนเสมอว่าทุกข้อใน checklist ของ Step 2 (2a-2h) ถูกสร้างขึ้นจริง (เช่น อ่านไฟล์กลับมาดูหรือ list directory ตรวจสอบ) — ถ้าข้อไหนยังไม่สำเร็จ ให้แก้ไขหรือลองสร้างใหม่ก่อน ห้ามใส่เครื่องหมาย ✓ ให้รายการที่ยังไม่เกิดขึ้นจริง เมื่อตรวจครบและทุกอย่างสำเร็จแล้วค่อยแสดงรายงานนี้:
 
 ```
 ✅ Setup เสร็จแล้ว — <PROJECT_NAME>
@@ -300,9 +315,7 @@ git commit -m "🎉 chore: setup project structure — <PROJECT_NAME>"
   ✓ git commit: 🎉 chore: setup project structure — <PROJECT_NAME>
 ```
 
----
-
-## Step 4 — Next steps
+### 4. Next steps
 
 ```
 ─────────────────────────────────────────────────────────────

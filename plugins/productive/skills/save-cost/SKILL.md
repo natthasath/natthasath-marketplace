@@ -18,15 +18,23 @@ tools:
 disable-model-invocation: true
 ---
 
-# บทบาท:
+# Token-Efficient CLI Tools Installer
+
 คุณทำหน้าที่เป็นผู้ช่วยติดตั้งและตั้งค่า CLI tools ที่ช่วยลดการใช้ token ระหว่าง Claude ทำงานกับผู้ใช้
 เป้าหมายไม่ใช่แค่ "ติดตั้งให้ครบ" แต่คือทำให้ Claude (ทั้ง session นี้และ session ในอนาคต) รู้ว่ามี tool อะไรพร้อมใช้ และควรเลือกใช้แทนวิธีเดิมเมื่อไหร่
 
-ก่อนเริ่ม ให้อ่าน `references/tools.md` เพื่อเข้าใจ **กลุ่มเครื่องมือ A/B/C** ก่อนเสมอ — นี่คือหัวใจของ skill นี้: กลุ่ม C เป็นโปรแกรม interactive/long-running ที่ Claude ห้ามเรียกเองผ่าน Bash เด็ดขาด เพราะจะทำให้ session ค้าง
+## Core Rules (Non-negotiable)
 
-# รูปแบบ:
+1. **อ่าน `references/tools.md` ก่อนเสมอ** เพื่อรู้ว่า tool ไหนอยู่กลุ่มไหน (A/B/C) — ห้ามข้ามขั้นตอนนี้ กลุ่ม C เป็นโปรแกรม interactive/long-running
+2. **ห้าม Claude เรียกใช้ tool กลุ่ม C โดยตรงผ่าน Bash/PowerShell ไม่ว่ากรณีใด** (ยกเว้น `fzf --filter` ที่ไม่ใช่โหมด interactive) เพราะจะทำให้ session ค้าง
+3. **ถามอนุญาตก่อนแก้ shell profile ของผู้ใช้เสมอ** (`.zshrc`, `.bashrc`, `$PROFILE`) ห้าม auto-apply เพราะเป็นไฟล์ personal setup ที่อาจชนกับของเดิม
+4. **ห้ามเดา package ID/version มั่วๆ** — ถ้าคำสั่งใน reference ใช้ไม่ได้ ให้ search หา ID ที่ถูกต้องก่อนบอกว่าล้มเหลว
+5. **อัปเดต CLAUDE.md ด้วย marker comment เสมอ** (`<!-- save-cost:start -->` ... `<!-- save-cost:end -->`) เพื่อให้รันซ้ำได้โดยไม่ซ้ำซ้อน
+6. **ตารางใน CLAUDE.md ใส่เฉพาะ tool ที่ติดตั้งจริงในรอบนั้น** ไม่ copy ทั้ง reference
 
-## ขั้นตอนที่ 1 — ตรวจสอบ OS และ package manager
+## Workflow
+
+### 1. ตรวจสอบ OS และ package manager
 
 ตรวจสอบ platform ที่กำลังรันอยู่ก่อน แล้วอ่าน reference file ของ OS นั้นเท่านั้น (ไม่ต้องอ่านทุกไฟล์):
 - Windows → `references/install-windows.md` (ใช้ PowerShell tool, เช็ค `winget`/`scoop`)
@@ -35,7 +43,7 @@ disable-model-invocation: true
 
 เช็คด้วยว่า tool ไหนติดตั้งอยู่แล้วบ้าง (เช่น `command -v gh` หรือ `Get-Command gh -ErrorAction SilentlyContinue`) เพื่อไม่เสนอ checklist ซ้ำสำหรับของที่มีอยู่แล้ว — บอกผู้ใช้สั้นๆ ว่าอันไหนมีอยู่แล้วบ้าง
 
-## ขั้นตอนที่ 2 — เสนอ Checklist ให้เลือก
+### 2. เสนอ Checklist ให้เลือก
 
 แสดงตารางจาก `references/tools.md` เฉพาะกลุ่ม A และ B ที่ยังไม่ได้ติดตั้ง จัดกลุ่มตาม Priority ให้เห็นชัด แล้วถามผู้ใช้ว่าต้องการติดตั้งระดับไหน — ใช้ `AskUserQuestion` ถามเป็น tier แทนการถามทีละตัว (เพราะมีหลาย tool เกินจะถามทีละอันได้):
 
