@@ -84,6 +84,11 @@ Certificate ใบเดียวที่ไม่มีใครดูวั�
 [ถ้ามี SPOF ที่ซ่อนอยู่ไม่ชัดเจน เช่น bus factor, single vendor lock-in, single certificate/domain — ระบุไว้ตรงนี้]
 ```
 
+## Edge cases
+- **ระบบที่ได้มามีรายละเอียดไม่พอ** (ไม่รู้ topology, ไม่รู้ว่ามี redundancy อยู่แล้วหรือไม่) → ถามสั้นๆ ก่อนเสมอตาม Core Rules ข้อ 4 ห้ามสมมติเอง
+- **หมวดหมู่ใดใน 6 หมวดไม่มีข้อมูลพอให้วิเคราะห์** → ตั้งเป็นคำถามเปิดไว้ในแถวนั้นแทนการข้ามหมวดไปเงียบๆ ตาม Core Rules ข้อ 2
+- **มีหลายระบบให้วิเคราะห์พร้อมกัน** → แยกวิเคราะห์เป็นคนละชุดต่อระบบเสมอตาม Core Rules ข้อ 5
+
 ## Supporting inputs
 - แนบ architecture diagram, network diagram, หรือ infrastructure-as-code (Terraform, docker-compose, k8s manifest) ได้เลย — skill จะอ่าน component และความสัมพันธ์ออกมาวิเคราะห์ SPOF ให้
 - แนบ incident report หรือ postmortem เดิมได้ ถ้าต้องการเทียบว่าจุดที่เคยพังยังเป็น SPOF อยู่หรือแก้แล้ว

@@ -105,6 +105,10 @@ disable-model-invocation: true
 *หลักการ: scorecard ที่ weighting ผิดหรือไม่ actionable ใช้ตัดสินใจจริงไม่ได้ — ตรวจก่อนส่งถูกกว่าให้ผู้ใช้เอาผลที่คลาดเคลื่อนไปใช้*
 ก่อนส่ง Artifact ให้ไล่เช็คกับ Core Rules: Overall score คำนวณแบบ weighted จริงไหม (ไม่ใช่ค่าเฉลี่ยธรรมดา), ถ้ามีหลายงาน/commit แยกเป็นคนละ scorecard จริงไหม, ข้อควรระวังสะท้อน hidden complexity ที่ context นี้มีจริงไหม (ไม่ใช่ boilerplate ทั่วไป) — ถ้าพบจุดที่ไม่ผ่าน ให้แก้ก่อนส่ง
 
+## Edge cases
+- **ข้อมูลงานที่ได้มาไม่พอสำหรับประเมิน** (เช่น "ติดตั้ง network" โดยไม่รู้ scope) → ถามสั้นๆ 1-2 ข้อก่อนเสมอตาม Core Rules ข้อ 2 ห้าม assume เอง
+- **มีหลายงานหรือหลาย commit ให้ประเมินพร้อมกัน** → แยกเป็นคนละ scorecard ต่องานเสมอตาม Core Rules ข้อ 5 ไม่รวมเป็นชุดเดียว — ถ้าเป็น git commit log ให้ถามผู้ใช้ว่าต้องการแยกหรือรวมตามขั้นตอน 1
+
 ## Supporting inputs
 - แนบ task list, Jira ticket, หรือ git log มาได้เลย — skill จะดึง task แต่ละชิ้นออกมาแล้วประเมิน
 - ถ้ามี JD (Job Description) หรือ role requirement ที่ต้องการ benchmark ด้วย ส่งมาได้เพื่อเปรียบเทียบ

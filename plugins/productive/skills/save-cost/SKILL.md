@@ -55,22 +55,17 @@ disable-model-invocation: true
 
 **แยกถามกลุ่ม C ต่างหากเสมอ** — อธิบายให้ชัดว่าเป็น tool แบบ interactive (lazygit, fzf, watchexec) ที่มีไว้ให้ผู้ใช้เปิดเองในเทอร์มินัล ไม่ใช่ให้ Claude เรียก ถามว่าต้องการติดตั้งไว้ใช้เองไหม (ค่า default คือไม่ติดตั้ง ถ้าผู้ใช้ไม่ได้ระบุ)
 
-## ขั้นตอนที่ 3 — ติดตั้ง
+### 3. ติดตั้ง
 
-รันคำสั่งติดตั้งตาม reference file ของ OS นั้น ทีละ tool หรือ batch ตามที่ reference แนะนำ
+รันคำสั่งติดตั้งตาม reference file ของ OS นั้น ทีละ tool หรือ batch ตามที่ reference แนะนำ ถ้าคำสั่งติดตั้งล้มเหลว ดูวิธีรับมือใน `## Edge cases`
 
-**ถ้าคำสั่งติดตั้งล้มเหลว:**
-1. ลองวิธีสำรอง (fallback) ที่ระบุไว้ใน reference file ก่อน (เช่น scoop แทน winget, cargo แทน apt)
-2. ถ้ายังไม่สำเร็จ แจ้งผู้ใช้ตรงๆ ว่า tool ไหนติดตั้งไม่ได้และทำไม อย่าข้ามไปเงียบๆ
-3. ห้ามเดา package ID มั่วๆ ถ้าไม่แน่ใจให้ลอง search ก่อน (เช่น `winget search <tool>`) ก่อนบอกว่าล้มเหลว
-
-## ขั้นตอนที่ 4 — Config เพิ่มเติม
+### 4. Config เพิ่มเติม
 
 หลังติดตั้งเสร็จ ให้เซ็ต config ตามที่ reference file ของ OS นั้นระบุไว้ (เช่น `git config --global core.pager delta` สำหรับ `git-delta`)
 
 **ก่อนแก้ shell profile ของผู้ใช้ (`.zshrc`, `.bashrc`, `$PROFILE`) ต้องถามอนุญาตก่อนเสมอ** — เป็นไฟล์ personal setup ของผู้ใช้ ไม่ใช่ config ของโปรเจกต์ การแก้โดยไม่ถามอาจไปชนกับของเดิมที่ผู้ใช้ตั้งไว้
 
-## ขั้นตอนที่ 5 — อัปเดต CLAUDE.md
+### 5. อัปเดต CLAUDE.md
 
 เขียนหรืออัปเดตหัวข้อ `## Token-Efficient CLI Tools` ใน `CLAUDE.md` ของโปรเจกต์ปัจจุบัน (ถ้าไม่มีไฟล์ ให้ถามผู้ใช้ก่อนว่าจะสร้างใหม่ไหม หรือจะใส่ใน global `~/.claude/CLAUDE.md` แทน)
 
@@ -96,7 +91,7 @@ disable-model-invocation: true
 
 ถ้าเจอ marker เดิมอยู่แล้วในไฟล์ (รันซ้ำ) ให้แทนที่เนื้อหาระหว่าง `<!-- save-cost:start -->` กับ `<!-- save-cost:end -->` ทั้งหมด ไม่ใช่เพิ่มต่อท้าย
 
-## ขั้นตอนที่ 6 — สรุปผล
+### 6. สรุปผล
 
 รายงานสรุปให้ผู้ใช้เห็นชัดเจน:
 ```
@@ -106,13 +101,6 @@ disable-model-invocation: true
 📄 อัปเดต CLAUDE.md แล้ว — เพิ่มหัวข้อ "Token-Efficient CLI Tools"
 ```
 
-# คำขอ:
-- อ่าน `references/tools.md` ก่อนเสมอเพื่อรู้ว่า tool ไหนอยู่กลุ่มไหน (A/B/C) — ห้ามข้ามขั้นตอนนี้
-- **ห้าม Claude เรียกใช้ tool กลุ่ม C โดยตรงผ่าน Bash/PowerShell ไม่ว่ากรณีใด** (ยกเว้น `fzf --filter` ที่ไม่ใช่โหมด interactive)
-- ถามก่อนแก้ shell profile ของผู้ใช้เสมอ (ไม่ auto-apply)
-- ไม่เดา package ID/version มั่วๆ — ถ้าคำสั่งใน reference ใช้ไม่ได้ ให้ search หา ID ที่ถูกต้องก่อน
-- อัปเดต CLAUDE.md ด้วย marker comment เสมอ เพื่อให้รันซ้ำได้โดยไม่ซ้ำซ้อน
-- ตารางใน CLAUDE.md ใส่เฉพาะ tool ที่ติดตั้งจริงในรอบนั้น ไม่ copy ทั้ง reference
-
-# ไฟล์แนบ:
-- ถ้าผู้ใช้ระบุ OS หรือ package manager ที่ต้องการใช้มาแล้ว (เช่น "ใช้ scoop นะ") ให้ใช้ตามนั้นแทนตัวเลือกแรกที่แนะนำใน reference
+## Edge cases
+- **คำสั่งติดตั้งล้มเหลว** → (1) ลองวิธีสำรอง (fallback) ที่ระบุไว้ใน reference file ก่อน (เช่น scoop แทน winget, cargo แทน apt) (2) ถ้ายังไม่สำเร็จ แจ้งผู้ใช้ตรงๆ ว่า tool ไหนติดตั้งไม่ได้และทำไม อย่าข้ามไปเงียบๆ (3) ห้ามเดา package ID มั่วๆ ถ้าไม่แน่ใจให้ลอง search ก่อน (เช่น `winget search <tool>`) ก่อนบอกว่าล้มเหลว
+- **ผู้ใช้ระบุ OS หรือ package manager ที่ต้องการใช้มาแล้ว** (เช่น "ใช้ scoop นะ") → ใช้ตามนั้นแทนตัวเลือกแรกที่แนะนำใน reference
