@@ -114,10 +114,10 @@
     },
     {
       "name": "drive",
-      "description": "Plugin รวม Skills สำหรับบันทึกไฟล์ไปยัง Google Drive โดยอัตโนมัติ ครอบคลุมการค้นหาและดาวน์โหลด ebook/PDF จากแหล่งที่ถูกกฎหมายแล้วเซฟเข้า Drive ผ่าน Google Apps Script โดยไม่ต้องให้ผู้ใช้ดาวน์โหลด/อัปโหลดเอง และการดูแลลิสต์หนังสือ (อยากได้/ซื้อแล้ว) เป็นตาราง markdown จากข้อมูลบน SE-ED/Naiin",
+      "description": "Plugin รวม Skills สำหรับบันทึกไฟล์ไปยัง Google Drive โดยอัตโนมัติ ครอบคลุมการค้นหาและดาวน์โหลด ebook/PDF จากแหล่งที่ถูกกฎหมายแล้วเซฟเข้า Drive ผ่าน Google Apps Script โดยไม่ต้องให้ผู้ใช้ดาวน์โหลด/อัปโหลดเอง และการดูแลลิสต์หนังสือ (อยากได้/ซื้อแล้ว/ค้นว่าเคยซื้อรึยัง) เป็นตาราง markdown จากข้อมูลบน SE-ED/Naiin",
       "source": "./plugins/drive",
       "category": "productivity",
-      "keywords": ["drive", "google-drive", "ebook", "pdf", "apps-script", "download", "copyright", "automation", "book", "wishlist", "owned", "receipt", "ใบเสร็จ", "book-list", "se-ed", "naiin"]
+      "keywords": ["drive", "google-drive", "ebook", "pdf", "apps-script", "download", "copyright", "automation", "book", "wishlist", "owned", "search", "receipt", "ใบเสร็จ", "book-list", "se-ed", "naiin"]
     },
     {
       "name": "compliance",
