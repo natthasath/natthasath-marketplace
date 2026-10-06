@@ -1,9 +1,9 @@
 # 🎉 natthasath-marketplace
 
-A Claude Code plugin marketplace bundling 17 plugins, 69 skills, and 2 agents across PKM, project planning, session management, content writing, language, design, productivity, and legal/regulatory research — install with a single command and start using slash commands right away.
+A Claude Code plugin marketplace bundling 17 plugins, 67 skills, and 2 agents across PKM, project planning, session management, content writing, language, design, productivity, and legal/regulatory research — install with a single command and start using slash commands right away.
 
 ![plugins](https://img.shields.io/badge/plugins-17-blue)
-![skills](https://img.shields.io/badge/skills-69-brightgreen)
+![skills](https://img.shields.io/badge/skills-67-brightgreen)
 ![agents](https://img.shields.io/badge/agents-2-orange)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-marketplace-8A63D2)
 ![license](https://img.shields.io/github/license/natthasath/natthasath-marketplace)
@@ -16,13 +16,13 @@ A Claude Code plugin marketplace bundling 17 plugins, 69 skills, and 2 agents ac
 | [`capacities`](plugins/capacities/README.md) | 7 | จัดการ PKM บน Capacities — Tags, Knowledge Notes และ Text Formatting |
 | [`creative`](plugins/creative/README.md) | 3 | แนะนำแนวทางออกแบบ — Design Style, Font Pairing, Web Design และ Note-taking |
 | [`document`](plugins/document/README.md) | 2 | จัดการเอกสารภาษาไทย — ตรวจสอบหนังสือราชการ และ blind ข้อมูล sensitive |
-| [`drive`](plugins/drive/README.md) | 3 | บันทึกไฟล์ไปยัง Google Drive อัตโนมัติ — ค้นหาและดาวน์โหลด ebook/PDF ผ่าน Google Apps Script และดูแลลิสต์หนังสือ (อยากได้/ซื้อแล้ว) จาก SE-ED/Naiin |
+| [`drive`](plugins/drive/README.md) | 1 | บันทึกไฟล์ไปยัง Google Drive อัตโนมัติ — ค้นหาและดาวน์โหลด ebook/PDF ผ่าน Google Apps Script |
 | [`github`](plugins/github/README.md) | 2 | จัดการงาน GitHub repo — เลือก/ติดตั้ง License และแนะนำ Tag สำหรับเก็บ repo ลง Capacities |
 | [`insight`](plugins/insight/README.md) | 2 | วิเคราะห์ web analytics — Google Analytics 4 และ Microsoft Clarity ผ่าน MCP |
 | [`language`](plugins/language/README.md) | 2 | จัดการงานด้านภาษา — ล่ามแปลต่อเนื่อง และ English Mentor |
 | [`masterplan`](plugins/masterplan/README.md) | 5 | วางแผนโปรเจกต์ซอฟต์แวร์ — Requirement, Architecture และ Database Design |
 | [`obsidian`](plugins/obsidian/README.md) | 1 | คลังความรู้แบบ markdown ที่เก็บนอก repo — เริ่มจาก Cookbook เทคนิคการใช้งาน AI CLI/Tools (Claude Code CLI, Claude Design, Codex CLI, Antigravity CLI) |
-| [`productive`](plugins/productive/README.md) | 16 | เพิ่มประสิทธิภาพการทำงาน — สรุปประชุม, ดาวน์โหลด PDF, ประเมินงาน IT, สร้าง Flashcard, สัมภาษณ์แบบ Socratic, ดัดแปลง skill จากที่อื่น, เข้ารหัสไฟล์สำหรับส่งต่ออย่างปลอดภัย, วิเคราะห์ Single Point of Failure, วางแผนรับมือสถานการณ์หน้างาน และบันทึก event ลง Google Calendar |
+| [`productive`](plugins/productive/README.md) | 17 | เพิ่มประสิทธิภาพการทำงาน — สรุปประชุม, ดาวน์โหลด PDF, ประเมินงาน IT, สร้าง Flashcard, สัมภาษณ์แบบ Socratic, ดัดแปลง skill จากที่อื่น, เข้ารหัสไฟล์สำหรับส่งต่ออย่างปลอดภัย, วิเคราะห์ Single Point of Failure, วางแผนรับมือสถานการณ์หน้างาน, บันทึก event ลง Google Calendar และดูแลลิสต์หนังสือ (อยากได้/ซื้อแล้ว) จาก SE-ED/Naiin |
 | [`projects`](plugins/projects/README.md) | 15 | จัดการ development project — scaffold workflow ตั้งแต่ setup จนถึง ship |
 | [`refactor`](plugins/refactor/README.md) | 5 | ปรับปรุงโครงสร้างไฟล์ — Docker, Shell Script, README และโครงสร้าง command ของ CLI tool |
 | [`roleplay`](plugins/roleplay/README.md) | 4 | จำลองบทบาทเพื่อฝึกทักษะ — สัมภาษณ์งาน, สอบสวน, กลยุทธ์ และภาษาอังกฤษ |

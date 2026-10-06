@@ -44,10 +44,10 @@
     },
     {
       "name": "productive",
-      "description": "Plugin รวม Skills เพิ่มประสิทธิภาพการทำงาน ครอบคลุม Breakdown (Tech Explainer), Meetings Summary, PDF Downloader, Workplace Communication, IT Work Scorecard, Indicator Designer, Flashcard, Activity Report (5W), Save Cost (CLI Tools), Grill Me (Socratic Interview), Copycat (Skill Porting), Encryption (Secure File Exchange), SPOF Analyzer, Scenario Playbook, Coevent (Calendar Logger), Upskill & Reskill (Google Drive), Trade-off (Opportunity Cost Analyzer) และ Rename (Chat/Task Title Generator)",
+      "description": "Plugin รวม Skills เพิ่มประสิทธิภาพการทำงาน ครอบคลุม Breakdown (Tech Explainer), Meetings Summary, PDF Downloader, Workplace Communication, IT Work Scorecard, Indicator Designer, Flashcard, Activity Report (5W), Save Cost (CLI Tools), Grill Me (Socratic Interview), Copycat (Skill Porting), Encryption (Secure File Exchange), SPOF Analyzer, Scenario Playbook, Coevent (Calendar Logger), Upskill & Reskill (Google Drive), Trade-off (Opportunity Cost Analyzer), Rename (Chat/Task Title Generator) และ Cobook (Google Drive Book Tracker)",
       "source": "./plugins/productive",
       "category": "productivity",
-      "keywords": ["productive", "summary", "meetings", "mom", "minutes", "breakdown", "tldr", "perspective", "pdf", "workplace", "communication", "professional", "scorecard", "it", "difficulty", "assessment", "indicator", "kpi", "action-plan", "measure", "flashcard", "vocabulary", "lexi", "word", "learn", "language", "quiz", "save-cost", "cli-tools", "token", "cost", "grill-me", "interview", "socratic", "decision-tree", "stress-test", "copycat", "skill-porting", "adaptation", "github", "encryption", "gpg", "passphrase", "secure-file-exchange", "archive", "aes-256", "spof", "single-point-of-failure", "reliability", "resilience", "high-availability", "risk-assessment", "scenario", "operation-scenario", "business-scenario", "crisis-response", "playbook", "contingency-plan", "coevent", "google-calendar", "calendar", "event", "schedule", "reminder", "google-meet", "appointment", "upskill-reskill", "upskill", "reskill", "skill-journal", "learning-log", "google-drive", "technical-officer", "devops", "ai", "llm", "tradeoff", "trade-off", "opportunity-cost", "decision-analysis", "career-move", "job-change", "business-investment", "real-estate", "condo", "budget-allocation", "public-policy", "rename", "title-generator", "chat-title", "task-title", "naming", "claude-ai"]
+      "keywords": ["productive", "summary", "meetings", "mom", "minutes", "breakdown", "tldr", "perspective", "pdf", "workplace", "communication", "professional", "scorecard", "it", "difficulty", "assessment", "indicator", "kpi", "action-plan", "measure", "flashcard", "vocabulary", "lexi", "word", "learn", "language", "quiz", "save-cost", "cli-tools", "token", "cost", "grill-me", "interview", "socratic", "decision-tree", "stress-test", "copycat", "skill-porting", "adaptation", "github", "encryption", "gpg", "passphrase", "secure-file-exchange", "archive", "aes-256", "spof", "single-point-of-failure", "reliability", "resilience", "high-availability", "risk-assessment", "scenario", "operation-scenario", "business-scenario", "crisis-response", "playbook", "contingency-plan", "coevent", "google-calendar", "calendar", "event", "schedule", "reminder", "google-meet", "appointment", "upskill-reskill", "upskill", "reskill", "skill-journal", "learning-log", "google-drive", "technical-officer", "devops", "ai", "llm", "tradeoff", "trade-off", "opportunity-cost", "decision-analysis", "career-move", "job-change", "business-investment", "real-estate", "condo", "budget-allocation", "public-policy", "rename", "title-generator", "chat-title", "task-title", "naming", "claude-ai", "cobook", "book", "wishlist", "owned", "book-list", "se-ed", "naiin", "bitly", "receipt", "ใบเสร็จ"]
     },
     {
       "name": "projects",
@@ -114,10 +114,10 @@
     },
     {
       "name": "drive",
-      "description": "Plugin รวม Skills สำหรับบันทึกไฟล์ไปยัง Google Drive โดยอัตโนมัติ ครอบคลุมการค้นหาและดาวน์โหลด ebook/PDF จากแหล่งที่ถูกกฎหมายแล้วเซฟเข้า Drive ผ่าน Google Apps Script โดยไม่ต้องให้ผู้ใช้ดาวน์โหลด/อัปโหลดเอง และการดูแลลิสต์หนังสือ (อยากได้/ซื้อแล้ว/ค้นว่าเคยซื้อรึยัง) เป็นตาราง markdown จากข้อมูลบน SE-ED/Naiin",
+      "description": "Plugin สำหรับบันทึกไฟล์ไปยัง Google Drive โดยอัตโนมัติ ครอบคลุมการค้นหาและดาวน์โหลด ebook/PDF จากแหล่งที่ถูกกฎหมายแล้วเซฟเข้า Drive ผ่าน Google Apps Script โดยไม่ต้องให้ผู้ใช้ดาวน์โหลด/อัปโหลดเอง (งานดูแลลิสต์หนังสือที่เคยอยู่ที่นี่ย้ายไปรวมเป็น cobook ใน plugin productive แล้ว)",
       "source": "./plugins/drive",
       "category": "productivity",
-      "keywords": ["drive", "google-drive", "ebook", "pdf", "apps-script", "download", "copyright", "automation", "book", "wishlist", "owned", "search", "receipt", "ใบเสร็จ", "book-list", "se-ed", "naiin"]
+      "keywords": ["drive", "google-drive", "ebook", "pdf", "apps-script", "download", "copyright", "automation"]
     },
     {
       "name": "compliance",

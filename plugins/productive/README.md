@@ -25,6 +25,7 @@ Plugin for **boosting work productivity** — covers Tech Explainer, Meetings, P
 | `upskill-reskill` | บันทึกทักษะใหม่ที่พัฒนา/เรียนรู้ไปพร้อมกับ Claude ลงไฟล์ `Upskill-Reskill-Log.md` สะสมต่อเนื่องบน Google Drive ครอบคลุมสายงาน Computer Technical Officer แบบกว้างๆ (Network, Server, Database, DevOps, Frontend, Backend, API, Cloud, Security, Automation) และทักษะ AI/LLM ทุกชนิด (Claude, ChatGPT, Grok ฯลฯ) — ใน Claude Code auto-trigger เองทันทีหลัง push code ขึ้น git สำเร็จถ้าเนื้อหาเข้าข่ายทักษะใหม่ ใน Claude Chat/Cowork trigger เมื่อพิมพ์ `upskill & reskill` หรือเรียกตรงผ่าน `/upskill-reskill [ชื่อทักษะ]` ได้ทุกที่ — **ข้อยกเว้นเดียว**ในปลั๊กอินนี้ที่ auto-trigger ได้ |
 | `tradeoff` | วิเคราะห์ "ได้อย่างเสียอย่าง" (Trade-off / Opportunity Cost Analysis) สำหรับการตัดสินใจสำคัญ 2 ทางเลือกขึ้นไปที่ใช้ทรัพยากรเดียวกัน ครอบคลุมนโยบายสาธารณะ/งบประมาณรัฐ, ย้ายงาน/เปลี่ยนอาชีพ, ลงทุนขยายธุรกิจเทียบ R&D, ซื้ออสังหาริมทรัพย์ (บ้านมือ1/มือ2, คอนโด/บ้าน) — เทียบทางเลือกใน 6 มิติ (ได้ เสีย Opportunity Cost ความเสี่ยง กลับตัวได้ไหม กรอบเวลาเห็นผล) ค้นเว็บหาตัวเลข/ข้อเท็จจริงมาอ้างอิงเมื่อเกี่ยวข้องกับงบประมาณ เงินเดือน หรือราคาตลาด แล้วสรุปคำแนะนำแบบมีเงื่อนไข — เรียกผ่าน `/tradeoff` เท่านั้น ไม่ auto-trigger |
 | `rename` | สร้างชื่อ Chat/Task บน Claude Website (claude.ai) ให้กระชับ เป็นภาษาอังกฤษ ไม่เกิน 8 คำ พร้อม prefix บอกประเภทงาน (เช่น `[Debug]`, `[Design]`, `[Report]`) และมีชื่อเฉพาะของระบบ/เทคโนโลยีที่เกี่ยวข้อง เพื่อให้ search เจอง่ายในอนาคต — รับคำอธิบายสั้นๆ ว่ากำลังทำอะไร คืนชื่อเดียวที่ดีที่สุดให้ copy ไปเปลี่ยนชื่อเองบน claude.ai — เรียกผ่าน `/rename <คำอธิบายสิ่งที่กำลังทำ>` เท่านั้น ไม่ auto-trigger |
+| `cobook` | ดูแลลิสต์หนังสือเดียว (รวม `book-wishlist`/`book-owned`/`book-search` เดิมจาก plugin `drive`) ลงตาราง markdown ที่ `Automation/book/book-list.md` บน Google Drive — รับชื่อหนังสือ รูปปก หรือรูปใบเสร็จ เช็คก่อนว่ามีในลิสต์แล้วหรือยัง ถ้าเจอเป็น Wishlist จะถามว่าซื้อแล้วหรือยังก่อนเปลี่ยนเป็น Owned ถ้าไม่เจอจะถามว่าต้องการค้นหาและบันทึกไหม แล้วดึงผู้เขียน/จำนวนหน้า/ลิงก์/ปกจาก SE-ED หรือ Naiin เท่านั้น พร้อมย่อลิงก์และรูปปกด้วย Bitly ก่อนถามว่าจะบันทึกเป็น Wishlist หรือ Owned — รูปใบเสร็จข้ามคำถามไปบันทึกเป็น Owned ได้เลยเพราะถือเป็นหลักฐานการซื้อในตัว — เรียกผ่าน `/cobook` เท่านั้น ไม่ auto-trigger |
 
 ### 🏆 Usage
 
@@ -48,4 +49,12 @@ Plugin for **boosting work productivity** — covers Tech Explainer, Meetings, P
 /upskill-reskill [ชื่อทักษะใหม่ที่ต้องการบันทึก]
 /tradeoff <สถานการณ์หรือทางเลือกที่ต้องการเทียบ>
 /rename <คำอธิบายสิ่งที่กำลังจะทำ>
+/cobook <ชื่อหนังสือ (หลายเล่มได้) หรือแนบรูปปก หรือถ่ายรูปใบเสร็จ>
 ```
+
+### 🔧 ต้อง Setup ก่อนใช้งานครั้งแรก
+
+`cobook` ต้องเชื่อมต่อ **Google Drive MCP connector** และ **Bitly MCP connector** ก่อนใช้งาน (ไม่ต้อง
+deploy หรือตั้งค่าอะไรฝั่ง Bitly เอง — ใช้ default group/domain ของบัญชีที่เชื่อมต่อไว้ได้เลย) ใช้ไฟล์
+`Automation/book/book-list.md` ไฟล์เดียวกับที่ `book-wishlist`/`book-owned`/`book-search` เดิมใน plugin
+`drive` เคยสร้างไว้ ไม่ต้อง migrate ข้อมูลใดๆ
