@@ -1,7 +1,7 @@
 {
   "name": "productive",
   "version": "1.17.0",
-  "description": "Plugin รวม Skills เพิ่มประสิทธิภาพการทำงาน ครอบคลุม Breakdown (Tech Explainer), Meetings Summary, PDF Downloader, Workplace Communication, IT Work Scorecard, Indicator Designer, Flashcard, Activity Report (5W), Save Cost (CLI Tools), Grill Me (Socratic Interview), Copycat (Skill Porting), Encryption (Secure File Exchange), SPOF Analyzer, Scenario Playbook, Coevent (Calendar Logger), Upskill & Reskill (Google Drive), Trade-off (Opportunity Cost Analyzer), Rename (Chat/Task Title Generator) และ Cobook (Google Drive Book Tracker)",
+  "description": "Plugin รวม Skills เพิ่มประสิทธิภาพการทำงาน ครอบคลุม Breakdown, Meetings Summary, PDF Downloader, Workplace Communication, IT Work Scorecard, Indicator Designer, Flashcard, Activity Report (5W), Save Cost, Grill Me (Socratic Interview), Copycat (Skill Porting), Encryption, SPOF Analyzer, Scenario Playbook, Coevent (Calendar Logger), Upskill & Reskill, Trade-off Analyzer, Rename (Title Generator) และ Cobook (Google Drive Book Tracker)",
   "author": {
     "name": "natthasath"
   },
