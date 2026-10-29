@@ -28,6 +28,7 @@ Plugin for **boosting work productivity** — covers Tech Explainer, Meetings, P
 | `cobook` | ดูแลลิสต์หนังสือเดียว (รวม `book-wishlist`/`book-owned`/`book-search` เดิมจาก plugin `drive`) ลงตาราง markdown ที่ `Automation/book/book-list.md` บน Google Drive — รับชื่อหนังสือ รูปปก หรือรูปใบเสร็จ เช็คก่อนว่ามีในลิสต์แล้วหรือยัง ถ้าเจอเป็น Wishlist จะถามว่าซื้อแล้วหรือยังก่อนเปลี่ยนเป็น Owned ถ้าไม่เจอจะถามว่าต้องการค้นหาและบันทึกไหม แล้วดึงผู้เขียน/จำนวนหน้า/ลิงก์/ปกจาก SE-ED หรือ Naiin เท่านั้น พร้อมย่อลิงก์และรูปปกด้วย Bitly ก่อนถามว่าจะบันทึกเป็น Wishlist หรือ Owned — รูปใบเสร็จข้ามคำถามไปบันทึกเป็น Owned ได้เลยเพราะถือเป็นหลักฐานการซื้อในตัว — เรียกผ่าน `/cobook` เท่านั้น ไม่ auto-trigger |
 | `broadcast` | Draft หรือ rewrite ข้อความประชาสัมพันธ์/ประกาศขององค์กร แบ่งตามระดับความเป็นทางการ (Formal: หนังสือราชการ/ข่าวประกาศ, Semi-formal: Facebook Page/LINE OA/ข่าวกิจกรรม, Informal: Social Media/Community) คูณกับเจตนา 10 แบบ (Informative, Persuasive, Promotional, Engagement, Awareness, Reputation, Relationship Building, Advocacy, Crisis Communication, Internal Communication) — ถามระดับความเป็นทางการและเจตนาทุกครั้งที่เรียก ไม่เดาเอง เตือนก่อนร่างถ้า pairing เสี่ยง (เช่น Crisis Communication คู่กับ Informal) — เรียกผ่าน `/broadcast` เท่านั้น ไม่ auto-trigger |
 | `socratic` | ชวนคิดวิเคราะห์แบบโสเครตีส (Socratic Method) — ถามคำถามนำทางทีละขั้นแทนการบอกคำตอบตรงๆ เพื่อให้ผู้ใช้ค้นพบคำตอบหรือจุดบอดของตัวเอง ไม่จำกัดโดเมน เลือกประเภทคำถามจาก 6 ประเภทของ Paul & Elder (clarification, assumptions, evidence & reasoning, viewpoints, implications, meta-question) ตามคำตอบจริงของผู้ใช้ในแต่ละรอบ ถามทีละคำถามเดียว ต่างจาก `grill-me` ที่ถามเป็นชุด — เป็นโหมดสนทนาต่อเนื่องจนกว่าผู้ใช้จะออกจากโหมดเอง — เรียกผ่าน `/socratic` เท่านั้น ไม่ auto-trigger |
+| `command` | เขียนคู่มือติดตั้ง/ตั้งค่า (installation & configuration guide) แบบสั้น กระชับ สไตล์ quick-reference card สำหรับ developer, system engineer, network engineer เช่น ติดตั้ง service บน Linux/Windows, ตั้งค่า network device, ทำ alias ให้ CLI tool, config firewall, NTP/DNS/VPN ฯลฯ ค้นหายืนยันคำสั่ง/ชื่อ package ปัจจุบันด้วย WebSearch ก่อนเขียนเสมอ ถาม target OS ด้วย AskUserQuestion ถ้าไม่ระบุ แล้วส่งเป็น Artifact ที่มี frontmatter (`type`/`title`) และขั้นตอนเรียงเลขต่อเนื่องแบบ heading สั้นๆ ไม่มี Prerequisites/Verification/References แยก section — เรียกผ่าน `/command` เท่านั้น ไม่ auto-trigger |
 
 ### 🏆 Usage
 
@@ -54,6 +55,7 @@ Plugin for **boosting work productivity** — covers Tech Explainer, Meetings, P
 /cobook <ชื่อหนังสือ (หลายเล่มได้) หรือแนบรูปปก หรือถ่ายรูปใบเสร็จ>
 /broadcast <หัวข้อข่าวที่ต้องการ draft หรือข้อความเดิมที่ต้องการ rewrite>
 /socratic <หัวข้อ ความเชื่อ หรือคำถามที่อยากคิดผ่าน>
+/command <เครื่องมือ/งานที่ต้องการทำคู่มือ เช่น 'ติดตั้ง NTP บน Oracle Linux', 'ตั้ง alias ให้ Python'>
 ```
 
 ### 🔧 ต้อง Setup ก่อนใช้งานครั้งแรก
