@@ -38,6 +38,22 @@ Plugin จากนักพัฒนาอื่นที่แนะนำ —
 |---|---|---|
 | [`diagram-design`](https://github.com/cathrynlavery/diagram-design) | Cathryn Lavery | สร้างไดอะแกรมสไตล์ editorial 38 แบบ (architecture, flowchart, ER, Gantt, Sankey ฯลฯ) ส่งออกเป็นไฟล์ standalone HTML/SVG/PNG |
 
+### 🧩 Community Mods
+
+Mod ที่ปรับแต่งหน้าตา/พฤติกรรมของ Claude Code เอง (ไม่ใช่ domain skill) — ต้องติดตั้งแยกจาก repo ต้นทาง
+
+| Mod | Author | Page | วัตถุประสงค์ |
+|---|---|---|---|
+| [`claude-code-filetree`](https://github.com/data-goblin/claude-code-filetree) | data-goblin | — | Sidebar แสดง file tree แบบ live ว่า Claude กำลังอ่าน/เขียนไฟล์ไหน พร้อม git status, diff และ preview |
+| [`claude-code-mods`](https://github.com/hamzafer/claude-code-mods) | hamzafer | [claude-mods.com](https://claude-mods.com/context-bar/) | ชุด plugin แสดงสถานะการทำงานแบบ real-time พร้อม safety guard และมินิเกมเสริม |
+| [`claude-skins`](https://github.com/hellosverre/claude-skins) | hellosverre | [claude-mods.com](https://claude-mods.com/claude-skins/) | เปลี่ยนหน้าตา output เป็น card สำหรับ diff/table/Mermaid พร้อม 15 ธีม สลับได้ด้วย `/skin` |
+| [`agent-standup`](https://github.com/Atoll92/agent-standup) | Atoll92 | [claude-mods.com](https://claude-mods.com/agent-standup-band/) | จำลอง stand-up แบบ live แสดงสถานะ agent/sub-agent ที่กำลังทำงาน ติดขัด หรือรออะไรอยู่ |
+| [`claude-mods`](https://github.com/augiefra/claude-mods) | augiefra | [claude-mods.com](https://claude-mods.com/token-weather-usage/) | Status band เหนือ prompt แสดง context, usage limit, cache timing, cost และ agent ที่กำลังรัน |
+| [`claude-carbon`](https://github.com/gwittebolle/claude-carbon) | gwittebolle | [claude-mods.com](https://claude-mods.com/claude-carbon/) | ประเมิน carbon footprint ของ session จาก token usage พร้อมบันทึกประวัติลง SQLite local |
+| [`moo.md`](https://github.com/saadshahd/moo.md) | saadshahd | [claude-mods.com](https://claude-mods.com/moo-hope/) | ชุด skill คุมการตัดสินใจ (intent/shape/freeze/router) ให้ผู้ใช้กำกับทิศทางก่อนโค้ดถูกเขียน |
+| [`claude-flightdeck`](https://github.com/scasella/claude-flightdeck) | scasella | [claude-mods.com](https://claude-mods.com/claude-flightdeck/) | Dashboard แสดง context usage, cost, permission check และ subagent activity แบบ read-only เท่านั้น |
+| [`ribbon`](https://github.com/robonuggets/ribbon) | robonuggets | [claude-mods.com](https://claude-mods.com/robonuggets-ribbon/) | Status band แบบเรียบง่าย แสดง usage limit (7 วัน/5 ชั่วโมง) และสถานะ prompt cache |
+
 ### 🚀 Install
 
 ```shell
