@@ -1,7 +1,7 @@
 {
   "name": "mods-gitgraph",
-  "version": "0.1.2",
-  "description": "Mod ที่แสดง git commit graph แบบมีสีในแถบด้านข้าง (pane) เหมือน SourceTree/GitKraken",
+  "version": "0.2.0",
+  "description": "Mod ที่แสดง git commit graph แบบมีสีในแถบด้านข้าง (pane) เหมือน SourceTree/GitKraken — branch/tag pills, right-click menu, commit actions, push/fetch, multi-repo, search, settings",
   "author": {
     "name": "natthasath"
   },
@@ -14,11 +14,12 @@
       "description": "เปิดแผง Git Graph ให้ทันทีตอนเริ่ม session ถ้า cwd เป็น git repository",
       "default": true
     },
-    "maxCommits": {
-      "type": "number",
-      "title": "จำนวน commit สูงสุด",
-      "description": "จำนวน commit ล่าสุด (รวมทุก branch) ที่จะดึงมาคำนวณ/แสดงในแผง",
-      "default": 300
+    "badges": {
+      "type": "string",
+      "title": "รูปแบบ pill ของ branch/tag",
+      "description": "auto ใช้ Nerd Font ถ้ามีฟอนต์ติดตั้งอยู่ ไม่งั้นใช้ square — เลือก square เองถ้าฟอนต์ไม่มี glyph ของ Nerd Font",
+      "options": ["auto", "round", "square"],
+      "default": "auto"
     }
   }
 }

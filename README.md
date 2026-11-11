@@ -36,7 +36,7 @@ A Claude Code plugin marketplace bundling 18 plugins, 70 skills, and 2 agents ac
 
 | Mod | วัตถุประสงค์ |
 |---|---|
-| [`mods-gitgraph`](mods/mods-gitgraph/README.md) | แสดง git commit graph แบบมีสีในแถบด้านข้าง (pane) เหมือน SourceTree/GitKraken |
+| [`mods-gitgraph`](mods/mods-gitgraph/README.md) | แสดง git commit graph แบบมีสีในแถบด้านข้าง เหมือน SourceTree/GitKraken — branch/tag pills, right-click menu, push/fetch, multi-repo, search, settings |
 
 ### 🧩 Community Plugins
 
