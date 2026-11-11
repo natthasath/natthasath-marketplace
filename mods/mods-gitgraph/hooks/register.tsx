@@ -23,6 +23,17 @@ const LANE_COLORS = [
   '#56c2a0',
 ]
 
+// Dark theme (GitHub Dark-like) — the pane never relies on the terminal's
+// own background, so it stays dark regardless of the surrounding theme.
+const THEME = {
+  bg: '#161B22',
+  fg: '#C9D1D9',
+  accent: '#79C0FF',
+  muted: '#8B949E',
+  selection: '#263449',
+  hover: '#212B3A',
+}
+
 const commits = atom({ plugin: 'mods-gitgraph', key: 'commits' } as const, [] as GitCommit[])
 const isOpenAtom = atom({ plugin: 'mods-gitgraph', key: 'isOpen' } as const, false)
 const selectedAtom = atom({ plugin: 'mods-gitgraph', key: 'selected' } as const, null as string | null)
@@ -265,7 +276,7 @@ export const register: Register = (on, options) => {
 
     if (err) {
       return (
-        <Box flexDirection="column" padding={1}>
+        <Box flexDirection="column" padding={1} backgroundColor={THEME.bg}>
           <Text color="error">{err}</Text>
         </Box>
       )
@@ -276,25 +287,31 @@ export const register: Register = (on, options) => {
     const visible = list.slice(0, listRows)
 
     return (
-      <Box flexDirection="column">
-        {visible.length === 0 && <Text dimColor>ไม่มี commit ให้แสดง</Text>}
+      <Box flexDirection="column" backgroundColor={THEME.bg}>
+        {visible.length === 0 && <Text color={THEME.muted}>ไม่มี commit ให้แสดง</Text>}
         {visible.map(commit => (
-          <Button key={commit.hash} plain onPress={() => loadCommitDetail($, commit.hash)}>
-            {renderLaneCells($, e, commit)}
-            <Text> </Text>
-            <Text weight={commit.hash === sel ? 'bold' : 'regular'} color={commit.hash === sel ? 'claude' : undefined}>
-              {commit.short}
-            </Text>
-            <Text dimColor>{' ' + truncate(commit.subject, 44)}</Text>
-            {commit.refs.length > 0 && <Text color="success">{' (' + commit.refs.join(', ') + ')'}</Text>}
-          </Button>
+          <Box
+            key={commit.hash}
+            backgroundColor={commit.hash === sel ? THEME.selection : undefined}
+            hover={{ backgroundColor: THEME.hover }}
+          >
+            <Button key={'btn:' + commit.hash} plain onPress={() => loadCommitDetail($, commit.hash)}>
+              {renderLaneCells($, e, commit)}
+              <Text> </Text>
+              <Text weight={commit.hash === sel ? 'bold' : 'regular'} color={commit.hash === sel ? THEME.accent : THEME.fg}>
+                {commit.short}
+              </Text>
+              <Text color={THEME.muted}>{' ' + truncate(commit.subject, 44)}</Text>
+              {commit.refs.length > 0 && <Text color={THEME.accent}>{' (' + commit.refs.join(', ') + ')'}</Text>}
+            </Button>
+          </Box>
         ))}
         {det && (
-          <Box flexDirection="column" borderStyle="single" marginTop={1} paddingX={1}>
+          <Box flexDirection="column" borderStyle="single" borderColor={THEME.muted} marginTop={1} paddingX={1}>
             <Button plain onPress={() => closeCommitDetail($)}>
-              <Text dimColor>[ปิดรายละเอียด]</Text>
+              <Text color={THEME.muted}>[ปิดรายละเอียด]</Text>
             </Button>
-            <Text wrap="wrap">{det}</Text>
+            <Text color={THEME.fg} wrap="wrap">{det}</Text>
           </Box>
         )}
       </Box>

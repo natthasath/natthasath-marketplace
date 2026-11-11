@@ -1,6 +1,6 @@
 {
   "name": "mods-gitgraph",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Mod ที่แสดง git commit graph แบบมีสีในแถบด้านข้าง (pane) เหมือน SourceTree/GitKraken",
   "author": {
     "name": "natthasath"
