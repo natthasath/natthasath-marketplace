@@ -1,8 +1,8 @@
 # 🎉 natthasath-marketplace
 
-A Claude Code plugin marketplace bundling 17 plugins, 70 skills, and 2 agents across PKM, project planning, session management, content writing, language, design, productivity, and legal/regulatory research — install with a single command and start using slash commands right away.
+A Claude Code plugin marketplace bundling 18 plugins, 70 skills, and 2 agents across PKM, project planning, session management, content writing, language, design, productivity, legal/regulatory research, and Claude Code mods — install with a single command and start using slash commands right away.
 
-![plugins](https://img.shields.io/badge/plugins-17-blue)
+![plugins](https://img.shields.io/badge/plugins-18-blue)
 ![skills](https://img.shields.io/badge/skills-70-brightgreen)
 ![agents](https://img.shields.io/badge/agents-2-orange)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-marketplace-8A63D2)
@@ -29,6 +29,14 @@ A Claude Code plugin marketplace bundling 17 plugins, 70 skills, and 2 agents ac
 | [`session`](plugins/session/README.md) | 2 | จัดการ Session ของ Claude Code — ตั้งชื่อ บันทึกจุดประสงค์ และเขียนเอกสารส่งไม้ต่อตอนจบ session |
 | [`social`](plugins/social/README.md) | 2 | สร้างโพสต์โซเชียลมีเดีย — Facebook และ LinkedIn |
 | [`utility`](plugins/utility/README.md) | 2 | จัดการระบบปฏิบัติการ — OS Setup และ Config Snapshot |
+
+### 🧩 Mods
+
+ปรับแต่งหน้าตา/พฤติกรรมของ Claude Code เอง ผ่าน hooks (ไม่ใช่ domain skill) — bundle อยู่ใน marketplace นี้ที่ `/mods` แยกจาก `/plugins`
+
+| Mod | วัตถุประสงค์ |
+|---|---|
+| [`mods-gitgraph`](mods/mods-gitgraph/README.md) | แสดง git commit graph แบบมีสีในแถบด้านข้าง (pane) เหมือน SourceTree/GitKraken |
 
 ### 🧩 Community Plugins
 
@@ -70,6 +78,7 @@ Mod ที่ปรับแต่งหน้าตา/พฤติกรรม
 /plugin install insight@natthasath-marketplace
 /plugin install language@natthasath-marketplace
 /plugin install masterplan@natthasath-marketplace
+/plugin install mods-gitgraph@natthasath-marketplace
 /plugin install obsidian@natthasath-marketplace
 /plugin install productive@natthasath-marketplace
 /plugin install projects@natthasath-marketplace

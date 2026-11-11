@@ -1,0 +1,24 @@
+{
+  "name": "mods-gitgraph",
+  "version": "0.1.1",
+  "description": "Mod ที่แสดง git commit graph แบบมีสีในแถบด้านข้าง (pane) เหมือน SourceTree/GitKraken",
+  "author": {
+    "name": "natthasath"
+  },
+  "keywords": ["mods", "git-graph", "git", "commit-graph", "pane", "ui", "hooks", "tui"],
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "autoOpen": {
+      "type": "boolean",
+      "title": "เปิดแผงอัตโนมัติ",
+      "description": "เปิดแผง Git Graph ให้ทันทีตอนเริ่ม session ถ้า cwd เป็น git repository",
+      "default": true
+    },
+    "maxCommits": {
+      "type": "number",
+      "title": "จำนวน commit สูงสุด",
+      "description": "จำนวน commit ล่าสุด (รวมทุก branch) ที่จะดึงมาคำนวณ/แสดงในแผง",
+      "default": 300
+    }
+  }
+}
