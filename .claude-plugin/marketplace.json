@@ -113,6 +113,13 @@
       "keywords": ["mods", "git-graph", "git", "commit-graph", "pane", "ui", "hooks", "tui"]
     },
     {
+      "name": "mods-matrixcode",
+      "description": "Mod ที่แสดง Matrix-style digital rain สีเขียว neon ในแถบด้านข้าง (pane) ความเข้มข้นผูกกับว่า Claude กำลังทำงานหนักแค่ไหน",
+      "source": "./mods/mods-matrixcode",
+      "category": "development",
+      "keywords": ["mods", "matrix", "code-rain", "digital-rain", "pane", "ui", "hooks", "tui", "hacker", "neon"]
+    },
+    {
       "name": "obsidian",
       "description": "Plugin สำหรับคลังความรู้แบบ markdown ที่เก็บนอก repo ครอบคลุม Skill Cookbook รวบรวมเทคนิคการใช้งานเครื่องมือ AI CLI/Tools ต่างๆ (Claude Code CLI, Claude Design, Codex CLI, Antigravity CLI) เพิ่มเทคนิคใหม่ได้เรื่อยๆ ทั้งจากผู้ใช้เองและสั่งให้ Claude ค้น/อัพเดทให้",
       "source": "./plugins/obsidian",

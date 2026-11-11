@@ -1,0 +1,9 @@
+{
+  "name": "mods-matrixcode",
+  "version": "0.1.0",
+  "description": "Mod ที่แสดง Matrix-style digital rain (ตัวอักษรคาตาคานะสีเขียว neon ไหลจากบนลงล่าง) ในแถบด้านข้าง (pane) — ความเข้มข้นของสายฝนผูกกับว่า Claude กำลังทำงานหนักแค่ไหน",
+  "author": {
+    "name": "natthasath"
+  },
+  "keywords": ["mods", "matrix", "code-rain", "digital-rain", "pane", "ui", "hooks", "tui", "hacker", "neon"]
+}
