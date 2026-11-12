@@ -40,6 +40,7 @@ const SELECTED_BG = THEME.selection
 const REMOTE_BG = BADGE_BG.remote ?? THEME.muted
 const ADD_COLOR = '#89d185'
 const DEL_COLOR = '#f48771'
+const WARN_COLOR = '#e2c08d'
 const AUTHOR_W = 12
 const BODY_LINES = 8
 const OVERSCAN = 15
@@ -503,7 +504,7 @@ function metaOf({ cols }: Ctx, author: string, hash: string): string {
 // One row of the pane, exactly one terminal row tall whatever it holds.
 function line({ els: { Box } }: Ctx, children: RenderChildren, gap = 0, justify?: 'space-between') {
   return (
-    <Box height={1} overflow="hidden" flexDirection="row" gap={gap} justifyContent={justify}>
+    <Box height={1} overflow="hidden" flexDirection="row" gap={gap} justifyContent={justify} backgroundColor={THEME.bg}>
       {children}
     </Box>
   )
@@ -523,7 +524,7 @@ function switchButton({ els: { Button, Text }, icons }: Ctx, key: string, label:
   )
 }
 
-const blank = (ctx: Ctx) => line(ctx, <ctx.els.Text> </ctx.els.Text>)
+const blank = (ctx: Ctx) => line(ctx, <ctx.els.Text color={THEME.fg}> </ctx.els.Text>)
 
 // An icon Button's label, a space each side so the click target is wider than the glyph.
 const iconLabel = (ctx: Ctx, glyph: string) => (ctx.icons === ICONS.nerd ? ` ${glyph}  ` : ` ${glyph} `)
@@ -540,7 +541,7 @@ function renderHeader($: EngineInterface, ctx: Ctx) {
   const count = graph.rows.length - (graph.dirty ? 1 : 0)
   const head = headName(graph)
   const lines = [
-    <Box height={1} overflow="hidden" flexDirection="row" justifyContent="space-between" columnGap={2}>
+    <Box height={1} overflow="hidden" flexDirection="row" justifyContent="space-between" columnGap={2} backgroundColor={THEME.bg}>
       {/* With several repos, the repo comes first: its options open as rows below the header's first row. */}
       {repos.list.length > 1 && (
         <Box flexShrink={0}>
@@ -557,7 +558,7 @@ function renderHeader($: EngineInterface, ctx: Ctx) {
             {count}
             {graph.hasMore ? '+' : ''} commits
           </Text>
-          {graph.dirty > 0 && <Text color="warning">{`  ● ${graph.dirty} ${graph.dirty === 1 ? 'change' : 'changes'}`}</Text>}
+          {graph.dirty > 0 && <Text color={WARN_COLOR}>{`  ● ${graph.dirty} ${graph.dirty === 1 ? 'change' : 'changes'}`}</Text>}
         </Text>
       </Box>
       <Box flexDirection="row" gap={2} flexShrink={0}>
@@ -582,7 +583,7 @@ function renderHeader($: EngineInterface, ctx: Ctx) {
           </Button>
           {view.refresh === 'running' && renderSpinner(ctx, 'refresh-spinner')}
           <Button key="refresh" plain onPress={() => refreshAll($)}>
-            {view.refresh === 'done' ? <Text color="success"> ✓ </Text> : <Text color={THEME.muted}>{iconLabel(ctx, icons.refresh)}</Text>}
+            {view.refresh === 'done' ? <Text color={ADD_COLOR}> ✓ </Text> : <Text color={THEME.muted}>{iconLabel(ctx, icons.refresh)}</Text>}
           </Button>
         </Box>
       </Box>
@@ -621,7 +622,7 @@ function renderHeader($: EngineInterface, ctx: Ctx) {
       ),
     )
   lines.push(rule(ctx))
-  return { node: <Box flexDirection="column">{lines}</Box>, height: lines.length }
+  return { node: <Box flexDirection="column" backgroundColor={THEME.bg}>{lines}</Box>, height: lines.length }
 }
 
 function renderRow($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow) {
@@ -637,7 +638,7 @@ function renderRow($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow) {
       <Text color={THEME.fg}>
         {graphText}
         {pad}
-        <Text italic color="warning">
+        <Text italic color={WARN_COLOR}>
           {commit.subject}
         </Text>
       </Text>,
@@ -657,11 +658,11 @@ function renderRow($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow) {
       height={1}
       overflow="hidden"
       flexDirection="row"
-      backgroundColor={isSelected ? SELECTED_BG : undefined}
+      backgroundColor={isSelected ? SELECTED_BG : THEME.bg}
       hover={{ backgroundColor: THEME.hover }}
     >
       <Box flexShrink={0}>
-        <Text>
+        <Text color={THEME.fg}>
           {graphText}
           {pad}
         </Text>
@@ -886,7 +887,7 @@ function renderFiles(ctx: Ctx, files: FileStat[]) {
     line(
       ctx,
       <Text color={THEME.fg}>
-        <Text weight="bold">{files.length} {files.length === 1 ? 'file' : 'files'}</Text>
+        <Text weight="bold" color={THEME.fg}>{files.length} {files.length === 1 ? 'file' : 'files'}</Text>
         <Text color={ADD_COLOR}>{`  +${adds}`}</Text>
         <Text color={DEL_COLOR}>{` −${dels}`}</Text>
       </Text>,
@@ -1110,7 +1111,7 @@ async function renderPane($: EngineInterface, els: Ctx['els'], surface: string, 
   ])
   const { graph, indexOf } = cache
   if (graph.status === 'no-repo') return <Box backgroundColor={THEME.bg} padding={1}><Text color={THEME.muted}>Not a git repository.</Text></Box>
-  if (graph.status === 'error') return <Box backgroundColor={THEME.bg} padding={1}><Text color="error">Could not read git: {graph.error ?? ''}</Text></Box>
+  if (graph.status === 'error') return <Box backgroundColor={THEME.bg} padding={1}><Text color={DEL_COLOR}>Could not read git: {graph.error ?? ''}</Text></Box>
 
   const graphMax = Math.max(6, Math.min(40, Math.floor(cols / 3)))
   const ctx: Ctx = {
@@ -1146,22 +1147,22 @@ async function renderPane($: EngineInterface, els: Ctx['els'], surface: string, 
   return (
     <Box flexDirection="column" backgroundColor={THEME.bg}>
       {header.node}
-      {graph.rows.length === 0 && <Text color={THEME.muted}>{graph.status === 'ready' ? 'No commits yet.' : 'Loading…'}</Text>}
-      {before > 0 && <Box key="space-before" height={before} flexShrink={0} />}
+      {graph.rows.length === 0 && <Box backgroundColor={THEME.bg}><Text color={THEME.muted}>{graph.status === 'ready' ? 'No commits yet.' : 'Loading…'}</Text></Box>}
+      {before > 0 && <Box key="space-before" height={before} flexShrink={0} backgroundColor={THEME.bg} />}
       {graph.rows.slice(from, to).map(row => (
-        <Box key={`row:${row.commit.hash}`} flexDirection="column" flexShrink={0}>
+        <Box key={`row:${row.commit.hash}`} flexDirection="column" flexShrink={0} backgroundColor={THEME.bg}>
           {renderRow($, ctx, row)}
           {row === menuRow && menuBox?.node}
           {row === selectedRow && detailBox?.node}
         </Box>
       ))}
-      {after > 0 && <Box key="space-after" height={after} flexShrink={0} />}
+      {after > 0 && <Box key="space-after" height={after} flexShrink={0} backgroundColor={THEME.bg} />}
       {graph.hasMore && (
         <Button key="more" plain onPress={async () => {
           await update($, viewState, v => ({ ...v, limit: v.limit + PAGE }))
           await load($)
         }}>
-          <Text color={THEME.muted}>Load {PAGE} more commits</Text>
+          <Text color={THEME.muted} backgroundColor={THEME.bg}>Load {PAGE} more commits</Text>
         </Button>
       )}
     </Box>
