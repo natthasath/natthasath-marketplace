@@ -1,46 +1,50 @@
 import { describe, expect, test } from 'claude-code/testing'
 
-import { COMPACT_COLS, EDGE_SAFETY, headerText, metaOf, subjectRoom } from './columns'
+import { COMPACT_COLS, EDGE_SAFETY, authorCell, authorCol, authorHeader, descriptionCol, hashCell, hashCol, hashHeader, subjectRoom } from './columns'
 
 const HASH = 'a1b2c3d4e5f60718293a4b5c6d7e8f9012345678'
-// What a row is made of, left to right, as renderRow lays it out.
-function rowText(cols: number, graphWidth: number, pillsWidth: number, author: string): string {
-  const meta = metaOf(cols, author, HASH)
-  const room = subjectRoom(cols, graphWidth, meta.length, pillsWidth)
-  return `${'●'.padEnd(graphWidth + 1)}${'p'.repeat(pillsWidth)}${'subject'.padEnd(room)}${meta}`
-}
+const WIDTHS = [70, 80, 100, 120, 160, 200]
+const GRAPHS = [6, 10, 20]
 
-describe('header columns line up with the rows', () => {
-  for (const cols of [70, 80, 100, 120, 160, 200]) {
-    for (const graphWidth of [6, 10, 20]) {
+// A line laid out as the pane lays it: graph, Description, Author, Commit, the edge's cell.
+const lineOf = (cols: number, graphWidth: number, description: string, author: string, hash: string) =>
+  `${''.padEnd(graphWidth + 1)}${description.padEnd(descriptionCol(cols, graphWidth))}${author}${hash}${' '.repeat(EDGE_SAFETY)}`
+
+describe('Description, Author and Commit line up on every width', () => {
+  for (const cols of WIDTHS) {
+    for (const graphWidth of GRAPHS) {
       test(`cols ${cols}, graph ${graphWidth}`, () => {
-        const header = headerText(cols, graphWidth)
-        const row = rowText(cols, graphWidth, 9, 'Natthasath S')
-        // Both end EDGE_SAFETY cells short of the pane, so neither overflows nor is cut.
-        expect(header.length).toBe(cols - EDGE_SAFETY)
-        expect(row.length).toBe(cols - EDGE_SAFETY)
-        // Author and Commit start in the same cells as the row's author and hash.
+        const pills = 9
+        const subject = 'p'.repeat(pills) + 'subject'.padEnd(subjectRoom(cols, graphWidth, pills))
+        const row = lineOf(cols, graphWidth, subject, authorCell(cols, 'Natthasath S'), hashCell(cols, HASH))
+        const header = lineOf(cols, graphWidth, 'Description', authorHeader(), hashHeader(cols))
+        // Each column's text is exactly its column's width.
+        expect(authorCell(cols, 'Natthasath S').length).toBe(authorCol(cols))
+        expect(authorHeader().length).toBe(authorCol(cols))
+        expect(hashCell(cols, HASH).length).toBe(hashCol(cols))
+        expect(hashHeader(cols).length).toBe(hashCol(cols))
+        // Both fill the pane exactly.
+        expect(row.length).toBe(cols)
+        expect(header.length).toBe(cols)
+        // Each header starts in the same cell as its column's value.
+        expect(header.indexOf('Description')).toBe(row.indexOf('p'))
         expect(header.indexOf('Author')).toBe(row.indexOf('Natthasath S'))
         expect(header.indexOf('Commit')).toBe(row.indexOf(HASH.slice(0, 7)))
-        // The Description column starts where the row's pills do.
-        expect(header.indexOf('Description')).toBe(row.indexOf('p'))
       })
     }
   }
 
-  test('a long author is cut to its column, not past it', () => {
-    const row = rowText(100, 8, 0, 'Someone With A Very Long Name')
-    expect(row.length).toBe(100 - EDGE_SAFETY)
+  test('a long author is cut to its column', () => {
+    expect(authorCell(100, 'Someone With A Very Long Name').length).toBe(authorCol(100))
   })
 
-  test('narrow panes use the compact meta and keep the hash column aligned', () => {
+  test('a narrow pane drops the Author column and keeps the hash', () => {
     const cols = COMPACT_COLS - 1
-    const row = rowText(cols, 8, 0, 'Natthasath')
-    expect(row.length).toBe(cols - EDGE_SAFETY)
-    expect(row.endsWith(HASH.slice(0, 7))).toBe(true)
+    expect(authorCol(cols)).toBe(0)
+    expect(hashCell(cols, HASH).length).toBe(hashCol(cols))
   })
 
-  test('the room never goes negative when the pills take everything', () => {
-    expect(subjectRoom(70, 20, 23, 80)).toBe(0)
+  test('the subject room never goes negative when the pills take everything', () => {
+    expect(subjectRoom(70, 20, 80)).toBe(0)
   })
 })

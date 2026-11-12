@@ -4,7 +4,7 @@ import type { ClientElements, Elements, EngineInterface, ProcessRunResult, Regis
 import type { Badge, BadgeKind, BadgeStyle, Cell, CommitDetail, ConfigScope, FileStat, Graph, GraphRow, Ref, RepoSettings, Repos, View } from '../types'
 import { badgeParts, badgesOf, diffBar, fitBadges } from './badges'
 import { isBranchNameCandidate } from './detect'
-import { COMPACT_COLS, EDGE_SAFETY, headerText, metaOf as columnsMeta, subjectRoom } from './columns'
+import { authorCell, authorCol, authorHeader, COMPACT_COLS, descriptionCol, EDGE_SAFETY, hashCell, hashCol, hashHeader, rightCols, subjectRoom } from './columns'
 import { absTime, fitGraph, relTime, short, truncate, truncateMiddle } from './format'
 import { layout } from './lanes'
 import { findByHash, isHashQuery, topOf, visibleRange, wrapRows } from './virtual'
@@ -496,7 +496,23 @@ function copyButton($: EngineInterface, { els: { Button } }: Ctx, key: string, l
   )
 }
 
-const metaOf = ({ cols }: Ctx, author: string, hash: string) => columnsMeta(cols, author, hash)
+// The fixed-width boxes right of the Description column, a row's and the header's alike: Author,
+// Commit and the edge's cell. Being boxes, they hold their cells whatever the pills before them draw.
+function rightColumns({ els: { Box, Text }, cols }: Ctx, author: string, hash: string) {
+  return [
+    authorCol(cols) > 0 && (
+      <Box width={authorCol(cols)} flexShrink={0}>
+        <Text color={THEME.muted}>{author}</Text>
+      </Box>
+    ),
+    <Box width={hashCol(cols)} flexShrink={0}>
+      <Text color={THEME.muted}>{hash}</Text>
+    </Box>,
+    <Box width={EDGE_SAFETY} flexShrink={0}>
+      <Text color={THEME.fg}> </Text>
+    </Box>,
+  ]
+}
 
 // One row of the pane, exactly one terminal row tall whatever it holds.
 function line({ els: { Box } }: Ctx, children: RenderChildren, gap = 0, justify?: 'space-between') {
@@ -658,7 +674,17 @@ function renderHeader($: EngineInterface, ctx: Ctx) {
       ),
     )
   if (cols >= COMPACT_COLS)
-    lines.push(line(ctx, <Text color={THEME.muted}>{headerText(cols, graphWidth)}</Text>))
+    lines.push(
+      line(ctx, [
+        <Box width={graphWidth + 1} flexShrink={0}>
+          <Text color={THEME.fg}> </Text>
+        </Box>,
+        <Box width={descriptionCol(cols, graphWidth)} flexShrink={0} overflow="hidden">
+          <Text color={THEME.muted}>Description</Text>
+        </Box>,
+        ...rightColumns(ctx, authorHeader(), hashHeader(cols)),
+      ]),
+    )
   lines.push(rule(ctx))
   return { node: <Box flexDirection="column" backgroundColor={THEME.bg}>{lines}</Box>, height: lines.length }
 }
@@ -682,12 +708,11 @@ function renderRow($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow) {
       </Text>,
     )
   const lane = laneColor(cells)
-  const meta = metaOf(ctx, commit.author, commit.hash)
   // Pills get what is left once the subject keeps its minimum; the rest become `+N`.
-  const fixed = graphWidth + 1 + meta.length + EDGE_SAFETY
+  const fixed = graphWidth + 1 + rightCols(cols)
   const { shown, hidden, width } = fitBadges(badgesOf(commit.refs), Math.max(0, cols - fixed - MIN_SUBJECT))
   const more = hidden > 0 ? `+${hidden}` : ''
-  const room = subjectRoom(cols, graphWidth, meta.length, width)
+  const room = subjectRoom(cols, graphWidth, width)
   const isSelected = view.selected === commit.hash
   // With `Client`, each pill is its own instance so a right click opens its menu.
   return (
@@ -699,12 +724,13 @@ function renderRow($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow) {
       backgroundColor={isSelected ? SELECTED_BG : THEME.bg}
       hover={{ backgroundColor: THEME.hover }}
     >
-      <Box flexShrink={0}>
+      <Box width={graphWidth + 1} flexShrink={0}>
         <Text color={THEME.fg}>
           {graphText}
           {pad}
         </Text>
       </Box>
+      <Box width={descriptionCol(cols, graphWidth)} flexShrink={0} overflow="hidden" flexDirection="row">
       {shown.map((b, i) => (
         <Box flexShrink={0}>
           {Client ? (
@@ -723,8 +749,9 @@ function renderRow($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow) {
         <Text color={isSelected ? THEME.accent : THEME.fg} weight={isSelected ? 'bold' : undefined}>
           {truncate(commit.subject, room).padEnd(room)}
         </Text>
-        <Text color={THEME.muted}>{meta}</Text>
       </Button>
+      </Box>
+      {rightColumns(ctx, authorCell(cols, commit.author), hashCell(cols, commit.hash))}
     </Box>
   )
 }
