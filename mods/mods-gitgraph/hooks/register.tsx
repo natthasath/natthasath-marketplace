@@ -730,7 +730,11 @@ function renderRow($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow) {
           {pad}
         </Text>
       </Box>
-      <Box width={descriptionCol(cols, graphWidth)} flexShrink={0} overflow="hidden" flexDirection="row">
+      {/* Description, Author and Commit in one box: the subject, the author and the hash are one
+          Button, so one element draws them. On the desktop that Button is a Client (./tap.tsx);
+          drawn as a Client beside Text cells for Author and Commit, the two got out of step and
+          the author column showed the wrong rows' names. */}
+      <Box width={descriptionCol(cols, graphWidth) + authorCol(cols) + hashCol(cols)} flexShrink={0} overflow="hidden" flexDirection="row">
       {shown.map((b, i) => (
         <Box flexShrink={0}>
           {Client ? (
@@ -749,9 +753,13 @@ function renderRow($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow) {
         <Text color={isSelected ? THEME.accent : THEME.fg} weight={isSelected ? 'bold' : undefined}>
           {truncate(commit.subject, room).padEnd(room)}
         </Text>
+        {authorCol(cols) > 0 && <Text color={THEME.muted}>{authorCell(cols, commit.author)}</Text>}
+        <Text color={THEME.muted}>{hashCell(cols, commit.hash)}</Text>
       </Button>
       </Box>
-      {rightColumns(ctx, authorCell(cols, commit.author), hashCell(cols, commit.hash))}
+      <Box width={EDGE_SAFETY} flexShrink={0}>
+        <Text color={THEME.fg}> </Text>
+      </Box>
     </Box>
   )
 }
