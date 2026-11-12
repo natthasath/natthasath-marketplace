@@ -10,6 +10,7 @@ import { findByHash, isHashQuery, topOf, visibleRange, wrapRows } from './virtua
 import { DETAIL_FORMAT, LOG_FORMAT, parseDetail, parseLog, parseStatus, remotesOf, UNCOMMITTED, withUncommitted } from './log'
 import { checkoutArgs, defaultPushRemotes, deleteBranchArgs, type MenuItem, menuFor, pushRuns, renameArgs } from './menu'
 import { drawPill, type PillProps } from './pilldraw'
+import type { TapRun } from './tap'
 import { BRANCH_ARGS, UPSTREAM_ARGS, FIND_ARGS, parseBranch, parseUpstream, parseRepos, pickActive, branchColumn, repoLabel } from './repos'
 import { addRemotePlan, isRemoteUrl, parseRemotes, userConfigArgs } from './settings'
 import type { SpinnerProps } from './spinner'
@@ -522,6 +523,38 @@ function switchButton({ els: { Button, Text }, icons }: Ctx, key: string, label:
       <Text color={isOn ? THEME.fg : THEME.muted}> {label}</Text>
     </Button>
   )
+}
+
+// Presses of the desktop's Text-drawn buttons, by Button key: the closures stay here, since a
+// Client can only post a message. Rebuilt on every render.
+const taps = new Map<string, () => unknown>()
+
+// A Button's children flattened to coloured runs, a Text's colours passed down to what it holds.
+function runsOf(node: unknown, inherit: Omit<TapRun, 't'> = {}): TapRun[] {
+  if (node === null || node === undefined || typeof node === 'boolean') return []
+  if (typeof node === 'string' || typeof node === 'number') return [{ ...inherit, t: String(node) }]
+  if (Array.isArray(node)) return node.flatMap(n => runsOf(n, inherit))
+  const el = node as { type?: string; props?: Record<string, unknown>; children?: unknown }
+  if (el.type !== 'Text') return []
+  const p = el.props ?? {}
+  const next: Omit<TapRun, 't'> = { ...inherit }
+  if (typeof p.color === 'string') next.color = p.color
+  if (typeof p.backgroundColor === 'string') next.backgroundColor = p.backgroundColor
+  if (p.weight === 'bold' || p.weight === 'semibold') next.weight = 'bold'
+  if (p.italic === true) next.italic = true
+  return runsOf(el.children, next)
+}
+
+// On the desktop every plain Button is drawn as Text by ./tap.tsx (see there for why); the
+// terminal keeps the real Button, which the keyboard focus walks.
+function tapButtons(els: Ctx['els'], Client: NonNullable<Ctx['Client']>): Ctx['els'] {
+  const Native = els.Button as (props: any) => any
+  const Button = (props: any) => {
+    if (!props.plain || typeof props.key !== 'string') return Native(props)
+    taps.set(props.key, props.onPress)
+    return <Client key={`tap:${props.key}`} module="./tap.tsx" props={{ runs: runsOf(props.children) }} />
+  }
+  return { ...els, Button } as Ctx['els']
 }
 
 const blank = (ctx: Ctx) => line(ctx, <ctx.els.Text color={THEME.fg}> </ctx.els.Text>)
@@ -1123,8 +1156,10 @@ async function renderPane($: EngineInterface, els: Ctx['els'], surface: string, 
   if (graph.status === 'error') return <Box backgroundColor={THEME.bg} padding={1}><Text color={DEL_COLOR}>Could not read git: {graph.error ?? ''}</Text></Box>
 
   const graphMax = Math.max(6, Math.min(40, Math.floor(cols / 3)))
+  const Client = (surface === 'desktop' && 'Client' in els ? (els.Client as Elements['terminal']['Client']) : undefined)
+  taps.clear()
   const ctx: Ctx = {
-    els,
+    els: Client ? tapButtons(els, Client) : els,
     graph,
     view,
     detail,
@@ -1220,6 +1255,10 @@ export const register: Register = (on, options) => {
   on('ui.message', { requestId: PANE }, async ($, e, next) => {
     const [kind, hash = '', index = ''] = e.element.split(':')
     const button = (e.data as { button?: string } | null)?.button
+    if (kind === 'tap') {
+      if (button === 'left') await taps.get(e.element.slice('tap:'.length))?.()
+      return next(e)
+    }
     if (kind !== 'pill') return next(e)
     const row = (await readGraph($)).rows.find(r => r.commit.hash === hash)
     const badge = row && badgesOf(row.commit.refs)[Number(index)]
