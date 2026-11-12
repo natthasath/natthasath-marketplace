@@ -4,6 +4,7 @@ import type { ClientElements, Elements, EngineInterface, ProcessRunResult, Regis
 import type { Badge, BadgeKind, BadgeStyle, Cell, CommitDetail, ConfigScope, FileStat, Graph, GraphRow, Ref, RepoSettings, Repos, View } from '../types'
 import { badgeParts, badgesOf, diffBar, fitBadges } from './badges'
 import { isBranchNameCandidate } from './detect'
+import { COMPACT_COLS, EDGE_SAFETY, headerText, metaOf as columnsMeta, subjectRoom } from './columns'
 import { absTime, fitGraph, relTime, short, truncate, truncateMiddle } from './format'
 import { layout } from './lanes'
 import { findByHash, isHashQuery, topOf, visibleRange, wrapRows } from './virtual'
@@ -42,14 +43,12 @@ const REMOTE_BG = BADGE_BG.remote ?? THEME.muted
 const ADD_COLOR = '#89d185'
 const DEL_COLOR = '#f48771'
 const WARN_COLOR = '#e2c08d'
-const AUTHOR_W = 12
 const BODY_LINES = 8
 const OVERSCAN = 15
 const BAR_W = 8
 const MIN_SUBJECT = 20
 // A pill's caps (or padding) and its gap, around its name.
 const PILL_PAD = 3
-const EDGE_SAFETY = 1
 const STATUS_ARGS = ['status', '--porcelain=v2', '--branch']
 const REFS_ARGS = ['for-each-ref', '--format=%(objectname) %(refname)']
 const DOUBLE_CLICK_MS = 450
@@ -497,10 +496,7 @@ function copyButton($: EngineInterface, { els: { Button } }: Ctx, key: string, l
   )
 }
 
-function metaOf({ cols }: Ctx, author: string, hash: string): string {
-  if (cols < 70) return ` ${short(hash)}`
-  return `  ${truncate(author, AUTHOR_W).padEnd(AUTHOR_W)}  ${short(hash)}`
-}
+const metaOf = ({ cols }: Ctx, author: string, hash: string) => columnsMeta(cols, author, hash)
 
 // One row of the pane, exactly one terminal row tall whatever it holds.
 function line({ els: { Box } }: Ctx, children: RenderChildren, gap = 0, justify?: 'space-between') {
@@ -661,18 +657,8 @@ function renderHeader($: EngineInterface, ctx: Ctx) {
         labeled(ctx, `${icons.search} `, <Input key="search" placeholder="find commit by hash" submitLabel="find" autoFocus onSubmit={value => searchCommit($, value)} />),
       ),
     )
-  if (cols >= 70)
-    lines.push(
-      line(
-        ctx,
-        // The rows end EDGE_SAFETY cells short of the pane's width, so the header's Description column does too, or Author and Commit start one cell right of the rows' own.
-        <Text color={THEME.muted}>
-          {'Graph'.padEnd(graphWidth + 1)}
-          {'Description'.padEnd(Math.max(0, cols - graphWidth - 1 - metaOf(ctx, '', '').length - EDGE_SAFETY))}
-          {`  ${'Author'.padEnd(AUTHOR_W)}  Commit`}
-        </Text>,
-      ),
-    )
+  if (cols >= COMPACT_COLS)
+    lines.push(line(ctx, <Text color={THEME.muted}>{headerText(cols, graphWidth)}</Text>))
   lines.push(rule(ctx))
   return { node: <Box flexDirection="column" backgroundColor={THEME.bg}>{lines}</Box>, height: lines.length }
 }
@@ -701,7 +687,7 @@ function renderRow($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow) {
   const fixed = graphWidth + 1 + meta.length + EDGE_SAFETY
   const { shown, hidden, width } = fitBadges(badgesOf(commit.refs), Math.max(0, cols - fixed - MIN_SUBJECT))
   const more = hidden > 0 ? `+${hidden}` : ''
-  const room = Math.max(0, cols - fixed - width)
+  const room = subjectRoom(cols, graphWidth, meta.length, width)
   const isSelected = view.selected === commit.hash
   // With `Client`, each pill is its own instance so a right click opens its menu.
   return (
