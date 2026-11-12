@@ -975,12 +975,15 @@ function renderDetail($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow)
   const badges = badgesOf(commit.refs).filter(b => b.kind !== 'detached')
   const [subject = '', ...rest] = (detail?.body ?? commit.subject).split('\n')
   const body = rest.join('\n').trim().split('\n').filter((l, i, all) => l !== '' || (i > 0 && all[i - 1] !== ''))
+  // The card's text room in cells (its indent, border and padding taken out). The desktop does not
+  // cut a long line at the edge as the terminal does, so each line is cut here, with an ellipsis.
+  const inner = Math.max(10, ctx.cols - ctx.graphWidth - 1 - 4)
   const rows: RenderChildren[] = [
     line(
       ctx,
       <Text wrap="truncate-end" color={THEME.fg}>
         {renderPill(ctx, plainPill(ctx, short(commit.hash), lane, true))}
-        <Text weight="bold" color={THEME.fg}>{subject}</Text>
+        <Text weight="bold" color={THEME.fg}>{truncate(subject, inner - short(commit.hash).length - PILL_PAD)}</Text>
       </Text>,
     ),
   ]
@@ -990,12 +993,12 @@ function renderDetail($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow)
       line(
         ctx,
         <Text color={THEME.muted} wrap="truncate-end">
-          {detail.author} &lt;{detail.email}&gt; · {absTime(detail.time)} ({relTime(ctx.now, detail.time)}) · {detail.hash}
+          {truncate(`${detail.author} <${detail.email}> · ${absTime(detail.time)} (${relTime(ctx.now, detail.time)}) · ${detail.hash}`, inner)}
         </Text>,
       ),
     )
     if (body.length && body[0] !== '') {
-      rows.push(blank(ctx), ...body.slice(0, BODY_LINES).map(l => line(ctx, <Text color={THEME.fg} wrap="truncate-end">{l}</Text>)))
+      rows.push(blank(ctx), ...body.slice(0, BODY_LINES).map(l => line(ctx, <Text color={THEME.fg} wrap="truncate-end">{truncate(l, inner)}</Text>)))
       if (body.length > BODY_LINES) rows.push(line(ctx, <Text color={THEME.muted}>…</Text>))
     }
     rows.push(blank(ctx), ...renderFiles(ctx, detail.files))
