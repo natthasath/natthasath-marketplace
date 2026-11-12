@@ -665,9 +665,10 @@ function renderHeader($: EngineInterface, ctx: Ctx) {
     lines.push(
       line(
         ctx,
+        // The rows end EDGE_SAFETY cells short of the pane's width, so the header's Description column does too, or Author and Commit start one cell right of the rows' own.
         <Text color={THEME.muted}>
           {'Graph'.padEnd(graphWidth + 1)}
-          {'Description'.padEnd(Math.max(0, cols - graphWidth - 1 - metaOf(ctx, '', '').length))}
+          {'Description'.padEnd(Math.max(0, cols - graphWidth - 1 - metaOf(ctx, '', '').length - EDGE_SAFETY))}
           {`  ${'Author'.padEnd(AUTHOR_W)}  Commit`}
         </Text>,
       ),
