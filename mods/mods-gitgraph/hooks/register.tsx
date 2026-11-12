@@ -26,7 +26,7 @@ const MAX_FILES = 20
 // theme, so it stays dark (and legible) whatever the surrounding theme is.
 const THEME = {
   bg: '#161B22',
-  fg: '#C9D1D9',
+  fg: '#FFFFFF',
   accent: '#79C0FF',
   muted: '#8B949E',
   selection: '#263449',
@@ -518,7 +518,7 @@ const headName = (graph: Graph) => graph.branch || (graph.head ? short(graph.hea
 function switchButton({ els: { Button, Text }, icons }: Ctx, key: string, label: string, isOn: boolean, onPress: () => Promise<unknown>) {
   return (
     <Button key={key} plain onPress={onPress}>
-      <Text color={isOn ? 'success' : THEME.muted}>{isOn ? icons.on : icons.off}</Text>
+      <Text color={isOn ? ADD_COLOR : THEME.muted}>{isOn ? icons.on : icons.off}</Text>
       <Text color={isOn ? THEME.fg : THEME.muted}> {label}</Text>
     </Button>
   )
@@ -551,7 +551,7 @@ function renderHeader($: EngineInterface, ctx: Ctx) {
         </Box>
       )}
       <Box flexShrink={1} flexGrow={1} overflow="hidden">
-        <Text wrap="truncate-end">
+        <Text wrap="truncate-end" color={THEME.fg}>
           {renderPill(ctx, plainPill(ctx, `⎇ ${head}`, headRow ? laneColor(headRow.cells) : LANE_FALLBACK, true))}
           <Text color={THEME.muted}>
             {' '}
@@ -841,7 +841,7 @@ function renderMenu($: EngineInterface, ctx: Ctx, { cells }: GraphRow, badge: Ba
     line(
       ctx,
       [
-        <Text>{renderPill(ctx, pillProps(ctx, badge, lane))}</Text>,
+        <Text color={THEME.fg}>{renderPill(ctx, pillProps(ctx, badge, lane))}</Text>,
         <Button key="menu-close" plain onPress={() => update($, viewState, v => ({ ...v, menu: null, isRenaming: false }))}>
           <Text color={THEME.muted}>close</Text>
         </Button>,
@@ -901,7 +901,7 @@ function renderFiles(ctx: Ctx, files: FileStat[]) {
           {f.adds === null ? (
             <Text color={THEME.muted}>{'bin'.padStart(12)}</Text>
           ) : (
-            <Text>
+            <Text color={THEME.fg}>
               <Text color={ADD_COLOR}>{`+${f.adds}`.padStart(6)}</Text>
               <Text color={DEL_COLOR}>{` −${f.dels}`.padEnd(6)}</Text>
             </Text>
@@ -927,7 +927,7 @@ function renderDetail($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow)
   const rows: RenderChildren[] = [
     line(
       ctx,
-      <Text wrap="truncate-end">
+      <Text wrap="truncate-end" color={THEME.fg}>
         {renderPill(ctx, plainPill(ctx, short(commit.hash), lane, true))}
         <Text weight="bold" color={THEME.fg}>{subject}</Text>
       </Text>,

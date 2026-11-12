@@ -12,18 +12,18 @@ export function drawPill(Text: ClientElements['Text'], p: PillProps) {
     <Text backgroundColor={p.bg} color={p.fg} weight={p.isBold ? 'bold' : undefined}>
       {p.isRound ? '' : ' '}
       {p.name}
-      <Text italic>{p.remotes}</Text>
+      <Text italic color={p.fg}>{p.remotes}</Text>
       {p.isRound ? '' : ' '}
     </Text>
   )
   return p.isRound ? (
-    <Text>
+    <Text color={p.bg}>
       <Text color={p.bg}>{CAP_LEFT}</Text>
       {body}
       <Text color={p.bg}>{CAP_RIGHT}</Text>{' '}
     </Text>
   ) : (
-    <Text>
+    <Text color={p.bg}>
       {body}{' '}
     </Text>
   )
