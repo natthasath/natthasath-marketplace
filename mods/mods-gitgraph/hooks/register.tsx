@@ -526,6 +526,16 @@ function switchButton({ els: { Button, Text }, icons }: Ctx, key: string, label:
 
 const blank = (ctx: Ctx) => line(ctx, <ctx.els.Text color={THEME.fg}> </ctx.els.Text>)
 
+// An Input has no colour prop, so the host draws its own `label` in its own default colour,
+// dark on a light app theme and unreadable on this pane's dark background. The label is drawn
+// here instead, in THEME.fg. (The typed text inside the field stays the host's: UNCERTAIN.)
+const labeled = ({ els: { Box, Text } }: Ctx, label: string, input: RenderChildren) => (
+  <Box flexDirection="row" backgroundColor={THEME.bg}>
+    <Text color={THEME.fg}>{label} </Text>
+    {input}
+  </Box>
+)
+
 // An icon Button's label, a space each side so the click target is wider than the glyph.
 const iconLabel = (ctx: Ctx, glyph: string) => (ctx.icons === ICONS.nerd ? ` ${glyph}  ` : ` ${glyph} `)
 // The cells an icon takes: a Nerd Font icon two, as above.
@@ -607,7 +617,7 @@ function renderHeader($: EngineInterface, ctx: Ctx) {
     lines.push(
       line(
         ctx,
-        <Input key="search" label={`${icons.search} `} placeholder="find commit by hash" submitLabel="find" autoFocus onSubmit={value => searchCommit($, value)} />,
+        labeled(ctx, `${icons.search} `, <Input key="search" placeholder="find commit by hash" submitLabel="find" autoFocus onSubmit={value => searchCommit($, value)} />),
       ),
     )
   if (cols >= 70)
@@ -872,7 +882,7 @@ function renderMenu($: EngineInterface, ctx: Ctx, { cells }: GraphRow, badge: Ba
       )
     if (view.isRenaming && Input)
       rows.push(
-        line(ctx, <Input key="rename" label="New name:" value={badge.label} submitLabel="rename" autoFocus onSubmit={value => renameBranch($, badge.label, value)} />),
+        line(ctx, labeled(ctx, "New name:", <Input key="rename" value={badge.label} submitLabel="rename" autoFocus onSubmit={value => renameBranch($, badge.label, value)} />)),
       )
   }
   return framed(ctx, BADGE_BG[badge.kind] ?? lane, ctx.graphWidth + 1, rows)
@@ -990,7 +1000,7 @@ function renderDetail($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow)
     ].filter((a): a is BarItem => a !== false)
     rows.push(...buttonRows(ctx, 'detail-actions', actions))
     if (Input)
-      rows.push(line(ctx, <Input key="new-branch" label="New branch here:" placeholder="branch-name" submitLabel="create" onSubmit={value => createBranch($, commit.hash, value)} />))
+      rows.push(line(ctx, labeled(ctx, "New branch here:", <Input key="new-branch" placeholder="branch-name" submitLabel="create" onSubmit={value => createBranch($, commit.hash, value)} />)))
   }
   return framed(ctx, lane, ctx.graphWidth + 1, rows)
 }
@@ -1029,8 +1039,8 @@ function renderSettings($: EngineInterface, ctx: Ctx, settings: RepoSettings | n
             </Box>
             {Input && !view.running && (
               <Box flexDirection="column">
-                <Input key="cfg-name" label="Name:" value={settings[view.configScope].name} submitLabel="save" onSubmit={value => setUser($, view.configScope, 'name', value)} />
-                <Input key="cfg-email" label="Email:" value={settings[view.configScope].email} submitLabel="save" onSubmit={value => setUser($, view.configScope, 'email', value)} />
+                {labeled(ctx, "Name:", <Input key="cfg-name" value={settings[view.configScope].name} submitLabel="save" onSubmit={value => setUser($, view.configScope, 'name', value)} />)}
+                {labeled(ctx, "Email:", <Input key="cfg-email" value={settings[view.configScope].email} submitLabel="save" onSubmit={value => setUser($, view.configScope, 'email', value)} />)}
               </Box>
             )}
           </Box>
@@ -1062,7 +1072,7 @@ function renderSettings($: EngineInterface, ctx: Ctx, settings: RepoSettings | n
                   </Box>
                 )}
                 {Input && view.editingRemote === r.name && !view.running && (
-                  <Input key={`remote-url-${r.name}`} label="New URL:" value={r.fetchUrl} submitLabel="save" autoFocus onSubmit={value => setRemoteUrl($, r.name, value)} />
+                  labeled(ctx, "New URL:", <Input key={`remote-url-${r.name}`} value={r.fetchUrl} submitLabel="save" autoFocus onSubmit={value => setRemoteUrl($, r.name, value)} />)
                 )}
               </Box>
             ))}
@@ -1077,16 +1087,15 @@ function renderSettings($: EngineInterface, ctx: Ctx, settings: RepoSettings | n
                 </Button>
                 {Input && view.isAddingRemote && (
                   <Box flexDirection="column">
-                    <Input
+                    {labeled(ctx, "Name:", <Input
                       key="remote-new-name"
-                      label="Name:"
                       placeholder="origin"
                       submitLabel="next"
                       autoFocus
                       onInput={value => update($, viewState, v => ({ ...v, remoteDraft: value }))}
                       onSubmit={value => update($, viewState, v => ({ ...v, remoteDraft: value }))}
-                    />
-                    <Input key="remote-new-url" label={`URL for ${view.remoteDraft.trim() || 'origin'}:`} placeholder="git@github.com:user/repo.git" submitLabel="add" onSubmit={value => addRemote($, value)} />
+                    />)}
+                    {labeled(ctx, `URL for ${view.remoteDraft.trim() || 'origin'}:`, <Input key="remote-new-url" placeholder="git@github.com:user/repo.git" submitLabel="add" onSubmit={value => addRemote($, value)} />)}
                   </Box>
                 )}
               </Box>
