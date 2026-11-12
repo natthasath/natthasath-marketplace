@@ -12,7 +12,9 @@ const Pill: ClientModule<PillProps, true> = (p, surface) => {
       if (e.type === 'down') surface.post({ button: e.button ?? 'left' })
     })
   }
-  return drawPill(surface.elements.Text, p)
+  // `mono`: the desktop's proportional face would misalign a pill's glyphs and its row's columns.
+  const Native = surface.elements.Text as (props: any) => any
+  return drawPill(((props: any) => Native({ mono: true, ...props })) as typeof surface.elements.Text, p)
 }
 
 export default Pill

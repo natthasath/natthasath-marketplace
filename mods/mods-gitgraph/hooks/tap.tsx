@@ -16,9 +16,9 @@ const Tap: ClientModule<TapProps, true> = (p, surface) => {
   }
   const { Text } = surface.elements
   return (
-    <Text>
+    <Text mono>
       {p.runs.map(r => (
-        <Text color={r.color} backgroundColor={r.backgroundColor} weight={r.weight} italic={r.italic}>
+        <Text mono color={r.color} backgroundColor={r.backgroundColor} weight={r.weight} italic={r.italic}>
           {r.t}
         </Text>
       ))}

@@ -545,6 +545,14 @@ function runsOf(node: unknown, inherit: Omit<TapRun, 't'> = {}): TapRun[] {
   return runsOf(el.children, next)
 }
 
+// The columns (graph, pills, subject, author, age) are padded by character count, which lines up
+// only in a monospaced face. The terminal always has one; the desktop draws a proportional face
+// unless a Text asks for `mono`, so every Text there asks.
+function monoText(els: Ctx['els']): Ctx['els'] {
+  const Native = els.Text as (props: any) => any
+  return { ...els, Text: (props: any) => Native({ mono: true, ...props }) } as Ctx['els']
+}
+
 // On the desktop every plain Button is drawn as Text by ./tap.tsx (see there for why); the
 // terminal keeps the real Button, which the keyboard focus walks.
 function tapButtons(els: Ctx['els'], Client: NonNullable<Ctx['Client']>): Ctx['els'] {
@@ -1142,7 +1150,8 @@ function renderSettings($: EngineInterface, ctx: Ctx, settings: RepoSettings | n
 
 type BarItem = { node: RenderChildren; width: number }
 
-async function renderPane($: EngineInterface, els: Ctx['els'], surface: string, cols: number, scroll: { offset: number; bodyRows: number }) {
+async function renderPane($: EngineInterface, hostEls: Ctx['els'], surface: string, cols: number, scroll: { offset: number; bodyRows: number }) {
+  const els = surface === 'desktop' ? monoText(hostEls) : hostEls
   const { Box, Text, Button } = els
   const [cache, view, detail, isRound, repos] = await Promise.all([
     readCache($),
