@@ -457,6 +457,8 @@ type Ctx = {
   Input: Elements['terminal']['Input'] | undefined
   // Only the terminal and the desktop draw a `Client` (vscode's table holds a stub); elsewhere pills are Text.
   Client: Elements['terminal']['Client'] | undefined
+  // The desktop: plain Buttons are drawn by ./tap.tsx there (see tapButtons).
+  isDesktop: boolean
 }
 
 function pillProps({ isRound }: Ctx, badge: Badge, lane: string): PillProps {
@@ -749,13 +751,35 @@ function renderRow($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow) {
           {renderPill(ctx, plainPill(ctx, more, REMOTE_BG))}
         </Box>
       )}
-      <Button key={commit.hash} plain onPress={() => select($, commit.hash)}>
-        <Text color={isSelected ? THEME.accent : THEME.fg} weight={isSelected ? 'bold' : undefined}>
-          {truncate(commit.subject, room).padEnd(room)}
-        </Text>
-        {authorCol(cols) > 0 && <Text color={THEME.muted}>{authorCell(cols, commit.author)}</Text>}
-        <Text color={THEME.muted}>{hashCell(cols, commit.hash)}</Text>
-      </Button>
+      {ctx.isDesktop && Client ? (
+        // On the desktop the subject, author and hash are still one element, but as columns: the
+        // author and the hash keep fixed cells and only the subject gives way, so a row that runs
+        // a little wide there cuts the subject with an ellipsis instead of losing the hash.
+        (taps.set(commit.hash, () => select($, commit.hash)),
+        (
+          <Client
+            key={`tap:${commit.hash}`}
+            module="./tap.tsx"
+            flexGrow={1}
+            props={{
+              runs: [
+                { t: truncate(commit.subject, room), color: isSelected ? THEME.accent : THEME.fg, ...(isSelected ? { weight: 'bold' as const } : {}) },
+                ...(authorCol(cols) > 0 ? [{ t: authorCell(cols, commit.author), color: THEME.muted }] : []),
+                { t: hashCell(cols, commit.hash), color: THEME.muted },
+              ],
+              cells: [null, ...(authorCol(cols) > 0 ? [authorCol(cols)] : []), hashCol(cols)],
+            }}
+          />
+        ))
+      ) : (
+        <Button key={commit.hash} plain onPress={() => select($, commit.hash)}>
+          <Text color={isSelected ? THEME.accent : THEME.fg} weight={isSelected ? 'bold' : undefined}>
+            {truncate(commit.subject, room).padEnd(room)}
+          </Text>
+          {authorCol(cols) > 0 && <Text color={THEME.muted}>{authorCell(cols, commit.author)}</Text>}
+          <Text color={THEME.muted}>{hashCell(cols, commit.hash)}</Text>
+        </Button>
+      )}
       </Box>
       <Box width={EDGE_SAFETY} flexShrink={0}>
         <Text color={THEME.fg}> </Text>
@@ -1206,6 +1230,7 @@ async function renderPane($: EngineInterface, hostEls: Ctx['els'], surface: stri
     repos,
     Input: 'Input' in els ? (els.Input as Elements['terminal']['Input']) : undefined,
     Client: (surface === 'terminal' || surface === 'desktop') && 'Client' in els ? (els.Client as Elements['terminal']['Client']) : undefined,
+    isDesktop: Client !== undefined,
   }
   if (view.isSettings) return <Box backgroundColor={THEME.bg} padding={1}>{renderSettings($, ctx, await read($, settingsState))}</Box>
   const header = renderHeader($, ctx)
