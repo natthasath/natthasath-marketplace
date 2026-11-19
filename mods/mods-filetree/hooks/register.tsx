@@ -2,7 +2,7 @@ import { atom, read, update } from 'claude-code'
 import type { Elements, EngineInterface, Register, RenderChildren } from 'claude-code'
 
 import type { Activity, ActivityKind, Column, Git, GitMark, Node, View } from '../types'
-import { ancestors, baseName, flatten, formatDate, formatSize, HIDDEN, joinPath, markOf, parentOf, parseStatus, relPath, type Row, searchFiles } from './tree'
+import { ancestors, baseName, countCells, flatten, formatDate, formatSize, HIDDEN, joinPath, markOf, parentOf, parseStatus, relPath, type Row, searchFiles } from './tree'
 
 const PANE = 'mods-filetree'
 const TITLE = 'File Tree'
@@ -14,21 +14,24 @@ const DOUBLE_CLICK_MS = 450
 const MAX_MATCHES = 200
 const OVERSCAN = 15
 const INDENT = 2
-const FOOTER_ROWS = 2
-// The right column's cells (a date is the widest) and the git mark's before it.
-const RIGHT_COL = 10
-const MARK_COL = 2
+const FOOTER_ROWS = 1
+// A row's caret and glyph before its name, and its git badge (` M`) after the columns.
+const LEAD = 4
+const BADGE = 2
 // One cell kept free at the right edge, where a terminal may wrap.
 const EDGE = 1
 
-// The pane draws on the terminal's own background and text colour, secondary text dimmed:
-// only folders, git marks, Claude's activity and the selection carry colours of their own.
-const DIR_COLOR = '#4fc1ff'
-const SELECTED_BG = '#264f78'
-const READ_COLOR = '#4ec9b0'
-const WRITE_COLOR = '#dcdcaa'
-const MARK_COLOR: Record<GitMark, string | undefined> = { M: '#e2c08d', A: '#89d185', '?': '#89d185', D: '#f48771', U: '#f48771', R: '#4ec9b0', '!': undefined }
-const ICONS = { search: '⌕', collapse: '⊟', refresh: '↻', active: '◆', open: '▾', closed: '▸', branch: '⎇' }
+// The pane draws on the terminal's own background and text colour, secondary text dimmed, in
+// the terminal's own palette: the accent (folders, the root, the branch) is its blue, the git
+// marks its green, yellow and red, as the filetree plugin draws them.
+const ACCENT = 'ansi256(4)'
+const SELECTED_BG = 'ansi256(238)'
+const SEARCH_BG = 'ansi256(236)'
+const READ_COLOR = 'ansi256(6)'
+const WRITE_COLOR = 'ansi256(208)'
+const MARK_COLOR: Record<GitMark, string | undefined> = { M: 'ansi256(3)', A: 'ansi256(2)', '?': 'ansi256(2)', D: 'ansi256(1)', U: 'ansi256(1)', R: 'ansi256(4)', '!': undefined }
+const ICONS = { root: '■', dir: '■', file: '∙', cursor: '▎', open: '▾', closed: '▸', branch: '⑂', clean: '±', search: '⌕', clear: '×', column: '◫', collapse: '⊟', refresh: '↻', pointer: '↖', ignored: '⊘' }
+const COLUMN_LABEL: Record<Column, string> = { date: 'Modified', size: 'Size' }
 // No git the pane runs asks for a password or opens an editor.
 const GIT_ENV = { GIT_TERMINAL_PROMPT: '0', GIT_EDITOR: 'true', GIT_OPTIONAL_LOCKS: '0' }
 const STATUS_ARGS = ['status', '--porcelain=v1', '-z', '--branch', '--ignored']
@@ -36,8 +39,8 @@ const FILES_ARGS = ['ls-files', '--cached', '--others', '--exclude-standard']
 const READ_TOOLS = new Set(['Read'])
 const WRITE_TOOLS = new Set(['Write', 'Edit', 'MultiEdit', 'NotebookEdit'])
 
-const EMPTY_GIT: Git = { branch: '', marks: {}, changed: 0 }
-const DEFAULT_VIEW: View = { isOpen: false, expanded: [], selected: null, isSearching: false, query: '', matches: [], column: 'size', scrollTo: null }
+const EMPTY_GIT: Git = { branch: '', marks: {}, counts: {}, changed: 0 }
+const DEFAULT_VIEW: View = { isOpen: false, expanded: [], selected: null, query: '', matches: [], column: 'date', scrollTo: null }
 
 const rootState = atom({ plugin: 'mods-filetree', key: 'root' } as const, '')
 const dirsState = atom({ plugin: 'mods-filetree', key: 'dirs' } as const, {} as Record<string, Node[]>)
@@ -69,10 +72,10 @@ const signatureOf = (nodes: Node[]) => nodes.map(n => `${n.name}\0${n.isDir}\0${
 async function loadDir($: EngineInterface, path: string): Promise<void> {
   const root = await read($, rootState)
   try {
-    const entries = await $.fs.list(absPath(root, path))
-    const nodes = entries
-      .filter(e => !HIDDEN.has(e.name))
-      .map((e): Node => ({ name: e.name, path: joinPath(path, e.name), isDir: e.kind === 'dir', size: e.size, mtimeMs: e.mtimeMs }))
+    const entries = (await $.fs.list(absPath(root, path))).filter(e => !HIDDEN.has(e.name))
+    // A listing gives a folder no time: each one's own is read, for the Modified column.
+    const times = await Promise.all(entries.map(e => (e.kind === 'dir' ? $.fs.stat(absPath(root, joinPath(path, e.name))).then(s => s.mtimeMs, () => 0) : e.mtimeMs)))
+    const nodes = entries.map((e, i): Node => ({ name: e.name, path: joinPath(path, e.name), isDir: e.kind === 'dir', size: e.size, mtimeMs: times[i] ?? 0 }))
     const before = (await read($, dirsState))[path]
     if (before && signatureOf(before) === signatureOf(nodes)) return
     await update($, dirsState, d => ({ ...d, [path]: nodes }))
@@ -142,7 +145,7 @@ async function reveal($: EngineInterface, path: string, isSelecting: boolean): P
     ...v,
     expanded: [...new Set([...v.expanded, ...dirs])],
     scrollTo: path,
-    ...(isSelecting ? { selected: path, isSearching: false, query: '', matches: [] } : {}),
+    ...(isSelecting ? { selected: path, query: '', matches: [] } : {}),
   }))
   const loaded = await read($, dirsState)
   await Promise.all(dirs.filter(d => !loaded[d]).map(d => loadDir($, d)))
@@ -214,126 +217,183 @@ type Ctx = {
   git: Git
   activity: Activity
   now: number
-  rowCount: number
+  // The Git and value columns' cells, a header label's included, as wide as the rows on screen need.
+  gitCol: number
+  metricCol: number
 }
-
-function line({ els: { Box } }: Ctx, children: RenderChildren, justify?: 'space-between', gap = 0) {
-  return (
-    <Box height={1} overflow="hidden" flexDirection="row" justifyContent={justify} gap={gap}>
-      {children}
-    </Box>
-  )
-}
-
-const rule = (ctx: Ctx) => line(ctx, <ctx.els.Text dimColor>{'─'.repeat(Math.max(0, ctx.cols))}</ctx.els.Text>)
 
 const truncate = (text: string, room: number) => (text.length <= room ? text : room <= 1 ? text.slice(0, room) : `${text.slice(0, room - 1)}…`)
 
-function iconButton({ els: { Button, Text } }: Ctx, key: string, label: string, isOn: boolean, onPress: () => Promise<unknown>) {
+// A toolbar button: a glyph, dimmed while what it switches is off.
+function toolButton({ els: { Button, Text } }: Ctx, key: string, glyph: string, isOn: boolean, onPress: () => Promise<unknown>) {
   return (
     <Button key={key} plain onPress={onPress}>
-      <Text dimColor={!isOn}>{` ${label} `}</Text>
+      <Text {...(isOn ? { color: ACCENT } : { dimColor: true })}>{glyph}</Text>
     </Button>
   )
 }
 
+// The root's row with the toolbar, the branch's row, a blank row, the search bar and the column
+// titles: the filetree plugin's header, top to bottom.
 function renderHeader($: EngineInterface, ctx: Ctx) {
-  const { els: { Box, Text }, Input, view, git, root } = ctx
+  const { els: { Box, Button, Text }, Input, view, git, root, cols } = ctx
+  const rootName = baseName(root.replace(/\\/g, '/')) || root
   const lines = [
-    <Box height={1} overflow="hidden" flexDirection="row" justifyContent="space-between" columnGap={2}>
-      <Box flexShrink={1} flexGrow={1} overflow="hidden">
-        <Text wrap="truncate-end">
-          <Text color={DIR_COLOR} weight="bold">{`${ICONS.open} ${baseName(root.replace(/\\/g, '/')) || root}`}</Text>
-          {git.branch && <Text dimColor>{`  ${ICONS.branch} ${git.branch}`}</Text>}
-          {git.changed > 0 && <Text color="warning">{`  ● ${git.changed}`}</Text>}
-        </Text>
+    <Box key="head" flexDirection="row" height={1} overflow="hidden">
+      <Box flexDirection="row" flexShrink={1} overflow="hidden" backgroundColor={view.selected === '' ? SELECTED_BG : undefined}>
+        <Button key="root" plain onPress={() => update($, viewState, v => ({ ...v, selected: '' }))}>
+          <Text color={ACCENT}>{`${ICONS.root} `}</Text>
+          <Text bold color={ACCENT}>{rootName}</Text>
+        </Button>
       </Box>
-      <Box flexDirection="row" flexShrink={0}>
-        {Input && iconButton(ctx, 'search', ICONS.search, view.isSearching, () => update($, viewState, v => ({ ...v, isSearching: !v.isSearching, query: '', matches: [] })))}
-        {iconButton(ctx, 'column', view.column, true, () => update($, viewState, (v): View => ({ ...v, column: v.column === 'size' ? 'date' : 'size' })))}
-        {iconButton(ctx, 'collapse', ICONS.collapse, false, async () => {
+      <Box flexGrow={1} />
+      <Box flexDirection="row" gap={2} flexShrink={0}>
+        {toolButton(ctx, 'column', ICONS.column, view.column === 'size', () => update($, viewState, (v): View => ({ ...v, column: v.column === 'date' ? 'size' : 'date' })))}
+        {toolButton(ctx, 'collapse', ICONS.collapse, false, async () => {
           await update($, viewState, v => ({ ...v, expanded: [] }))
           await update($, scrollTopState, () => 0)
         })}
-        {iconButton(ctx, 'refresh', ICONS.refresh, false, async () => {
+        {toolButton(ctx, 'refresh', ICONS.refresh, false, async () => {
           gitSignature = ''
           files = null
           await refresh($)
           $.ui.toast('File tree refreshed')
         })}
+        <Text> </Text>
       </Box>
     </Box>,
   ]
-  if (Input && view.isSearching)
+  if (git.branch) {
+    const cells = countCells(git.counts[''])
     lines.push(
-      line(ctx, [
-        <Text>{`${ICONS.search} `}</Text>,
-        <Input key="query" placeholder="find file by name" submitLabel="find" autoFocus onInput={value => search($, value)} onSubmit={value => search($, value)} />,
-      ]),
+      <Box key="branch" flexDirection="row" height={1} overflow="hidden">
+        <Box flexDirection="row" flexShrink={0}>
+          <Text color={ACCENT}>{`${ICONS.branch} `}</Text>
+          <Text bold>{git.branch}</Text>
+        </Box>
+        <Box flexGrow={1} />
+        <Box flexDirection="row" flexShrink={1}>
+          {cells.length === 0 ? <Text dimColor>{`${ICONS.clean} no changes`}</Text> : cells.map(c => <Text color={MARK_COLOR[c.mark]}>{` ${c.t}`}</Text>)}
+        </Box>
+        <Box width={1} flexShrink={0} />
+      </Box>,
     )
-  lines.push(rule(ctx))
+  }
+  lines.push(<Text key="gap"> </Text>)
+  if (Input)
+    lines.push(
+      <Box key="search" flexDirection="row" height={1} width={cols} backgroundColor={SEARCH_BG}>
+        <Text dimColor>{`${ICONS.search} `}</Text>
+        <Box flexGrow={1}>
+          <Input key="q" placeholder="search" submitLabel="go" value={view.query} onInput={value => search($, value)} onSubmit={value => search($, value)} />
+        </Box>
+        {view.query ? (
+          <Button key="clear" plain onPress={() => search($, '')}>
+            <Text dimColor>{` ${ICONS.clear} `}</Text>
+          </Button>
+        ) : null}
+      </Box>,
+    )
+  lines.push(
+    <Box key="columns" flexDirection="row" height={1} width={cols} overflow="hidden">
+      <Text>{'    '}</Text>
+      <Text dimColor>Name</Text>
+      <Box flexGrow={1} />
+      {ctx.gitCol > 0 && (
+        <Box width={ctx.gitCol} flexShrink={0} flexDirection="row" justifyContent="flex-end">
+          <Text dimColor>Git</Text>
+        </Box>
+      )}
+      <Box width={ctx.metricCol} flexShrink={0} flexDirection="row" justifyContent="flex-end">
+        <Text dimColor>{COLUMN_LABEL[view.column]}</Text>
+      </Box>
+      <Box width={BADGE + EDGE} flexShrink={0} />
+    </Box>,
+  )
   return { node: <Box flexDirection="column">{lines}</Box>, height: lines.length }
 }
 
+// A row's value-column text: when it was modified, or its size (a folder's left out).
+const metricOf = (view: View, node: Node, isMatch: boolean) =>
+  isMatch ? '' : view.column === 'date' ? formatDate(node.mtimeMs) : node.isDir ? '' : formatSize(node.size)
+
+const gitTextOf = (git: Git, node: Node) => (node.isDir ? countCells(git.counts[node.path]).map(c => c.t).join(' ') : '')
+
 function renderRow($: EngineInterface, ctx: Ctx, { node, depth }: Row, isMatch: boolean) {
-  const { els: { Button, Text }, cols, view, git, activity, now } = ctx
+  const { els: { Box, Button, Text }, cols, view, git, activity, now } = ctx
   const mark = markOf(git, node.path)
   const lit = activity[node.path]
   const isActive = lit !== undefined && now - lit.at < ACTIVE_MS
   const isSelected = view.selected === node.path
-  const lead = ' '.repeat(depth * INDENT) + (node.isDir ? `${view.expanded.includes(node.path) ? ICONS.open : ICONS.closed} ` : isActive ? `${ICONS.active} ` : '  ')
-  const name = isMatch ? node.path : node.name
-  // A search match's size and date are not read: its right column stays empty.
-  const right = node.isDir || isMatch ? '' : view.column === 'size' ? formatSize(node.size) : formatDate(node.mtimeMs)
-  const room = Math.max(1, cols - lead.length - MARK_COL - 1 - RIGHT_COL - EDGE)
-  const color = isActive ? (lit.kind === 'write' ? WRITE_COLOR : READ_COLOR) : node.isDir ? DIR_COLOR : mark ? MARK_COLOR[mark] : undefined
+  const counts = node.isDir ? countCells(git.counts[node.path]) : []
+  // A folder shows its counts in the Git column, a file its mark in the badge.
+  const badge = counts.length || !mark ? '  ' : mark === '!' ? ` ${ICONS.ignored}` : ` ${mark}`
+  const gitColor = mark && mark !== '!' ? MARK_COLOR[mark] : undefined
+  const isIgnored = mark === '!'
+  const activeColor = isActive ? (lit.kind === 'write' ? WRITE_COLOR : READ_COLOR) : undefined
+  const caret = node.isDir ? `${view.expanded.includes(node.path) ? ICONS.open : ICONS.closed} ` : isSelected ? `${ICONS.cursor} ` : '  '
+  const glyph = `${node.isDir ? ICONS.dir : ICONS.file} `
+  const indent = '  '.repeat(isMatch ? 0 : depth)
+  const room = Math.max(4, cols - indent.length - LEAD - ctx.gitCol - ctx.metricCol - BADGE - EDGE)
+  const name = truncate(isMatch ? node.path : node.name, room).padEnd(room)
+  const iconColor = activeColor ?? (isIgnored ? undefined : (gitColor ?? (node.isDir ? ACCENT : undefined)))
+  const nameColor = activeColor ?? (isIgnored ? undefined : gitColor)
+  const metric = metricOf(view, node, isMatch)
   return (
-    <Button key={`row:${node.path}`} plain onPress={() => press($, node, isMatch)}>
-      <Text color={isActive ? color : undefined} dimColor={!isActive}>{lead}</Text>
-      <Text color={color} dimColor={mark === '!' && !isActive} weight={isActive || isSelected ? 'bold' : undefined} backgroundColor={isSelected ? SELECTED_BG : undefined}>
-        {truncate(name, room).padEnd(room)}
-      </Text>
-      <Text color={mark ? MARK_COLOR[mark] : undefined} dimColor={mark === '!'}>{(mark && mark !== '!' ? mark : '').padStart(MARK_COL)}</Text>
-      <Text dimColor>{` ${right.padStart(RIGHT_COL)}`}</Text>
-    </Button>
+    <Box key={`rowbox:${node.path}`} height={1} overflow="hidden" flexDirection="row" backgroundColor={isSelected ? SELECTED_BG : undefined}>
+      <Button key={`row:${node.path}`} plain onPress={() => press($, node, isMatch)}>
+        <Text>{indent}</Text>
+        <Text {...(isSelected && !node.isDir ? { color: ACCENT, bold: true } : { dimColor: true })}>{caret}</Text>
+        <Text {...(iconColor ? { color: iconColor } : { dimColor: true })}>{glyph}</Text>
+        <Text {...(nameColor ? { color: nameColor } : isIgnored ? { dimColor: true } : {})} bold={isSelected || isActive} strikethrough={mark === 'D' && !node.isDir}>
+          {name}
+        </Text>
+        {ctx.gitCol > 0 && (
+          <Text>
+            {' '.repeat(Math.max(0, ctx.gitCol - gitTextOf(git, node).length))}
+            {counts.map((c, i) => (
+              <Text color={MARK_COLOR[c.mark]}>{`${i ? ' ' : ''}${c.t}`}</Text>
+            ))}
+          </Text>
+        )}
+        <Text {...(gitColor && !isIgnored ? { color: gitColor } : { dimColor: true })}>{metric.padStart(ctx.metricCol)}</Text>
+        <Text bold {...(gitColor && !counts.length ? { color: gitColor } : { dimColor: true })}>{badge}</Text>
+      </Button>
+    </Box>
   )
 }
 
-// A rule, then the selected path with its actions, or what the tree holds.
-function renderFooter($: EngineInterface, ctx: Ctx) {
-  const { els: { Box, Button, Text }, view, git, root, rowCount } = ctx
+// One row: how many folders and files the tree shows, and the selected path.
+function renderFooter($: EngineInterface, ctx: Ctx, rows: Row[], isMatching: boolean) {
+  const { els: { Box, Button, Text }, view } = ctx
+  const folders = rows.filter(r => r.node.isDir).length
+  const fileCount = rows.length - folders
+  const plural = (n: number, one: string) => `${n} ${one}${n === 1 ? '' : 's'}`
+  const summary = isMatching
+    ? `${plural(view.matches.length, 'match')}${view.matches.length === MAX_MATCHES ? '+' : ''}`.replace('matchs', 'matches')
+    : `${plural(folders, 'folder')} · ${plural(fileCount, 'file')}`
   const selected = view.selected
-  const copy = (key: string, label: string, text: string) => (
-    <Button key={key} plain onPress={async pe => {
-      const res = await $.ui.copy({ text, surface: pe.surface })
-      $.ui.toast(res.isCopied ? `Copied ${text}` : 'Could not copy')
-    }}>
-      <Text dimColor>{` ${label} `}</Text>
-    </Button>
-  )
-  const body = selected
-    ? line(
-        ctx,
-        [
-          <Box flexShrink={1} overflow="hidden">
-            <Text wrap="truncate-start">{selected}</Text>
-          </Box>,
-          <Box flexDirection="row" flexShrink={0}>
-            {copy('copy-rel', 'copy', selected)}
-            {copy('copy-abs', 'copy abs', absPath(root, selected))}
-            <Button key="open" plain onPress={() => openFile($, selected)}>
-              <Text dimColor> open </Text>
-            </Button>
-          </Box>,
-        ],
-        'space-between',
-        1,
-      )
-    : line(ctx, <Text dimColor>{`${view.isSearching && view.query ? `${view.matches.length}${view.matches.length === MAX_MATCHES ? '+' : ''} matches` : `${rowCount} items`}${git.changed ? ` · ${git.changed} changed` : ''}`}</Text>)
   return (
-    <Box key="footer" height={FOOTER_ROWS} flexShrink={0} flexDirection="column">
-      {rule(ctx)}
-      {body}
+    <Box key="footer" flexDirection="row" height={FOOTER_ROWS} overflow="hidden" flexShrink={0}>
+      <Box flexShrink={0}>
+        <Text dimColor>{summary}</Text>
+      </Box>
+      <Box flexGrow={1} />
+      {selected ? (
+        <Box flexShrink={1} marginLeft={2} overflow="hidden">
+          <Button key="footer-path" plain onPress={async pe => {
+            const res = await $.ui.copy({ text: selected, surface: pe.surface })
+            $.ui.toast(res.isCopied ? `Copied ${selected}` : 'Could not copy')
+          }}>
+            <Text dimColor wrap="truncate-start">{selected}</Text>
+          </Button>
+        </Box>
+      ) : null}
+      {selected ? (
+        <Box flexShrink={0}>
+          <Text dimColor>{` ${ICONS.pointer} `}</Text>
+        </Box>
+      ) : null}
     </Box>
   )
 }
@@ -344,10 +404,12 @@ async function renderPane($: EngineInterface, els: Ctx['els'], surface: string, 
   const { Box, Text } = els
   ownScroll = null
   const [root, dirs, git, activity, view] = await Promise.all([read($, rootState), read($, dirsState), read($, gitState), read($, activityState), read($, viewState)])
-  const isMatching = view.isSearching && view.query.trim() !== ''
+  const isMatching = view.query.trim() !== ''
   const rows: Row[] = isMatching
     ? view.matches.map(path => ({ node: { name: baseName(path), path, isDir: false, size: 0, mtimeMs: 0 }, depth: 0 }))
     : flatten(dirs, view.expanded)
+  const gitWidth = rows.reduce((w, r) => Math.max(w, gitTextOf(git, r.node).length), 0)
+  const metricWidth = rows.reduce((w, r) => Math.max(w, metricOf(view, r.node, isMatching).length), 0)
   const ctx: Ctx = {
     els,
     Input: 'Input' in els ? (els.Input as Elements['terminal']['Input']) : undefined,
@@ -357,10 +419,11 @@ async function renderPane($: EngineInterface, els: Ctx['els'], surface: string, 
     git,
     activity,
     now: Date.now(),
-    rowCount: rows.length,
+    gitCol: gitWidth ? Math.max(gitWidth + 1, 'Git'.length + 3) : 0,
+    metricCol: Math.max(metricWidth + 1, COLUMN_LABEL[view.column].length + 3),
   }
   const header = renderHeader($, ctx)
-  const empty = rows.length === 0 && <Text dimColor>{isMatching ? 'No files match.' : dirs[''] ? 'Empty folder.' : 'Loading…'}</Text>
+  const empty = rows.length === 0 && <Text dimColor>{isMatching ? 'no matches' : dirs[''] ? 'empty' : 'Loading…'}</Text>
   const drawn = (from: number, to: number) => rows.slice(from, to).map(row => renderRow($, ctx, row, isMatching))
   const centered = view.scrollTo ? rows.findIndex(r => r.node.path === view.scrollTo) : -1
 
@@ -376,7 +439,7 @@ async function renderPane($: EngineInterface, els: Ctx['els'], surface: string, 
           {empty}
           {drawn(top, top + viewport)}
         </Box>
-        {renderFooter($, ctx)}
+        {renderFooter($, ctx, rows, isMatching)}
       </Box>
     )
   }
@@ -386,13 +449,14 @@ async function renderPane($: EngineInterface, els: Ctx['els'], surface: string, 
   const from = Math.max(0, Math.min(rows.length, offset - OVERSCAN))
   const to = Math.max(from, Math.min(rows.length, offset + scroll.bodyRows + OVERSCAN))
   return (
-    <Box flexDirection="column">
+    <Box flexDirection="column" minHeight={isDocked ? scroll.bodyRows : undefined}>
       {header.node}
       {empty}
       {from > 0 && <Box key="space-before" height={from} flexShrink={0} />}
       {drawn(from, to)}
       {to < rows.length && <Box key="space-after" height={rows.length - to} flexShrink={0} />}
-      {renderFooter($, ctx)}
+      <Box flexGrow={1} />
+      {renderFooter($, ctx, rows, isMatching)}
     </Box>
   )
 }
@@ -400,7 +464,7 @@ async function renderPane($: EngineInterface, els: Ctx['els'], surface: string, 
 export const register: Register = (on, options) => {
   const autoOpen = options?.autoOpen !== false
   const isFollowing = options?.followClaude !== false
-  const column: Column = options?.column === 'date' ? 'date' : 'size'
+  const column: Column = options?.column === 'size' ? 'size' : 'date'
 
   on('session.start', async ($, e, next) => {
     await $.command.register({ name: PANE, description: 'Open File Tree: the files of this folder, with git and what Claude touches' })

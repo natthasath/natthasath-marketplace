@@ -1,4 +1,4 @@
-import type { Git, GitMark, Node } from '../types'
+import type { Git, GitCounts, GitMark, Node } from '../types'
 
 // Names never shown: git's own folder.
 export const HIDDEN = new Set(['.git'])
@@ -50,6 +50,7 @@ function markOfCode(xy: string): GitMark {
 export function parseStatus(out: string, prefix = ''): Git {
   const records = out.split('\0')
   const marks: Record<string, GitMark> = {}
+  const counts: Record<string, GitCounts> = {}
   let branch = ''
   let changed = 0
   const base = slashes(prefix)
@@ -70,12 +71,16 @@ export function parseStatus(out: string, prefix = ''): Git {
     marks[path] = mark
     if (mark === '!') continue
     changed++
-    for (const dir of ancestors(path)) {
+    const slot = mark === '?' ? 0 : mark === 'D' ? 2 : 1
+    for (const dir of ['', ...ancestors(path)]) {
       const had = marks[dir]
-      if (had === undefined || RANK[mark] > RANK[had]) marks[dir] = mark
+      if (dir && (had === undefined || RANK[mark] > RANK[had])) marks[dir] = mark
+      const c: GitCounts = counts[dir] ?? [0, 0, 0]
+      c[slot]++
+      counts[dir] = c
     }
   }
-  return { branch, marks, changed }
+  return { branch, marks, counts, changed }
 }
 
 // A path's mark: its own, or an untracked or ignored folder's above it (git lists such a folder whole).
@@ -99,23 +104,30 @@ export function flatten(dirs: Record<string, Node[]>, expanded: readonly string[
   return walk('', 0)
 }
 
+// Bytes as `512 B `, `1.5 KB`, `12 KB`, `3.4 MB`: the bytes' trailing space keeps the units in a column.
 export function formatSize(bytes: number): string {
-  if (bytes < 1024) return `${bytes} B`
-  const units = ['K', 'M', 'G', 'T']
-  let n = bytes / 1024
-  let u = 0
-  while (n >= 1024 && u < units.length - 1) {
-    n /= 1024
-    u++
-  }
-  return `${n < 10 ? n.toFixed(1) : Math.round(n)} ${units[u]}`
+  if (bytes < 1024) return `${bytes} B `
+  if (bytes < 1_048_576) return `${(bytes / 1024).toFixed(bytes < 10_240 ? 1 : 0)} KB`
+  if (bytes < 1_073_741_824) return `${(bytes / 1_048_576).toFixed(1)} MB`
+  return `${(bytes / 1_073_741_824).toFixed(1)} GB`
 }
 
 const two = (n: number) => String(n).padStart(2, '0')
+// When a file was last modified, `2026-11-19 14:05`, in local time.
 export function formatDate(ms: number): string {
   if (!ms) return ''
   const d = new Date(ms)
-  return `${d.getFullYear()}-${two(d.getMonth() + 1)}-${two(d.getDate())}`
+  return `${d.getFullYear()}-${two(d.getMonth() + 1)}-${two(d.getDate())} ${two(d.getHours())}:${two(d.getMinutes())}`
+}
+
+// A folder's changes as the Git column shows them: `?:2 M:3 D:1`, the empty ones left out.
+export function countCells(c: GitCounts | undefined): { t: string; mark: GitMark }[] {
+  if (!c) return []
+  return [
+    ...(c[0] ? [{ t: `?:${c[0]}`, mark: '?' as const }] : []),
+    ...(c[1] ? [{ t: `M:${c[1]}`, mark: 'M' as const }] : []),
+    ...(c[2] ? [{ t: `D:${c[2]}`, mark: 'D' as const }] : []),
+  ]
 }
 
 // Files whose name holds `query`, case set aside: a match in the name before one only in the path.

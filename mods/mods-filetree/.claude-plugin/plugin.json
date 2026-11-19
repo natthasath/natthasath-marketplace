@@ -1,6 +1,6 @@
 {
   "name": "mods-filetree",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Mod ที่แสดง file tree แบบ IDE ในแถบด้านข้าง (pane) — สถานะ git, คอลัมน์ size/date, ไฮไลต์ไฟล์ที่ Claude อ่าน/เขียน, follow Claude, ค้นหาชื่อไฟล์, คัดลอก path และเปิดไฟล์",
   "author": {
     "name": "natthasath"
@@ -23,9 +23,9 @@
     "column": {
       "type": "string",
       "title": "คอลัมน์ขวา",
-      "description": "ค่าที่แสดงในคอลัมน์ขวาของแต่ละไฟล์ตอนเปิดแผง (กดสลับในแผงได้)",
-      "options": ["size", "date"],
-      "default": "size"
+      "description": "ค่าที่แสดงในคอลัมน์ขวาตอนเปิดแผง: date (Modified วันเวลาที่แก้ไขล่าสุด) หรือ size (ขนาดไฟล์) กดปุ่ม ◫ สลับในแผงได้",
+      "options": ["date", "size"],
+      "default": "date"
     }
   }
 }

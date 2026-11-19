@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'claude-code/testing'
 
 import type { Node } from '../types'
-import { ancestors, flatten, formatSize, markOf, parseStatus, relPath, searchFiles } from './tree'
+import { ancestors, countCells, flatten, formatDate, formatSize, markOf, parseStatus, relPath, searchFiles } from './tree'
 
 const node = (path: string, isDir = false): Node => ({ name: path.split('/').pop() ?? path, path, isDir, size: 0, mtimeMs: 0 })
 
@@ -33,6 +33,14 @@ describe('git status', () => {
     expect(git.marks['src/old.ts']).toBeUndefined()
   })
 
+  test('each folder counts the changes below it', () => {
+    const git = parseStatus(out)
+    expect(git.counts.src).toEqual([0, 3, 0])
+    expect(git.counts['']).toEqual([1, 3, 0])
+    expect(countCells(git.counts['']).map(c => c.t)).toEqual(['?:1', 'M:3'])
+    expect(countCells(undefined)).toEqual([])
+  })
+
   test('a file in an untracked or ignored folder takes its mark', () => {
     const git = parseStatus(out)
     expect(markOf(git, 'docs/guide/x.md')).toBe('?')
@@ -55,10 +63,12 @@ describe('rows', () => {
     expect(flatten(dirs, ['src']).map(r => `${r.depth}:${r.node.path}`)).toEqual(['0:src', '1:src/lib', '1:src/b.ts', '0:a.txt', '0:z.txt'])
   })
 
-  test('sizes read short', () => {
-    expect(formatSize(512)).toBe('512 B')
-    expect(formatSize(1536)).toBe('1.5 K')
-    expect(formatSize(50 * 1024 * 1024)).toBe('50 M')
+  test('sizes read short, dates to the minute', () => {
+    expect(formatSize(512)).toBe('512 B ')
+    expect(formatSize(1536)).toBe('1.5 KB')
+    expect(formatSize(50 * 1024 * 1024)).toBe('50.0 MB')
+    expect(formatDate(new Date(2026, 10, 9, 7, 5).getTime())).toBe('2026-11-09 07:05')
+    expect(formatDate(0)).toBe('')
   })
 
   test('search finds names before paths', () => {

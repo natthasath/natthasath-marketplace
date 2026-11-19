@@ -5,10 +5,15 @@ export type Node = { name: string; path: string; isDir: boolean; size: number; m
 // R renamed, U conflicted, ? untracked, ! ignored.
 export type GitMark = 'M' | 'A' | 'D' | 'R' | 'U' | '?' | '!'
 
+// A folder's changed paths below it: untracked, modified (added, renamed, conflicted too), deleted.
+export type GitCounts = [number, number, number]
+
 export type Git = {
   branch: string
   // Each changed or ignored path's mark; a folder holding changes carries the strongest of them.
   marks: Record<string, GitMark>
+  // Each folder's changes below it, by folder ('' is the root).
+  counts: Record<string, GitCounts>
   changed: number
 }
 
@@ -22,7 +27,6 @@ export type View = {
   isOpen: boolean
   expanded: string[]
   selected: string | null
-  isSearching: boolean
   query: string
   matches: string[]
   column: Column
