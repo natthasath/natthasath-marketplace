@@ -37,6 +37,7 @@ A Claude Code plugin marketplace bundling 19 plugins, 70 skills, and 2 agents ac
 | Mod | วัตถุประสงค์ |
 |---|---|
 | [`mods-gitgraph`](mods/mods-gitgraph/README.md) | แสดง git commit graph แบบมีสีในแถบด้านข้าง เหมือน SourceTree/GitKraken — branch/tag pills, right-click menu, push/fetch, multi-repo, search, settings |
+| [`mods-filetree`](mods/mods-filetree/README.md) | แสดง file tree แบบ IDE ในแถบด้านข้าง — สถานะ git, คอลัมน์ size/date, ไฮไลต์ไฟล์ที่ Claude อ่าน/เขียน, follow Claude, ค้นหาไฟล์, copy path/open |
 | [`mods-matrixcode`](mods/mods-matrixcode/README.md) | แสดง Matrix-style digital rain สีเขียว neon ในแถบด้านข้าง — ไหลเฉพาะตอน Claude ทำงาน ยิ่งทำงานหนักยิ่งไหลเยอะ/เร็วขึ้น |
 
 ### 🧩 Community Plugins
@@ -80,6 +81,7 @@ Mod ที่ปรับแต่งหน้าตา/พฤติกรรม
 /plugin install language@natthasath-marketplace
 /plugin install masterplan@natthasath-marketplace
 /plugin install mods-gitgraph@natthasath-marketplace
+/plugin install mods-filetree@natthasath-marketplace
 /plugin install mods-matrixcode@natthasath-marketplace
 /plugin install obsidian@natthasath-marketplace
 /plugin install productive@natthasath-marketplace

@@ -1,0 +1,31 @@
+{
+  "name": "mods-filetree",
+  "version": "0.1.0",
+  "description": "Mod ที่แสดง file tree แบบ IDE ในแถบด้านข้าง (pane) — สถานะ git, คอลัมน์ size/date, ไฮไลต์ไฟล์ที่ Claude อ่าน/เขียน, follow Claude, ค้นหาชื่อไฟล์, คัดลอก path และเปิดไฟล์",
+  "author": {
+    "name": "natthasath"
+  },
+  "keywords": ["mods", "file-tree", "explorer", "git", "pane", "ui", "hooks", "tui"],
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "autoOpen": {
+      "type": "boolean",
+      "title": "เปิดแผงอัตโนมัติ",
+      "description": "เปิดแผง File Tree ให้ทันทีตอนเริ่ม session",
+      "default": true
+    },
+    "followClaude": {
+      "type": "boolean",
+      "title": "Follow Claude",
+      "description": "กางโฟลเดอร์และเลื่อนไปหาไฟล์ที่ Claude กำลังอ่านหรือเขียน",
+      "default": true
+    },
+    "column": {
+      "type": "string",
+      "title": "คอลัมน์ขวา",
+      "description": "ค่าที่แสดงในคอลัมน์ขวาของแต่ละไฟล์ตอนเปิดแผง (กดสลับในแผงได้)",
+      "options": ["size", "date"],
+      "default": "size"
+    }
+  }
+}

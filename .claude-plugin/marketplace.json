@@ -113,6 +113,13 @@
       "keywords": ["mods", "git-graph", "git", "commit-graph", "pane", "ui", "hooks", "tui"]
     },
     {
+      "name": "mods-filetree",
+      "description": "Mod ที่แสดง file tree แบบ IDE ในแถบด้านข้าง (pane) พร้อมสถานะ git และไฮไลต์ไฟล์ที่ Claude อ่าน/เขียน",
+      "source": "./mods/mods-filetree",
+      "category": "development",
+      "keywords": ["mods", "file-tree", "explorer", "git", "pane", "ui", "hooks", "tui"]
+    },
+    {
       "name": "mods-matrixcode",
       "description": "Mod ที่แสดง Matrix-style digital rain สีเขียว neon ในแถบด้านข้าง (pane) ความเข้มข้นผูกกับว่า Claude กำลังทำงานหนักแค่ไหน",
       "source": "./mods/mods-matrixcode",
