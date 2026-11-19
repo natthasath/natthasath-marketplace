@@ -100,6 +100,8 @@ declare module 'claude-code' {
       hasNerdFont: boolean
       settings: RepoSettings | null
       repos: Repos
+      // The first graph row a docked terminal pane shows, the pane scrolling its own rows.
+      scrollTop: number
     }
   }
 }

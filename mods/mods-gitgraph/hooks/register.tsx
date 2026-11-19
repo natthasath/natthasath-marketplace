@@ -7,7 +7,7 @@ import { isBranchNameCandidate } from './detect'
 import { authorCell, authorCol, authorHeader, COMPACT_COLS, descriptionCol, EDGE_SAFETY, hashCell, hashCol, hashHeader, rightCols, subjectRoom } from './columns'
 import { absTime, fitGraph, relTime, short, truncate, truncateMiddle } from './format'
 import { layout } from './lanes'
-import { findByHash, isHashQuery, topOf, visibleRange, wrapRows } from './virtual'
+import { clampTop, findByHash, isHashQuery, topOf, visibleRange, windowAt, wrapRows } from './virtual'
 import { DETAIL_FORMAT, LOG_FORMAT, parseDetail, parseLog, parseStatus, remotesOf, UNCOMMITTED, withUncommitted } from './log'
 import { checkoutArgs, defaultPushRemotes, deleteBranchArgs, type MenuItem, menuFor, pushRuns, renameArgs } from './menu'
 import { drawPill, type PillProps } from './pilldraw'
@@ -24,25 +24,16 @@ const GIT_TIMEOUT_MS = 15_000
 const NETWORK_TIMEOUT_MS = 120_000
 const MAX_FILES = 20
 
-// A GitHub-dark-style palette: the pane never relies on the terminal's own
-// theme, so it stays dark (and legible) whatever the surrounding theme is.
-const THEME = {
-  bg: '#161B22',
-  fg: '#FFFFFF',
-  accent: '#79C0FF',
-  muted: '#8B949E',
-  selection: '#263449',
-  hover: '#212B3A',
-}
-
-const PALETTE = ['#e06c75', '#61afef', '#98c379', '#e5c07b', '#c678dd', '#56b6c2', '#d19a66', '#56c2a0']
-const BADGE_FG = THEME.bg
-const BADGE_BG: Partial<Record<BadgeKind, string>> = { remote: THEME.muted, tag: '#e2c08d', detached: '#f48771' }
-const SELECTED_BG = THEME.selection
-const REMOTE_BG = BADGE_BG.remote ?? THEME.muted
+// The pane draws on the terminal's own background and text colour, secondary text dimmed:
+// only the lanes, the pills, the selection and the diff counts carry colours of their own.
+const PALETTE = ['#4fc1ff', '#c586c0', '#ce9178', '#4ec9b0', '#dcdcaa', '#f48771', '#b5cea8', '#d7ba7d']
+const BADGE_FG = '#1e1e1e'
+const BADGE_BG: Partial<Record<BadgeKind, string>> = { tag: '#e2c08d', detached: '#f48771' }
+const SELECTED_BG = '#264f78'
+const REMOTE_BG = '#9d9d9d'
+const SPINNER_COLOR = '#4fc1ff'
 const ADD_COLOR = '#89d185'
 const DEL_COLOR = '#f48771'
-const WARN_COLOR = '#e2c08d'
 const BODY_LINES = 8
 const OVERSCAN = 15
 const BAR_W = 8
@@ -76,6 +67,7 @@ const nerdState = atom({ plugin: 'mods-gitgraph', key: 'hasNerdFont' } as const,
 const settingsState = atom({ plugin: 'mods-gitgraph', key: 'settings' } as const, null as RepoSettings | null)
 // Searched when the pane opens and on refresh; every git the pane runs runs in `active`.
 const reposState = atom({ plugin: 'mods-gitgraph', key: 'repos' } as const, { list: [], active: '.', isPicking: false, branches: {} } as Repos)
+const scrollTopState = atom({ plugin: 'mods-gitgraph', key: 'scrollTop' } as const, 0)
 
 // Everything transient a git action, a selection or a new menu closes.
 const CLOSED = {
@@ -99,6 +91,8 @@ let busy = false
 let isRunning = false
 // The last left click on a pill, to tell a double click, and the commit selected before it.
 let lastPillClick: { key: string; at: number; selected: string | null } = { key: '', at: 0, selected: null }
+// Set while a docked terminal pane draws the graph: the pane scrolls its own rows, between `0` and `maxTop`.
+let ownScroll: { top: number; maxTop: number } | null = null
 
 const firstLine = (text: string) => text.split('\n').find(l => l.trim() !== '') ?? 'unknown error'
 
@@ -149,7 +143,7 @@ async function showRepo($: EngineInterface): Promise<void> {
     update($, detailState, () => null),
   ])
   const view = await read($, viewState)
-  await Promise.all([load($), view.isSettings ? loadSettings($) : undefined])
+  await Promise.all([load($), view.isSettings ? loadSettings($) : undefined, update($, scrollTopState, () => 0)])
   try {
     await $.ui.scroll({ to: 'start', in: PANE })
   } catch {
@@ -309,6 +303,9 @@ async function searchCommit($: EngineInterface, value: string): Promise<void> {
   }
   await update($, viewState, v => ({ ...v, scrollTo: hash, menu: null, isSearching: false }))
   if ((await read($, viewState)).selected !== hash) await select($, hash)
+  // A pane scrolling its own rows already draws the commit centered, and keeps it there until
+  // the next scroll lets go: the engine's scroll would move the window by its own reckoning.
+  if (ownScroll) return
   // Scrolling is a convenience: where a surface cannot, the commit is still selected.
   try {
     await $.ui.scroll({ to: { key: hash }, in: PANE, block: 'center' })
@@ -428,7 +425,7 @@ async function renameBranch($: EngineInterface, from: string, value: string): Pr
 
 const localBranch = (refs: Ref[]) => refs.find(r => (r.kind === 'head' && r.name !== 'HEAD') || r.kind === 'branch')?.name
 const isCheckedOut = (refs: Ref[]) => refs.some(r => r.kind === 'head' && r.name !== 'HEAD')
-const LANE_FALLBACK: string = PALETTE[0] ?? THEME.accent
+const LANE_FALLBACK: string = PALETTE[0] ?? SPINNER_COLOR
 const laneColor = (cells: Cell[]) => PALETTE[(cells.find(c => c.ch === '●' || c.ch === '○')?.color ?? 0) % PALETTE.length] ?? LANE_FALLBACK
 
 function groupCells(cells: Cell[]): { text: string; color: number }[] {
@@ -504,14 +501,14 @@ function rightColumns({ els: { Box, Text }, cols }: Ctx, author: string, hash: s
   return [
     authorCol(cols) > 0 && (
       <Box width={authorCol(cols)} flexShrink={0}>
-        <Text color={THEME.muted}>{author}</Text>
+        <Text dimColor>{author}</Text>
       </Box>
     ),
     <Box width={hashCol(cols)} flexShrink={0}>
-      <Text color={THEME.muted}>{hash}</Text>
+      <Text dimColor>{hash}</Text>
     </Box>,
     <Box width={EDGE_SAFETY} flexShrink={0}>
-      <Text color={THEME.fg}> </Text>
+      <Text> </Text>
     </Box>,
   ]
 }
@@ -519,13 +516,13 @@ function rightColumns({ els: { Box, Text }, cols }: Ctx, author: string, hash: s
 // One row of the pane, exactly one terminal row tall whatever it holds.
 function line({ els: { Box } }: Ctx, children: RenderChildren, gap = 0, justify?: 'space-between') {
   return (
-    <Box height={1} overflow="hidden" flexDirection="row" gap={gap} justifyContent={justify} backgroundColor={THEME.bg}>
+    <Box height={1} overflow="hidden" flexDirection="row" gap={gap} justifyContent={justify}>
       {children}
     </Box>
   )
 }
 
-const rule = (ctx: Ctx) => line(ctx, <ctx.els.Text color={THEME.muted}>{'─'.repeat(Math.max(0, ctx.cols))}</ctx.els.Text>)
+const rule = (ctx: Ctx) => line(ctx, <ctx.els.Text dimColor>{'─'.repeat(Math.max(0, ctx.cols))}</ctx.els.Text>)
 
 const headName = (graph: Graph) => graph.branch || (graph.head ? short(graph.head) : '—')
 
@@ -533,8 +530,8 @@ const headName = (graph: Graph) => graph.branch || (graph.head ? short(graph.hea
 function switchButton({ els: { Button, Text }, icons }: Ctx, key: string, label: string, isOn: boolean, onPress: () => Promise<unknown>) {
   return (
     <Button key={key} plain onPress={onPress}>
-      <Text color={isOn ? ADD_COLOR : THEME.muted}>{isOn ? icons.on : icons.off}</Text>
-      <Text color={isOn ? THEME.fg : THEME.muted}> {label}</Text>
+      <Text color={isOn ? 'success' : undefined} dimColor={!isOn}>{isOn ? icons.on : icons.off}</Text>
+      <Text dimColor={!(isOn)}> {label}</Text>
     </Button>
   )
 }
@@ -553,6 +550,7 @@ function runsOf(node: unknown, inherit: Omit<TapRun, 't'> = {}): TapRun[] {
   const p = el.props ?? {}
   const next: Omit<TapRun, 't'> = { ...inherit }
   if (typeof p.color === 'string') next.color = p.color
+  if (p.dimColor === true) next.dim = true
   if (typeof p.backgroundColor === 'string') next.backgroundColor = p.backgroundColor
   if (p.weight === 'bold' || p.weight === 'semibold') next.weight = 'bold'
   if (p.italic === true) next.italic = true
@@ -579,14 +577,12 @@ function tapButtons(els: Ctx['els'], Client: NonNullable<Ctx['Client']>): Ctx['e
   return { ...els, Button } as Ctx['els']
 }
 
-const blank = (ctx: Ctx) => line(ctx, <ctx.els.Text color={THEME.fg}> </ctx.els.Text>)
+const blank = (ctx: Ctx) => line(ctx, <ctx.els.Text> </ctx.els.Text>)
 
-// An Input has no colour prop, so the host draws its own `label` in its own default colour,
-// dark on a light app theme and unreadable on this pane's dark background. The label is drawn
-// here instead, in THEME.fg. (The typed text inside the field stays the host's: UNCERTAIN.)
+// An Input's label drawn as a Text beside it, in the pane's own text colour.
 const labeled = ({ els: { Box, Text } }: Ctx, label: string, input: RenderChildren) => (
-  <Box flexDirection="row" backgroundColor={THEME.bg}>
-    <Text color={THEME.fg}>{label} </Text>
+  <Box flexDirection="row">
+    <Text>{label} </Text>
     {input}
   </Box>
 )
@@ -606,24 +602,24 @@ function renderHeader($: EngineInterface, ctx: Ctx) {
   const count = graph.rows.length - (graph.dirty ? 1 : 0)
   const head = headName(graph)
   const lines = [
-    <Box height={1} overflow="hidden" flexDirection="row" justifyContent="space-between" columnGap={2} backgroundColor={THEME.bg}>
+    <Box height={1} overflow="hidden" flexDirection="row" justifyContent="space-between" columnGap={2}>
       {/* With several repos, the repo comes first: its options open as rows below the header's first row. */}
       {repos.list.length > 1 && (
         <Box flexShrink={0}>
           <Button key="repo" plain onPress={() => togglePicker($)}>
-            <Text color={repos.isPicking ? THEME.fg : THEME.muted}>{`repo: ${repoLabel(repos.active)} ${repos.isPicking ? '▴' : '▾'}`}</Text>
+            <Text dimColor={!(repos.isPicking)}>{`repo: ${repoLabel(repos.active)} ${repos.isPicking ? '▴' : '▾'}`}</Text>
           </Button>
         </Box>
       )}
       <Box flexShrink={1} flexGrow={1} overflow="hidden">
-        <Text wrap="truncate-end" color={THEME.fg}>
+        <Text wrap="truncate-end">
           {renderPill(ctx, plainPill(ctx, `⎇ ${head}`, headRow ? laneColor(headRow.cells) : LANE_FALLBACK, true))}
-          <Text color={THEME.muted}>
+          <Text dimColor>
             {' '}
             {count}
             {graph.hasMore ? '+' : ''} commits
           </Text>
-          {graph.dirty > 0 && <Text color={WARN_COLOR}>{`  ● ${graph.dirty} ${graph.dirty === 1 ? 'change' : 'changes'}`}</Text>}
+          {graph.dirty > 0 && <Text color="warning">{`  ● ${graph.dirty} ${graph.dirty === 1 ? 'change' : 'changes'}`}</Text>}
         </Text>
       </Box>
       <Box flexDirection="row" gap={2} flexShrink={0}>
@@ -634,21 +630,21 @@ function renderHeader($: EngineInterface, ctx: Ctx) {
         <Box flexDirection="row">
           {Input && (
             <Button key="search-toggle" plain onPress={() => update($, viewState, v => ({ ...v, isSearching: !v.isSearching }))}>
-              <Text color={view.isSearching ? THEME.fg : THEME.muted}>{iconLabel(ctx, icons.search)}</Text>
+              <Text dimColor={!(view.isSearching)}>{iconLabel(ctx, icons.search)}</Text>
             </Button>
           )}
           <Button key="settings" plain onPress={async () => {
             await update($, viewState, v => ({ ...v, ...CLOSED, isSettings: true, selected: null }))
             await loadSettings($)
           }}>
-            <Text color={THEME.muted}>{iconLabel(ctx, icons.settings)}</Text>
+            <Text dimColor>{iconLabel(ctx, icons.settings)}</Text>
           </Button>
           <Button key="fetch" plain onPress={() => runActions($, [['fetch', '--all']], 'Fetched all remotes ✓', 'Fetching all remotes…', true)}>
-            <Text color={THEME.muted}>{iconLabel(ctx, icons.fetch)}</Text>
+            <Text dimColor>{iconLabel(ctx, icons.fetch)}</Text>
           </Button>
           {view.refresh === 'running' && renderSpinner(ctx, 'refresh-spinner')}
           <Button key="refresh" plain onPress={() => refreshAll($)}>
-            {view.refresh === 'done' ? <Text color={ADD_COLOR}> ✓ </Text> : <Text color={THEME.muted}>{iconLabel(ctx, icons.refresh)}</Text>}
+            {view.refresh === 'done' ? <Text color="success"> ✓ </Text> : <Text dimColor>{iconLabel(ctx, icons.refresh)}</Text>}
           </Button>
         </Box>
       </Box>
@@ -662,8 +658,8 @@ function renderHeader($: EngineInterface, ctx: Ctx) {
           ctx,
           // The branch goes inside the Button, as a dim Text child: a sibling of the Button on the row is not drawn.
           <Button key={`repo-option:${path}`} plain onPress={() => selectRepo($, path)}>
-            <Text color={path === repos.active ? THEME.fg : THEME.muted}>{label}</Text>
-            <Text color={THEME.muted}>{branchColumn(label, repos.branches[path], cols)}</Text>
+            <Text dimColor={!(path === repos.active)}>{label}</Text>
+            <Text dimColor>{branchColumn(label, repos.branches[path], cols)}</Text>
           </Button>,
         ),
       )
@@ -679,16 +675,16 @@ function renderHeader($: EngineInterface, ctx: Ctx) {
     lines.push(
       line(ctx, [
         <Box width={graphWidth + 1} flexShrink={0}>
-          <Text color={THEME.fg}> </Text>
+          <Text> </Text>
         </Box>,
         <Box width={descriptionCol(cols, graphWidth)} flexShrink={0} overflow="hidden">
-          <Text color={THEME.muted}>Description</Text>
+          <Text dimColor>Description</Text>
         </Box>,
         ...rightColumns(ctx, authorHeader(), hashHeader(cols)),
       ]),
     )
   lines.push(rule(ctx))
-  return { node: <Box flexDirection="column" backgroundColor={THEME.bg}>{lines}</Box>, height: lines.length }
+  return { node: <Box flexDirection="column">{lines}</Box>, height: lines.length }
 }
 
 function renderRow($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow) {
@@ -701,10 +697,10 @@ function renderRow($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow) {
   if (commit.hash === UNCOMMITTED)
     return line(
       ctx,
-      <Text color={THEME.fg}>
+      <Text>
         {graphText}
         {pad}
-        <Text italic color={WARN_COLOR}>
+        <Text italic color="warning">
           {commit.subject}
         </Text>
       </Text>,
@@ -730,16 +726,9 @@ function renderRow($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow) {
     more && <Box flexShrink={0}>{renderPill(ctx, plainPill(ctx, more, REMOTE_BG))}</Box>,
   ]
   return (
-    <Box
-      key={`rowbox:${commit.hash}`}
-      height={1}
-      overflow="hidden"
-      flexDirection="row"
-      backgroundColor={isSelected ? SELECTED_BG : THEME.bg}
-      hover={{ backgroundColor: THEME.hover }}
-    >
+    <Box key={`rowbox:${commit.hash}`} height={1} overflow="hidden" flexDirection="row">
       <Box width={graphWidth + 1} flexShrink={0}>
-        <Text color={THEME.fg}>
+        <Text>
           {graphText}
           {pad}
         </Text>
@@ -756,7 +745,7 @@ function renderRow($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow) {
                 <Client
                   key={`tap:${commit.hash}`}
                   module="./tap.tsx"
-                  props={{ runs: [{ t: truncate(commit.subject, room), color: isSelected ? THEME.accent : THEME.fg, ...(isSelected ? { weight: 'bold' as const } : {}) }] }}
+                  props={{ runs: [{ t: truncate(commit.subject, room), ...(isSelected ? { backgroundColor: SELECTED_BG, weight: 'bold' as const } : {}) }] }}
                 />
               ))}
             </Box>,
@@ -768,15 +757,15 @@ function renderRow($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow) {
             <Box width={descriptionCol(cols, graphWidth) + authorCol(cols) + hashCol(cols)} flexShrink={0} overflow="hidden" flexDirection="row">
               {pills}
               <Button key={commit.hash} plain onPress={() => select($, commit.hash)}>
-                <Text color={isSelected ? THEME.accent : THEME.fg} weight={isSelected ? 'bold' : undefined}>
+                <Text backgroundColor={isSelected ? SELECTED_BG : undefined} weight={isSelected ? 'bold' : undefined}>
                   {truncate(commit.subject, room).padEnd(room)}
                 </Text>
-                {authorCol(cols) > 0 && <Text color={THEME.muted}>{authorCell(cols, commit.author)}</Text>}
-                <Text color={THEME.muted}>{hashCell(cols, commit.hash)}</Text>
+                {authorCol(cols) > 0 && <Text dimColor>{authorCell(cols, commit.author)}</Text>}
+                <Text dimColor>{hashCell(cols, commit.hash)}</Text>
               </Button>
             </Box>,
             <Box width={EDGE_SAFETY} flexShrink={0}>
-              <Text color={THEME.fg}> </Text>
+              <Text> </Text>
             </Box>,
           ]}
     </Box>
@@ -798,8 +787,8 @@ function confirmButton($: EngineInterface, { els: { Button }, view }: Ctx, key: 
 
 // The spinner where the surface draws a `Client`, an hourglass elsewhere.
 function renderSpinner({ els, Client }: Ctx, key = 'spinner') {
-  const props: SpinnerProps = { color: THEME.accent }
-  return Client ? <Client key={key} module="./spinner.tsx" props={props} /> : <els.Text color={THEME.muted}>⏳</els.Text>
+  const props: SpinnerProps = { color: SPINNER_COLOR }
+  return Client ? <Client key={key} module="./spinner.tsx" props={props} /> : <els.Text dimColor>⏳</els.Text>
 }
 
 function renderRunning(ctx: Ctx, key = 'spinner') {
@@ -808,7 +797,7 @@ function renderRunning(ctx: Ctx, key = 'spinner') {
     ctx,
     <els.Box flexDirection="row">
       {renderSpinner(ctx, key)}
-      <els.Text color={THEME.fg}> {view.running}</els.Text>
+      <els.Text> {view.running}</els.Text>
     </els.Box>,
   )
 }
@@ -819,18 +808,18 @@ function renderPushChooser($: EngineInterface, ctx: Ctx, badge: Badge, item: Men
   const isAll = chosen.length === graph.remotes.length
   const setPush = (fn: (sel: string[]) => string[]) => update($, viewState, v => ({ ...v, push: fn(v.push ?? []) }))
   return [
-    line(ctx, <Text color={THEME.muted}>Push {badge.label} to:</Text>),
+    line(ctx, <Text dimColor>Push {badge.label} to:</Text>),
     line(
       ctx,
       [
         ...graph.remotes.map(r => (
           <Button key={`push-remote-${r}`} plain onPress={() => setPush(sel => (sel.includes(r) ? sel.filter(x => x !== r) : [...sel, r]))}>
-            <Text color={THEME.fg}>{chosen.includes(r) ? '☑' : '☐'} {r}</Text>
+            <Text>{chosen.includes(r) ? '☑' : '☐'} {r}</Text>
           </Button>
         )),
         graph.remotes.length > 1 && (
           <Button key="push-remote-all" plain onPress={() => setPush(() => (isAll ? [] : graph.remotes))}>
-            <Text color={THEME.fg}>{isAll ? '☑' : '☐'} all</Text>
+            <Text>{isAll ? '☑' : '☐'} all</Text>
           </Button>
         ),
       ],
@@ -852,10 +841,10 @@ function renderPushChooser($: EngineInterface, ctx: Ctx, badge: Badge, item: Men
             Push to {chosen.join(', ')}
           </Button>
         ) : (
-          <Text color={THEME.muted}>Select at least one remote</Text>
+          <Text dimColor>Select at least one remote</Text>
         ),
         <Button key="push-cancel" plain onPress={() => update($, viewState, v => ({ ...v, push: null }))}>
-          <Text color={THEME.muted}>cancel</Text>
+          <Text dimColor>cancel</Text>
         </Button>,
       ],
       2,
@@ -900,7 +889,7 @@ function framed({ els: { Box } }: Ctx, color: string, indent: number, rows: Rend
   const height = rows.length + 2
   return {
     node: (
-      <Box flexDirection="column" borderStyle="round" borderColor={color} backgroundColor={THEME.bg} paddingX={1} marginLeft={indent} height={height} overflow="hidden" flexShrink={0}>
+      <Box flexDirection="column" borderStyle="round" borderColor={color} paddingX={1} marginLeft={indent} height={height} overflow="hidden" flexShrink={0}>
         {rows}
       </Box>
     ),
@@ -933,9 +922,9 @@ function renderMenu($: EngineInterface, ctx: Ctx, { cells }: GraphRow, badge: Ba
     line(
       ctx,
       [
-        <Text color={THEME.fg}>{renderPill(ctx, pillProps(ctx, badge, lane))}</Text>,
+        <Text>{renderPill(ctx, pillProps(ctx, badge, lane))}</Text>,
         <Button key="menu-close" plain onPress={() => update($, viewState, v => ({ ...v, menu: null, isRenaming: false }))}>
-          <Text color={THEME.muted}>close</Text>
+          <Text dimColor>close</Text>
         </Button>,
       ],
       0,
@@ -978,8 +967,8 @@ function renderFiles(ctx: Ctx, files: FileStat[]) {
   return [
     line(
       ctx,
-      <Text color={THEME.fg}>
-        <Text weight="bold" color={THEME.fg}>{files.length} {files.length === 1 ? 'file' : 'files'}</Text>
+      <Text>
+        <Text weight="bold">{files.length} {files.length === 1 ? 'file' : 'files'}</Text>
         <Text color={ADD_COLOR}>{`  +${adds}`}</Text>
         <Text color={DEL_COLOR}>{` −${dels}`}</Text>
       </Text>,
@@ -988,12 +977,12 @@ function renderFiles(ctx: Ctx, files: FileStat[]) {
       const bar = diffBar(f.adds, f.dels, BAR_W)
       return line(
         ctx,
-        <Text color={THEME.fg}>
+        <Text>
           {truncate(f.path, pathRoom).padEnd(pathRoom)}
           {f.adds === null ? (
-            <Text color={THEME.muted}>{'bin'.padStart(12)}</Text>
+            <Text dimColor>{'bin'.padStart(12)}</Text>
           ) : (
-            <Text color={THEME.fg}>
+            <Text>
               <Text color={ADD_COLOR}>{`+${f.adds}`.padStart(6)}</Text>
               <Text color={DEL_COLOR}>{` −${f.dels}`.padEnd(6)}</Text>
             </Text>
@@ -1003,7 +992,7 @@ function renderFiles(ctx: Ctx, files: FileStat[]) {
         </Text>,
       )
     }),
-    ...(files.length > MAX_FILES ? [line(ctx, <Text color={THEME.muted}>… and {files.length - MAX_FILES} more files</Text>)] : []),
+    ...(files.length > MAX_FILES ? [line(ctx, <Text dimColor>… and {files.length - MAX_FILES} more files</Text>)] : []),
   ]
 }
 
@@ -1022,25 +1011,25 @@ function renderDetail($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow)
   const rows: RenderChildren[] = [
     line(
       ctx,
-      <Text wrap="truncate-end" color={THEME.fg}>
+      <Text wrap="truncate-end">
         {renderPill(ctx, plainPill(ctx, short(commit.hash), lane, true))}
-        <Text weight="bold" color={THEME.fg}>{truncate(subject, inner - short(commit.hash).length - PILL_PAD)}</Text>
+        <Text weight="bold">{truncate(subject, inner - short(commit.hash).length - PILL_PAD)}</Text>
       </Text>,
     ),
   ]
-  if (detail === null) rows.push(line(ctx, <Text color={THEME.muted}>Loading details…</Text>))
+  if (detail === null) rows.push(line(ctx, <Text dimColor>Loading details…</Text>))
   else {
     rows.push(
       line(
         ctx,
-        <Text color={THEME.muted} wrap="truncate-end">
+        <Text dimColor wrap="truncate-end">
           {truncate(`${detail.author} <${detail.email}> · ${absTime(detail.time)} (${relTime(ctx.now, detail.time)}) · ${detail.hash}`, inner)}
         </Text>,
       ),
     )
     if (body.length && body[0] !== '') {
-      rows.push(blank(ctx), ...body.slice(0, BODY_LINES).map(l => line(ctx, <Text color={THEME.fg} wrap="truncate-end">{truncate(l, inner)}</Text>)))
-      if (body.length > BODY_LINES) rows.push(line(ctx, <Text color={THEME.muted}>…</Text>))
+      rows.push(blank(ctx), ...body.slice(0, BODY_LINES).map(l => line(ctx, <Text wrap="truncate-end">{truncate(l, inner)}</Text>)))
+      if (body.length > BODY_LINES) rows.push(line(ctx, <Text dimColor>…</Text>))
     }
     rows.push(blank(ctx), ...renderFiles(ctx, detail.files))
   }
@@ -1050,10 +1039,10 @@ function renderDetail($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow)
       line(
         ctx,
         [
-          <Text color={THEME.muted}>Refs:</Text>,
+          <Text dimColor>Refs:</Text>,
           ...badges.map((b, i) => (
             <Button key={`refmenu-${i}`} plain onPress={() => openMenu($, commit.hash, b)}>
-              <Text color={THEME.fg}>⋯ {b.label}</Text>
+              <Text>⋯ {b.label}</Text>
             </Button>
           )),
         ],
@@ -1096,29 +1085,29 @@ function renderSettings($: EngineInterface, ctx: Ctx, settings: RepoSettings | n
   const { Input } = ctx
   const scopeButton = (scope: ConfigScope, label: string) => (
     <Button key={`scope-${scope}`} plain onPress={() => update($, viewState, v => ({ ...v, configScope: scope }))}>
-      <Text color={THEME.fg}>{view.configScope === scope ? '◉' : '○'} {label}</Text>
+      <Text>{view.configScope === scope ? '◉' : '○'} {label}</Text>
     </Button>
   )
   const both = (key: 'name' | 'email') => `local: ${settings?.local[key] || '—'} · global: ${settings?.global[key] || '—'}`
   return (
     <Box flexDirection="column">
       <Box flexDirection="row" justifyContent="space-between">
-        <Text weight="bold" color={THEME.fg}>{ctx.icons.settings} Repository settings</Text>
+        <Text weight="bold">{ctx.icons.settings} Repository settings</Text>
         <Button key="settings-back" plain onPress={() => update($, viewState, v => ({ ...v, isSettings: false }))}>
-          <Text color={THEME.muted}>← graph</Text>
+          <Text dimColor>← graph</Text>
         </Button>
       </Box>
       {rule(ctx)}
       {settings === null ? (
-        <Text color={THEME.muted}>Loading…</Text>
+        <Text dimColor>Loading…</Text>
       ) : (
         <Box flexDirection="column" gap={1}>
           <Box flexDirection="column">
-            <Text weight="bold" color={THEME.fg}>User</Text>
-            <Text color={THEME.muted}>name   {both('name')}</Text>
-            <Text color={THEME.muted}>email  {both('email')}</Text>
+            <Text weight="bold">User</Text>
+            <Text dimColor>name   {both('name')}</Text>
+            <Text dimColor>email  {both('email')}</Text>
             <Box flexDirection="row" gap={2} marginTop={1}>
-              <Text color={THEME.muted}>Save to:</Text>
+              <Text dimColor>Save to:</Text>
               {scopeButton('local', 'this repository')}
               {scopeButton('global', 'global')}
             </Box>
@@ -1130,26 +1119,26 @@ function renderSettings($: EngineInterface, ctx: Ctx, settings: RepoSettings | n
             )}
           </Box>
           <Box flexDirection="column">
-            <Text weight="bold" color={THEME.fg}>Remotes</Text>
-            {settings.remotes.length === 0 && <Text color={THEME.muted}>No remotes.</Text>}
+            <Text weight="bold">Remotes</Text>
+            {settings.remotes.length === 0 && <Text dimColor>No remotes.</Text>}
             {settings.remotes.map(r => (
               <Box flexDirection="column">
                 <Box height={1} overflow="hidden" flexDirection="row">
                   <Box flexShrink={0}>{renderPill(ctx, plainPill(ctx, r.name, REMOTE_BG, true))}</Box>
-                  <Text color={THEME.muted}>{truncateMiddle(r.fetchUrl, Math.max(10, cols - r.name.length - PILL_PAD))}</Text>
+                  <Text dimColor>{truncateMiddle(r.fetchUrl, Math.max(10, cols - r.name.length - PILL_PAD))}</Text>
                 </Box>
                 {r.pushUrl && r.pushUrl !== r.fetchUrl && (
-                  <Text color={THEME.muted}>{`  push: ${truncateMiddle(r.pushUrl, Math.max(10, cols - 8))}`}</Text>
+                  <Text dimColor>{`  push: ${truncateMiddle(r.pushUrl, Math.max(10, cols - 8))}`}</Text>
                 )}
                 {!view.running && (
                   <Box flexDirection="row" gap={1} marginLeft={2}>
                     <Button key={`remote-fetch-${r.name}`} plain onPress={() => runAction($, ['fetch', r.name], `Fetched ${r.name} ✓`, true)}>
-                      <Text color={THEME.muted}>fetch</Text>
+                      <Text dimColor>fetch</Text>
                     </Button>
                     <Button key={`remote-edit-${r.name}`} plain onPress={() =>
                       update($, viewState, v => ({ ...v, editingRemote: v.editingRemote === r.name ? null : r.name }))
                     }>
-                      <Text color={THEME.muted}>edit URL</Text>
+                      <Text dimColor>edit URL</Text>
                     </Button>
                     {confirmButton($, ctx, `remote-delete-${r.name}`, `remote-delete:${r.name}`, 'Delete', () =>
                       runAction($, ['remote', 'remove', r.name], `Remote ${r.name} removed`),
@@ -1168,7 +1157,7 @@ function renderSettings($: EngineInterface, ctx: Ctx, settings: RepoSettings | n
                 <Button key="remote-add" plain onPress={() =>
                   update($, viewState, v => ({ ...v, isAddingRemote: !v.isAddingRemote, remoteDraft: '' }))
                 }>
-                  <Text color={THEME.fg}>+ Add remote</Text>
+                  <Text>+ Add remote</Text>
                 </Button>
                 {Input && view.isAddingRemote && (
                   <Box flexDirection="column">
@@ -1194,11 +1183,11 @@ function renderSettings($: EngineInterface, ctx: Ctx, settings: RepoSettings | n
 
 type BarItem = { node: RenderChildren; width: number }
 
-// `fill` is the rows the root box takes at least: a docked pane's whole room, so the background
-// reaches its bottom even with few commits. Inline the frame fits the tree, so nothing is added.
-async function renderPane($: EngineInterface, hostEls: Ctx['els'], surface: string, cols: number, scroll: { offset: number; bodyRows: number }, fill: number) {
+async function renderPane($: EngineInterface, hostEls: Ctx['els'], surface: string, isDocked: boolean, cols: number, scroll: { offset: number; bodyRows: number }) {
   const els = surface === 'desktop' ? monoText(hostEls) : hostEls
-  const { Box, Text, Button } = els
+  const { Box, Text } = els
+  // Only the graph scrolls its own rows; any other screen lets the engine scroll.
+  ownScroll = null
   const [cache, view, detail, isRound, repos] = await Promise.all([
     readCache($),
     read($, viewState),
@@ -1207,8 +1196,8 @@ async function renderPane($: EngineInterface, hostEls: Ctx['els'], surface: stri
     read($, reposState),
   ])
   const { graph, indexOf } = cache
-  if (graph.status === 'no-repo') return <Box backgroundColor={THEME.bg} padding={1} minHeight={fill}><Text color={THEME.muted}>Not a git repository.</Text></Box>
-  if (graph.status === 'error') return <Box backgroundColor={THEME.bg} padding={1} minHeight={fill}><Text color={DEL_COLOR}>Could not read git: {graph.error ?? ''}</Text></Box>
+  if (graph.status === 'no-repo') return <Box padding={1}><Text dimColor>Not a git repository.</Text></Box>
+  if (graph.status === 'error') return <Box padding={1}><Text color="error">Could not read git: {graph.error ?? ''}</Text></Box>
 
   const graphMax = Math.max(6, Math.min(40, Math.floor(cols / 3)))
   const Client = (surface === 'desktop' && 'Client' in els ? (els.Client as Elements['terminal']['Client']) : undefined)
@@ -1229,41 +1218,93 @@ async function renderPane($: EngineInterface, hostEls: Ctx['els'], surface: stri
     Client: (surface === 'terminal' || surface === 'desktop') && 'Client' in els ? (els.Client as Elements['terminal']['Client']) : undefined,
     isDesktop: Client !== undefined,
   }
-  if (view.isSettings) return <Box backgroundColor={THEME.bg} padding={1} minHeight={fill}>{renderSettings($, ctx, await read($, settingsState))}</Box>
+  if (view.isSettings) return <Box padding={1}>{renderSettings($, ctx, await read($, settingsState))}</Box>
   const header = renderHeader($, ctx)
 
-  // Only the rows in the window are drawn; spacers of the same height stand for the rest,
-  // so a scroll step costs a window of rows, not the whole graph.
   const rowOf = (hash: string | null | undefined) => (hash ? graph.rows[indexOf.get(hash) ?? -1] : undefined)
   const menuRow = rowOf(view.menu?.hash)
   const menuBox = menuRow && view.menu ? renderMenu($, ctx, menuRow, view.menu.badge) : undefined
   const selectedRow = rowOf(view.selected)
   const detailBox = selectedRow ? renderDetail($, ctx, selectedRow) : undefined
   const heights = graph.rows.map(r => 1 + (r === menuRow ? (menuBox?.height ?? 0) : 0) + (r === selectedRow ? (detailBox?.height ?? 0) : 0))
-  const pinned = view.scrollTo ? (indexOf.get(view.scrollTo) ?? -1) : -1
-  const offset = pinned >= 0 ? header.height + topOf(heights, pinned) - Math.floor(scroll.bodyRows / 2) : scroll.offset
-  const { from, to, before, after } = visibleRange(heights, header.height, offset, scroll.bodyRows, OVERSCAN)
+  const centered = view.scrollTo ? (indexOf.get(view.scrollTo) ?? -1) : -1
+  const rows = (from: number, to: number) => [
+    graph.rows.length === 0 && <Text dimColor>{graph.status === 'ready' ? 'No commits yet.' : 'Loading…'}</Text>,
+    ...graph.rows.slice(from, to).map(row => (
+      <Box key={`row:${row.commit.hash}`} flexDirection="column" flexShrink={0}>
+        {renderRow($, ctx, row)}
+        {row === menuRow && menuBox?.node}
+        {row === selectedRow && detailBox?.node}
+      </Box>
+    )),
+  ]
 
-  return (
-    <Box flexDirection="column" backgroundColor={THEME.bg} minHeight={fill}>
-      {header.node}
-      {graph.rows.length === 0 && <Box backgroundColor={THEME.bg}><Text color={THEME.muted}>{graph.status === 'ready' ? 'No commits yet.' : 'Loading…'}</Text></Box>}
-      {before > 0 && <Box key="space-before" height={before} flexShrink={0} backgroundColor={THEME.bg} />}
-      {graph.rows.slice(from, to).map(row => (
-        <Box key={`row:${row.commit.hash}`} flexDirection="column" flexShrink={0} backgroundColor={THEME.bg}>
-          {renderRow($, ctx, row)}
-          {row === menuRow && menuBox?.node}
-          {row === selectedRow && detailBox?.node}
+  // On a docked terminal pane the pane scrolls its own rows: the tree holds still at the pane's
+  // height and the rows move under a fixed header and footer (an engine scroll would carry the
+  // footer off and back on each step). The ui.scroll hook moves `scrollTopState`.
+  if (isDocked && surface === 'terminal') {
+    const viewport = Math.max(1, scroll.bodyRows - header.height - FOOTER_ROWS)
+    const total = topOf(heights, heights.length)
+    const top = clampTop(centered >= 0 ? topOf(heights, centered) - Math.floor(viewport / 2) : await read($, scrollTopState), total, viewport)
+    const { from, to, shift } = windowAt(heights, top, viewport)
+    ownScroll = { top, maxTop: Math.max(0, total - viewport) }
+    return (
+      <Box flexDirection="column" height={scroll.bodyRows} overflow="hidden">
+        {header.node}
+        <Box key="rows-window" height={viewport} flexShrink={0} overflow="hidden">
+          <Box position="absolute" top={-shift} left={0} width={cols} flexDirection="column">
+            {rows(from, to)}
+          </Box>
         </Box>
-      ))}
-      {after > 0 && <Box key="space-after" height={after} flexShrink={0} backgroundColor={THEME.bg} />}
-      {graph.hasMore && (
-        <Button key="more" plain onPress={async () => {
-          await update($, viewState, v => ({ ...v, limit: v.limit + PAGE }))
-          await load($)
-        }}>
-          <Text color={THEME.muted} backgroundColor={THEME.bg}>Load {PAGE} more commits</Text>
-        </Button>
+        {renderFooter($, ctx, from, to)}
+      </Box>
+    )
+  }
+
+  // Elsewhere the engine scrolls the tree: only the rows in its window are drawn, spacers of
+  // the same height standing for the rest, so a scroll step costs a window of rows.
+  const offset = centered >= 0 ? header.height + topOf(heights, centered) - Math.floor(scroll.bodyRows / 2) : scroll.offset
+  const { from, to, before, after } = visibleRange(heights, header.height, offset, scroll.bodyRows, OVERSCAN)
+  return (
+    <Box flexDirection="column">
+      {header.node}
+      {before > 0 && <Box key="space-before" height={before} flexShrink={0} />}
+      {rows(from, to)}
+      {after > 0 && <Box key="space-after" height={after} flexShrink={0} />}
+      {renderFooter($, ctx, 0, graph.rows.length)}
+    </Box>
+  )
+}
+
+const FOOTER_ROWS = 2
+
+// A rule, then the commits on screen (all of them off a docked pane) and "Load more" at the right.
+function renderFooter($: EngineInterface, ctx: Ctx, from: number, to: number) {
+  const { els: { Box, Button, Text }, graph } = ctx
+  // The uncommitted row, first when there is one, is not a commit.
+  const dirty = graph.dirty ? 1 : 0
+  const count = graph.rows.length - dirty
+  const last = Math.max(0, to - dirty)
+  const first = Math.min(last, Math.max(1, from + 1 - dirty))
+  const shown = count === 0 ? '' : first === 1 && last === count ? `${count}${graph.hasMore ? '+' : ''} commits` : `${first}–${last} of ${count}${graph.hasMore ? '+' : ''} commits`
+  return (
+    <Box key="footer" height={FOOTER_ROWS} flexShrink={0} flexDirection="column">
+      {rule(ctx)}
+      {line(
+        ctx,
+        [
+          <Text dimColor>{shown}</Text>,
+          graph.hasMore && (
+            <Button key="more" plain onPress={async () => {
+              await update($, viewState, v => ({ ...v, limit: v.limit + PAGE }))
+              await load($)
+            }}>
+              <Text dimColor>Load {PAGE} more commits</Text>
+            </Button>
+          ),
+        ],
+        0,
+        'space-between',
       )}
     </Box>
   )
@@ -1340,6 +1381,17 @@ export const register: Register = (on, options) => {
   }).catch(($, e, next) => next(e))
 
   on('ui.render', { component: 'Pane', requestId: PANE }, ($, e) =>
-    renderPane($, $.ui.resolve(e), e.surface, e.props.bodyColumns, e.props.scroll, e.props.placement === 'dock' ? e.props.scroll.bodyRows : 0),
+    renderPane($, $.ui.resolve(e), e.surface, e.props.placement === 'dock', e.props.bodyColumns, e.props.scroll),
   )
+
+  // On a docked terminal pane the mod scrolls its own rows: the engine's window holds still
+  // (no `next`), so the header and the footer never move. Elsewhere the engine scrolls.
+  on('ui.scroll', { requestId: PANE }, async ($, e, next) => {
+    if (!ownScroll) return next(e)
+    const { top, maxTop } = ownScroll
+    await update($, scrollTopState, () => Math.max(0, Math.min(top + (e.by ?? 0), maxTop)))
+    // A search's centered commit lets go at the first scroll, from where it was drawn.
+    if ((await read($, viewState)).scrollTo) await update($, viewState, v => ({ ...v, scrollTo: null }))
+    return {}
+  }).catch(($, e, next) => next(e))
 }

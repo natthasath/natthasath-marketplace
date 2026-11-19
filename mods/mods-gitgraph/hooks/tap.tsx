@@ -1,12 +1,11 @@
 import type { ClientModule } from 'claude-code'
 
-export type TapRun = { t: string; color?: string; backgroundColor?: string; weight?: 'bold'; italic?: boolean }
+export type TapRun = { t: string; color?: string; dim?: boolean; backgroundColor?: string; weight?: 'bold'; italic?: boolean }
 export type TapProps = { runs: TapRun[] }
 
-// A plain Button on the desktop is a native control: the host picks its label colour, which on a
-// light app theme is dark and vanishes into this pane's dark background. This draws the same
-// label as Text with its own explicit colours and posts a left press for the hooks module
-// (ui.message `tap:<key>`), so the pane looks the same in a light theme as in a dark one.
+// A plain Button on the desktop is a native control: the host picks its label colour, so a
+// dimmed label or a coloured run would not show. This draws the same label as Text with the
+// runs' own colours and posts a left press for the hooks module (ui.message `tap:<key>`).
 const Tap: ClientModule<TapProps, true> = (p, surface) => {
   if (surface.state === undefined) {
     surface.setState(true)
@@ -18,7 +17,7 @@ const Tap: ClientModule<TapProps, true> = (p, surface) => {
   return (
     <Text mono>
       {p.runs.map(r => (
-        <Text mono color={r.color} backgroundColor={r.backgroundColor} weight={r.weight} italic={r.italic}>
+        <Text mono color={r.color} dimColor={r.dim} backgroundColor={r.backgroundColor} weight={r.weight} italic={r.italic}>
           {r.t}
         </Text>
       ))}

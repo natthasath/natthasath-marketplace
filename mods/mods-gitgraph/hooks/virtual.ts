@@ -60,3 +60,24 @@ export function wrapRows(widths: number[], cols: number, gap: number): number[][
   })
   return rows
 }
+
+// The rows the window [top, top + rows) shows over rows of `heights`: `from` to `to`
+// (exclusive), and `shift`, the rows of the first one above the window.
+export function windowAt(heights: number[], top: number, rows: number): { from: number; to: number; shift: number } {
+  let at = 0
+  let from = heights.length
+  let shift = 0
+  for (let i = 0; i < heights.length; i++) {
+    const h = heights[i] ?? 0
+    if (from === heights.length && at + h > top) {
+      from = i
+      shift = top - at
+    }
+    at += h
+    if (at >= top + rows) return { from: Math.min(from, i), to: i + 1, shift }
+  }
+  return from === heights.length ? { from: 0, to: heights.length, shift: 0 } : { from, to: heights.length, shift }
+}
+
+// A window's first row, kept inside a graph `total` rows tall shown `rows` at a time.
+export const clampTop = (top: number, total: number, rows: number) => Math.max(0, Math.min(top, total - rows))
