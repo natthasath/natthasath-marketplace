@@ -114,7 +114,7 @@
     },
     {
       "name": "mods-filetree",
-      "description": "Mod ที่แสดง file tree แบบ IDE ในแถบด้านข้าง (pane) พร้อมสถานะ git และไฮไลต์ไฟล์ที่ Claude อ่าน/เขียน",
+      "description": "Mod ที่แสดง file tree แบบ IDE ในแถบด้านข้าง (pane) ให้เห็นว่า Claude กำลังทำอะไรที่ไฟล์ไหน — fork ของ data-goblin/claude-code-filetree (MIT)",
       "source": "./mods/mods-filetree",
       "category": "development",
       "keywords": ["mods", "file-tree", "explorer", "git", "pane", "ui", "hooks", "tui"]

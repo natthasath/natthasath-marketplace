@@ -1,50 +1,84 @@
-// A directory entry as the tree keeps it: `path` is relative to the session's folder, `/`-separated.
-export type Node = { name: string; path: string; isDir: boolean; size: number; mtimeMs: number }
-
-// One letter per path, as `git status --porcelain` gives it: M modified, A added, D deleted,
-// R renamed, U conflicted, ? untracked, ! ignored.
-export type GitMark = 'M' | 'A' | 'D' | 'R' | 'U' | '?' | '!'
-
-// A folder's changed paths below it: untracked, modified (added, renamed, conflicted too), deleted.
-export type GitCounts = [number, number, number]
-
-export type Git = {
-  branch: string
-  // Each changed or ignored path's mark; a folder holding changes carries the strongest of them.
-  marks: Record<string, GitMark>
-  // Each folder's changes below it, by folder ('' is the root).
-  counts: Record<string, GitCounts>
-  changed: number
+export type FileNode = {
+  id: string
+  parent: string
+  name: string
+  kind: 'dir' | 'file' | 'link'
+  hidden: boolean
+  mtime: number
+  size: number
+  loaded: boolean
 }
 
-export type ActivityKind = 'read' | 'write'
-// Files Claude touched lately, by path, with when; a row lights while `at` is recent.
-export type Activity = Record<string, { kind: ActivityKind; at: number }>
+export type Branch = {
+  head: string
+  upstream: string
+  ahead: number
+  behind: number
+}
 
-export type Column = 'size' | 'date'
+export type Activity = {
+  id: number
+  kind: string
+  label: string
+  state: 'running' | 'done' | 'failed'
+  detail: string
+  at: number
+  tone: string
+  nerd: string
+  plain: string
+}
 
-export type View = {
-  isOpen: boolean
+export type FileTree = {
+  root: string
+  nodes: FileNode[]
   expanded: string[]
-  selected: string | null
+  cursor: string
+  selected: string
   query: string
-  matches: string[]
-  column: Column
-  // The path a render centers once, then lets go.
-  scrollTo: string | null
+  searchCase: boolean
+  searchRegex: boolean
+  searchContent: boolean
+  searchScope: string
+  autoCollapse?: boolean
+  sortCol: '' | 'name' | 'git' | 'metric'
+  sortDir: 'desc' | 'asc'
+  showHidden: boolean
+  column: 'date' | 'size' | 'loc' | 'files'
+  dirSizes: Record<string, number>
+  git: Record<string, string>
+  diff: Record<string, [number, number]>
+  ignored: string[]
+  untrackedDirs: string[]
+  top: string
+  prefix: string
+  branch: Branch | null
+  counts: Record<string, [number, number, number]>
+  flash: string[]
+  flashDim: string[]
+  flashOn: boolean
+  flashTones: Record<string, string>
+  scroll: number | null
+  preview: string
+  previewTop: number
+  split: boolean
+}
+
+export type Theme = {
+  fg: string
+  accent: string
+  muted: string
+  urgent: string
+  selection: string
+  bg: string
 }
 
 declare module 'claude-code' {
   interface PluginState {
     'mods-filetree': {
-      root: string
-      // Each loaded folder's entries, by its path ('' is the root).
-      dirs: Record<string, Node[]>
-      git: Git
-      activity: Activity
-      view: View
-      // The first row a docked terminal pane shows, the pane scrolling its own rows.
-      scrollTop: number
+      tree: FileTree
+      theme: Theme
+      activity: Activity[]
+      visits: Record<string, { n: number; at: number }>
     }
   }
 }

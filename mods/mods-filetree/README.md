@@ -1,28 +1,28 @@
 # 🎉 mods-filetree
 
-Mod that renders an IDE-style file tree pane inside Claude Code, showing what Claude reads and writes. Inspired by [data-goblin/claude-code-filetree](https://github.com/data-goblin/claude-code-filetree) (MIT); this is its own implementation of a subset of that project's features.
+An IDE-style file tree for Claude Code that shows what Claude is doing and where in files. This mod is a fork of [data-goblin/claude-code-filetree](https://github.com/data-goblin/claude-code-filetree) 0.8.2 by Kurt Buhler, under the MIT License (see [`LICENSE`](LICENSE) and [`ACKNOWLEDGEMENTS.md`](ACKNOWLEDGEMENTS.md)); its design and behaviour are the original's, renamed to `mods-filetree` so it installs from this marketplace.
 
 ### ✨ Mods
 
 | Mod | วัตถุประสงค์ |
 |---|---|
-| `mods-filetree` | แสดง file tree ของโฟลเดอร์ที่ session เปิดอยู่ในแถบด้านข้าง หน้าตาตามแบบ plugin filetree (เปิดอัตโนมัติตอนเริ่ม session, ปิด/เปิดใหม่ด้วย `/mods-filetree`) — header มีชื่อ root ■ และปุ่ม ◫ สลับคอลัมน์ Modified/Size, ⊟ หุบทั้งหมด, ↻ refresh; แถว branch ⑂ พร้อมจำนวนไฟล์เปลี่ยน `?:n M:n D:n` หรือ `± no changes`; ช่องค้นหาใต้ header; หัวคอลัมน์ Name / Git / Modified; แถวโฟลเดอร์ ▸/▾ ■ สี accent ไฟล์ ∙ พร้อมสถานะ git ท้ายแถว (M/A/?/D/R/U สีตามสถานะ, ไฟล์ ignore แสดง ⊘ และจาง, ไฟล์ที่ลบขีดฆ่า) โฟลเดอร์แสดงจำนวนไฟล์เปลี่ยนในคอลัมน์ Git; คอลัมน์ขวาเป็นวันเวลาแก้ไขล่าสุด `YYYY-MM-DD HH:mm` (สลับเป็นขนาดไฟล์ได้); ไฟล์ที่ Claude อ่าน/เขียนติดสีราว 6 วินาที และ Follow Claude กางโฟลเดอร์แล้วเลื่อนไปหาให้; ค้นหาชื่อไฟล์ทั้ง repo แล้วคลิกผลลัพธ์เพื่อไปที่ไฟล์; คลิกเลือก (แถวที่เลือกมีพื้นและ ▎) ดับเบิลคลิกเปิดด้วยแอป default; footer แสดงจำนวนโฟลเดอร์และไฟล์ใน tree และ path ที่เลือก (คลิกเพื่อคัดลอก); auto-refresh ทุก 3 วินาทีและหลัง Claude รัน Bash/เขียนไฟล์ |
+| `mods-filetree` | file tree แบบ IDE ในแถบด้านข้าง หน้าตาและการทำงานเหมือน filetree 0.8.2 ทุกอย่าง — tree ของ cwd หรือโฟลเดอร์ที่ pin ไว้ พร้อมคอลัมน์ Git, size, line count และ date; ค้นชื่อไฟล์และเนื้อหา (git grep / grep -r) แบบ case/regex; ไฟล์ที่ Claude อ่าน/เขียน/commit shimmer ใน tree พร้อม auto-collapse; guard ไฟล์/โฟลเดอร์จากการแก้ของ Claude และเตือนไฟล์ที่เขียนนอก repo; split preview โค้ด, Markdown, รูป, เฟรมวิดีโอ, PDF และ Word; treemap; diff; jump แบบ zoxide; เลือกหลายแถวส่งเป็น context; เปิดไฟล์ด้วยแอป default, editor ใน tmux/herdr หรือคำสั่งที่ตั้งเอง |
+
+รายละเอียดแต่ละส่วนอยู่ใน [`docs/`](docs): [tree](docs/tree.md), [search](docs/search.md), [git](docs/git.md), [activity](docs/activity.md), [context](docs/context.md), [preview & treemap](docs/preview-treemap.md), [diff](docs/diff.md), [open](docs/open.md), [guards](docs/guards.md), [keys](docs/keys.md), [sidebar](docs/sidebar.md)
 
 ### 🏆 Usage
 
 ```
-/mods-filetree
+/filetree
 ```
 
-เรียก `/mods-filetree` เพื่อเปิด/ปิดแผง File Tree ด้วยตัวเอง ที่เหลือใช้เมาส์คลิกในแผงได้ทั้งหมด (คลิกโฟลเดอร์/ไฟล์, ดับเบิลคลิกเปิดไฟล์, ปุ่มบน header และ footer)
+ใช้คำสั่งเดียวกับต้นฉบับ: `/filetree` เปิด/ปิดแผง, `/filetree <path>` เปิดที่โฟลเดอร์นั้น, `/filetree open` เปิดค้างไว้, `/filetree keys` ตั้ง alt+l / alt+h ให้ย้ายคีย์บอร์ดเข้า-ออก tree — กด `?` ในแผงเพื่อดูคีย์ลัดทั้งหมด
+
+ถ้าติดตั้ง `filetree@claude-code-filetree` ไว้ด้วย ให้ปิดตัวใดตัวหนึ่ง เพราะทั้งคู่ใช้คำสั่ง `/filetree` และจะมีแผง file tree สองแผง
 
 ### ⚙️ Config
 
-| Field | ค่า default | คำอธิบาย |
-|---|---|---|
-| `autoOpen` | `true` | เปิดแผง File Tree อัตโนมัติตอนเริ่ม session |
-| `followClaude` | `true` | กางโฟลเดอร์และเลื่อนไปหาไฟล์ที่ Claude กำลังอ่านหรือเขียน |
-| `column` | `date` | ค่าในคอลัมน์ขวาตอนเปิดแผง — `date` (Modified วันเวลาแก้ไขล่าสุด) หรือ `size` (กดปุ่ม ◫ สลับในแผงได้) |
+ตั้งค่าทั้งหมดได้ใน `/config` หัวข้อ mods-filetree — ชุดเดียวกับ filetree: Claude activity, Activity shimmer, Follow Claude, Jump moves Claude, Right-click copies, Follow work, Open at start, Focus on open, Right column (date/age/size/loc/files), Date format, Clock, Long file, Remote branch, Hints, Search spacing, Column headers, Auto-collapse, Shortcuts, Open with, Binary files, Edit with, Diff with, Diff groups, Terminal target, Ignore, Preview pane, Treemap, Palette และ Glyphs
 
 ### 📦 Install
 
@@ -30,6 +30,4 @@ Mod that renders an IDE-style file tree pane inside Claude Code, showing what Cl
 /plugin install mods-filetree@natthasath-marketplace
 ```
 
-### 🚧 ยังไม่มี (เทียบกับต้นฉบับ)
-
-ค้นหาเนื้อหาในไฟล์ (git grep), เลือกหลายไฟล์/ส่งเป็น context, preview, treemap, guards, diff, คีย์ลัด j/k, shimmer แบบเคลื่อนไหว และ icon แบบ Nerd Font
+ต้องใช้ Claude Code 2.1.306 ขึ้นไปและ git; ตัวเลือกเสริม: inotify-tools (Linux), ImageMagick หรือ ffmpeg, pdftoppm หรือ gs, soffice, pandoc และ pdftotext, tmux หรือ herdr, Nerd Fonts 3.2+
