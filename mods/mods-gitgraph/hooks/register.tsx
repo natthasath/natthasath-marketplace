@@ -717,6 +717,18 @@ function renderRow($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow) {
   const room = subjectRoom(cols, graphWidth, width)
   const isSelected = view.selected === commit.hash
   // With `Client`, each pill is its own instance so a right click opens its menu.
+  const pills = [
+    ...shown.map((b, i) => (
+      <Box flexShrink={0}>
+        {Client ? (
+          <Client key={`pill:${commit.hash}:${i}`} module="./pill.tsx" props={pillProps(ctx, b, lane)} />
+        ) : (
+          renderPill(ctx, pillProps(ctx, b, lane))
+        )}
+      </Box>
+    )),
+    more && <Box flexShrink={0}>{renderPill(ctx, plainPill(ctx, more, REMOTE_BG))}</Box>,
+  ]
   return (
     <Box
       key={`rowbox:${commit.hash}`}
@@ -732,58 +744,41 @@ function renderRow($: EngineInterface, ctx: Ctx, { commit, cells }: GraphRow) {
           {pad}
         </Text>
       </Box>
-      {/* Description, Author and Commit in one box: the subject, the author and the hash are one
-          Button, so one element draws them. On the desktop that Button is a Client (./tap.tsx);
-          drawn as a Client beside Text cells for Author and Commit, the two got out of step and
-          the author column showed the wrong rows' names. */}
-      <Box width={descriptionCol(cols, graphWidth) + authorCol(cols) + hashCol(cols)} flexShrink={0} overflow="hidden" flexDirection="row">
-      {shown.map((b, i) => (
-        <Box flexShrink={0}>
-          {Client ? (
-            <Client key={`pill:${commit.hash}:${i}`} module="./pill.tsx" props={pillProps(ctx, b, lane)} />
-          ) : (
-            renderPill(ctx, pillProps(ctx, b, lane))
-          )}
-        </Box>
-      ))}
-      {more && (
-        <Box flexShrink={0}>
-          {renderPill(ctx, plainPill(ctx, more, REMOTE_BG))}
-        </Box>
-      )}
-      {ctx.isDesktop && Client ? (
-        // On the desktop the subject, author and hash are still one element, but as columns: the
-        // author and the hash keep fixed cells and only the subject gives way, so a row that runs
-        // a little wide there cuts the subject with an ellipsis instead of losing the hash.
-        (taps.set(commit.hash, () => select($, commit.hash)),
-        (
-          <Client
-            key={`tap:${commit.hash}`}
-            module="./tap.tsx"
-            flexGrow={1}
-            props={{
-              runs: [
-                { t: truncate(commit.subject, room), color: isSelected ? THEME.accent : THEME.fg, ...(isSelected ? { weight: 'bold' as const } : {}) },
-                ...(authorCol(cols) > 0 ? [{ t: authorCell(cols, commit.author), color: THEME.muted }] : []),
-                { t: hashCell(cols, commit.hash), color: THEME.muted },
-              ],
-              cells: [null, ...(authorCol(cols) > 0 ? [authorCol(cols)] : []), hashCol(cols)],
-            }}
-          />
-        ))
-      ) : (
-        <Button key={commit.hash} plain onPress={() => select($, commit.hash)}>
-          <Text color={isSelected ? THEME.accent : THEME.fg} weight={isSelected ? 'bold' : undefined}>
-            {truncate(commit.subject, room).padEnd(room)}
-          </Text>
-          {authorCol(cols) > 0 && <Text color={THEME.muted}>{authorCell(cols, commit.author)}</Text>}
-          <Text color={THEME.muted}>{hashCell(cols, commit.hash)}</Text>
-        </Button>
-      )}
-      </Box>
-      <Box width={EDGE_SAFETY} flexShrink={0}>
-        <Text color={THEME.fg}> </Text>
-      </Box>
+      {ctx.isDesktop && Client
+        ? // On the desktop a Client's region is clipped narrower than what it draws, so whatever
+          // sits at its end is lost: the Client (./tap.tsx) draws only the subject, cut by the
+          // Description box, and Author and Commit are the pane's own fixed boxes, like the header's.
+          [
+            <Box width={descriptionCol(cols, graphWidth)} flexShrink={0} overflow="hidden" flexDirection="row">
+              {pills}
+              {(taps.set(commit.hash, () => select($, commit.hash)),
+              (
+                <Client
+                  key={`tap:${commit.hash}`}
+                  module="./tap.tsx"
+                  props={{ runs: [{ t: truncate(commit.subject, room), color: isSelected ? THEME.accent : THEME.fg, ...(isSelected ? { weight: 'bold' as const } : {}) }] }}
+                />
+              ))}
+            </Box>,
+            ...rightColumns(ctx, authorCell(cols, commit.author), hashCell(cols, commit.hash)),
+          ]
+        : [
+            // In the terminal the subject, the author and the hash are one Button, so one element
+            // draws them and they stay in step.
+            <Box width={descriptionCol(cols, graphWidth) + authorCol(cols) + hashCol(cols)} flexShrink={0} overflow="hidden" flexDirection="row">
+              {pills}
+              <Button key={commit.hash} plain onPress={() => select($, commit.hash)}>
+                <Text color={isSelected ? THEME.accent : THEME.fg} weight={isSelected ? 'bold' : undefined}>
+                  {truncate(commit.subject, room).padEnd(room)}
+                </Text>
+                {authorCol(cols) > 0 && <Text color={THEME.muted}>{authorCell(cols, commit.author)}</Text>}
+                <Text color={THEME.muted}>{hashCell(cols, commit.hash)}</Text>
+              </Button>
+            </Box>,
+            <Box width={EDGE_SAFETY} flexShrink={0}>
+              <Text color={THEME.fg}> </Text>
+            </Box>,
+          ]}
     </Box>
   )
 }
@@ -1199,7 +1194,9 @@ function renderSettings($: EngineInterface, ctx: Ctx, settings: RepoSettings | n
 
 type BarItem = { node: RenderChildren; width: number }
 
-async function renderPane($: EngineInterface, hostEls: Ctx['els'], surface: string, cols: number, scroll: { offset: number; bodyRows: number }) {
+// `fill` is the rows the root box takes at least: a docked pane's whole room, so the background
+// reaches its bottom even with few commits. Inline the frame fits the tree, so nothing is added.
+async function renderPane($: EngineInterface, hostEls: Ctx['els'], surface: string, cols: number, scroll: { offset: number; bodyRows: number }, fill: number) {
   const els = surface === 'desktop' ? monoText(hostEls) : hostEls
   const { Box, Text, Button } = els
   const [cache, view, detail, isRound, repos] = await Promise.all([
@@ -1210,8 +1207,8 @@ async function renderPane($: EngineInterface, hostEls: Ctx['els'], surface: stri
     read($, reposState),
   ])
   const { graph, indexOf } = cache
-  if (graph.status === 'no-repo') return <Box backgroundColor={THEME.bg} padding={1}><Text color={THEME.muted}>Not a git repository.</Text></Box>
-  if (graph.status === 'error') return <Box backgroundColor={THEME.bg} padding={1}><Text color={DEL_COLOR}>Could not read git: {graph.error ?? ''}</Text></Box>
+  if (graph.status === 'no-repo') return <Box backgroundColor={THEME.bg} padding={1} minHeight={fill}><Text color={THEME.muted}>Not a git repository.</Text></Box>
+  if (graph.status === 'error') return <Box backgroundColor={THEME.bg} padding={1} minHeight={fill}><Text color={DEL_COLOR}>Could not read git: {graph.error ?? ''}</Text></Box>
 
   const graphMax = Math.max(6, Math.min(40, Math.floor(cols / 3)))
   const Client = (surface === 'desktop' && 'Client' in els ? (els.Client as Elements['terminal']['Client']) : undefined)
@@ -1232,7 +1229,7 @@ async function renderPane($: EngineInterface, hostEls: Ctx['els'], surface: stri
     Client: (surface === 'terminal' || surface === 'desktop') && 'Client' in els ? (els.Client as Elements['terminal']['Client']) : undefined,
     isDesktop: Client !== undefined,
   }
-  if (view.isSettings) return <Box backgroundColor={THEME.bg} padding={1}>{renderSettings($, ctx, await read($, settingsState))}</Box>
+  if (view.isSettings) return <Box backgroundColor={THEME.bg} padding={1} minHeight={fill}>{renderSettings($, ctx, await read($, settingsState))}</Box>
   const header = renderHeader($, ctx)
 
   // Only the rows in the window are drawn; spacers of the same height stand for the rest,
@@ -1248,7 +1245,7 @@ async function renderPane($: EngineInterface, hostEls: Ctx['els'], surface: stri
   const { from, to, before, after } = visibleRange(heights, header.height, offset, scroll.bodyRows, OVERSCAN)
 
   return (
-    <Box flexDirection="column" backgroundColor={THEME.bg}>
+    <Box flexDirection="column" backgroundColor={THEME.bg} minHeight={fill}>
       {header.node}
       {graph.rows.length === 0 && <Box backgroundColor={THEME.bg}><Text color={THEME.muted}>{graph.status === 'ready' ? 'No commits yet.' : 'Loading…'}</Text></Box>}
       {before > 0 && <Box key="space-before" height={before} flexShrink={0} backgroundColor={THEME.bg} />}
@@ -1342,5 +1339,7 @@ export const register: Register = (on, options) => {
     return ran
   }).catch(($, e, next) => next(e))
 
-  on('ui.render', { component: 'Pane', requestId: PANE }, ($, e) => renderPane($, $.ui.resolve(e), e.surface, e.props.bodyColumns, e.props.scroll))
+  on('ui.render', { component: 'Pane', requestId: PANE }, ($, e) =>
+    renderPane($, $.ui.resolve(e), e.surface, e.props.bodyColumns, e.props.scroll, e.props.placement === 'dock' ? e.props.scroll.bodyRows : 0),
+  )
 }

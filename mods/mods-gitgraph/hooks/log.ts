@@ -3,8 +3,9 @@ import type { Commit, CommitDetail, FileStat, Ref } from '../types'
 const US = '\x1f'
 const RS = '\x1e'
 
-export const LOG_FORMAT = '--format=%H%x1f%P%x1f%D%x1f%an%x1f%at%x1f%s%x1e'
-export const DETAIL_FORMAT = '--format=%H%x1f%an%x1f%ae%x1f%at%x1f%B%x1e'
+// %aN/%aE go through the repo's .mailmap, so one person committing under two names shows as one.
+export const LOG_FORMAT = '--format=%H%x1f%P%x1f%D%x1f%aN%x1f%at%x1f%s%x1e'
+export const DETAIL_FORMAT = '--format=%H%x1f%aN%x1f%aE%x1f%at%x1f%B%x1e'
 export const UNCOMMITTED = '*'
 
 export function parseRefs(decorations: string, remotes: string[] = ['origin']): Ref[] {
