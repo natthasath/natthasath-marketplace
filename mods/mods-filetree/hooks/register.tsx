@@ -3236,7 +3236,7 @@ export const register: Register = (on, options) => {
     guardsLoaded = null
     void loadGuards($)
     cached ??= { ...emptyTree(''), ...(await $.state.get(TREE)).value }
-    await $.command.register({ name: 'filetree', description: 'Show or hide the file tree; args: [path | open | keys] (no path = cwd, open = never hide, keys = bind alt+l / alt+h to move the keys to and from the tree)', immediate: true })
+    await $.command.register({ name: 'mods-filetree', description: 'Show or hide the file tree; args: [path | open | keys] (no path = cwd, open = never hide, keys = bind alt+l / alt+h to move the keys to and from the tree)', immediate: true })
     if (palette.unknown.length) void $.ui.toast(`filetree palette: ignored ${palette.unknown.join(' ')}; use key=#hex with fg, bg, accent, muted, urgent, selection, hover, jump, added, modified, renamed, add or del`)
     const windows = (await $.env.get('OS')) === 'Windows_NT'
     useDrives(windows)
@@ -3286,7 +3286,7 @@ export const register: Register = (on, options) => {
     return result
   })
 
-  on('command.run', { command: 'filetree' }, async ($, e) => {
+  on('command.run', { command: 'mods-filetree' }, async ($, e) => {
     const given = (e.args ?? '').trim()
     if (given === 'keys') return { text: await bindKeys($, home) }
     const mine = given ? undefined : (await $.ui.panes().catch(() => [])).find(p => p.id === PANE)
@@ -3297,8 +3297,8 @@ export const register: Register = (on, options) => {
       return { text: 'File tree closed.' }
     }
     const terminal = await $.session.surfaces().then(s => s.includes('terminal'), () => true)
-    if (terminal && !e.presentation.isFullscreen) return { text: 'filetree shows in the sidebar, which needs the fullscreen layout. Run /tui fullscreen, then /filetree.' }
-    if (terminal && e.presentation.columns < 110) return { text: 'filetree shows in the sidebar, which needs a terminal at least 110 columns wide. Widen it, then run /filetree.' }
+    if (terminal && !e.presentation.isFullscreen) return { text: 'filetree shows in the sidebar, which needs the fullscreen layout. Run /tui fullscreen, then /mods-filetree.' }
+    if (terminal && e.presentation.columns < 110) return { text: 'filetree shows in the sidebar, which needs a terminal at least 110 columns wide. Widen it, then run /mods-filetree.' }
     noDock = false
     const arg = given === 'open' ? '' : given
     const cwd = await cwdOf($)

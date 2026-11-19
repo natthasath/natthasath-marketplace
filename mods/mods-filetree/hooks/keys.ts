@@ -56,7 +56,7 @@ const GROUPS: readonly ShortcutGroup[] = [
       { key: 'ctrl+x tab', label: 'give the pane the keyboard', terminal: true },
       { key: 'alt+l', label: 'give the tree the keyboard', terminal: true },
       { key: 'alt+h', label: 'back to the prompt', terminal: true },
-      { key: '/filetree keys', label: 'set up alt+l and alt+h', terminal: true },
+      { key: '/mods-filetree keys', label: 'set up alt+l and alt+h', terminal: true },
       { key: 'Esc', label: 'back to the prompt', terminal: true },
     ],
   },

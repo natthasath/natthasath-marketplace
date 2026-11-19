@@ -1218,7 +1218,7 @@ test('sidebar only: no pane in the default layout, and an inline pane closes its
   await $.session.start({ cwd: root, surface: 'terminal', isInteractive: true })
   await clock.settle()
   const before = opened.length
-  const r = await $.command.run({ command: 'filetree', args: '', origin: { kind: 'composer' }, presentation: { isFullscreen: false, columns: 200 } })
+  const r = await $.command.run({ command: 'mods-filetree', args: '', origin: { kind: 'composer' }, presentation: { isFullscreen: false, columns: 200 } })
   expect(JSON.stringify(r)).toContain('/tui fullscreen')
   expect(opened.length).toBe(before)
   const ui = await $.ui.mount({ plugin: 'mods-filetree', surface: 'terminal', component: 'Pane', requestId: 'mods-filetree', props: { ...paneProps(60), placement: 'inline' }, viewport: { columns: 200, rows: 40, isFullscreen: false } })
@@ -1256,7 +1256,7 @@ test('in the desktop app /filetree opens the pane without the terminal layout ch
   await $.session.start({ cwd: root, surface: null, isInteractive: false })
   await clock.settle()
   const before = opens.length
-  const r = await $.command.run({ command: 'filetree', args: '', origin: { kind: 'sdk' }, presentation: { isFullscreen: false, columns: 80 } })
+  const r = await $.command.run({ command: 'mods-filetree', args: '', origin: { kind: 'sdk' }, presentation: { isFullscreen: false, columns: 80 } })
   await clock.settle()
   expect(JSON.stringify(r)).toContain('File tree on')
   expect(opens.length).toBeGreaterThan(before)
@@ -1269,7 +1269,7 @@ test('/filetree registers as immediate so it toggles the tree while a turn runs'
   const clock = world(on, { os: 'linux', env: { HOME: '/home/k' }, cwd: root, top: '', dirs: { [root]: [['a.txt', 'file']] }, status: '', numstat: '' }, ran)
   await $.session.start({ cwd: root, surface: 'terminal', isInteractive: true })
   await clock.settle()
-  expect(registered.at(-1)).toMatchObject({ name: 'filetree', immediate: true })
+  expect(registered.at(-1)).toMatchObject({ name: 'mods-filetree', immediate: true })
 })
 
 test('focus on open off: a bare /filetree opens the tree without taking the keyboard, /filetree open still takes it', { timeoutMs: 20_000, options: { focus: 'off' } }, async ($, on) => {
@@ -1280,11 +1280,11 @@ test('focus on open off: a bare /filetree opens the tree without taking the keyb
   await $.session.start({ cwd: root, surface: null, isInteractive: false })
   await clock.settle()
   const before = opens.length
-  await $.command.run({ command: 'filetree', args: '', origin: { kind: 'sdk' }, presentation: { isFullscreen: false, columns: 80 } })
+  await $.command.run({ command: 'mods-filetree', args: '', origin: { kind: 'sdk' }, presentation: { isFullscreen: false, columns: 80 } })
   await clock.settle()
   expect(opens.length).toBeGreaterThan(before)
   expect(opens.at(-1)).not.toHaveProperty('focus')
-  await $.command.run({ command: 'filetree', args: 'open', origin: { kind: 'sdk' }, presentation: { isFullscreen: false, columns: 80 } })
+  await $.command.run({ command: 'mods-filetree', args: 'open', origin: { kind: 'sdk' }, presentation: { isFullscreen: false, columns: 80 } })
   await clock.settle()
   expect(opens.at(-1)).toMatchObject({ id: 'mods-filetree', focus: true })
 })
@@ -1304,7 +1304,7 @@ test('focus on open off: a bare /filetree toggles the tree and reopens it after 
   on('ui.panes', () => ({ value: opens.length > start ? [{ id: 'mods-filetree', title: 'Files', isFocused: false, isShown: shown(), isPlaced: shown() }] : [] }))
   await $.session.start({ cwd: root, surface: null, isInteractive: false })
   await clock.settle()
-  const bare = { command: 'filetree', args: '', origin: { kind: 'sdk' }, presentation: { isFullscreen: false, columns: 80 } } satisfies CommandRunInput
+  const bare = { command: 'mods-filetree', args: '', origin: { kind: 'sdk' }, presentation: { isFullscreen: false, columns: 80 } } satisfies CommandRunInput
   expect(shown()).toBe(true)
   for (let round = 0; round < 2; round++) {
     expect(JSON.stringify(await $.command.run(bare))).toContain('closed')
@@ -1320,7 +1320,7 @@ test('focus on open off: a bare /filetree toggles the tree and reopens it after 
 })
 
 const shimmer = (name: string, tone: string) => `"t":${JSON.stringify(name)},"sh":"${tone}"`
-const fullscreen = (args: string) => ({ command: 'filetree', args, origin: { kind: 'composer' }, presentation: { isFullscreen: true, columns: 200 } }) satisfies CommandRunInput
+const fullscreen = (args: string) => ({ command: 'mods-filetree', args, origin: { kind: 'composer' }, presentation: { isFullscreen: true, columns: 200 } }) satisfies CommandRunInput
 
 test('after /clear the tree rebuilds itself, keeps a pinned folder, and an empty root never loops', { timeoutMs: 20_000 }, async ($, on) => {
   const ran: Ran = []
@@ -2343,7 +2343,7 @@ test('the footer names the entry under the cursor, and ? toggles a grouped short
   await ui.post({ key: '?' }, { in: 'rows' })
   await clock.settle()
   const open = shortcutText(await ui.drawn())
-  for (const word of ['Keyboard shortcuts', 'Move', 'Search', 'Files and actions', 'View', 'Pane', 'v / V', 'y / Y', 'n / g / m', 'c / r', 'f / b', '[ / ]', 'search file contents', 'ctrl+x tab', 'give the pane the keyboard', 'alt+l', 'alt+h', '/filetree keys', 'set up alt+l and alt+h', 'Esc', 'back to the prompt']) expect(open).toContain(word)
+  for (const word of ['Keyboard shortcuts', 'Move', 'Search', 'Files and actions', 'View', 'Pane', 'v / V', 'y / Y', 'n / g / m', 'c / r', 'f / b', '[ / ]', 'search file contents', 'ctrl+x tab', 'give the pane the keyboard', 'alt+l', 'alt+h', '/mods-filetree keys', 'set up alt+l and alt+h', 'Esc', 'back to the prompt']) expect(open).toContain(word)
   for (const key of ['u', 't', 'x', 'w', 'd', 'z', 'i', 's', 'p', 'a']) expect(open).toMatch(new RegExp(`\n   ${key} +\\S`))
   expect(treeRows(await ui.drawn()).active).toBe('')
   expect(await ui.find({ key: 'nav-d' })).toBeUndefined()
@@ -2518,7 +2518,7 @@ test('on the desktop the Shortcuts button opens a keyboard panel in the pane bod
   await clock.settle()
   const panel = JSON.stringify(await ui.find({ key: 'keys-panel' }))
   for (const word of ['Keyboard shortcuts', 'keyboard shortcuts', 'Move', 'Files and actions', 'v / V', 'n / g / m', 'search file contents']) expect(panel).toContain(word)
-  for (const word of ['ctrl+x tab', 'alt+l', '/filetree keys', 'page the preview', 'Quick Look']) expect(panel).not.toContain(word)
+  for (const word of ['ctrl+x tab', 'alt+l', '/mods-filetree keys', 'page the preview', 'Quick Look']) expect(panel).not.toContain(word)
   await ui.press({ key: 'keys-close' })
   await clock.settle()
   expect(await ui.find({ key: 'keys-panel' })).toBeUndefined()
@@ -2734,7 +2734,7 @@ test('a second /filetree closes the tree', async ($, on) => {
     return { value: undefined }
   })
   await $.session.start({ cwd: '/tmp', surface: 'desktop', isInteractive: true })
-  const out = await $.command.run({ command: 'filetree', args: '', origin: { kind: 'composer' }, presentation: { isFullscreen: true, columns: 200 } })
+  const out = await $.command.run({ command: 'mods-filetree', args: '', origin: { kind: 'composer' }, presentation: { isFullscreen: true, columns: 200 } })
   expect(closed).toEqual(['mods-filetree'])
   expect(JSON.stringify(out)).toContain('closed')
 })
@@ -2748,7 +2748,7 @@ test('/filetree open keeps an open tree open', async ($, on) => {
     return { value: undefined }
   })
   await $.session.start({ cwd: '/tmp', surface: 'desktop', isInteractive: true })
-  await $.command.run({ command: 'filetree', args: 'open', origin: { kind: 'composer' }, presentation: { isFullscreen: true, columns: 200 } }).catch(() => undefined)
+  await $.command.run({ command: 'mods-filetree', args: 'open', origin: { kind: 'composer' }, presentation: { isFullscreen: true, columns: 200 } }).catch(() => undefined)
   expect(closed).toEqual([])
 })
 
@@ -4251,7 +4251,7 @@ test('Follow work from a pinned root: four reads in another repo move Claude the
   const a = '/home/k/a', b = '/home/k/b'
   const ran: Ran = []
   const { ui, root, reads, clock } = await workSession($, on, WORK_WORLD(a, b), ran)
-  await $.command.run({ command: 'filetree', args: `${a}/src`, origin: { kind: 'composer' }, presentation: { isFullscreen: true, columns: 200 } })
+  await $.command.run({ command: 'mods-filetree', args: `${a}/src`, origin: { kind: 'composer' }, presentation: { isFullscreen: true, columns: 200 } })
   await clock.settle()
   expect(await root()).toBe(`${a}/src/x.ts`)
   await reads(b)
@@ -4301,7 +4301,7 @@ test('x on a guarded path seen from the parent folder lifts the guard set inside
   await ui.post({ key: 'x' }, { in: 'rows' })
   await clock.settle()
   expect((await edit()).decision).toBe('deny')
-  await $.command.run({ command: 'filetree', args: '/home/k', origin: { kind: 'composer' }, presentation: { isFullscreen: true, columns: 200 } })
+  await $.command.run({ command: 'mods-filetree', args: '/home/k', origin: { kind: 'composer' }, presentation: { isFullscreen: true, columns: 200 } })
   await clock.settle()
   await ui.post({ press: root }, { in: 'rows' })
   await ui.post({ key: 'l' }, { in: 'rows' })
@@ -5377,7 +5377,7 @@ test('open content search results refresh after Claude writes a file', { timeout
 })
 
 const KEYS_FILE = '/home/k/.claude/keybindings.json'
-const keysRun = { command: 'filetree', args: 'keys', origin: { kind: 'composer' }, presentation: { isFullscreen: true, columns: 200 } } satisfies CommandRunInput
+const keysRun = { command: 'mods-filetree', args: 'keys', origin: { kind: 'composer' }, presentation: { isFullscreen: true, columns: 200 } } satisfies CommandRunInput
 
 function keysWorld(on: On, text: string | undefined, picks: string[]) {
   const ran: Ran = []

@@ -13,12 +13,12 @@ An IDE-style file tree for Claude Code that shows what Claude is doing and where
 ### 🏆 Usage
 
 ```
-/filetree
+/mods-filetree
 ```
 
-ใช้คำสั่งเดียวกับต้นฉบับ: `/filetree` เปิด/ปิดแผง, `/filetree <path>` เปิดที่โฟลเดอร์นั้น, `/filetree open` เปิดค้างไว้, `/filetree keys` ตั้ง alt+l / alt+h ให้ย้ายคีย์บอร์ดเข้า-ออก tree — กด `?` ในแผงเพื่อดูคีย์ลัดทั้งหมด
+`/mods-filetree` เปิด/ปิดแผง, `/mods-filetree <path>` เปิดที่โฟลเดอร์นั้น, `/mods-filetree open` เปิดค้างไว้, `/mods-filetree keys` ตั้ง alt+l / alt+h ให้ย้ายคีย์บอร์ดเข้า-ออก tree — กด `?` ในแผงเพื่อดูคีย์ลัดทั้งหมด
 
-ถ้าติดตั้ง `filetree@claude-code-filetree` ไว้ด้วย ให้ปิดตัวใดตัวหนึ่ง เพราะทั้งคู่ใช้คำสั่ง `/filetree` และจะมีแผง file tree สองแผง
+ใช้คู่กับ `filetree@claude-code-filetree` ได้โดยคำสั่งไม่ชนกัน (ต้นฉบับใช้ `/filetree`) แต่ถ้าเปิดทั้งคู่จะมีแผง file tree สองแผง ในเอกสาร `docs/` คำสั่งยังเขียนว่า `/filetree` ใน mod นี้ให้ใช้ `/mods-filetree`
 
 ### ⚙️ Config
 
